@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: single
 title: "Time series modeling"
 category: "Time series"
 date: 2019-07-19
