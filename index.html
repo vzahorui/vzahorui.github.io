@@ -60,7 +60,7 @@ var svg = d3.select("body").append("svg")
   
 var force = d3.layout.force()
     .size([width, height])
-    .charge(-600)
+    .charge(-100)
     .linkDistance(function(d) { return radius(d.source.size) + radius(d.target.size) + 90; });
   
 force
