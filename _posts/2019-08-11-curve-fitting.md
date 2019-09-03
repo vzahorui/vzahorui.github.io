@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: single
 title: "Curve fitting"
 description: Here I am going to explain some of the curve fitting methods such as least squares and least absolutes
 category: "Regression"
