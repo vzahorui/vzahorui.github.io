@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: single
 title: "Normal distribution"
 description: In this post I described all the essential stuff in order to understand normal distribution and how to use it.
 category: "Distributions"
@@ -13,7 +13,7 @@ Normal distribution is one of the most fundamental building blocks of statistics
 <br>
 Suppose, we decided to measure the weight of all newborns in multitude of different hospitals and calculate the average weight in each hospital. Most likely the distribution of those average weights will resemble a bell-shaped curve. 
 
-![](/assets/img/distributions/toy_newborn_weight_distribution.png){:class="standard_img"}
+![](/assets/images/distributions/toy_newborn_weight_distribution.png){: .align-center}
 
 Here we see that the average of all measured averages converges around a certain central value, 3.2 kilos in this case. This means that among all measured averages we encountered mostly values which are very close or equal to 3.2. The closer the hospital average to 3.2 - the higher the frequency of such encounters. By contrast, we see that there are very few averages that have values, say, higher than 4 or lower than 2.5 kilos.<br>
 <br>
@@ -29,7 +29,7 @@ In general, in order to calculate the area under the curve we would have to perf
 <br>
 Suppose we want to calculate the percentage of newborns who have weight less than 3 kilos and the percentage of newborns with weight from 3 to 3.5 kilos. That is equal to calculating the filled areas under the curves below.
 
-![](/assets/img/distributions/toy_newborn_weight_distribution_area.png){:class="standard_img"}
+![](/assets/images/distributions/toy_newborn_weight_distribution_area.png){: .align-center}
 
 In the first case we simply calculate $z$-score of the value 3 and look up the area under the curve from the $z$-table for negative values (since 3 is lower than the mean 3.2). In this example it approximates to 0.2514. So conclude that only 25.14% of all newborns have weight 3 kilos or less.<br>
 <br>
@@ -39,7 +39,7 @@ In the second example we have an area with two cut-off points. $Z$-table allows 
 
 One other interesting property of normal distribution is the spread of its values around the mean.
 
-![](/assets/img/distributions/toy_newborn_6_sigma.png){:class="standard_img"}
+![](/assets/images/distributions/toy_newborn_6_sigma.png){: .align-center}
 
 Based on the example above, we see that: 
 * 68.26% of all newborns have weigth from 2.9 to 3.5 kilos (one standard deviation away from the mean) 
