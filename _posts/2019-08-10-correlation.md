@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: single
 title: "Correlation"
 description: Here I am going to explain what is correlation and correlation coefficients, the intuition behind their calculations and how they may be useful
 category: "Regression"
@@ -25,4 +25,4 @@ If correlation coefficient equals 1 then the upward sloping line can completely 
 <br>
 Below is representation of different kinds of regression where correlation coefficient assumes different values.
 
-![](/assets/img/regression/correlation_demo.png){:class="standard_img"}
+![](/assets/images/regression/correlation_demo.png){: .align-center}
