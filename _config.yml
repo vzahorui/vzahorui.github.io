@@ -139,7 +139,7 @@ footer:
       # url:
     - label: "Email"
       icon: "fas fa-fw fa-envelope-square"
-      url: mailto:vladyslav.zahorui@gmail.com
+      # url: mailto:login@email.com
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
       url: "https://github.com/vzahorui"
@@ -151,7 +151,7 @@ footer:
       # url:
     - label: "Instagram"
       icon: "fab fa-fw fa-instagram"
-      # url:
+      url: "https://www.instagram.com/v.zahorui"
 
 
 # Reading Files
