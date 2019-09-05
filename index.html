@@ -21,7 +21,12 @@ title: Unlocking the power of data
 .node.fixed circle {
   fill: #ecba4e;
 }
+div.interactive_canvas {
+  margin: 60px auto;
+}	
 </style>
+
+<div class="interactive_canvas">
 
 <script src="//d3js.org/d3.v3.min.js"></script>
 <script>
@@ -120,3 +125,5 @@ function dragstart(d) {
   d3.select(this).classed("fixed", d.fixed = true);
 }
 </script>
+	
+</div>
