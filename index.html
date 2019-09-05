@@ -21,12 +21,8 @@ title: Unlocking the power of data
 .node.fixed circle {
   fill: #ecba4e;
 }
-div.interactive_canvas {
-  margin: 60px auto;
-}	
+	
 </style>
-
-<div class="interactive_canvas">
 
 <script src="//d3js.org/d3.v3.min.js"></script>
 <script>
@@ -53,18 +49,15 @@ var graph = {
     {"source": 0, "target": 7} ]
   };
   
-var width = 1680,
-    height = 800;
+
   
 var radius = d3.scale.sqrt()
     .range([0, 6]);
 
 var svg = d3.select("body").append("svg")
-    .attr("width", width)
-    .attr("height", height);
+
   
 var force = d3.layout.force()
-    .size([width, height])
     .charge(-600)
     .linkDistance(function(d) { return radius(d.source.size) + radius(d.target.size) + 100; });
   
@@ -125,5 +118,3 @@ function dragstart(d) {
   d3.select(this).classed("fixed", d.fixed = true);
 }
 </script>
-	
-</div>
