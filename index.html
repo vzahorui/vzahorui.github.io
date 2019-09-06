@@ -9,7 +9,7 @@ title: Unlocking the power of data
   display: inline-block;
   position: relative;
   width: 100%;
-  padding-bottom: 100%; /* aspect ratio */
+  padding-bottom: 33%; /* aspect ratio */
   vertical-align: middle;
   overflow: hidden;
 }
@@ -75,12 +75,12 @@ var svg = d3.select("div#chartId")
     .classed("svg-container", true)
     .append("svg")
     .attr("preserveAspectRatio", "xMinYMin meet")
-    .attr("viewBox", "0 0 1000 700")
+    .attr("viewBox", "0 0 2000 1400")
    // Class to make it responsive.
     .classed("svg-content-responsive", true);
   
 var force = d3.layout.force()
-    .size([750, 500])
+    .size([1600, 500])
     .charge(-600)
     .linkDistance(function(d) { return radius(d.source.size) + radius(d.target.size) + 100; });
   
