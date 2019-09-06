@@ -80,7 +80,7 @@ var svg = d3.select("div#chartId")
     .classed("svg-content-responsive", true);
   
 var force = d3.layout.force()
-    .size([850, 600])
+    .size([750, 500])
     .charge(-600)
     .linkDistance(function(d) { return radius(d.source.size) + radius(d.target.size) + 100; });
   
