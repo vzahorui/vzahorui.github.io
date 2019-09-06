@@ -75,12 +75,12 @@ var svg = d3.select("div#chartId")
     .classed("svg-container", true)
     .append("svg")
     .attr("preserveAspectRatio", "xMinYMin meet")
-    .attr("viewBox", "0 0 1000 800")
+    .attr("viewBox", "0 0 1000 500")
    // Class to make it responsive.
     .classed("svg-content-responsive", true);
   
 var force = d3.layout.force()
-    .size([800, 800])
+    .size([800, 500])
     .charge(-600)
     .linkDistance(function(d) { return radius(d.source.size) + radius(d.target.size) + 100; });
   
