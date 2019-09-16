@@ -41,11 +41,11 @@ The next step is converting standard form into slack form. For this we need to a
 As in example with the chocolate manufacturing we get the following form of constraints:
 
 &nbsp;&nbsp;&nbsp;&nbsp;
-$\begin{cases}
+$$\begin{cases}
 3x_1+5x_2+2x_3 + s_1 = 189 \\ 
 4x_1+2x_2+x_3 + s_2 = 300 \\ 
 2x_1+4x_2+7x_3 + s_3 = 250
-\end{cases}$
+\end{cases}$$
 
 The optimization function will take up the following form:
 
