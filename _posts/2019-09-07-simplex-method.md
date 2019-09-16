@@ -14,8 +14,8 @@ Let’s define black, milk and white chocolate as $x_1$, $x_2$ and $x_3$ and ing
 
 &nbsp;&nbsp;&nbsp;&nbsp;
 $\begin{cases}
-3x_1+5x_2+2x_3 \leq 189 \\ 
-4x_1+2x_2+x_3 \leq 300 \\ 
+3x_1+5x_2+2x_3 \leq 189 
+4x_1+2x_2+x_3 \leq 300<br> 
 2x_1+4x_2+7x_3 \leq 250
 \end{cases}$
 
