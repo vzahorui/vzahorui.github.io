@@ -13,13 +13,13 @@ Suppose the company is engaged in manufacturing of black, milk and white chocola
 Let’s define black, milk and white chocolate as $x_1$, $x_2$ and $x_3$ and ingredients as $a$, $b$ and $c$. Bearing in mind that each type of chocolate requires different amount of ingredients for manufacturing we can write down a system of equations which represent restrictions due to the limited ingredients supply.
 
 &nbsp;&nbsp;&nbsp;&nbsp;
-$\left\{ 
+$$\left\{ 
 \begin{array}{c}
 3x_1+5x_2+2x_3 \leq 189 \\
 4x_1+2x_2+x_3 \leq 300 \\
 2x_1+4x_2+7x_3 \leq 250
 \end{array}
-\right.$
+\right.$$
 
 The company aims at maximizing its revenue by selling finished products by their respective prices:
 
