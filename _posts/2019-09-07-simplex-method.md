@@ -13,13 +13,11 @@ Suppose the company is engaged in manufacturing of black, milk and white chocola
 Let’s define black, milk and white chocolate as $x_1$, $x_2$ and $x_3$ and ingredients as $a$, $b$ and $c$. Bearing in mind that each type of chocolate requires different amount of ingredients for manufacturing we can write down a system of equations which represent restrictions due to the limited ingredients supply.
 
 &nbsp;&nbsp;&nbsp;&nbsp;
-$$\left\{ 
-\begin{array}{c}
+$$\begin{cases}
 3x_1+5x_2+2x_3 \leq 189 \\
 4x_1+2x_2+x_3 \leq 300 \\
 2x_1+4x_2+7x_3 \leq 250
-\end{array}
-\right.$$
+\end{cases}$$
 
 The company aims at maximizing its revenue by selling finished products by their respective prices:
 
@@ -30,11 +28,11 @@ In this example we already have a standard form of a linear program. Otherwise a
 * If the objective is minimization, we need to convert it into maximization by multiplying both parts of objective equation by (-1). 
 * All variables should be non-negative. If we have negative variable constraint we can make them non-negative by applying substitution. A negative variable can be substituted a difference of two non-negative variables.
 * If we have an equality among our constraints we have to substitute it with two inequalities as in the example below:<br>
-$2x_1+x_2 = 7 \rightarrow 
+$$2x_1+x_2 = 7 \rightarrow
 \begin{cases}
 2x_1+x_2 \leq 7 \\ 
 2x_1+x_2 \geq 7
-\end{cases}$
+\end{cases}$$
 * We need to make sure that all constraints are less or equal to some constant. If they are not is can be achieved by multiplying by (-1).
 
 The next step is converting standard form into slack form. For this we need to add slack variables which represent the difference between left and right sides of inequalities. "Slack" as it is "taking up an slack".<br>
