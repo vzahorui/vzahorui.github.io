@@ -61,8 +61,9 @@ var graph = {
 "size":4, "font":1},
     {"name": "Optimization", "size":15, "font":1.8},
     {"name": "Simplex Method", "url":"{{ site.baseurl }}{% link _posts/2019-09-07-simplex-method.md %}",
-"size":4, "font":1}
-     ],
+"size":4, "font":1},
+    {"name": "Derivatives", "url":"{{ site.baseurl }}{% link _posts/2019-09-14-derivatives.md %}",
+"size":4, "font":1} ],
     "links": [
     {"source": 0, "target": 1}, 
     {"source": 0, "target": 3},
@@ -73,7 +74,8 @@ var graph = {
     {"source": 0, "target": 7},
     {"source": 7, "target": 8}, 
     {"source": 0, "target": 9}, 
-    {"source": 9, "target": 10} ]
+    {"source": 9, "target": 10},
+    {"source": 6, "target": 11} ]
   };
     
 var radius = d3.scale.sqrt()
