@@ -14,7 +14,7 @@ $\displaystyle{\lim_{x \to c}f(x)}= L$
 
 We can get $f(x)$ infinitely close to $L$ if we get values of $x$ sufficiently close to $c$. The limit only describes the behavior of a function as it approaches a point. It does not however tell us the value at that exact point.
 
-Let's suppose we have a function $f(x)=\frac{1}{x}$. By its graph we can see that when $x$ variable increases, the $y$ value goes to 0 but without quite reaching it. 
+Let's suppose we have a function $f(x)=\frac{1}{\lvert x \rvert}$. By its graph we can see that when $x$ variable increases, the $y$ value goes to 0 but without quite reaching it. 
 
 ![](/assets/images/calculus/plot_1_div_x.png){: .align-center}
 
