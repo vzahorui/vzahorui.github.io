@@ -37,7 +37,13 @@ var graph = {
     {"name": "Time Series Modeling", "url":"{{ site.baseurl }}{% link _posts/2019-07-19-time-series-modeling.md %}",
      "size":4, "font":1}, 
     {"name": "Calculus", "size":15, "font":1.8},
-    {"name": "Regression", "size":15, "font":1.8} ],
+    {"name": "Regression", "size":15, "font":1.8},
+    {"name": "Curve Fitting", "url":"{{ site.baseurl }}{% link _posts/2019-08-11-curve-fitting.md %}",
+"size":4, "font":1},
+    {"name": "Optimization", "size":15, "font":1.8},
+    {"name": "Simplex Method", "url":"{{ site.baseurl }}{% link _posts/2019-09-07-simplex-method.md %}",
+"size":4, "font":1}
+     ],
     "links": [
     {"source": 0, "target": 1}, 
     {"source": 0, "target": 3},
@@ -45,7 +51,10 @@ var graph = {
     {"source": 3, "target": 4},
     {"source": 3, "target": 5}, 
     {"source": 0, "target": 6},
-    {"source": 0, "target": 7} ]
+    {"source": 0, "target": 7},
+    {"source": 7, "target": 8}, 
+    {"source": 0, "target": 9}, 
+    {"source": 9, "target": 10} ]
   };
   
 var width = 1680,

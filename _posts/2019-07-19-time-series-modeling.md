@@ -9,7 +9,7 @@ The methods described here require time series to be stationary. Stationary time
 It means that for any future observation the expected value will be equal to the mean of time series with injection of statistical error. The shocks represented by statistical error do not have permanent effect on the time series. So to speak its values always tend to return to its mean value.<br>
 
 &nbsp;&nbsp;&nbsp;&nbsp;
-$y_t = + \mu + \varepsilon_t$
+$y_t = \mu + \varepsilon_t$
 
 Below is an example of stationary time series with $\mu$ = 10.
 
