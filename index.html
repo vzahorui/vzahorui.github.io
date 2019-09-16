@@ -91,7 +91,7 @@ var svg = d3.select("div#chartId")
 var force = d3.layout.force()
     .size([1700, 500])
     .charge(-600)
-    .linkDistance(function(d) { return radius(d.source.size) + radius(d.target.size) + 100; });
+    .linkDistance(function(d) { return radius(d.source.size) + radius(d.target.size) + 200; });
   
 force
     .nodes(graph.nodes)
