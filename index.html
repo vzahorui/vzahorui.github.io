@@ -4,13 +4,28 @@ title: Unlocking the power of data
 ---
 
 <style>
-.node text {
-  font-family:'Helvetica', 'Arial', 'Sans-Serif';
+
+.svg-container {
+  display: inline-block;
+  position: relative;
+  width: 100%;
+  padding-bottom: 33%; /* aspect ratio */
+  vertical-align: middle;
+  overflow: hidden;
+}
+.svg-content-responsive {
+  display: inline-block;
+  position: absolute;
+  top: 10px;
+  left: 0;
 }
 	
 .link {
   stroke: #273746;
   stroke-width: 1.5px;
+}
+.node text {
+  font-family:'Helvetica', 'Arial', 'Sans-Serif';
 }
 .node circle {
   cursor: move;
@@ -21,9 +36,13 @@ title: Unlocking the power of data
 .node.fixed circle {
   fill: #ecba4e;
 }
+	
 </style>
 
 <script src="//d3js.org/d3.v3.min.js"></script>
+
+<div id="chartId">
+
 <script>
 var graph = {
     "nodes": [
@@ -56,19 +75,21 @@ var graph = {
     {"source": 0, "target": 9}, 
     {"source": 9, "target": 10} ]
   };
-  
-var width = 1680,
-    height = 800;
-  
+    
 var radius = d3.scale.sqrt()
     .range([0, 6]);
 
-var svg = d3.select("body").append("svg")
-    .attr("width", width)
-    .attr("height", height);
+var svg = d3.select("div#chartId")
+    .append("div")
+    .classed("svg-container", true)
+    .append("svg")
+    .attr("preserveAspectRatio", "xMinYMin meet")
+    .attr("viewBox", "0 0 2000 1400")
+   // Class to make it responsive.
+    .classed("svg-content-responsive", true);
   
 var force = d3.layout.force()
-    .size([width, height])
+    .size([1700, 500])
     .charge(-600)
     .linkDistance(function(d) { return radius(d.source.size) + radius(d.target.size) + 100; });
   
@@ -129,3 +150,5 @@ function dragstart(d) {
   d3.select(this).classed("fixed", d.fixed = true);
 }
 </script>
+
+</div>
