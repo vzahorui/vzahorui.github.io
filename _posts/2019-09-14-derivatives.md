@@ -41,3 +41,5 @@ For further reference, below I include the table of the most commonly used deriv
 |$e^{kx}$|$ke^{kx}$|
 |$\ln x$|$\frac{1}{x}$|
 |$\log_{a} x$|$\frac{1}{x\ln (a)}$|
+|$f(x)g(x)$|$f\prime (x)g(x) + g\prime (x)f(x)$|
+|$\frac{\mu(x)}{\upsilon(x)}$|$\frac{\mu\prime (x) \upsilon(x) - \upsilon\prime (x) \mu(x)}{[\upsilon(x)]^2}$|
