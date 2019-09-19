@@ -95,9 +95,9 @@ social:
 
 # Analytics
 analytics:
-  provider               : false # false (default), "google", "google-universal", "custom"
+  provider               : "google-gtag" # false (default), "google", "google-universal", "custom"
   google:
-    tracking_id          :
+    tracking_id          : "UA-148376407-1"
     anonymize_ip         : # true, false (default)
 
 
@@ -137,21 +137,21 @@ footer:
     - label: "Facebook"
       icon: "fab fa-fw fa-facebook-square"
       # url:
-    - label: "Email"
-      icon: "fas fa-fw fa-envelope-square"
-      # url: mailto:login@email.com
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
       url: "https://github.com/vzahorui"
     - label: "GitLab"
       icon: "fab fa-fw fa-gitlab"
       # url: ""
-    - label: "Bitbucket"
-      icon: "fab fa-fw fa-bitbucket"
-      # url:
+    - label: "LinkedIn"
+      icon: "fab fa-fw fa-linkedin-in"
+      url: "https://www.linkedin.com/in/vzahorui"
     - label: "Instagram"
       icon: "fab fa-fw fa-instagram"
       url: "https://www.instagram.com/v.zahorui"
+    - label: "Email"
+      icon: "fas fa-fw fa-envelope-square"
+      url: mailto:vladyslav.zahorui@gmail.com
 
 
 # Reading Files
