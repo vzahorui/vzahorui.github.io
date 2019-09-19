@@ -144,7 +144,7 @@ footer:
       icon: "fab fa-fw fa-gitlab"
       # url: ""
     - label: "LinkedIn"
-      icon: "fab fa-fw fa-linkedin-in"
+      icon: "fab fa-linkedin-in"
       url: "https://www.linkedin.com/in/vzahorui"
     - label: "Instagram"
       icon: "fab fa-fw fa-instagram"
