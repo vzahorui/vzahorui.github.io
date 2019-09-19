@@ -132,10 +132,10 @@ author:
 footer:
   links:
     - label: "Email"
-      icon: "fas fa-fw fa-envelope"
+      icon: "far fa-paper-plane"
       url: mailto:vladyslav.zahorui@gmail.com
     - label: "LinkedIn"
-      icon: "fab fa-linkedin-in"
+      icon: "fab fa-linkedin"
       url: "https://www.linkedin.com/in/vzahorui"
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
