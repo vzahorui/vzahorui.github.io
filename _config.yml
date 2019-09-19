@@ -132,7 +132,7 @@ author:
 footer:
   links:
     - label: "Email"
-      icon: "far fa-paper-plane"
+      icon: "fas fa-paper-plane"
       url: mailto:vladyslav.zahorui@gmail.com
     - label: "LinkedIn"
       icon: "fab fa-linkedin"
@@ -140,15 +140,10 @@ footer:
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
       url: "https://github.com/vzahorui"
-    - label: "GitLab"
-      icon: "fab fa-fw fa-gitlab"
-      # url: ""
-   
     - label: "Instagram"
       icon: "fab fa-fw fa-instagram"
       url: "https://www.instagram.com/v.zahorui"
    
-
 
 # Reading Files
 include:
