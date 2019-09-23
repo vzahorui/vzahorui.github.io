@@ -59,7 +59,7 @@ By plotting second derivative we see that it is positive before point C and nega
 
 While first derivative shows the rate of change, second derivative represents acceleration. Here is one intuitive explanation of concavity with regard to acceleration:
 
-    * when acceleration is positive the function shows upwards concavity; $f(x)$ changes at greater steps than $x$;
-    * when acceleration is negative the function shows downwards concavity; $f(x)$ changes at lesser steps than $x$.
+ * when acceleration is positive the function shows upwards concavity; $f(x)$ changes at greater steps than $x$;
+ * when acceleration is negative the function shows downwards concavity; $f(x)$ changes at lesser steps than $x$.
     
 Meanwhile, we see that at the points of local minimum and maximum first derivatives are equal to 0 however their corresponding second derivatives are greater or lesser than 0. Therefore, in order to know if the critical point is minimum or maximum we do not need to calculate the derivatives of neighbouring values to the critical point. We can simply take the second derivative and draw conclusions from there. If at the critical point the second derivative is greater than zero then we have a point of local minimum, same logic applies to recognizing the point of local maximum. 
