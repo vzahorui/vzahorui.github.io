@@ -65,6 +65,6 @@ Say we have the following function $f(x)=\frac{1}{x^2}$ and we want to know the 
 And here is how we deal with it:
 
 &nbsp;&nbsp;&nbsp;&nbsp;
-$\int_1^\infty \frac{1}{x^2}dx = \displaystyle{\lim_{n \to \infty}} \int_1^n \frac{1}{x^2}dx = \displaystyle{\lim_{n \to \infty}} \left[-\frac{1}{x}\right]_ 1^n = \displaystyle{\lim_{n \to \infty}} [-\frac{1}{n} - (-1)] = \displaystyle{\lim_{n \to \infty}} [1 -\frac{1}{n}] = 1$
+$\int_1^\infty \frac{1}{x^2}dx = \displaystyle{\lim_{n \to \infty}} \int_1^n \frac{1}{x^2}dx = \displaystyle{\lim_{n \to \infty}} \left[-\frac{1}{x}\right]_ 1^n = \displaystyle{\lim_{n \to \infty}} \left[-\frac{1}{n} - (-1)\right] = \displaystyle{\lim_{n \to \infty}} \left[1 -\frac{1}{n}\right] = 1$
 
 Since at the end we get the limit which actually exists the integral is convergent, otherwise it would be impossible to calculate the area under the curve.
