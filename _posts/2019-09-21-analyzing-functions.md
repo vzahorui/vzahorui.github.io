@@ -3,7 +3,7 @@ layout: single
 title: "Analyzing functions"
 description: Explaining how differentiation may help in analyzing functions, understanding their behaviour and finding the extremities  
 category: "Calculus"
-tags: derivation derivative calculus differentiation functions extremities extreme-points analysis
+tags: derivation derivative calculus differentiation functions extremities extreme-points analysis saddle-point minimum maximum second-derivative concavity extreme-value-theorem
 date: 2019-09-21
 ---
 
@@ -19,7 +19,7 @@ Let's assume that the function keeps getting lower if $x$ becomes negative and i
 
 At point B we can see local minimum. One way of understanding the local minimum is that $f(x)$ assumes greater values if $x$ goes in any direction from its current value; the value of a function at a point of local minimum is relatively smaller than any of its neighboring points. Similarly, the same logic applies to the local maximum at point C.
 
-Now when we identified all the points of maximum and minimum let's look at the derivative of the function at those points. We see that the slope at points A and B reaches zero ($f'(x)=0$) and the tangent line goes parallel to the x-axis. As for the point C, the function is not differentiable there and the slope cannot be defined, so $f'(x)$ at that particular point does not exist. As we see, the points of maxima and minima of a function are at the points where $f'(x)=0$ or $f'(x)$ is undefined. Such points are called critical points. Looking at the graph we also see that at point D $f'(x)$ also equals to 0, so is this also a critical point? Well, yes. Although point D is neither local minimum or local maximum.
+Now when we identified all the points of maximum and minimum let's look at the derivative of the function at those points. We see that the slope at points A and B reaches zero ($f'(x)=0$) and the tangent line goes parallel to the x-axis. As for the point C, the function is not differentiable there and the slope cannot be defined, so $f'(x)$ at that particular point does not exist. As we see, the points of maxima and minima of a function are at the points where $f'(x)=0$ or $f'(x)$ is undefined. Such points are called critical points. Looking at the graph we also see that at point D $f'(x)$ also equals to 0, so is this also a critical point? Well, yes. Although point D is neither local minimum or local maximum (generally called saddle point).
 
 So here is the definition of critical number: $c$ is a critical value of a function $f(x)$ only if $f'(x) = 0$ or $f'(x)$ is undefined.
 

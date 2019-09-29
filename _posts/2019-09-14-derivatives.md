@@ -1,13 +1,15 @@
 ---
 layout: single
 title: "Understanding derivatives"
-description: Here I am going to explain what derivatives are and how they can be used  
+description: Building intuition behind the term of derivative of a function
 category: "Calculus"
-tags: derivation derivative calculus slope differentiation
+tags: derivation derivative calculus slope differentiation rata-of-change
 date: 2019-09-14
 ---
 
 ## Building intuition
+
+Derivatives are mainly used in the context of measuring rate of change between variables. Plainly speaking, it allows to see how one variable changes if another variable or variables also change.
 
 For understanding derivatives it is good to know what the slope of a function is and how it is measured. The slope generally shows the ratio of changes ($\frac{\Delta y}{\Delta x}$) between variables in two different points. In real life, however, it is rare that a function represents a straight line, as the slope changes over time. Let's look at the function described by the following curve:
 

@@ -25,7 +25,7 @@ Before moving on to calculating the probability of getting certain interval valu
 &nbsp;&nbsp;&nbsp;&nbsp;
 $z = \frac{x-\mu}{\sigma}$
 
-In general, in order to calculate the area under the curve we would have to perform integral calculus, however for the normal distribution we can simply use $z$-table by looking up probability for a specific $z$-score. $Z$-table has recorded values of calculated integral for cumulative normal distribution function. So to speak, it tell us the probability of value being less than some other value. There are two parts of  $z$-table - for $z$-scores which are higher or lower than the mean of distribution.<br>
+In general, in order to calculate the area under the curve we would have to perform [integral calculus]({{ site.baseurl }}{% link _posts/2019-09-24-integrals.md %}), however for the normal distribution we can simply use $z$-table by looking up probability for a specific $z$-score. $Z$-table has recorded values of calculated integral for cumulative normal distribution function. So to speak, it tell us the probability of value being less than some other value. There are two parts of  $z$-table - for $z$-scores which are higher or lower than the mean of distribution.<br>
 <br>
 Suppose we want to calculate the percentage of newborns who have weight less than 3 kilos and the percentage of newborns with weight from 3 to 3.5 kilos. That is equal to calculating the filled areas under the curves below.
 
