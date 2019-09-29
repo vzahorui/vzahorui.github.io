@@ -19,7 +19,7 @@ In this example we've split the whole time period between points $a$ and $b$ int
 We can see on the graph that the function is only going through the upper left corner of each rectangle but we could have also fitted them so that the approximation would be based on the last point or the middle value of each period. Either way, approximation does not really mirror the real speed since the area under the bars may be lesser or greater than the actual area of the split. We can however minimize the error of approximation by splitting the whole area into more periods, and thus making rectangulars smaller. Integration is based upon the idea of taking infinitely small splits, so that approximation approaches real function. By definition, the definite integral is the limit of the Riemann sum between two defined points when number of splits approaches infinity:
 
 &nbsp;&nbsp;&nbsp;&nbsp;
-$\displaystyle{\lim_{n \to \infty}}\sum_{i=1}^n f(x_i) \Delta x = \int_a^b f(x)dx$, 
+$\displaystyle{\lim_{n \to \infty}}\sum_{i=1}^n f(x_i) \Delta x = \int_a^bf(x)dx$, 
 where $\Delta x = \frac{b-a}{n}$ and $x_i = a+i\Delta x $
 
 ## The fundamental theorem of calculus
@@ -65,6 +65,6 @@ Say we have the following function $f(x)=\frac{1}{x^2}$ and we want to know the 
 And here is how we deal with it:
 
 &nbsp;&nbsp;&nbsp;&nbsp;
-$\int_1^\infty \frac{1}{x^2}dx = \displaystyle{\lim_{n \to \infty}} \int_1^n \frac{1}{x^2}dx = \displaystyle{\lim_{n \to \infty}} [-\frac{1}{x}]_1^n = \displaystyle{\lim_{n \to \infty}} [-\frac{1}{n} - (-1)] = \displaystyle{\lim_{n \to \infty}} [1 -\frac{1}{n}] = 1$
+$\int_1^\infty \frac{1}{x^2}dx = \displaystyle{\lim_{n \to \infty}} \int_1^n \frac{1}{x^2}dx = \displaystyle{\lim_{n \to \infty}} {[-\frac{1}{x}]}_1^n = \displaystyle{\lim_{n \to \infty}} [-\frac{1}{n} - (-1)] = \displaystyle{\lim_{n \to \infty}} [1 -\frac{1}{n}] = 1$
 
 Since at the end we get the limit which actually exists the integral is convergent, otherwise it would be impossible to calculate the area under the curve.
