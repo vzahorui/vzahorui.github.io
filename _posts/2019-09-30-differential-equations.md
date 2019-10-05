@@ -10,7 +10,7 @@ date: 2019-09-30
 Differential equation is an equation with a function and at least one of its derivatives. Here is an example:
 
 &nbsp;&nbsp;&nbsp;&nbsp;
-$f''(x) + 2f'(x) = 3f(x)$
+$f'' (x) + 2f'(x) = 3f(x)$
 
 The solution for a differential equation is a function or a set of functions, since there is often more than one solution. For the example equation above there is a solution $y_1=e^{-3x}$.
 The first and  the second derivatives of this function would look as follows:
