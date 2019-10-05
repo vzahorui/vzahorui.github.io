@@ -34,13 +34,13 @@ Here is a simple example of modeling number of users of a certain social network
 Let's define $N$ as number of users and $t$ as time. It would be reasonable to say that the rate of change in users with respect to time is proportional to the current number of users: we assume that the actual users are sharing their experiences among their friends and so attracting new users to the network. This is how the equation will look like:
 
 &nbsp;&nbsp;&nbsp;&nbsp;
-$\frac{dN}{dt}=rN$,
+$\frac{dN}{dt}=rN$,<br>
 where $r$ is the coefficient, which may represent the number of new users each existing user is bringing into network, in other words the rate of growth.
 
 We may recognize that this is a separable differential equation. Let's find the solution by transforming it and using integration:
 
 &nbsp;&nbsp;&nbsp;&nbsp;
-$\frac{dN}{N}=rdt \rightarrow \int\frac{dN}{N}=\int rdt \rightarrow \ln (\lvert N \rvert)=rt+C \rightarrow N=e^{rt}e^{C}=Ce^{rt}$,
+$\frac{dN}{N}=rdt \rightarrow \int\frac{dN}{N}=\int rdt \rightarrow \ln (\lvert N \rvert)=rt+C \rightarrow N=e^{rt}e^{C}=Ce^{rt}$,<br>
 where $C$ is some constant.
 
 At the end we got the traditional form of exponential equation.<br>
@@ -57,14 +57,14 @@ As unbounded growth in real life is hardly possible, exponential growth models c
 
 Considering that constant exponential growth is hardly possible, logistic models assume that a function can reach only a certain level of growth. Consider the example below:
 
-![](/assets/images/regression/plot_logistic_equation.png){: .align-center}
+![](/assets/images/calculus/plot_logistic_equation.png){: .align-center}
 
 At first we see the growth is similar to exponential, however, it becomes insignificant when the function reaches its asymptote. The function cannot exceed a certain value, which in practice can be explained by the maximum capacity of the environment. For example, the population of bacteria which increases exponentially remains constant after the amount of resources in the environment becomes scarce. At this point existing individuals start competing among themselves for the resources and the growth ceases whereas the whole number of population remains at level which allows scarcity of the resources.
 
 The differential equation for logistic models is similar to the one of exponential models but it additionally includes the hampering factor of existing population with regard to the maximum value of the function:
 
 &nbsp;&nbsp;&nbsp;&nbsp;
-$\frac{dN}{dt}=rN(1-\frac{N}{K})$,
+$\frac{dN}{dt}=rN(1-\frac{N}{K})$,<br>
 where $K$ is carrying capacity, that is the maximum possible value of a function.
 
 The solution to this differential equation is the following function:
