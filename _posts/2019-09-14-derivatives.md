@@ -57,7 +57,7 @@ For future reference, below I include the table of the most commonly used transf
 
 The second derivative of a function is simply the derivative of the function's derivative. If the first derivative is understood as the ratio of change, the second derivative is the ratio of change in ratio of change, in other words - acceleration.
 
-Let's consider, for example, the function $f(x)=x^3+2x^2$. Its first derivative is $f'(x)=3x^2+4x$. To find its second derivative, $f''$, we need to differentiate $f'$. When we do this, we find that $f''(x)=6x+4$.
+Let's consider, for example, the function $f(x)=x^3+2x^2$. Its first derivative is $f'(x)=3x^2+4x$. To find its second derivative, $f''$, we need to differentiate $f'$. When we do this, we find that $f'' (x)=6x+4$.
 
 Leibniz's notation for second derivative is $\frac{d^2y}{dx^2}$. For example, the Leibniz notation for the second derivative of $x^3+2x^2$ is $\frac{d^2}{dx^2}(x^3+2x^2)$.
 
