@@ -44,6 +44,7 @@ For future reference, below I include the table of the most commonly used transf
 |$x$|1|
 |$x^2$|$2x$|
 |$x^n$, any constant $n$|$n(x)^{n-1}$|
+|$a^x$|$a^x \ln a$|
 |$e^x$|$e^x$|
 |$e^{kx}$|$ke^{kx}$|
 |$\ln x$|$\frac{1}{x}$|

@@ -9,7 +9,7 @@ title: Unlocking the power of data
   display: inline-block;
   position: relative;
   width: 100%;
-  padding-bottom: 40%; /* aspect ratio */
+  padding-bottom: 50%; /* aspect ratio */
   vertical-align: middle;
   overflow: hidden;
 }
@@ -46,42 +46,46 @@ title: Unlocking the power of data
 <script>
 var graph = {
     "nodes": [
-    {"name": "Data Science", "size":40, "font":3}, 
-    {"name": "Distributions", "size":15, "font":1.8}, 
+    {"name": "Data Science", "size":40, "font":3, "dist":0}, 
+    {"name": "Distributions", "size":15, "font":1.8, "dist":90}, 
     {"name": "Normal Distribution", "url":"{{ site.baseurl }}{% link _posts/2019-07-28-normal-ditribution.md %}", 
-     "size":4, "font":1}, 
-    {"name": "Time Series", "size": 15, "font":1.8}, 
+     "size":4, "font":1, "dist": 90}, 
+    {"name": "Time Series", "size": 15, "font":1.8, "dist":90}, 
     {"name": "Stationarity Tests", "url":"{{ site.baseurl }}{% link _posts/2019-07-12-time-series-stationarity-tests.md %}",
-     "size":4, "font":1}, 
+     "size":4, "font":1, "dist":90}, 
     {"name": "Time Series Modeling", "url":"{{ site.baseurl }}{% link _posts/2019-07-19-time-series-modeling.md %}",
-     "size":4, "font":1}, 
-    {"name": "Calculus", "size":15, "font":1.8},
-    {"name": "Regression", "size":15, "font":1.8},
+     "size":4, "font":1, "dist": 90}, 
+    {"name": "Calculus", "size":15, "font":1.8, "dist":90},
+    {"name": "Regression", "size":15, "font":1.8, "dist":90},
     {"name": "Curve Fitting", "url":"{{ site.baseurl }}{% link _posts/2019-08-11-curve-fitting.md %}",
-"size":4, "font":1},
-    {"name": "Optimization", "size":15, "font":1.8},
+"size":4, "font":1, "dist":90},
+    {"name": "Optimization", "size":15, "font":1.8, "dist":90},
     {"name": "Simplex Method", "url":"{{ site.baseurl }}{% link _posts/2019-09-07-simplex-method.md %}",
-"size":4, "font":1},
+"size":4, "font":1, "dist":60},
     {"name": "Derivatives", "url":"{{ site.baseurl }}{% link _posts/2019-09-14-derivatives.md %}",
-"size":4, "font":1},
+"size":4, "font":1, "dist":70},
     {"name": "Analyzing Functions", "url":"{{ site.baseurl }}{% link _posts/2019-09-21-analyzing-functions.md %}",
-"size":4, "font":1},
+"size":4, "font":1, "dist":60},
     {"name": "Integrals", "url":"{{ site.baseurl }}{% link _posts/2019-09-24-integrals.md %}",
-"size":4, "font":1} ],
+"size":4, "font":1, "dist":70},
+    {"name": "Differential Equations", "url":"{{ site.baseurl }}{% link _posts/2019-09-30-differential-equations.md %}",
+"size":4, "font":1, "dist":100} ],
     "links": [
-    {"source": 0, "target": 1}, 
+    {"source": 0, "target": 1},
     {"source": 0, "target": 3},
     {"source": 1, "target": 2},
     {"source": 3, "target": 4},
-    {"source": 3, "target": 5}, 
+    {"source": 3, "target": 5},
     {"source": 0, "target": 6},
     {"source": 0, "target": 7},
-    {"source": 7, "target": 8}, 
-    {"source": 0, "target": 9}, 
+    {"source": 7, "target": 8},
+    {"source": 0, "target": 9},
     {"source": 9, "target": 10},
     {"source": 6, "target": 11},
     {"source": 11, "target": 12},
-    {"source": 6, "target": 13} ]
+    {"source": 6, "target": 13},
+    {"source": 13, "target": 14},
+    {"source": 11, "target": 14}]
   };
     
 var radius = d3.scale.sqrt()
@@ -97,10 +101,10 @@ var svg = d3.select("div#chartId")
     .classed("svg-content-responsive", true);
   
 var force = d3.layout.force()
-    .size([1700, 700])
-    .charge(-600)
-    .gravity(0.05)
-    .linkDistance(function(d) { return radius(d.source.size) + radius(d.target.size) + 100; });
+    .size([1700, 800])
+    .charge(-800)
+    .gravity(0.06)
+    .linkDistance(function(d) { return radius(d.source.size) + radius(d.target.size) + d.target.dist; });
   
 force
     .nodes(graph.nodes)
