@@ -22,6 +22,8 @@ We can see on the graph that the function is only going through the upper left c
 $\displaystyle{\lim_{n \to \infty}}\sum_{i=1}^n f(x_i) \Delta x = \int_a^bf(x)dx$, 
 where $\Delta x = \frac{b-a}{n}$ and $x_i = a+i\Delta x $
 
+The main application of derivatives if finding the net change in some value given the function of how it changes. Definite integrals are used when the problem is restricted to some interval, for example period of time.
+
 ## The fundamental theorem of calculus
 
 In simple words, the fundamental theorem of calculus provides connection between differentiation and integration.<br>
@@ -68,3 +70,7 @@ And here is how we deal with it:
 $\int_1^\infty \frac{1}{x^2}dx = \displaystyle{\lim_{n \to \infty}} \int_1^n \frac{1}{x^2}dx = \displaystyle{\lim_{n \to \infty}} \left[-\frac{1}{x}\right]_ 1^n = \displaystyle{\lim_{n \to \infty}} \left[-\frac{1}{n} - (-1)\right] = \displaystyle{\lim_{n \to \infty}} \left[1 -\frac{1}{n}\right] = 1$
 
 Since at the end we get the limit which actually exists the integral is convergent, otherwise it would be impossible to calculate the area under the curve.
+
+## Application of integrals 
+
+Integrals are heavily used in calculating the net change given a function. 

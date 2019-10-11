@@ -1,9 +1,9 @@
 ---
 layout: single
 title: "Differential equations"
-description: Explaining what differential equations are and how they can be used
+description: Explaining what differential equations are and how they can be used in modeling
 category: "Calculus"
-tags: integration differentiation calculus equations
+tags: integration differentiation calculus equations exponential-model logistic-model
 date: 2019-09-30
 ---
 
