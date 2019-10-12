@@ -19,15 +19,16 @@ title: Unlocking the power of data
   left: 0;
 }
 </style>
-<svg id='viz'></svg>
+
+<div id="chartId">
 
 
 <script src='https://d3js.org/d3.v5.min.js'></script>
 <script>
-var width = 800;
-var height = 600;
+var width = 1800;
+var height = 1000;
 
-d3.json("graph.json").then(function(graph) {
+d3.json("https://raw.githubusercontent.com/vzahorui/vzahorui.github.io/master/graph.json").then(function(graph) {
 
 var label = {
     'nodes': [],
@@ -45,14 +46,15 @@ graph.nodes.forEach(function(d, i) {
 
 var labelLayout = d3.forceSimulation(label.nodes)
     .force("charge", d3.forceManyBody().strength(-50))
-    .force("link", d3.forceLink(label.links).distance(0).strength(1));
+    .force("link", d3.forceLink(label.links).distance(0).strength(1))
+    .on("tick", ticked);
 
 var graphLayout = d3.forceSimulation(graph.nodes)
-    .force("charge", d3.forceManyBody().strength(-3000))
+    .force("charge", d3.forceManyBody().strength(-9000))
     .force("center", d3.forceCenter(width / 2, height / 2))
-    .force("x", d3.forceX(width / 2).strength(1))
-    .force("y", d3.forceY(height / 2).strength(1))
-    .force("link", d3.forceLink(graph.links).id(function(d) {return d.id; }).distance(50).strength(1))
+    .force("x", d3.forceX(width / 1).strength(1))
+    .force("y", d3.forceY(height / 1).strength(1))
+    .force("link", d3.forceLink(graph.links).id(function(d) {return d.id; }).distance(150).strength(1))
     .on("tick", ticked);
 
 var adjlist = [];
@@ -62,13 +64,13 @@ graph.links.forEach(function(d) {
     adjlist[d.target.index + "-" + d.source.index] = true;
 });
 
-function neigh(a, b) {
-    return a == b || adjlist[a + "-" + b];
-}
-
-
-var svg = d3.select("#viz").attr("width", width).attr("height", height)
-;
+var svg = d3.select("div#chartId")
+    .append("div")
+    .classed("svg-container", true)
+    .append("svg")
+    .attr("preserveAspectRatio", "xMinYMin meet")
+    .attr("viewBox", "0 0 2000 1400")
+    .classed("svg-content-responsive", true);
   
 var container = svg.append("g");
 
@@ -113,11 +115,7 @@ var labelNode = container.append("g").attr("class", "labelNodes")
     .text(function(d, i) { return i % 2 == 0 ? "" : d.node.id; })
     .style("fill", "#555")
     .style("font-family", "Arial")
-    .style("font-size", 12);
-  
-labelNode.append("a")
-    .attr("xlink:href", function(d) { return d.url; })
-    .attr("target", "_blank")
+    .style("font-size", function(d){ return d.node.font + 'em'; });
  
 function ticked() {
 
