@@ -1,3 +1,4 @@
+<!DOCTYPE html xmlns:xlink="http://www.w3.org/1999/xlink">
 <html>
 <body>
 <svg id='viz'></svg>
@@ -7,7 +8,6 @@
 <script>
 var width = 800;
 var height = 600;
-var color = d3.scaleOrdinal(d3.schemeCategory10);
 
 d3.json("https://raw.githubusercontent.com/vzahorui/vzahorui.github.io/master/graph.json").then(function(graph) {
 
@@ -72,7 +72,8 @@ var node = container.append("g").attr("class", "nodes")
     .attr("fill", "#d4d3da")
     .attr("stroke", "#273746")
     .attr("stroke-width", "1.5px")
-    .attr("cursor", "move");
+    .attr("cursor", "move")
+    .on("dblclick", dblclick);
 
 node.call(
     d3.drag()
@@ -86,15 +87,19 @@ var labelNode = container.append("g").attr("class", "labelNodes")
     .data(label.nodes)
     .enter()
     .append("svg:a")
-    .attr("xlink:href", function(d) { return d.url; })
-    .attr("target", "_blank") //opening in new tab
+    .attr("xlink:href", "https://www.google.com")
+    .attr("target", "_blank")
     .append("text") //visible name
     .text(function(d, i) { return i % 2 == 0 ? "" : d.node.id; })
     .style("fill", "#555")
     .style("font-family", "Arial")
     .style("font-size", 12)
-    .style("pointer-events", "none"); // to prevent mouseover/drag capture
+; // to prevent mouseover/drag capture
 
+labelNode.append("a")
+    .attr("xlink:href", function(d) { return d.url; })
+    .attr("target", "_blank")
+ 
 function ticked() {
 
     node.call(updateNode);
@@ -144,6 +149,7 @@ function updateNode(node) {
 function dragstarted(d) {
     d3.event.sourceEvent.stopPropagation();
     if (!d3.event.active) graphLayout.alphaTarget(0.3).restart();
+    d3.select(this).raise().attr("fill", "#ecba4e");
     d.fx = d.x;
     d.fy = d.y;
 }
@@ -155,10 +161,16 @@ function dragged(d) {
 
 function dragended(d) {
     if (!d3.event.active) graphLayout.alphaTarget(0);
+    d.fx = d3.event.x;
+    d.fy = d3.event.y;
+}
+  
+function dblclick(d) {
+    d3.select(this).raise().attr("fill", "#d4d3da");
     d.fx = null;
     d.fy = null;
 }
 
-}); // d3.json
+}); 
 </script>
 </html>
