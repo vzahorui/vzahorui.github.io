@@ -1,7 +1,26 @@
-<html>
-<body>
+---
+layout: default
+title: Unlocking the power of data
+---
+
+<style>
+.svg-container {
+  display: inline-block;
+  position: relative;
+  width: 100%;
+  padding-bottom: 50%; /* aspect ratio */
+  vertical-align: middle;
+  overflow: hidden;
+}
+.svg-content-responsive {
+  display: inline-block;
+  position: absolute;
+  top: 10px;
+  left: 0;
+}
+</style>
 <svg id='viz'></svg>
-</body>
+
 
 <script src='https://d3js.org/d3.v5.min.js'></script>
 <script>
@@ -48,7 +67,9 @@ function neigh(a, b) {
 }
 
 
-var svg = d3.select("#viz").attr("width", width).attr("height", height);
+var svg = d3.select("#viz").attr("width", width).attr("height", height)
+;
+  
 var container = svg.append("g");
 
 var link = container.append("g").attr("class", "links")
@@ -171,4 +192,3 @@ function dblclick(d) {
 
 }); 
 </script>
-</html>
