@@ -20,7 +20,7 @@
 "size":4, "font":1, "dist":70},
         {"id": "Analyzing Functions", "url":"{{ site.baseurl }}{% link _posts/2019-09-21-analyzing-functions.md %}",
 "size":4, "font":1, "dist":90},
-        {"id": "Integrals", "url":"{{ site.baseurl }}{% link _posts/2019-09-24-integrals.md %}",
+        {"id": "Integrals", "url":"({{ site.baseurl }}{% link _posts/2019-09-24-integrals.md %})",
 "size":4, "font":1, "dist":70},
         {"id": "Differential Equations", "url":"{{ site.baseurl }}{% link _posts/2019-09-30-differential-equations.md %}",
 "size":4, "font":1, "dist":100}
