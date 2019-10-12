@@ -87,7 +87,7 @@ var labelNode = container.append("g").attr("class", "labelNodes")
     .data(label.nodes)
     .enter()
     .append("svg:a")
-    .attr("xlink:href", "https://www.google.com")
+    .attr("xlink:href", function(d) { return radius(d.size); })
     .attr("target", "_blank")
     .append("text") //visible name
     .text(function(d, i) { return i % 2 == 0 ? "" : d.node.id; })
