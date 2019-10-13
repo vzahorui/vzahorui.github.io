@@ -109,7 +109,7 @@ var labelNode = container.append("g").attr("class", "labelNodes")
     .data(label.nodes)
     .enter()
     .append("svg:a")
-    .attr("href", "{{ site.baseurl }}{% link _posts/2019-07-28-normal-ditribution.md %}")
+    .attr("href", function(d){ return "'" + d.node.url + "'"; })
     .attr("target", "_blank")
     .append("text") //visible name
     .text(function(d, i) { return i % 2 == 0 ? "" : d.node.id; })
