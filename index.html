@@ -4,6 +4,7 @@ title: Unlocking the power of data
 ---
 
 <style>
+
 .svg-container {
   display: inline-block;
   position: relative;
@@ -18,51 +19,77 @@ title: Unlocking the power of data
   top: 10px;
   left: 0;
 }
+	
+.link {
+  stroke: #273746;
+  stroke-width: 1.5px;
+}
+.node text {
+  font-family:'Helvetica', 'Arial', 'Sans-Serif';
+}
+.node circle {
+  cursor: move;
+  fill: #d4d3da;
+  stroke: #273746;
+  stroke-width: 1.5px;
+}
+.node.fixed circle {
+  fill: #ecba4e;
+}
+	
 </style>
+
+<script src="//d3js.org/d3.v3.min.js"></script>
 
 <div id="chartId">
 
-
-<script src='https://d3js.org/d3.v5.min.js'></script>
 <script>
-var width = 1800;
-var height = 1000;
-
-d3.json("https://raw.githubusercontent.com/vzahorui/vzahorui.github.io/master/graph.json").then(function(graph) {
-
-var label = {
-    'nodes': [],
-    'links': []
-};
-
-graph.nodes.forEach(function(d, i) {
-    label.nodes.push({node: d});
-    label.nodes.push({node: d});
-    label.links.push({
-        source: i * 2,
-        target: i * 2 + 1
-    });
-});
-
-var labelLayout = d3.forceSimulation(label.nodes)
-    .force("charge", d3.forceManyBody().strength(-50))
-    .force("link", d3.forceLink(label.links).distance(0).strength(1))
-    .on("tick", ticked);
-
-var graphLayout = d3.forceSimulation(graph.nodes)
-    .force("charge", d3.forceManyBody().strength(-9000))
-    .force("center", d3.forceCenter(width / 2, height / 2))
-    .force("x", d3.forceX(width / 1).strength(1))
-    .force("y", d3.forceY(height / 1).strength(1))
-    .force("link", d3.forceLink(graph.links).id(function(d) {return d.id; }).distance(150).strength(1))
-    .on("tick", ticked);
-
-var adjlist = [];
-
-graph.links.forEach(function(d) {
-    adjlist[d.source.index + "-" + d.target.index] = true;
-    adjlist[d.target.index + "-" + d.source.index] = true;
-});
+var graph = {
+    "nodes": [
+    {"name": "Data Science", "size":40, "font":3, "dist":0}, 
+    {"name": "Distributions", "size":15, "font":1.8, "dist":90}, 
+    {"name": "Normal Distribution", "url":"{{ site.baseurl }}{% link _posts/2019-07-28-normal-ditribution.md %}", 
+     "size":4, "font":1, "dist": 90}, 
+    {"name": "Time Series", "size": 15, "font":1.8, "dist":90}, 
+    {"name": "Stationarity Tests", "url":"{{ site.baseurl }}{% link _posts/2019-07-12-time-series-stationarity-tests.md %}",
+     "size":4, "font":1, "dist":90}, 
+    {"name": "Time Series Modeling", "url":"{{ site.baseurl }}{% link _posts/2019-07-19-time-series-modeling.md %}",
+     "size":4, "font":1, "dist": 90}, 
+    {"name": "Calculus", "size":15, "font":1.8, "dist":90},
+    {"name": "Regression", "size":15, "font":1.8, "dist":90},
+    {"name": "Curve Fitting", "url":"{{ site.baseurl }}{% link _posts/2019-08-11-curve-fitting.md %}",
+"size":4, "font":1, "dist":90},
+    {"name": "Optimization", "size":15, "font":1.8, "dist":90},
+    {"name": "Simplex Method", "url":"{{ site.baseurl }}{% link _posts/2019-09-07-simplex-method.md %}",
+"size":4, "font":1, "dist":90},
+    {"name": "Derivatives", "url":"{{ site.baseurl }}{% link _posts/2019-09-14-derivatives.md %}",
+"size":4, "font":1, "dist":70},
+    {"name": "Analyzing Functions", "url":"{{ site.baseurl }}{% link _posts/2019-09-21-analyzing-functions.md %}",
+"size":4, "font":1, "dist":90},
+    {"name": "Integrals", "url":"{{ site.baseurl }}{% link _posts/2019-09-24-integrals.md %}",
+"size":4, "font":1, "dist":70},
+    {"name": "Differential Equations", "url":"{{ site.baseurl }}{% link _posts/2019-09-30-differential-equations.md %}",
+"size":4, "font":1, "dist":100} ],
+    "links": [
+    {"source": 0, "target": 1},
+    {"source": 0, "target": 3},
+    {"source": 1, "target": 2},
+    {"source": 3, "target": 4},
+    {"source": 3, "target": 5},
+    {"source": 0, "target": 6},
+    {"source": 0, "target": 7},
+    {"source": 7, "target": 8},
+    {"source": 0, "target": 9},
+    {"source": 9, "target": 10},
+    {"source": 6, "target": 11},
+    {"source": 11, "target": 12},
+    {"source": 6, "target": 13},
+    {"source": 13, "target": 14},
+    {"source": 11, "target": 14}]
+  };
+    
+var radius = d3.scale.sqrt()
+    .range([0, 6]);
 
 var svg = d3.select("div#chartId")
     .append("div")
@@ -70,123 +97,71 @@ var svg = d3.select("div#chartId")
     .append("svg")
     .attr("preserveAspectRatio", "xMinYMin meet")
     .attr("viewBox", "0 0 2000 1400")
+   // Class to make it responsive.
     .classed("svg-content-responsive", true);
   
-var container = svg.append("g");
+var force = d3.layout.force()
+    .size([1700, 900])
+    .charge(-800)
+    .gravity(0.06)
+    .linkDistance(function(d) { return radius(d.source.size) + radius(d.target.size) + d.target.dist; });
+  
+force
+    .nodes(graph.nodes)
+    .links(graph.links)
+    .on("tick", tick)
+    .start();
+  
+var drag = force.drag()
+    .on("dragstart", dragstart);
 
-var link = container.append("g").attr("class", "links")
-    .selectAll("line")
+var link = svg.selectAll(".link")
     .data(graph.links)
-    .enter()
-    .append("line")
-    .attr("stroke", "#273746")
-    .attr("stroke-width", "1.5px");
+    .enter().append("g")
+    .attr("class", "link");
 
-var radius = d3.scaleSqrt()
-    .range([0, 6]);
- 
-var node = container.append("g").attr("class", "nodes")
-    .selectAll("g")
+link.append("line");
+  
+var node = svg.selectAll(".node")
     .data(graph.nodes)
-    .enter()
-    .append("circle")
+    .enter().append("g")
+    .attr("class", "node")
+    .on("dblclick", dblclick)
+    .call(drag);
+  
+ node.append("circle")
     .attr("r", function(d) { return radius(d.size); })
-    .attr("fill", "#d4d3da")
-    .attr("stroke", "#273746")
-    .attr("stroke-width", "1.5px")
-    .attr("cursor", "move")
-    .on("dblclick", dblclick);
-
-node.call(
-    d3.drag()
-        .on("start", dragstarted)
-        .on("drag", dragged)
-        .on("end", dragended)
-);
-
-var labelNode = container.append("g").attr("class", "labelNodes")
-    .selectAll("text")
-    .data(label.nodes)
-    .enter()
-    .append("svg:a")
-    .attr("xlink:href", function(d) { return d.node.url; })
-    .attr("target", "_blank")
+      
+ node.append("svg:a")
+    .attr("xlink:href", function(d) { return d.url; })
+    .attr("target", "_blank") //opening in new tab
     .append("text") //visible name
-    .text(function(d, i) { return i % 2 == 0 ? "" : d.node.id; })
-    .style("fill", "#555")
-    .style("font-family", "Arial")
-    .style("font-size", function(d){ return d.node.font + 'em'; });
- 
-function ticked() {
+    .text(function(d) { return d.name; })
+     // text positioning
+    .attr("dx", 12)
+    .attr("dy", 3)
+    .attr("text-anchor", "start")
+	
+    .attr("font-size", function(d){ return d.font + 'em'; });
 
-    node.call(updateNode);
-    link.call(updateLink);
-
-    labelLayout.alphaTarget(0.3).restart();
-    labelNode.each(function(d, i) {
-        if(i % 2 == 0) {
-            d.x = d.node.x;
-            d.y = d.node.y;
-        } else {
-            var b = this.getBBox();
-
-            var diffX = d.x - d.node.x;
-            var diffY = d.y - d.node.y;
-
-            var dist = Math.sqrt(diffX * diffX + diffY * diffY);
-
-            var shiftX = b.width * (diffX - dist) / (dist * 2);
-            shiftX = Math.max(-b.width, Math.min(0, shiftX));
-            var shiftY = 16;
-            this.setAttribute("transform", "translate(" + shiftX + "," + shiftY + ")");
-        }
-    });
-    labelNode.call(updateNode);
-
-}
-
-function fixna(x) {
-    if (isFinite(x)) return x;
-    return 0;
-}
-
-function updateLink(link) {
-    link.attr("x1", function(d) { return fixna(d.source.x); })
-        .attr("y1", function(d) { return fixna(d.source.y); })
-        .attr("x2", function(d) { return fixna(d.target.x); })
-        .attr("y2", function(d) { return fixna(d.target.y); });
-}
-
-function updateNode(node) {
-    node.attr("transform", function(d) {
-        return "translate(" + fixna(d.x) + "," + fixna(d.y) + ")";
-    });
-}
-
-function dragstarted(d) {
-    d3.event.sourceEvent.stopPropagation();
-    if (!d3.event.active) graphLayout.alphaTarget(0.3).restart();
-    d3.select(this).raise().attr("fill", "#ecba4e");
-    d.fx = d.x;
-    d.fy = d.y;
-}
-
-function dragged(d) {
-    d.fx = d3.event.x;
-    d.fy = d3.event.y;
-}
-
-function dragended(d) {
-    if (!d3.event.active) graphLayout.alphaTarget(0);
-    d.fx = d3.event.x;
-    d.fy = d3.event.y;
-}
+  
+  function tick() {
+    link.selectAll("line")
+        .attr("x1", function(d) { return d.source.x; })
+        .attr("y1", function(d) { return d.source.y; })
+        .attr("x2", function(d) { return d.target.x; })
+        .attr("y2", function(d) { return d.target.y; });
+    node.attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; });
+  };
+  
   
 function dblclick(d) {
-    d3.select(this).raise().attr("fill", "#d4d3da");
-    d.fx = null;
-    d.fy = null;
+  d3.select(this).classed("fixed", d.fixed = false);
 }
-
-}); 
+  
+function dragstart(d) {
+  d3.select(this).classed("fixed", d.fixed = true);
+}
 </script>
+
+</div>
