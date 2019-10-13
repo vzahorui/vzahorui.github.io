@@ -112,7 +112,7 @@ var labelNode = container.append("g").attr("class", "labelNodes")
     .attr("href", function(d) { return d.node.url; })
     .attr("target", "_blank")
     .append("text") //visible name
-    .text(function(d, i) { return i % 2 == 0 ? "" : "[go]"+d.node.id; })
+    .text(function(d, i) { return i % 2 == 0 ? "" : d.node.id; })
     .style("fill", "#555")
     .style("font-family", "Arial")
     .style("font-size", function(d){ return d.node.font + 'em'; });
