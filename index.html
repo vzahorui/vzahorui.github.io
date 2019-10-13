@@ -50,11 +50,11 @@ var labelLayout = d3.forceSimulation(label.nodes)
     .on("tick", ticked);
 
 var graphLayout = d3.forceSimulation(graph.nodes)
-    .force("charge", d3.forceManyBody().strength(-9000))
+    .force("charge", d3.forceManyBody().strength(-7000))
     .force("center", d3.forceCenter(width / 2, height / 2))
-    .force("x", d3.forceX(width / 1).strength(1))
-    .force("y", d3.forceY(height / 1).strength(1))
-    .force("link", d3.forceLink(graph.links).id(function(d) {return d.id; }).distance(150).strength(1))
+    .force("x", d3.forceX(width / 2).strength(0.7))
+    .force("y", d3.forceY(height / 2).strength(0.7))
+    .force("link", d3.forceLink(graph.links).id(function(d) {return d.id; }).distance(function(d) {return d.distance; }).strength(1))
     .on("tick", ticked);
 
 var adjlist = [];
@@ -109,7 +109,7 @@ var labelNode = container.append("g").attr("class", "labelNodes")
     .data(label.nodes)
     .enter()
     .append("svg:a")
-    .attr("href", function(d){ return "'" + d.node.url + "'"; })
+    .attr("href", function(d){ return d.node.url; })
     .attr("target", "_blank")
     .append("text") //visible name
     .text(function(d, i) { return i % 2 == 0 ? "" : d.node.id; })
