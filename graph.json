@@ -2,7 +2,7 @@
     "nodes": [
         {"id": "Data Science", "size":40, "font":3, "dist":0}, 
         {"id": "Distributions", "size":15, "font":1.8, "dist":90}, 
-        {"id": "Normal Distribution", "url":"{{ site.baseurl }}{% link _posts/2019-07-28-normal-ditribution.md %}", 
+        {"id": "Normal Distribution", "url":"{{ '/_posts/2019-07-28-normal-ditribution.md' | relative_url }}", 
          "size":4, "font":1, "dist": 90}, 
         {"id": "Time Series", "size": 15, "font":1.8, "dist":90}, 
         {"id": "Stationarity Tests", "url":"{{ site.baseurl }}{% link _posts/2019-07-12-time-series-stationarity-tests.md %}",
