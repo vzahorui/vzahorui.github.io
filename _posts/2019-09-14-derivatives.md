@@ -3,7 +3,7 @@ layout: single
 title: "Understanding derivatives"
 description: Building intuition behind the term of derivative of a function
 category: "Calculus"
-tags: derivation derivative calculus slope differentiation rata-of-change
+tags: derivation derivative calculus slope differentiation rate-of-change gradient 
 date: 2019-09-14
 ---
 
@@ -60,5 +60,9 @@ The second derivative of a function is simply the derivative of the function's d
 Let's consider, for example, the function $f(x)=x^3+2x^2$. Its first derivative is $f'(x)=3x^2+4x$. To find its second derivative, $f''$, we need to differentiate $f'$. When we do this, we find that $f'' (x)=6x+4$.
 
 Leibniz's notation for second derivative is $\frac{d^2y}{dx^2}$. For example, the Leibniz notation for the second derivative of $x^3+2x^2$ is $\frac{d^2}{dx^2}(x^3+2x^2)$.
+
+## Gradient
+
+Gradient is a multi-variable generalization of derivative. If a function has multiple variables we can take derivatives with respect to each variable while treating others as constants. Therefore, for a multivariable function it is possible to find the instantaneous rate of change with respect to each variable. At each point of a function the gradient would represent a vector, whose elements would be the partial derivatives of this function, which in turn would show the slope in each dimension.
 
 

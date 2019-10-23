@@ -15,29 +15,12 @@ It two-dimensional space we can draw a curve which approximates the relationship
 In the reality there are always factors which are impossible to explain and predict and which cause surprisingly different results from those that we expect. Therefore there is always going to be some difference between the actually observed values and the values from the line which is fitted - the residuals. The magnitude of residuals tell us how well we fit the line and, so we want to minimize it. <br>
 There is a catch however. A good model does not need to fully fit into all observed values. Instead it needs to be able to generalize well so that predictions for the new observations will not be affected by the random noise of the prior points. A good model aims at distinguishing noise from the true patterns of the data and including only the pattern into the model.<br>
 
-In order to measure the magnitude of residuals we need to calculate some aggregated metric. Some of the residuals are positive while others are negative, so we cannot simply sum them all up - many of them will cancel each other out. <br>
-
-One option is to take absolute values of residuals and sum them all up, (known as L1-estimator): <br>
-
-&nbsp;&nbsp;&nbsp;&nbsp;
-$\sum_{i=1}^n |\hat{y} - y_i| \rightarrow \min $
-
-Another, generally more preferred method is to square the residuals and sum them all up.<br>
-
-&nbsp;&nbsp;&nbsp;&nbsp;
-$\sum_{i=1}^n (\hat{y} - y_i)^2 \rightarrow \min $
 
 ## Arguments for using least squared distance<br>
-
-If we square the residuals we will obtain bigger numbers for larger residuals. Thus by fitting the line we are minimizing the effect of outliers. So to speak, missing by a little lots of times is considered better than missing by a lot a few times. <br>
 
 Another important notation is that by solving least squares problem we obtain a single solution whereas by minimizing the sum of absolute residuals it is possible that there may be an infinite number of lines that all have the same sum of absolute residuals (the minimum).<br>
 
 From the probabilistic point of view the least-squares solution is known to be the maximum likelihood estimate, provided that all residuals are independent and normally distributed random variables.<br>
-
-## Arguments for using least absolute distance<br>
-
-Using the sum of absolute residuals is more robust however.  The least-squares solution can become biased in the presence of outliers. Consider the example below:
 
 
 
