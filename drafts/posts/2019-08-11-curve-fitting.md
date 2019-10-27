@@ -7,13 +7,7 @@ tags: least-squares residuals regression absolute-residuals maximum-likelihood c
 date: 2019-08-11
 ---
 
-Regression analysis is used for estimating relationship between variables, usually one dependent and one or several independent variables. Having a regression model at hand, we can predict how dependent variable will be changing if one or several independent variables are changing. 
-It two-dimensional space we can draw a curve which approximates the relationship between two variables. So to speak, a curve that best fits distribution of observed variables. Having such line, we can project future observations as such that belong to the line (accounting for a certain amount of randomness). Regression is not bounded to two-dimensional space of course, and can predict surfaces in a multidimensional space - in this case there will be several independent variables which predict one dependent.<br>
 
-
-
-In the reality there are always factors which are impossible to explain and predict and which cause surprisingly different results from those that we expect. Therefore there is always going to be some difference between the actually observed values and the values from the line which is fitted - the residuals. The magnitude of residuals tell us how well we fit the line and, so we want to minimize it. <br>
-There is a catch however. A good model does not need to fully fit into all observed values. Instead it needs to be able to generalize well so that predictions for the new observations will not be affected by the random noise of the prior points. A good model aims at distinguishing noise from the true patterns of the data and including only the pattern into the model.<br>
 
 
 ## Arguments for using least squared distance<br>
