@@ -43,7 +43,7 @@ $Y = \beta X + \varepsilon$,<br>
 where $Y$ is the group of all outputs and $X$ is the composition of all predictors for each particular output:
 
 &nbsp;&nbsp;&nbsp;&nbsp;
-$Y = \left[ \begin{array}{c}
+$$Y = \left[ \begin{array}{c}
 y_1 \\
 y_2 \\
 ... \\
@@ -55,7 +55,7 @@ X = \left[ \begin{array}{ccccc}
 1 & x_21 & x_22 & ... & x_2n \\
 ... & ... & ... & ... & ... \\
 1 & x_n1 & x_n2 & ... & x_nn
-\end{array} \right]$
+\end{array} \right]$$
 
 $\beta$ is the vector of parameters (weights) of each predictor,<br>
 $\varepsilon$ is the vector of errors (the noise). This variable captures all other factors which influence the dependent variable y other than the regressors.
