@@ -45,6 +45,6 @@ AV = U \Sigma
  
 The first equation of the system is derived from the multiplication of original matrix by its transpose $V \Sigma U^{T}$. Since $U$ (as well as $V$) is orthonormal multiplication $U^{T}U$ results into unit matrix. Similarly, the second equation is derived by multiplying the original equation by $V$ from the right side.
  
-Obviously, the result of $A^{T}A$ is a square matrix, and the expression $V \Sigma^{T} \Sigma V^{T}$ is its diagonalization, where $V$ is a matrix of eigenvectors, and $\Sigma^{T} \Sigma$ is a matrix of eigenvalues. I've written an article about eigenvectors and eigenvalues and about the mechanism of matrix diagonalization
+Obviously, the result of $A^{T}A$ is a square matrix, and the expression $V \Sigma^{T} \Sigma V^{T}$ is its diagonalization, where $V$ is a matrix of eigenvectors, and $\Sigma^{T} \Sigma$ is a matrix of eigenvalues. I've written an article about eigenvectors and eigenvalues and about the mechanism of matrix diagonalization [here]({{ site.baseurl }}{% link _posts/2019-11-02-eigenvectors-and-eigenvalues.md %}).
  
 Since $\Sigma$ is a square diagonal matrix, multiplication $\Sigma^{T} \Sigma$ results into another square diagonal matrix where the elements are squared. From this follows that the elements of $\Sigma$ are square roots of eigenvalues.
