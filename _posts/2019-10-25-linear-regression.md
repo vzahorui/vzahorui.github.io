@@ -3,7 +3,7 @@ layout: single
 title: "Linear regression"
 description: Explaining linear regression and its properties
 category: "Regression"
-tags: multiple-regression linear-regression
+tags: multiple-regression linear-regression multivariable-regression gaussian-noise
 date: 2019-10-25
 ---
 
@@ -22,7 +22,7 @@ where $a_i$ are the weights of each independent variable.
 
 ## Gaussian noise
 
-In practice there are always factors which are impossible to explain and predict and which cause surprisingly different results from those that we expect. Therefore there is always going to be some difference between the predicted and actually observed values - the residuals.
+In practice there are always factors which are impossible to explain and predict and which cause surprisingly different results from those that we expect. Therefore there is always going to be some difference between the predicted (or the expected) and actually observed values - the residuals.
 
 According to the Central Limit Theorem if the number of observations is large enough - the residuals have normal distribution with the mean value of 0.
 
@@ -31,7 +31,7 @@ According to the Central Limit Theorem if the number of observations is large en
 Linear regression estimation relies on a number of assumptions about the predictor variables and their relationship with the output:
 
 * Homoscedasticity - constant variance of error regardless of the values of independent variables.
-* Independence of errors - absence of correlation among errors in different the output values.
+* Independence of errors - absence of correlation among errors in different output values.
 * Absence of perfect multicollinearity among predictors - that is that none of the predictors can be expressed as a copy or a linear combination of other predictors.
 
 ## Matrix notation

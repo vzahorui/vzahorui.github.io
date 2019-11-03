@@ -2,7 +2,7 @@
 layout: single
 title: "Gradient descent"
 description: Explaining gradient descent method for finding optimal solution
-category: "Machine learning concepts"
+category: "Machine Learning Concepts"
 tags: machine-learning loss-function penalization learning-rate gradient slope 
 date: 2019-10-15
 ---
