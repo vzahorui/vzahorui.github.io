@@ -23,6 +23,6 @@ $\rho_{X,Y} = \frac{cov(X,Y)}{\sigma_X \sigma_Y}$
 The value of correlation coefficient lies between -1.0 and 1.0.<br>
 If correlation coefficient equals 1 then the upward sloping line can completely describe the relationship. If correlation coefficient equals -1 then the downward sloping line can completely describe the relationship. And if the correlation coefficient is close to 0 then the line is not describing the relationship well at all.<br>
 <br>
-Below is representation of different kinds of regression where correlation coefficient assumes different values.
+Below is representation of different kinds of simple linear regression where correlation coefficient assumes different values.
 
 ![](/assets/images/regression/correlation_demo.png){: .align-center}
