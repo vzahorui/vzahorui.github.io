@@ -30,10 +30,11 @@ $M v - \lambda I v = 0$
 &nbsp;&nbsp;&nbsp;&nbsp;
 $(M - \lambda I)v = 0$
  
-By itself multiplication by $I$ doesn't change anything. The identity matrix is only used in order for the operation in parenthesis to be valid.<br>
-Matrices represent linear transformations. The determinant of a matrix describes the volume by which the matrix is scaled with regard to the identity matrix $I$. We want to know when the expression $(M - \lambda I)$ represents zero transformation, hence we must find such $\lambda$ where $det(M - \lambda I) = 0$.<br>
+By itself multiplication by identity matrix $I$ doesn't change anything. The identity matrix is only used in order for the operation in parenthesis to be valid.
+
+The expression $(M - \lambda I)v$ equals to the null space if either $v$ or $M - \lambda I$ equals to zero. Since we want to find a non-zero solution to eigenvectors, we want to know when the expression $(M - \lambda I)$ represents squishing into the null space. Matrices, as well as vectors, represent linear transformations. The determinant of a matrix represents volume by which the matrix transformation is scaled with respect to the identity matrix (identity matrix represents no transformation). If the determinant of a matrix is equal to zero then such transformation represents exactly squishing into the null space. From here we must find such $\lambda$ where $det(M - \lambda I) = 0$.<br>
 The number of eigenvalues of a matrix equals to the number of dimensions of the matrix, however not all of them may be unique.
- 
+
 After finding values of $\lambda$ we can find eigenvectors $v$ for each of them by plugging already known $\lambda$ into the same equation:
  
 &nbsp;&nbsp;&nbsp;&nbsp;
