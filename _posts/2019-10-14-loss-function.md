@@ -2,7 +2,7 @@
 layout: single
 title: "Loss function"
 description: Explaining what the loss function is and how machine learning utilizes it
-category: "Machine Learning Concepts"
+category: "Regression"
 tags: machine-learning loss-function penalization mse l2 mean-square-error quadratic-loss l1 mean-absolute-error mae
 date: 2019-10-14
 ---

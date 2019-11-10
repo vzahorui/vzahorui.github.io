@@ -1,8 +1,8 @@
 ---
 layout: single
 title: "Eigenvectors and eigenvalues"
-description: Explaining eigenvectors and eigenvalues   
-category: "Machine Learning Concepts"
+description: "Explaining eigenvectors and eigenvalues"  
+category: "Linear Algebra"
 tags: vector identity-matrix determinant matrix matrix-diagonalization  
 date: 2019-11-02
 ---

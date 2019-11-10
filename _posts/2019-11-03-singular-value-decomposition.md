@@ -1,9 +1,8 @@
- 
 ---
 layout: single
 title: "Singular value decomposition"
 description: Explaining what singular value decomposition is and how it is used
-category: "Machine Learning Concepts"
+category: "Linear Algebra"
 tags: svd vector principal-components dimension-reduction matrix-transformation matrix pseudoinverse inverse
 date: 2019-11-03
 ---
@@ -55,7 +54,7 @@ $\Sigma^{T} \Sigma$ results into square diagonal matrix where the elements are s
 Recall that the inverse of a matrix is a square matrix which by multiplication with its original matrix produces the identity matrix.  
  
 &nbsp;&nbsp;&nbsp;&nbsp;
-$A^A{-1}=A^{-1}A=I$
+$AA^{-1}=A^{-1}A=I$
  
 The inverse of a matrix represents such linear transformation, which is opposite to the one of the original matrix. Performing multiplication between these two matrices results into no transformation.<br>
 However, if the determinant of a matrix is zero then such matrix has no inverse matrix and represents squishing into null space.

@@ -8,7 +8,7 @@ title: Unlocking the power of data
   display: inline-block;
   position: relative;
   width: 100%;
-  padding-bottom: 50%; /* aspect ratio */
+  padding-bottom: 55%; /* aspect ratio */
   vertical-align: middle;
   overflow: hidden;
 }
@@ -31,53 +31,69 @@ var height = 1000;
 var graph = 
 {
     "nodes": [
-        {"id": "Machine Learning Concepts", "size":30, "font":2.3},
-        {"id": "Calculus", "size":30, "font":2.3},
-        {"id": "Distributions", "size":30, "font":2.3}, 
+        {"id": "Data Science", "size":50, "font":2.5},
+        {"id": "Distributions", "size":30, "font":2},
+        {"id": "Calculus", "size":30, "font":2},
+        {"id": "Linear Algebra", "size":30, "font":2},
+        {"id": "Regression", "size":30, "font":2},
+        {"id": "Optimization", "size":30, "font":2},
+        {"id": "Time Series", "size":30, "font":2}, 
+        
         {"id": "Normal Distribution", "url":"{{ site.baseurl }}{% link _posts/2019-07-28-normal-ditribution.md %}", 
          "size":4, "font":1}, 
-        {"id": "Time Series", "size":30, "font":2.3}, 
+        
         {"id": "Stationarity Tests", "url":"{{ site.baseurl }}{% link _posts/2019-07-12-time-series-stationarity-tests.md %}",
          "size":4, "font":1}, 
         {"id": "Time Series Modeling", "url":"{{ site.baseurl }}{% link _posts/2019-07-19-time-series-modeling.md %}",
          "size":4, "font":1},        
-        {"id": "Regression", "size":30, "font":2.3},
+        
         {"id": "Loss Function", "url":"{{ site.baseurl }}{% link _posts/2019-10-14-loss-function.md %}", "size":10, "font":1.5},
         {"id": "Gradient Descent", "url":"{{ site.baseurl }}{% link _posts/2019-10-15-gradient-descent.md %}", "size":10, "font":1.5},
-        {"id": "Optimization", "size":30, "font":2.3},
+        
         {"id": "Simplex Method", "url":"{{ site.baseurl }}{% link _posts/2019-09-07-simplex-method.md %}",
 "size":4, "font":1},
+        
         {"id": "Derivatives", "url":"{{ site.baseurl }}{% link _posts/2019-09-14-derivatives.md %}",
+"size":10, "font":1.5},
+        {"id": "Integrals", "url":"{{ site.baseurl }}{% link _posts/2019-09-24-integrals.md %}",
 "size":10, "font":1.5},
         {"id": "Analyzing Functions", "url":"{{ site.baseurl }}{% link _posts/2019-09-21-analyzing-functions.md %}",
 "size":4, "font":1},
-        {"id": "Integrals", "url":"{{ site.baseurl }}{% link _posts/2019-09-24-integrals.md %}",
-"size":10, "font":1.5},
         {"id": "Differential Equations", "url":"{{ site.baseurl }}{% link _posts/2019-09-30-differential-equations.md %}",
 "size":4, "font":1},
+        
         {"id": "Linear Regression", "url":"{{ site.baseurl }}{% link _posts/2019-10-25-linear-regression.md %}",
 "size":10, "font":1.5},
+        
         {"id": "Singular Value Decomposition", "url":"{{ site.baseurl }}{% link _posts/2019-11-03-singular-value-decomposition.md %}",
 "size":10, "font":1.5}
+        
     ],
     "links": [
-        {"source": "Machine Learning Concepts", "target": "Distributions", "distance":210},
-        {"source": "Machine Learning Concepts", "target": "Loss Function", "distance":120},
-        {"source": "Machine Learning Concepts", "target": "Singular Value Decomposition", "distance":120},
-        {"source": "Machine Learning Concepts", "target": "Gradient Descent", "distance":120},
-        {"source": "Machine Learning Concepts", "target": "Time Series", "distance":210},
-        {"source": "Distributions", "target": "Normal Distribution", "distance":150},
-        {"source": "Time Series", "target": "Stationarity Tests", "distance":90},
+        {"source": "Data Science", "target": "Distributions", "distance":210},
+        {"source": "Data Science", "target": "Calculus", "distance":210},
+        {"source": "Data Science", "target": "Linear Algebra", "distance":210},
+        {"source": "Data Science", "target": "Regression", "distance":210},
+        {"source": "Data Science", "target": "Time Series", "distance":210},
+        {"source": "Data Science", "target": "Optimization", "distance":210},
+        
+        {"source": "Regression", "target": "Loss Function", "distance":120},
+        {"source": "Loss Function", "target": "Gradient Descent", "distance":90},
+        {"source": "Linear Algebra", "target": "Singular Value Decomposition", "distance":120},
+               
+        {"source": "Distributions", "target": "Normal Distribution", "distance":120},
+        
+        {"source": "Time Series", "target": "Stationarity Tests", "distance":120},
         {"source": "Time Series", "target": "Time Series Modeling", "distance":90},
-        {"source": "Machine Learning Concepts", "target": "Calculus", "distance":210},
-        {"source": "Machine Learning Concepts", "target": "Regression", "distance":210},
-        {"source": "Machine Learning Concepts", "target": "Optimization", "distance":210},
-        {"source": "Optimization", "target": "Simplex Method", "distance":150},
-        {"source": "Derivatives", "target": "Analyzing Functions", "distance":90},
+                
+        {"source": "Optimization", "target": "Simplex Method", "distance":120},
+        
         {"source": "Calculus", "target": "Integrals", "distance":90},
+        {"source": "Calculus", "target": "Derivatives", "distance":90},
+        {"source": "Derivatives", "target": "Analyzing Functions", "distance":90},
         {"source": "Integrals", "target": "Differential Equations", "distance":90},
         {"source": "Derivatives", "target": "Differential Equations", "distance":90},
-        {"source": "Calculus", "target": "Derivatives", "distance":90},
+        
         {"source": "Regression", "target": "Linear Regression", "distance":90}
     ]   
 };
@@ -102,7 +118,7 @@ var labelLayout = d3.forceSimulation(label.nodes)
     .on("tick", ticked);
 
 var graphLayout = d3.forceSimulation(graph.nodes)
-    .force("charge", d3.forceManyBody().strength(-6000))
+    .force("charge", d3.forceManyBody().strength(-5000))
     .force("center", d3.forceCenter(width / 2, height / 2))
     .force("x", d3.forceX(width / 2).strength(0.7))
     .force("y", d3.forceY(height / 2).strength(0.7))
