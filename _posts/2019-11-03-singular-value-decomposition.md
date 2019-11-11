@@ -43,7 +43,7 @@ A^{T}A = V \Sigma^{T} \Sigma V^{T} \\
 AV = U \Sigma
 \end{cases}$$
  
-The first equation of the system is derived from the multiplication of original matrix by its transpose $V \Sigma U^{T}$. Since $U$ (as well as $V$) is orthonormal multiplication $U^{T}U$ results into unit matrix. Similarly, the second equation is derived by multiplying the original equation by $V$ from the right side.
+The first equation of the system is derived from multiplication of original matrix by its transpose $V \Sigma U^{T}$. Since $U$ (as well as $V$) is orthonormal, multiplication $U^{T}U$ results into unit matrix. Similarly, the second equation is derived by multiplying the original equation by $V$ from the right side.
  
 Obviously, the result of $A^{T}A$ is a square matrix, and the expression $V \Sigma^{T} \Sigma V^{T}$ is its diagonalization, where $V$ is a matrix of eigenvectors, and $\Sigma^{T} \Sigma$ is a matrix of eigenvalues. I've written an article about eigenvectors and eigenvalues and about the mechanism of matrix diagonalization [here]({{ site.baseurl }}{% link _posts/2019-11-02-eigenvectors-and-eigenvalues.md %}).
  
@@ -59,10 +59,10 @@ $AA^{-1}=A^{-1}A=I$
 The inverse of a matrix represents such linear transformation, which is opposite to the one of the original matrix. Performing multiplication between these two matrices results into no transformation.<br>
 However, if the determinant of a matrix is zero then such matrix has no inverse matrix and represents squishing into null space.
  
-A pseudoinverse matrix is generalization of an inverse matrix, which can be defined for all matrices (even non-square). Yet, it has fewer guaranteed properties of a "regular" inverted matrix.<br>
+A pseudoinverse matrix is generalization of an inverse matrix, which can be defined for all matrices (even non-square). Yet, it inherits fewer guaranteed properties from a "regular" inverted matrix.<br>
 The general solution which can be obtained with the pseudoinverse looks like this:
  
-$AA{+}A=A$, <br>
+$AA^{+}A=A$, <br>
 where $A^{+}$ is the pseudoinverse of a matrix.  
  
 While the Euclidean norm for the expression $\left |AA^{-1}-I\right|_2$ is zero, the norm for $\left |AA^{+}-I\right|_2$ is maximally close to zero.<br>
@@ -74,4 +74,4 @@ Suppose we cannot obtain an inverse of a matrix. Yet, we can apply singular valu
 $A^{+} = (U \Sigma V^{T})^{-1}=V \Sigma^{-1} U^{T}$
 
 $U^{-1}$ is $U^{T}$, as well as $V^{-1}$ is $V^{T}$, since these matrices are orthonormal. <br>
-An inverse of a diagonal matrix $\Sigma$ is easy to find - just by taking the reciprocal of all the non-zero elements and leaving all zero elements as they are. If the diagonal matrix is of size $n \times m$, where $n \ne m$ then its inverse will be a diagonal matrix with reciprocal numbers of size $m \times n$.
+An inverse of a diagonal matrix $\Sigma$ is easy to find - just by taking the reciprocal of all the non-zero elements and leaving all zero elements as they are. If the diagonal matrix is of size $n \times m$, where $n \ne m$ then its inverse will be a diagonal matrix of size $m \times n$.

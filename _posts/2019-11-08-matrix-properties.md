@@ -12,7 +12,7 @@ Below I've provided intuition behind some of the properties of matrices, which a
 ## Rank of a matrix
  
 Rank of matrix is defined as a number of linearly independent rows (or columns) in the matrix.<br>
-If all rows (or columns) of a matrix are independent then such matrix is call full-rank matrix. That being said, in a full rank matrix there are none vectors which can be represented as a linear combination of other vectors of this matrix.
+If all rows (or columns) of a matrix are independent then such matrix is called full-rank matrix. That being said, in a full rank matrix there are no vectors which can be represented as a linear combination of other vectors of this matrix.
  
 ## Matrix inverse
  
