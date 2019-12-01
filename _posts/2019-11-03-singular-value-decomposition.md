@@ -11,7 +11,7 @@ As a matter of fact, singular value decomposition (SVD) is an algorithm of trans
  
 In its core SVD transforms each vector of a matrix into its projections on orthogonal axes.    
  
-![](/assets/images/linear_algebra/simple_vector_decomposition.png){: .align-center}
+![](/assets/images/concepts/simple_vector_decomposition.png){: .align-center}
  
 Decomposed elements share two properties:    
  * Unit vectors $\overrightarrow{v_i}$, representing directions onto which the vector is projected.

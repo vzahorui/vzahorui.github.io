@@ -11,7 +11,7 @@ Gradient descent is one of the widely used methods for optimizing functions in m
 
 Let's describe the mechanism of gradient descent for the problem of simple linear regression where empirical distribution looks like this:
 
-![](/assets/images/linear_algebra/some_linear_distribution.png){: .align-center}
+![](/assets/images/concepts/some_linear_distribution.png){: .align-center}
 
 The function takes the following form:
 
@@ -20,7 +20,7 @@ $f(x) = a + bx$
 
 Suppose we already know the value of intercept $a$, then we would only have to find such value of $b$, which minimizes the loss function (in this case mean square error but not necessarily so). Let's start plugging different numbers for the slope and measuring means squared error of the estimation.
 
-![](/assets/images/linear_algebra/loss_values_and_slope.png){: .align-center}
+![](/assets/images/concepts/loss_values_and_slope.png){: .align-center}
 
 We can see that the shape of the loss function reminds a quadratic function, and that if we take $b$ between 7 and 8 then the loss function will be close to its minimum. There is, however, an infinitely large number of possible values for $b$ and calculating loss function for any single random guess would be simply overkill. Instead, gradient descent takes only few calculations and decides which direction to move in order to make loss smaller. One of the nice things about gradient descent is that it takes larger steps when the slope is far from zero and very small steps when it approaches the minimum of a loss function.
 
