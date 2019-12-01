@@ -50,8 +50,6 @@ var graph =
         {"id": "Loss Function", "url":"{{ site.baseurl }}{% link _posts/2019-10-14-loss-function.md %}", "size":10, "font":1.5},
         {"id": "Gradient Descent", "url":"{{ site.baseurl }}{% link _posts/2019-10-15-gradient-descent.md %}", "size":10, "font":1.5},
         
-        {"id": "Simplex Method", "url":"{{ site.baseurl }}{% link _posts/2019-09-07-simplex-method.md %}",
-"size":4, "font":1},
         
         {"id": "Derivatives", "url":"{{ site.baseurl }}{% link _posts/2019-09-14-derivatives.md %}",
 "size":10, "font":1.5},
@@ -61,32 +59,39 @@ var graph =
 "size":4, "font":1},
         {"id": "Differential Equations", "url":"{{ site.baseurl }}{% link _posts/2019-09-30-differential-equations.md %}",
 "size":4, "font":1},
+                
+        {"id": "Singular Value Decomposition", "url":"{{ site.baseurl }}{% link _posts/2019-11-03-singular-value-decomposition.md %}",
+"size":10, "font":1.5},
+        {"id": "QR Decomposition", "url":"{{ site.baseurl }}{% link _posts/2019-11-19-qr-decomposition.md %}",
+"size":10, "font":1.5}
+        
+        {"id": "Simplex Method", "url":"{{ site.baseurl }}{% link _posts/2019-09-07-simplex-method.md %}",
+"size":4, "font":1},
         
         {"id": "Linear Regression", "url":"{{ site.baseurl }}{% link _posts/2019-10-25-linear-regression.md %}",
-"size":10, "font":1.5},
-        
-        {"id": "Singular Value Decomposition", "url":"{{ site.baseurl }}{% link _posts/2019-11-03-singular-value-decomposition.md %}",
 "size":10, "font":1.5}
         
     ],
     "links": [
-        {"source": "Data Science", "target": "Distributions", "distance":210},
-        {"source": "Data Science", "target": "Calculus", "distance":210},
-        {"source": "Data Science", "target": "Linear Algebra", "distance":210},
-        {"source": "Data Science", "target": "Regression", "distance":210},
-        {"source": "Data Science", "target": "Time Series", "distance":210},
-        {"source": "Data Science", "target": "Optimization", "distance":210},
+        {"source": "Data Science", "target": "Distributions", "distance":310},
+        {"source": "Data Science", "target": "Calculus", "distance":310},
+        {"source": "Data Science", "target": "Linear Algebra", "distance":310},
+        {"source": "Data Science", "target": "Regression", "distance":310},
+        {"source": "Data Science", "target": "Time Series", "distance":310},
+        {"source": "Data Science", "target": "Optimization", "distance":310},
         
         {"source": "Regression", "target": "Loss Function", "distance":120},
         {"source": "Loss Function", "target": "Gradient Descent", "distance":90},
-        {"source": "Linear Algebra", "target": "Singular Value Decomposition", "distance":120},
-               
-        {"source": "Distributions", "target": "Normal Distribution", "distance":120},
         
+        {"source": "Linear Algebra", "target": "Singular Value Decomposition", "distance":120},
+        {"source": "Linear Algebra", "target": "QR Decomposition", "distance":120},
+                               
+        {"source": "Optimization", "target": "Simplex Method", "distance":120},
+        
+        {"source": "Distributions", "target": "Normal Distribution", "distance":120},
+                
         {"source": "Time Series", "target": "Stationarity Tests", "distance":120},
         {"source": "Time Series", "target": "Time Series Modeling", "distance":90},
-                
-        {"source": "Optimization", "target": "Simplex Method", "distance":120},
         
         {"source": "Calculus", "target": "Integrals", "distance":90},
         {"source": "Calculus", "target": "Derivatives", "distance":90},
@@ -118,7 +123,7 @@ var labelLayout = d3.forceSimulation(label.nodes)
     .on("tick", ticked);
 
 var graphLayout = d3.forceSimulation(graph.nodes)
-    .force("charge", d3.forceManyBody().strength(-5000))
+    .force("charge", d3.forceManyBody().strength(-6500))
     .force("center", d3.forceCenter(width / 2, height / 2))
     .force("x", d3.forceX(width / 2).strength(0.7))
     .force("y", d3.forceY(height / 2).strength(0.7))
