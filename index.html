@@ -37,11 +37,13 @@ var graph =
         {"id": "Linear Algebra", "size":30, "font":2},
         {"id": "Regression", "size":30, "font":2},
         {"id": "Optimization", "size":30, "font":2},
-        {"id": "Time Series", "size":30, "font":2}, 
+        {"id": "Time Series", "size":30, "font":2},
+        {"id": "NLP", "size":30, "font":2},
         
         {"id": "Loss Function", "url":"{{ site.baseurl }}{% link _posts/2019-10-14-loss-function.md %}", "size":10, "font":1.5},
         {"id": "Gradient Descent", "url":"{{ site.baseurl }}{% link _posts/2019-10-15-gradient-descent.md %}", "size":10, "font":1.5},
         {"id": "Linear Regression", "url":"{{ site.baseurl }}{% link _posts/2019-10-25-linear-regression.md %}", "size":10, "font":1.5},
+        {"id": "Interpolation", "url":"{{ site.baseurl }}{% link _posts/2019-12-08-interpolation.md %}", "size":10, "font":1.5},
         
         {"id": "Normal Distribution", "url":"{{ site.baseurl }}{% link _posts/2019-07-28-normal-ditribution.md %}", 
          "size":4, "font":1}, 
@@ -66,7 +68,10 @@ var graph =
         {"id": "Analyzing Functions", "url":"{{ site.baseurl }}{% link _posts/2019-09-21-analyzing-functions.md %}",
 "size":4, "font":1},
         {"id": "Differential Equations", "url":"{{ site.baseurl }}{% link _posts/2019-09-30-differential-equations.md %}",
-"size":4, "font":1}
+"size":4, "font":1},
+        
+        {"id": "Text Similarity", "url":"{{ site.baseurl }}{% link _posts/2020-03-03-text-similarity.md %}",
+"size":10, "font":1.5}
         
     ],
     "links": [
@@ -74,12 +79,14 @@ var graph =
         {"source": "Data Science", "target": "Calculus", "distance":310},
         {"source": "Data Science", "target": "Linear Algebra", "distance":310},
         {"source": "Data Science", "target": "Regression", "distance":310},
-        {"source": "Data Science", "target": "Time Series", "distance":310},
         {"source": "Data Science", "target": "Optimization", "distance":310},
+        {"source": "Data Science", "target": "NLP", "distance":310},
         
         {"source": "Regression", "target": "Loss Function", "distance":120},
         {"source": "Loss Function", "target": "Gradient Descent", "distance":90},
         {"source": "Regression", "target": "Linear Regression", "distance":120},
+        {"source": "Regression", "target": "Interpolation", "distance":120},
+        {"source": "Regression", "target": "Time Series", "distance":200},
         
         {"source": "Distributions", "target": "Normal Distribution", "distance":120},
         
@@ -95,7 +102,9 @@ var graph =
         {"source": "Calculus", "target": "Derivatives", "distance":90},
         {"source": "Derivatives", "target": "Analyzing Functions", "distance":90},
         {"source": "Integrals", "target": "Differential Equations", "distance":90},
-        {"source": "Derivatives", "target": "Differential Equations", "distance":90}
+        {"source": "Derivatives", "target": "Differential Equations", "distance":90},
+        
+        {"source": "NLP", "target": "Text Similarity", "distance":90}
     ]   
 };
 
