@@ -40,7 +40,37 @@ var graph =
         {"id": "Time Series", "size":30, "font":2},
         {"id": "NLP", "size":30, "font":2},
       
-        {"id": "Loss Function", "url":"{{ site.baseurl }}{% link _posts/2019-10-14-loss-function.md %}", "size":10, "font":1.5}
+        {"id": "Loss Function", "url":"{{ site.baseurl }}{% link _posts/2019-10-14-loss-function.md %}", "size":10, "font":1.5},
+        {"id": "Gradient Descent", "url":"{{ site.baseurl }}{% link _posts/2019-10-15-gradient-descent.md %}", "size":10, "font":1.5},
+        {"id": "Linear Regression", "url":"{{ site.baseurl }}{% link _posts/2019-10-25-linear-regression.md %}", "size":10, "font":1.5},
+        
+        {"id": "Normal Distribution", "url":"{{ site.baseurl }}{% link _posts/2019-07-28-normal-ditribution.md %}", 
+         "size":4, "font":1}, 
+        
+        {"id": "Stationarity Tests", "url":"{{ site.baseurl }}{% link _posts/2019-07-12-time-series-stationarity-tests.md %}",
+         "size":4, "font":1}, 
+        {"id": "Time Series Modeling", "url":"{{ site.baseurl }}{% link _posts/2019-07-19-time-series-modeling.md %}",
+         "size":4, "font":1},
+        
+        {"id": "Singular Value Decomposition", "url":"{{ site.baseurl }}{% link _posts/2019-11-03-singular-value-decomposition.md %}",
+"size":10, "font":1.5},
+        {"id": "QR Decomposition", "url":"{{ site.baseurl }}{% link _posts/2019-11-19-qr-decomposition.md %}",
+"size":10, "font":1.5},
+
+        {"id": "Simplex Method", "url":"{{ site.baseurl }}{% link _posts/2019-09-07-simplex-method.md %}",
+"size":4, "font":1},
+        
+        {"id": "Derivatives", "url":"{{ site.baseurl }}{% link _posts/2019-09-14-derivatives.md %}",
+"size":10, "font":1.5},
+        {"id": "Integrals", "url":"{{ site.baseurl }}{% link _posts/2019-09-24-integrals.md %}",
+"size":10, "font":1.5},
+        {"id": "Analyzing Functions", "url":"{{ site.baseurl }}{% link _posts/2019-09-21-analyzing-functions.md %}",
+"size":4, "font":1},
+        {"id": "Differential Equations", "url":"{{ site.baseurl }}{% link _posts/2019-09-30-differential-equations.md %}",
+"size":4, "font":1},
+        
+        {"id": "Text Similarity", "url":"{{ site.baseurl }}{% link _posts/2020-03-03-text-similarity.md %}",
+"size":10, "font":1.5}
       
     ],
     "links": [
@@ -49,7 +79,30 @@ var graph =
         {"source": "Data Science", "target": "Linear Algebra", "distance":310},
         {"source": "Data Science", "target": "Regression", "distance":310},
         {"source": "Data Science", "target": "Optimization", "distance":310},
-        {"source": "Data Science", "target": "NLP", "distance":310}
+        {"source": "Data Science", "target": "NLP", "distance":310},
+      
+        {"source": "Regression", "target": "Loss Function", "distance":120},
+        {"source": "Loss Function", "target": "Gradient Descent", "distance":90},
+        {"source": "Regression", "target": "Linear Regression", "distance":120},
+        {"source": "Regression", "target": "Time Series", "distance":200},
+        
+        {"source": "Distributions", "target": "Normal Distribution", "distance":120},
+        
+        {"source": "Time Series", "target": "Stationarity Tests", "distance":120},
+        {"source": "Time Series", "target": "Time Series Modeling", "distance":90},
+        
+        {"source": "Linear Algebra", "target": "Singular Value Decomposition", "distance":120},
+        {"source": "Linear Algebra", "target": "QR Decomposition", "distance":120},
+                               
+        {"source": "Optimization", "target": "Simplex Method", "distance":120},
+        
+        {"source": "Calculus", "target": "Integrals", "distance":90},
+        {"source": "Calculus", "target": "Derivatives", "distance":90},
+        {"source": "Derivatives", "target": "Analyzing Functions", "distance":90},
+        {"source": "Integrals", "target": "Differential Equations", "distance":90},
+        {"source": "Derivatives", "target": "Differential Equations", "distance":90},
+        
+        {"source": "NLP", "target": "Text Similarity", "distance":90}
     ]   
 };
 
