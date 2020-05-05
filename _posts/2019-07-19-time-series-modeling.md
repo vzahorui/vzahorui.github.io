@@ -1,44 +1,40 @@
 ---
 layout: single
 title: "Time series modeling"
+description: Explaining what times series modeling is and making an overview of the common models
 category: "Time series"
-date: 2019-07-19
+date: 2020-04-23
 ---
-## Stationarity terms
-The methods described here require time series to be stationary. Stationary time series have constant mean and constant variance.
-It means that for any future observation the expected value will be equal to the mean of time series with injection of statistical error. The shocks represented by statistical error do not have permanent effect on the time series. So to speak its values always tend to return to its mean value.<br>
 
-&nbsp;&nbsp;&nbsp;&nbsp;
-$y_t = \mu + \varepsilon_t$
+Time series is simply a series of data which is ordered in time. Almost any social, economical or natural process can be modeled with the time series as it takes into account only historical values of this process, be it population of a certain region, tomato prices or redioactive decay. 
 
-Below is an example of stationary time series with $\mu$ = 10.
+In time series the values which are close in time are more related than those that are further apart. Indeed, in any process each next observation represents development from its previous state, which may be caused by some trend, random fluctuation or reverting to its normal state after earlier fluctuations. Hence, there are various models of time series which make predictions based on combinations of values of the most recent observations. 
 
-![](/assets/images/time_series/stationary_time_series.png){: .align-center}
+## Decomposition of time series
 
-As we can see, this time series exhibits a certain amount of random fluctuations, and yet its values remain close to its mean.<br>
-<br>
-You may ask if it means that when we are making predictions upon stationary time series we are basically saying that it will be equal to its mean, right?<br>
-Not quite.<br>
-The models described here are trying to take into account the impact of random fluctuations from previous periods. Plainly speaking, they predict future values which are adjusted by the past events. More to it later.<br>
-<br>
-Another important question may arise. If we can predict only stationary time series, does it mean that we cannot make meaningful predictions, that is predicting something that changes over time?<br>
-To this question the answer is no.<br>
-Basically any time series can be transformed into stationary terms. The most common approach is differencing, that is taking a difference between neighbouring data points (lag-1) instead of using the actual values. Sometimes differencing has to be performed again and multiple times until the time-series is stationary. This is often the case with non-linear time series. Also, increasing the lag in differencing may help in eliminating seasonality. <br>
-Other options for making time series include taking $\log$ of the values, applying power function and combining multiple types of transformation.<br>
-After making predictions upon such transformed stationary time series we should reverse all transformations in order to get the final predicted value.<br>
-<br>
-Below is a toy example of time series which changes over time and has seasonal component as well. Suppose it's ice cream prices.
+One way to create a time series model is to view it as a process with a certain structure. Two elements which are usually taken into consideration are trend and some random component (or remainder). While trend defines the general direction in which values of the times series change, the random component represents shocks caused by events which could not be foreseen. Below is an example of time series of Tesla stock prices, which exhibits some sort of upward trend, and which is also heavily impacted by randomness, as the chart is not quite linear. 
 
-![](/assets/images/time_series/toy_ice_cream_prices.png){: .align-center}
+![](/assets/images/time_series/stock_prices_example.png){: .align-center}
 
-We can remove trend by simply taking the first difference, however in order to remove seasonality we have to perform differencing of higher order. In this particular case we have to take a difference of a whole year, which means subtracting values from a year ago from values of current date.<br>
-The drawback of this sort of transformation is that we lose the first historical data point. Since we have only data from restricted time period we cannot take the difference for the whole first year.
-UA
+Some processes are also influenced by seasonal factor (or cyclical in other words), and thus the element of seasonality should also be included in the models of such processes. Among examples of cyclical time series are prices for seasonal goods, like ice-cream, number of gym-related searches in Google, daily temperature, heart-beat rate, and many others. Below is an example of daily amount of consumed energy according to PGM, which clearly exhibits seasonal component (and doesn't seem to have any significant trend).
 
-![](/assets/images/time_series/toy_ice_cream_prices_transformed.png){: .align-center}
+![](/assets/images/time_series/daily_energy_consumption_example.png){: .align-center}
 
-The second image displays transformed data after taking the whole year difference and it looks like white noise. Hence we may conclude that we got stationary time series.<br>
-We can further test time series for stationarity by using Augmented Dickey-Fuller (ADF) and Kwiatkowski–Phillips–Schmidt–Shin (KPSS) tests. Mechanics of both tests is described [here]({{ site.baseurl }}{% link _posts/2019-07-12-time-series-stationarity-tests.md %}).
+Each component of the time series can be modeled separately, and their compound effect makes up the predicted value. This compound effect may be either modeled as a sum or a multiplication of all three components producing either additive or a multiplicative model respectively. It should be noted that multiplicative models may be applied in case when variability of time series changes over time.
+
+## Model selection
+
+When selecting a model to predict time series various factors may be considered, such as the nature of underlying process, presence of seasonality, autocorrelation and heteroscedasticity. Also available data on related metrics, which may be impacting bahaviour of the predicted time series, could be used to enhance the model.
+
+Usually many models are being tested and the one which provides the best score is selected.
+
+### Model validation
+
+Often the simplest possible model is used as a benchmark for further comparison with the other more sophisticated ones. In time series forecasting the Naïve model could be used for such purposes.
+
+### Naïve models
+
+According to the simplest approach the value of the next predicted observation will be equal to the value of the previous one. 
 
 ## AR models 
 
