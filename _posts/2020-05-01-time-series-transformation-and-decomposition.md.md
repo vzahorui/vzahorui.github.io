@@ -33,7 +33,7 @@ After making predictions upon such transformed stationary time series we should 
 
 ## Seasonal-Trend decomposition procedure based on LOESS
 
-In case when time series is affected by seasonal changes of varying length and intensity then the differencing techniques may become misleading as they will treat changes casued by seasonal factor as noise. This is where Seasonal-Trend decomposition procedure based on LOESS (locally estimated scatterplot smoothing), or simply STL, comes to aid.
+In case when time series is affected by seasonal changes of varying length and intensity then the differencing techniques may become misleading as they will treat changes casued by seasonal factor as noise. This is where Seasonal-Trend decomposition procedure based on [LOESS]({{ site.baseurl }}{% link _posts/2020-05-05-loess.md %}) (locally estimated scatterplot smoothing), or simply STL, comes to aid.
  
 
 Thus dealing with the missing data points. 

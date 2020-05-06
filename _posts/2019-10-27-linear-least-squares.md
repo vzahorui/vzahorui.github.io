@@ -71,7 +71,7 @@ By using SVD for the least square problem there is no need to calculate inverse 
 
 One fairly efficient method for solving least squares is to do so with [QR decomposition]({{ site.baseurl }}{% link _posts/2019-11-19-qr-decomposition.md %}). This is a method which is similarly to SVD based on orthogonalization, which means avoiding forming $X^{T}X$ matrix thus being more stable. On the whole, compared to SVD, QR decomposition (Householder implementation) is slightly more efficient in finding least squares solution, however, it may be less stable. In addition, QR decomposition assumes matrix $X$ to be full-rank, that is each column of $X$ is linearly independent. 
 
-This is how QR decomposition is applied to linera regression problem:
+This is how QR decomposition is applied to linear regression problem:
 
 &nbsp;&nbsp;&nbsp;&nbsp;
 $X \beta = y + \varepsilon$
