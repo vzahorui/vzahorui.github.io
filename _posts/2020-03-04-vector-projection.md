@@ -28,7 +28,7 @@ $\left|\left|a\right|\right| \cos{\alpha}$
 
 $\left|\left|a\right|\right|$ 
 
-$\overrightarrow{a_{1}} = \left|\left|a_{1}\right|\right|$
+$\overrightarrow{a_{1}} = \left|\left|a_{1}\right|\right|\frac{b}{\left|\left|b\right|\right|} = \left|\left|a\right|\right| \cos{\alpha}\frac{b}{\left|\left|b\right|\right|}$
 
 - test
 
