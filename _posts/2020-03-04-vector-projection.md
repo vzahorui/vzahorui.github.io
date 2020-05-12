@@ -26,7 +26,9 @@ $\left|\left|a\right|\right| \cos{\alpha}$
 
 ,
 
-$$\left|\left|a\right|\right|$ - test
+$\left|\left|a\right|\right|$ 
+
+- test
 
 where $\alpha$ is an angle between $\overrightarrow{a}$ and $\overrightarrow{b}$. The vector projection will be equal to scalar projection multiplied by direction of $\overrightarrow{b}$:  
  
