@@ -7,7 +7,7 @@ tags: machine-learning loss-function penalization learning-rate gradient slope
 date: 2019-10-15
 ---
 
-Gradient descent is one of the widely used methods for optimizing functions in machine learning. In gradient descent the optimal parameters for the function are found by iterative guessing, measuring and adjusting, so that the [loss function]({{ site.baseurl }}{% link _posts/2019-10-14-loss-function.md %}) reaches its minimum. Gradient descent is also very useful when it is impossible to find analytically (e. g. by using least squares estimation) the parameters where the slope of the loss function is zero.
+Gradient descent is one of the widely used methods for optimizing functions in machine learning. In gradient descent the optimal parameters for the function are found by iterative guessing, measuring and adjusting, so that the [loss function]({{ site.baseurl }}{% link _posts/2019-10-14-loss-functions.md %}) reaches its minimum. Gradient descent is also very useful when it is impossible to find analytically (e. g. by using least squares estimation) the parameters where the slope of the loss function is zero.
 
 Let's describe the mechanism of gradient descent for the problem of simple linear regression where empirical distribution looks like this:
 
