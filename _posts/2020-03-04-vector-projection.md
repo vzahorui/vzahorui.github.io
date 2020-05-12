@@ -14,9 +14,7 @@ Below is a two-dimensional example but its understanding will help us build intu
  
 In this example we want to calculate vector $\overrightarrow{a_{1}}$ which has the same direction as vector $\overrightarrow{b}$ but the length of which is restricted by the span of vector $\overrightarrow{a}$ in the direction of $\overrightarrow{b}$.  
  
-Let's recall that in rectangular triangle cosine of an angle is the ratio between the adjacent side and the hypotenuse. Therefore, 
-
-$\left|\left|a_{1}\right|\right|$
+Let's recall that in rectangular triangle cosine of an angle is the ratio between the adjacent side and the hypotenuse. Therefore, &nbsp;$\left|\left|a_{1}\right|\right|$
 
 , 
 
@@ -27,7 +25,7 @@ $\left|\left|a\right|\right| \cos{\alpha}$
 
 ,
 
-&nbsp;
+ 
 $\left|\left|a\right|\right|$ 
 
 test
