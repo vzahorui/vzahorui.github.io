@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "Loss function"
+title: "Loss functions"
 description: Explaining what the loss function is and how machine learning utilizes it
 category: "Regression"
 tags: machine-learning loss-function penalization mse l2 mean-square-error quadratic-loss l1 mean-absolute-error mae
@@ -20,10 +20,10 @@ In a broad sense, with respect to the type of machine learning problem, the two 
 &nbsp;&nbsp;&nbsp;&nbsp;
 $MSE = \frac{\sum_{i=1}^n (\hat{y} - y_i)^2}{n}$
 
-Mean square error is in fact the average of the squared distance between predicted and observed values<br>
+Mean square error is in fact the average of the squared distance between predicted and observed values.<br>
 This function results into a single positive number regardless of the direction of the error. In addition, squaring bigger residuals produces even bigger values for the loss function, therefore, the function heavily penalizes significant deviations of the model compared to the lesser ones. So to speak, missing by a little lots of times is considered better than missing by a lot a few times. One has to be careful careful when applying this function to the data with outliers.
 
-Other than that, the function has nice mathematical properties, in particular regarding calculation of gradient descent.
+Other than that, the function has nice mathematical properties, in particular regarding calculation of [gradient descent]({{ site.baseurl }}{% link _posts/2019-10-15-gradient-descent.md %}), since calculation of a derivative of quadratic function and finding the point of its minimum is quite straightforward.
 
 ### Mean Absolute Error/L1 Loss
 

@@ -21,7 +21,7 @@ The general form of linear regression however is the multivariable one where mul
 &nbsp;&nbsp;&nbsp;&nbsp;
 $y = \beta_0 + \sum_{i=1}^n \beta_i x_i + \varepsilon$,
  
-where $beta_i$ are the weights of each independent variable.
+where $\beta_i$ are the weights of each independent variable.
  
 ## Gaussian noise
  

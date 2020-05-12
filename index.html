@@ -31,25 +31,23 @@ var height = 1000;
 var graph = 
 {
     "nodes": [
-        {"id": "Data Science", "size":50, "font":2.5},
-        {"id": "Distributions", "size":30, "font":2},
-        {"id": "Calculus", "size":30, "font":2},
-        {"id": "Linear Algebra", "size":30, "font":2},
-        {"id": "Regression", "size":30, "font":2},
-        {"id": "Optimization", "size":30, "font":2},
-        {"id": "Time Series", "size":30, "font":2},
-        {"id": "NLP", "size":30, "font":2},
+        {"id": "Data Science", "size": 50, "font": 2.5},
+        {"id": "Distributions", "size": 30, "font": 2},
+        {"id": "Calculus", "size": 30, "font": 2},
+        {"id": "Linear Algebra", "size": 30, "font": 2},
+        {"id": "Regression", "size": 30, "font": 2},
+        {"id": "Optimization", "size": 30, "font": 2},
+        {"id": "Time Series", "size": 30, "font": 2},
+        {"id": "NLP", "size": 30, "font": 2},
       
-        {"id": "Loss Function", "url":"{{ site.baseurl }}{% link _posts/2019-10-14-loss-function.md %}", "size":10, "font":1.5},
-        {"id": "Gradient Descent", "url":"{{ site.baseurl }}{% link _posts/2019-10-15-gradient-descent.md %}", "size":10, "font":1.5},
-        {"id": "Linear Regression", "url":"{{ site.baseurl }}{% link _posts/2019-10-25-linear-regression.md %}", "size":10, "font":1.5},
-        {"id": "LOESS", "url":"{{ site.baseurl }}{% link _posts/2020-05-05-loess.md %}", "size":10, "font":1.5},
+        {"id": "Loss Functions", "url": "{{ site.baseurl }}{% link _posts/2019-10-14-loss-functions.md %}", "size": 10, "font": 1.5},
+        {"id": "Gradient Descent", "url": "{{ site.baseurl }}{% link _posts/2019-10-15-gradient-descent.md %}", "size": 10, "font": 1.5},
+        {"id": "Linear Regression", "url": "{{ site.baseurl }}{% link _posts/2019-10-25-linear-regression.md %}", "size": 10, "font": 1.5},
+        {"id": "LOESS", "url": "{{ site.baseurl }}{% link _posts/2020-05-05-loess.md %}", "size": 10, "font": 1.5},
         
-        {"id": "Normal Distribution", "url":"{{ site.baseurl }}{% link _posts/2019-07-28-normal-ditribution.md %}", 
-         "size":4, "font":1}, 
+        {"id": "Normal Distribution", "url": "{{ site.baseurl }}{% link _posts/2019-07-28-normal-ditribution.md %}", 
+         "size": 4, "font": 1}, 
         
-        {"id": "Stationarity Tests", "url":"{{ site.baseurl }}{% link _posts/2019-07-12-time-series-stationarity-tests.md %}",
-         "size":4, "font":1}, 
         {"id": "Time Series Modeling", "url":"{{ site.baseurl }}{% link _posts/2019-07-19-time-series-modeling.md %}",
          "size":4, "font":1},
         
@@ -69,6 +67,8 @@ var graph =
 "size":4, "font":1},
         {"id": "Differential Equations", "url":"{{ site.baseurl }}{% link _posts/2019-09-30-differential-equations.md %}",
 "size":4, "font":1},
+        {"id": "Taylor Series", "url":"{{ site.baseurl }}{% link _posts/2020-05-08-taylor-series.md %}",
+"size":4, "font":1},
         
         {"id": "Text Similarity", "url":"{{ site.baseurl }}{% link _posts/2020-03-03-text-similarity.md %}",
 "size":10, "font":1.5}
@@ -82,29 +82,29 @@ var graph =
         {"source": "Data Science", "target": "Optimization", "distance":310},
         {"source": "Data Science", "target": "NLP", "distance":310},
       
-        {"source": "Regression", "target": "Loss Function", "distance":120},
-        {"source": "Loss Function", "target": "Gradient Descent", "distance":90},
-        {"source": "Regression", "target": "Linear Regression", "distance":120},
-        {"source": "Regression", "target": "LOESS", "distance":120},
-        {"source": "Regression", "target": "Time Series", "distance":200},
+        {"source": "Regression", "target": "Loss Functions", "distance": 120},
+        {"source": "Loss Functions", "target": "Gradient Descent", "distance": 90},
+        {"source": "Regression", "target": "Linear Regression", "distance": 120},
+        {"source": "Regression", "target": "LOESS", "distance": 120},
+        {"source": "Regression", "target": "Time Series", "distance": 200},
         
-        {"source": "Distributions", "target": "Normal Distribution", "distance":120},
+        {"source": "Distributions", "target": "Normal Distribution", "distance": 120},
         
-        {"source": "Time Series", "target": "Stationarity Tests", "distance":120},
-        {"source": "Time Series", "target": "Time Series Modeling", "distance":90},
+        {"source": "Time Series", "target": "Time Series Modeling", "distance": 90},
         
-        {"source": "Linear Algebra", "target": "Singular Value Decomposition", "distance":120},
-        {"source": "Linear Algebra", "target": "QR Decomposition", "distance":120},
+        {"source": "Linear Algebra", "target": "Singular Value Decomposition", "distance": 120},
+        {"source": "Linear Algebra", "target": "QR Decomposition", "distance": 120},
                                
-        {"source": "Optimization", "target": "Simplex Method", "distance":120},
+        {"source": "Optimization", "target": "Simplex Method", "distance": 120},
         
-        {"source": "Calculus", "target": "Integrals", "distance":90},
-        {"source": "Calculus", "target": "Derivatives", "distance":90},
-        {"source": "Derivatives", "target": "Analyzing Functions", "distance":90},
-        {"source": "Integrals", "target": "Differential Equations", "distance":90},
-        {"source": "Derivatives", "target": "Differential Equations", "distance":90},
+        {"source": "Calculus", "target": "Integrals", "distance": 90},
+        {"source": "Calculus", "target": "Derivatives", "distance": 90},
+        {"source": "Derivatives", "target": "Analyzing Functions", "distance": 90},
+        {"source": "Integrals", "target": "Differential Equations", "distance": 90},
+        {"source": "Derivatives", "target": "Differential Equations", "distance": 90},
+        {"source": "Derivatives", "target": "Taylor Series", "distance": 90},
         
-        {"source": "NLP", "target": "Text Similarity", "distance":90}
+        {"source": "NLP", "target": "Text Similarity", "distance": 90}
     ]   
 };
 
