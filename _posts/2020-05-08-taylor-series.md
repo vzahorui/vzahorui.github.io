@@ -24,14 +24,14 @@ Here is how the approximation function looks now, after the we include the slope
  
 ![](/assets/images/calculus/random_function_fit_slope_example.png){: .align-center}
  
-This fit is better but terrible still. We can do more by including higher order derivatives of $f(x)$. After calculating $f''(0)$ adding a new polynomial term to $\phi(x)$ would also require slight adjustments to $a_2$. Since the derivative of quadratic term produces $2x$ we should multiply $f''(0)$ by $\frac{1}{2}$ so that $\phi ''(x)$ will have the same value as $f''(x)$ at the centering point. As we see, by including the second degree polynomial we made our function "curve" better around the centering point.
+This fit is better but terrible still. We can do more by including higher order derivatives of $f(x)$. After calculating $f'' (0)$ adding a new polynomial term to $\phi(x)$ would also require slight adjustments to $a_2$. Since the derivative of quadratic term produces $2x$ we should multiply $f'' (0)$ by $\frac{1}{2}$ so that $\phi'' (x)$ will have the same value as $f'' (x)$ at the centering point. As we see, by including the second degree polynomial we made our function "curve" better around the centering point.
  
 ![](/assets/images/calculus/random_function_fit_curve_example.png){: .align-center}
  
 Since higher degree polynomials produce additional coefficients after taking derivatives of them, including more polynomial terms into the approximation function will also require additional adjusting multiplications of the terms as we explicitly did for quadratic function. The general formula for this process will look like this:
  
 &nbsp;&nbsp;&nbsp;&nbsp;
-$\phi(x) = f(0) + f'(0)\frac{x^1}{1!} + f''(0)\frac{x^2}{2!} + f'''(0)\frac{x^3}{3!} + ...$
+$\phi(x) = f(0) + f'(0)\frac{x^1}{1!} + f'' (0)\frac{x^2}{2!} + f''' (0)\frac{x^3}{3!} + ...$
  
 Adding more terms will make approximation around the centering point even better but at a lesser rate each time. Below is what $\phi(x)$ will look like if we include further polynomial terms.   
  
