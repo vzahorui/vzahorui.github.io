@@ -22,18 +22,15 @@ $\left|\left|a_{1}\right|\right|$
 
 known as scalar projection, can be expressed as 
 
+&nbsp;&nbsp;&nbsp;&nbsp;
 $\left|\left|a\right|\right| \cos{\alpha}$
 
 ,
 
+&nbsp;
 $\left|\left|a\right|\right|$ 
 
-
-$\overrightarrow{a_{1}} = \left|\left|a_{1}\right|\right|\frac{b}{\left|\left|b\right|\right|} = \left|\left|a\right|\right| \cos{\alpha}\frac{b}{\left|\left|b\right|\right|}$
-
 test
-
-
 
 where $\alpha$ is an angle between $\overrightarrow{a}$ and $\overrightarrow{b}$. The vector projection will be equal to scalar projection multiplied by direction of $\overrightarrow{b}$:  
  
