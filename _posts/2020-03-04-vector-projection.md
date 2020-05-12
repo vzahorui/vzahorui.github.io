@@ -10,9 +10,9 @@ date: 2020-03-04
 In order to understand more advanced concepts from vector operations it is good to have an intuition on such terms as vector projection.  
 Below is a two-dimensional example but its understanding will help us build intuition behind vector projection in any number of dimensions. So suppose we want to know the projection of vector $\overrightarrow{a}$ on vector $\overrightarrow{b}$:
 
-$||a_{1}||$
+$a_{1}$
 
-$\left|\left|a_{1}\right|\right|$
+$\|\|a_{1}\|\|$
  
 ![](/assets/images/linear_algebra/vectors_and_cosine.png){: .align-center}
  
