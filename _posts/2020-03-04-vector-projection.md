@@ -16,11 +16,11 @@ In this example we want to calculate vector $\overrightarrow{a_{1}}$ which has t
  
 Let's recall that in rectangular triangle cosine of an angle is the ratio between the adjacent side and the hypotenuse. Therefore, $|\left|a_{1}|\left|$, 
 
-known as scalar projection, can be 
+known as scalar projection, can be expressed as 
 
-expressed as 
+$||a||\cos{\alpha}$
 
-$||a||\cos{\alpha}$, 
+,
 
 where $\alpha$ is an angle between $\overrightarrow{a}$ and $\overrightarrow{b}$. The vector projection will be equal to scalar projection multiplied by direction of $\overrightarrow{b}$:  
  
