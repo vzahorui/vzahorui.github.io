@@ -9,12 +9,16 @@ date: 2020-03-04
  
 In order to understand more advanced concepts from vector operations it is good to have an intuition on such terms as vector projection.  
 Below is a two-dimensional example but its understanding will help us build intuition behind vector projection in any number of dimensions. So suppose we want to know the projection of vector $\overrightarrow{a}$ on vector $\overrightarrow{b}$:
+
+$$\left|\left|a_{1}\right|\right|$$
+
+$\left|\left|a_{1}\right|\right|$
  
 ![](/assets/images/linear_algebra/vectors_and_cosine.png){: .align-center}
  
 In this example we want to calculate vector $\overrightarrow{a_{1}}$ which has the same direction as vector $\overrightarrow{b}$ but the length of which is restricted by the span of vector $\overrightarrow{a}$ in the direction of $\overrightarrow{b}$.  
  
-Let's recall that in rectangular triangle cosine of an angle is the ratio between the adjacent side and the hypotenuse. Therefore, $$\left|\left|a_{1}\right|\right|$$
+Let's recall that in rectangular triangle cosine of an angle is the ratio between the adjacent side and the hypotenuse. Therefore, \$$\left|\left|a_{1}\right|\right|$$
 
 , 
 
