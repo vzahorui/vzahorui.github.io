@@ -8,7 +8,7 @@ title: Unlocking the power of data
   display: inline-block;
   position: relative;
   width: 100%;
-  padding-bottom: 55%; /* aspect ratio */
+  padding-bottom: 90%; /* aspect ratio */
   vertical-align: middle;
   overflow: hidden;
 }
@@ -26,38 +26,34 @@ title: Unlocking the power of data
  
 <script>
 var width = 1800;
-var height = 1000;
+var height = 1400;
 
 var graph = 
 {
     "nodes": [
-        {"id": "Data Science", "size": 50, "font": 2.5},
-        {"id": "Distributions", "size": 30, "font": 2},
-        {"id": "Calculus", "size": 30, "font": 2},
-        {"id": "Linear Algebra", "size": 30, "font": 2},
+        {"id": "Probability", "size": 50, "font": 2},
+        {"id": "Calculus", "size": 50, "font": 2},
+        {"id": "Linear Algebra", "size": 50, "font": 2},
         {"id": "Regression", "size": 30, "font": 2},
         {"id": "Optimization", "size": 30, "font": 2},
-        {"id": "Time Series", "size": 30, "font": 2},
+        {"id": "Time Series", "url":"{{ site.baseurl }}{% link _posts/2019-07-19-time-series-modeling.md %}", "size": 30, "font": 2},
         {"id": "NLP", "size": 30, "font": 2},
       
-        {"id": "Loss Functions", "url": "{{ site.baseurl }}{% link _posts/2019-10-14-loss-functions.md %}", "size": 10, "font": 1.5},
-        {"id": "Gradient Descent", "url": "{{ site.baseurl }}{% link _posts/2019-10-15-gradient-descent.md %}", "size": 10, "font": 1.5},
+        {"id": "Loss Functions", "url": "{{ site.baseurl }}{% link _posts/2019-10-14-loss-functions.md %}", "size": 4, "font": 1},
         {"id": "Linear Regression", "url": "{{ site.baseurl }}{% link _posts/2019-10-25-linear-regression.md %}", "size": 10, "font": 1.5},
-        {"id": "LOESS", "url": "{{ site.baseurl }}{% link _posts/2020-05-05-loess.md %}", "size": 10, "font": 1.5},
+        {"id": "LOESS", "url": "{{ site.baseurl }}{% link _posts/2020-05-05-loess.md %}", "size": 4, "font": 1},
         
         {"id": "Normal Distribution", "url": "{{ site.baseurl }}{% link _posts/2019-07-28-normal-ditribution.md %}", 
-         "size": 4, "font": 1}, 
-        
-        {"id": "Time Series Modeling", "url":"{{ site.baseurl }}{% link _posts/2019-07-19-time-series-modeling.md %}",
-         "size":4, "font":1},
+         "size": 4, "font": 1},
         
         {"id": "Singular Value Decomposition", "url":"{{ site.baseurl }}{% link _posts/2019-11-03-singular-value-decomposition.md %}",
-"size":10, "font":1.5},
-        {"id": "QR Decomposition", "url":"{{ site.baseurl }}{% link _posts/2019-11-19-qr-decomposition.md %}",
-"size":10, "font":1.5},
-
-        {"id": "Simplex Method", "url":"{{ site.baseurl }}{% link _posts/2019-09-07-simplex-method.md %}",
 "size":4, "font":1},
+        {"id": "QR Decomposition", "url":"{{ site.baseurl }}{% link _posts/2019-11-19-qr-decomposition.md %}",
+"size":4, "font":1},
+
+        {"id": "Simplex Method", "url":"{{ site.baseurl }}{% link _posts/2019-09-07-simplex-method.md %}", "size": 4, "font": 1},
+        {"id": "Gradient Descent", "url": "{{ site.baseurl }}{% link _posts/2019-10-15-gradient-descent.md %}", "size": 10, "font": 1.5},
+        {"id": "Newton's Method", "url": "{{ site.baseurl }}{% link _posts/2019-10-15-gradient-descent.md %}", "size": 4, "font": 1},
         
         {"id": "Derivatives", "url":"{{ site.baseurl }}{% link _posts/2019-09-14-derivatives.md %}",
 "size":10, "font":1.5},
@@ -70,41 +66,48 @@ var graph =
         {"id": "Taylor Series", "url":"{{ site.baseurl }}{% link _posts/2020-05-08-taylor-series.md %}",
 "size":4, "font":1},
         
+        {"id": "Vector Projection", "url":"{{ site.baseurl }}{% link _posts/2020-03-04-vector-projection.md %}",
+"size":4, "font":1},
         {"id": "Text Similarity", "url":"{{ site.baseurl }}{% link _posts/2020-03-03-text-similarity.md %}",
-"size":10, "font":1.5}
+"size":4, "font":1}
       
     ],
     "links": [
-        {"source": "Data Science", "target": "Distributions", "distance":310},
-        {"source": "Data Science", "target": "Calculus", "distance":310},
-        {"source": "Data Science", "target": "Linear Algebra", "distance":310},
-        {"source": "Data Science", "target": "Regression", "distance":310},
-        {"source": "Data Science", "target": "Optimization", "distance":310},
-        {"source": "Data Science", "target": "NLP", "distance":310},
-      
-        {"source": "Regression", "target": "Loss Functions", "distance": 120},
-        {"source": "Loss Functions", "target": "Gradient Descent", "distance": 90},
+        {"source": "Calculus", "target": "Probability", "distance": 220},
+        {"source": "Linear Algebra", "target": "Calculus", "distance": 220},
+        {"source": "Linear Algebra", "target": "Probability", "distance": 220},
+        
+        {"source": "Probability", "target": "Normal Distribution", "distance": 120},
+        
+        {"source": "Probability", "target": "Regression", "distance": 320},
+        
+        {"source": "Regression", "target": "Time Series", "distance": 320},
         {"source": "Regression", "target": "Linear Regression", "distance": 120},
         {"source": "Regression", "target": "LOESS", "distance": 120},
-        {"source": "Regression", "target": "Time Series", "distance": 200},
+        {"source": "Regression", "target": "Loss Functions", "distance": 120},
         
-        {"source": "Distributions", "target": "Normal Distribution", "distance": 120},
-        
-        {"source": "Time Series", "target": "Time Series Modeling", "distance": 90},
+        {"source": "Linear Algebra", "target": "Vector Projection", "distance": 120},
+        {"source": "Vector Projection", "target": "Text Similarity", "distance": 220},
+        {"source": "Text Similarity", "target": "NLP", "distance": 120},
         
         {"source": "Linear Algebra", "target": "Singular Value Decomposition", "distance": 120},
         {"source": "Linear Algebra", "target": "QR Decomposition", "distance": 120},
-                               
+        
+        {"source": "Calculus", "target": "Derivatives", "distance": 220},
+        {"source": "Calculus", "target": "Integrals", "distance": 90},
+        {"source": "Integrals", "target": "Differential Equations", "distance": 120},
+        {"source": "Derivatives", "target": "Differential Equations", "distance": 90},
+        
+        {"source": "Derivatives", "target": "Analyzing Functions", "distance": 90},
+        {"source": "Analyzing Functions", "target": "Gradient Descent", "distance": 120},
+        {"source": "Analyzing Functions", "target": "Taylor Series", "distance": 90},
+        {"source": "Taylor Series", "target": "Newton's Method", "distance": 90},
+        
+        {"source": "Newton's Method", "target": "Optimization", "distance": 120},
+        {"source": "Gradient Descent", "target": "Optimization", "distance": 120},
         {"source": "Optimization", "target": "Simplex Method", "distance": 120},
         
-        {"source": "Calculus", "target": "Integrals", "distance": 90},
-        {"source": "Calculus", "target": "Derivatives", "distance": 90},
-        {"source": "Derivatives", "target": "Analyzing Functions", "distance": 90},
-        {"source": "Integrals", "target": "Differential Equations", "distance": 90},
-        {"source": "Derivatives", "target": "Differential Equations", "distance": 90},
-        {"source": "Derivatives", "target": "Taylor Series", "distance": 90},
         
-        {"source": "NLP", "target": "Text Similarity", "distance": 90}
     ]   
 };
 
@@ -123,15 +126,15 @@ graph.nodes.forEach(function(d, i) {
 });
 
 var labelLayout = d3.forceSimulation(label.nodes)
-    .force("charge", d3.forceManyBody().strength(-20))
+    .force("charge", d3.forceManyBody().strength(-30))
     .force("link", d3.forceLink(label.links).distance(0).strength(1))
     .on("tick", ticked);
 
 var graphLayout = d3.forceSimulation(graph.nodes)
-    .force("charge", d3.forceManyBody().strength(-6500))
+    .force("charge", d3.forceManyBody().strength(-600))
     .force("center", d3.forceCenter(width / 2, height / 2))
-    .force("x", d3.forceX(width / 2).strength(0.7))
-    .force("y", d3.forceY(height / 2).strength(0.7))
+    .force("x", d3.forceX(width / 2).strength(0.02))
+    .force("y", d3.forceY(height / 2).strength(0.01))
     .force("link", d3.forceLink(graph.links).id(function(d) {return d.id; }).distance(function(d) {return d.distance; }).strength(1))
     .on("tick", ticked);
 
@@ -147,7 +150,7 @@ var svg = d3.select("div#chartId")
     .classed("svg-container", true)
     .append("svg")
     .attr("preserveAspectRatio", "xMinYMin meet")
-    .attr("viewBox", "0 0 2000 1400")
+    .attr("viewBox", "0 0 1800 1400")
     .classed("svg-content-responsive", true);
   
 var container = svg.append("g");

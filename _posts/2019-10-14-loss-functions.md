@@ -7,7 +7,7 @@ tags: machine-learning loss-function penalization mse l2 mean-square-error quadr
 date: 2019-10-14
 ---
 
-In machine learning the loss function is something that lets the machine to actually "learn". The loss function evaluates the error of a model by comparing each predicted result with the actually observed data, thus measuring the residuals. Then it aggregates all individual residuals and comes up with a single value which generally describes how badly the function fits to the actual input data: the greater the value of the loss function - the worse is the model. Using different optimization techniques the loss function is minimized to a reasonable extent, thus making a machine learning model better.
+In machine learning the loss function is something that lets the machine to actually "learn". The loss function is the function of parameters, it evaluates the error of a model by comparing each predicted result with the actually observed data, thus measuring the residuals for different set of parameters. Then it aggregates all individual residuals and comes up with a single value which generally describes how badly the function fits to the actual input data: the greater the value of the loss function - the worse is the model. Using different optimization techniques the loss function is minimized to a reasonable extent, thus making a machine learning model better.
 
 Depending on specific situations, different types of the loss function may be employed. Among the factors that help to choose which loss function to use are the type of machine learning model, the presence of outliers, complexity of calculating the derivatives, and the confidence level.
 

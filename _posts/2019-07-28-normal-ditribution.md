@@ -2,8 +2,8 @@
 layout: single
 title: "Normal distribution"
 description: In this post I described all the essential stuff in order to understand normal distribution and how to use it.
-category: "Distributions"
-tags: normal-distibution statistics z-score z-table six-sigma probability
+category: "Probability"
+tags: normal-distibution statistics z-score z-table six-sigma
 date: 2019-07-28
 ---
 
