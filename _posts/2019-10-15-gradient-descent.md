@@ -41,7 +41,7 @@ Suppose we already know the value of the intercept $a$, then we would only have 
  
 ![](/assets/images/regression/loss_values_and_slope.png){: .align-center}
  
-We can see that the shape of the loss function resembles a quadratic function, and that if we take $b$ between 7 and 8 then the loss function will be close to its minimum. There is, however, an infinitely large number of possible values for $b$ and calculating loss function for any single random guess would be simply overkill. Instead, we can apply gradient descent, and in a few iterations adjust the value of $b$ in such a way that the function of residuals gets pretty close to its minimum.  
+We can see that the shape of the loss function is actually a quadratic function, and that if we take $b$ between 7 and 8 then the loss function will be close to its minimum. There is, however, an infinitely large number of possible values for $b$ and calculating loss function for any single random guess would be simply overkill. Instead, we can apply gradient descent, and in a few iterations adjust the value of $b$ in such a way that the function of residuals gets pretty close to its minimum.  
  
 ## Multivariate gradient descent
  
@@ -65,7 +65,13 @@ Going back to the overall procedure the formula for gradient descent may be cons
 $\theta^{(1)} = \theta^{(0)} - \alpha\nabla J(\theta^{(0)})$
  
 where $\alpha$ is the learning rate and $\theta^{(1)}$ is a new set of predictors.
+
+Here is an example of the gradient descent in two-dimensional space:
  
+![](/assets/images/gradient_descent/3d_gradient_descent_demo.gif){: .align-center}
+ 
+The area depicts the loss function values for all combinations of the parameters $\theta$ within certain scope. In order to simplify plotting, the loss function is usually projected on a two-dimensional plot of $\theta_0$ and $\theta_1$ with a contour plot, where each line represents areas where the loss function assumes the same value. Such areas of the same values are usually plotted with different colours, so that the areas of minima are easily distinguished. In the example above the areas where the loss function reaches its minimum are painted in blue.
+
 Unfortunately, the best number which could be used as a value of the learning rate cannot be found analytically and thus has to be adjusted by trial and error. Smaller learning rates can lead to more precise estimations but would require more calculations while the bigger ones may lead to less accurate results, including overstepping the minimum of a function. Some techniques employed for finding the most appropriate learning rate include grid search, scheduling learning rate to decrease when a certain amount of steps is undertaken, and using adaptive learning rate.
  
 ## Types of gradient descent
@@ -84,7 +90,7 @@ The problem this extension tries to tackle is slow convergence in the standard g
  
 TODO: put plot here
  
-Such oscillation are usually caused by stochastic gradient descent when a new point of the original function tries to "correct" the parameters from the previous step.
+Such oscillations are usually caused by stochastic gradient descent when a new point of the original function tries to "correct" the parameters from the previous step.
  
 One common metaphor for gradient descent is a man trying to descend the mountain in the direction of the steepest slope. However in order to understand the momentum it is better to modify this image to describe a ball rolling downhill.  
  
