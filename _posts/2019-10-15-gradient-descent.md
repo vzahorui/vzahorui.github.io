@@ -184,11 +184,9 @@ It is worth noting that RMS of $\theta$ should also include the value of $\epsil
 Adam (adaptive moment estimation) may be viewed as an extension to RMSprop algorithm where momentum is added to the gradient calculation. In its core Adam utilizes first and second order moments, hence the name. Both moments decay over time as in AdaDelta and RMSprop:
 
 &nbsp;&nbsp;&nbsp;&nbsp;
-$E[g]_t = \beta_1$
-
-$E[g]_{t-1} + (1-\beta_1) g_t$<br>
+$E\lbrack g\rbrack_{t} = E\lbrack g\rbrack_{t-1} + (1-\beta_1) g_t$<br>
 &nbsp;&nbsp;&nbsp;&nbsp;
-$E[g^2]_t = \beta_2 E[g^2]_{t-1} + (1-\beta_2) g_t^2$
+$E\lbrack g^2\rbrack_t = \beta_2 E\lbrack g^2\rbrack_{t-1} + (1-\beta_2) g_t^2$
 
 Then the update rule takes the following form:
 
