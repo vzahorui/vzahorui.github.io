@@ -127,10 +127,10 @@ Here is a display of SGD with momentum in comparison with vanila SGD:
  
 An improvement to gradient descent with momentum ,namely Nesterov accelerated descent (NAG), was introduced to prevent the descent from making too big steps when the direction of the slope changes. While gradient descent with momentum measures the slope of a loss function at its current point and then takes modified with momentum step in the direction of this slope, NAG instead measures the slope at the point where the momentum step alone would be applied so that it can check if the slope changes direction at its next point. The combined effect of the momentum and the look-ahead slope define the actual step of such descent. So to speak, the slope at the look-ahead point "corrects" the momentum force.
  
-![](/assets/images/gradient_descent/Nesterov_momentum_demo.gif){: .align-center}
- 
+![](/assets/images/gradient_descent/Nesterov_momentum_demo.png){: .align-center}
+
 The formula for Nesterov accelerated descent would look like this:
- 
+
 &nbsp;&nbsp;&nbsp;&nbsp;
 $V_t = \beta V_{t-1} + \eta \nabla J(\theta - \beta V_{t-1})$<br>
 &nbsp;&nbsp;&nbsp;&nbsp;
@@ -156,7 +156,10 @@ AdaGrad extension is still sensitive to the choice of the global learning rate, 
 AdaDelta was developed with a purpose to eliminate the shortcomings of AdaGrad. While AdaGrad uses accumulated sum of squares of all previous gradients in denominator which leads to rapidly diminishing learning rate, AdaDelta instead puts in denominator exponential moving average of squared gradients:  
  
 &nbsp;&nbsp;&nbsp;&nbsp;
-$E[g^2]_t = \rho E[g^2]_{t-1} + (1-\rho) g_t^2$
+$E[g^2]_t = \rho$
+
+
+$ E[g^2]_{t-1} + (1-\rho) g_t^2$
  
 Similarly to the equation of moving average used in momentum calculation $\rho$ is a coefficient of weight, which takes value from 0 to 1 and is responsible for determining which fraction of value to take from previous observations. In practice the choice of $\rho$ does not make a significant impact on the performance of the algorithm.  
  
@@ -198,7 +201,7 @@ Adam makes bias correction for the moment updates as the initial values of the m
 &nbsp;&nbsp;&nbsp;&nbsp;
 $\widehat{E[g]_t} = \frac{E[g]_t}{1-\beta_1^{t}}$<br>
 &nbsp;&nbsp;&nbsp;&nbsp;
-$\widehat{E[g]_t^2} = \frac{E[g]_t^2}{1-\beta_2^{t}}$
+$\widehat{E[g^2]_t} = \frac{E[g^2]_t}{1-\beta_2^{t}}$
 
 The recommended default value for $\beta_1$ is 0.9, and for $\beta_2$ is 0.999.
 
