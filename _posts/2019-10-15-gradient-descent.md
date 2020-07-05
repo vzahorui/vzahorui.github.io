@@ -156,8 +156,9 @@ AdaGrad extension is still sensitive to the choice of the global learning rate, 
 AdaDelta was developed with a purpose to eliminate the shortcomings of AdaGrad. While AdaGrad uses accumulated sum of squares of all previous gradients in denominator which leads to rapidly diminishing learning rate, AdaDelta instead puts in denominator exponential moving average of squared gradients:  
  
 &nbsp;&nbsp;&nbsp;&nbsp;
-$E[g^2]_t = E[g^2]_{t-1}$
+$E[g^2]_t = \rho E[g^2]_{t-1}$
 
+$E[g^2]_{t-1}$
 
 $ E[g^2]_{t-1} + (1-\rho) g_t^2$
  
