@@ -59,8 +59,6 @@ var graph =
 "size":10, "font":1.5},
         {"id": "Integrals", "url":"{{ site.baseurl }}{% link _posts/2019-09-24-integrals.md %}",
 "size":10, "font":1.5},
-        {"id": "Analyzing Functions", "url":"{{ site.baseurl }}{% link _posts/2019-09-21-analyzing-functions.md %}",
-"size":4, "font":1},
         {"id": "Differential Equations", "url":"{{ site.baseurl }}{% link _posts/2019-09-30-differential-equations.md %}",
 "size":4, "font":1},
         {"id": "Taylor Series", "url":"{{ site.baseurl }}{% link _posts/2020-05-08-taylor-series.md %}",
@@ -98,9 +96,8 @@ var graph =
         {"source": "Integrals", "target": "Differential Equations", "distance": 120},
         {"source": "Derivatives", "target": "Differential Equations", "distance": 90},
         
-        {"source": "Derivatives", "target": "Analyzing Functions", "distance": 90},
-        {"source": "Analyzing Functions", "target": "Gradient Descent", "distance": 120},
-        {"source": "Analyzing Functions", "target": "Taylor Series", "distance": 90},
+        {"source": "Derivatives", "target": "Gradient Descent", "distance": 120},
+        {"source": "Derivatives", "target": "Taylor Series", "distance": 120},
         {"source": "Taylor Series", "target": "Newton's Method", "distance": 90},
         
         {"source": "Newton's Method", "target": "Optimization", "distance": 120},
