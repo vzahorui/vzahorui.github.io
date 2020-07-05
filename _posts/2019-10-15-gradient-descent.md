@@ -160,7 +160,7 @@ $E[g^2]_t = \rho E[g^2]_(t-1)$
 
 $E[g^2]_{t-1}$
 
-$E\[g^2\]_{t-1} = E\[g^2\]_{t}$
+$E\lbrackg^2\rbrack_{t-1} = E\lbrackg^2\rbrack_{t}$
 
 $E[g^2]_{t-1} = E[g^2]_t$
 
