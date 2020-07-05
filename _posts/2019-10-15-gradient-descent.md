@@ -156,17 +156,7 @@ AdaGrad extension is still sensitive to the choice of the global learning rate, 
 AdaDelta was developed with a purpose to eliminate the shortcomings of AdaGrad. While AdaGrad uses accumulated sum of squares of all previous gradients in denominator which leads to rapidly diminishing learning rate, AdaDelta instead puts in denominator exponential moving average of squared gradients:  
  
 &nbsp;&nbsp;&nbsp;&nbsp;
-$E[g^2]_t = \rho E[g^2]_(t-1)$
-
-$E\lbrack g^2\rbrack_t = \rho E\lbrack g^2\rbrack_(t-1)$
-
-$E\lbrack g^2\rbrack_{t-1} = E\lbrack g^2\rbrack_{t}$
-
-$E[g^2]_{t-1} = E[g^2]_t$
-
-$E[g^2]_{t-1} = E[g^2]_{t-1}$
-
-$ E[g^2]_{t-1} + (1-\rho) g_t^2$
+$E\lbrack g^2\rbrack_t = \rho E\lbrack g^2\rbrack_{t-1} + (1-\rho) g_t^2$
  
 Similarly to the equation of moving average used in momentum calculation $\rho$ is a coefficient of weight, which takes value from 0 to 1 and is responsible for determining which fraction of value to take from previous observations. In practice the choice of $\rho$ does not make a significant impact on the performance of the algorithm.  
  
@@ -208,9 +198,9 @@ $\theta_t = \theta_{t-1} - \frac{\eta}{\sqrt{\widehat{E[g^2]_t} + \epsilon}} \wi
 Adam makes bias correction for the moment updates as the initial values of the moments are close to zero. The bias correction increases their values at the beginning of iteration so that the algorithm picks up faster while later values remain almost unchanged.
 
 &nbsp;&nbsp;&nbsp;&nbsp;
-$\widehat{E[g]_t} = \frac{E[g]_t}{1-\beta_1^{t}}$<br>
+$\widehat{E\lbrack g\rbrack_t} = \frac{E\lbrack g\rbrack_t}{1-\beta_1^{t}}$<br>
 &nbsp;&nbsp;&nbsp;&nbsp;
-$\widehat{E[g^2]_t} = \frac{E[g^2]_t}{1-\beta_2^{t}}$
+$\widehat{E\lbrack g^2\rbrack_t} = \frac{E\lbrack g^2\rbrack_t}{1-\beta_2^{t}}$
 
 The recommended default value for $\beta_1$ is 0.9, and for $\beta_2$ is 0.999.
 
