@@ -156,7 +156,7 @@ AdaGrad extension is still sensitive to the choice of the global learning rate, 
 AdaDelta was developed with a purpose to eliminate the shortcomings of AdaGrad. While AdaGrad uses accumulated sum of squares of all previous gradients in denominator which leads to rapidly diminishing learning rate, AdaDelta instead puts in denominator exponential moving average of squared gradients:  
  
 &nbsp;&nbsp;&nbsp;&nbsp;
-$E[g^2]_t = \rho$
+$E[g^2]_t = \rho E[g^2]_{t-1}$
 
 
 $ E[g^2]_{t-1} + (1-\rho) g_t^2$
@@ -187,7 +187,9 @@ It is worth noting that RMS of $\theta$ should also include the value of $\epsil
 Adam (adaptive moment estimation) may be viewed as an extension to RMSprop algorithm where momentum is added to the gradient calculation. In its core Adam utilizes first and second order moments, hence the name. Both moments decay over time as in AdaDelta and RMSprop:
 
 &nbsp;&nbsp;&nbsp;&nbsp;
-$E[g]_t = \beta_1 E[g]_{t-1} + (1-\beta_1) g_t$<br>
+$E[g]_t = \beta_1$
+
+$E[g]_{t-1} + (1-\beta_1) g_t$<br>
 &nbsp;&nbsp;&nbsp;&nbsp;
 $E[g^2]_t = \beta_2 E[g^2]_{t-1} + (1-\beta_2) g_t^2$
 
