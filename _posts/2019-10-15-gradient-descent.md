@@ -158,9 +158,9 @@ AdaDelta was developed with a purpose to eliminate the shortcomings of AdaGrad. 
 &nbsp;&nbsp;&nbsp;&nbsp;
 $E[g^2]_t = \rho E[g^2]_(t-1)$
 
-$E[g^2]_{t-1}$
+$E\lbrack g^2\rbrack_t = \rho E\lbrack g^2\rbrack_(t-1)$
 
-$E\lbrackg^2\rbrack_{t-1} = E\lbrackg^2\rbrack_{t}$
+$E\lbrack g^2\rbrack_{t-1} = E\lbrack g^2\rbrack_{t}$
 
 $E[g^2]_{t-1} = E[g^2]_t$
 
