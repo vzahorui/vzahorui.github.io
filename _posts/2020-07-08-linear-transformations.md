@@ -52,33 +52,53 @@ a_{12} \\
 a_{22} \\
 ... \\
 a_{m2}    
+\end{array} \right] + ... + v_{m}\left[\begin{array}{c}
+a_{1n} \\
+a_{2n} \\
+... \\
+a_{mn}    
+\end{array} \right] =
+$$
+
+$$
+= \left[\begin{array}{c}
+v_1 a_{11} + v_2 a_{12} + ... + v_m a_{1n} \\
+v_1 a_{21} + v_2 a_{22} + ... + v_m a_{2n} \\
+... \\
+v_1 a_{m1} + v_2 a_{m2} + ... + v_m a_{mn}
 \end{array} \right]
 $$
 
 $$
-v_{1}    
+\left[\begin{array}{cccc}
+a_{11} & a_{12} & ... & a_{1n} \\
+a_{21} & a_{22} & ... & a_{2n} \\
+... & ... & ... & ... \\
+a_{m1} & a_{m2} & ... & a_{mn}
+\end{array} \right]
+\left[\begin{array}{c}
+v_{1} \\
+v_{2} \\
+... \\
+v_{m}    
+\end{array} \right]
+= v_{1}    
 \left[\begin{array}{c}
 a_{11} \\
 a_{21} \\
 ... \\
 a_{m1}    
-\end{array} \right]
-+ v_{2}    
-\left[\begin{array}{c}
+\end{array} \right] + v_{2}\left[\begin{array}{c}
 a_{12} \\
 a_{22} \\
 ... \\
 a_{m2}    
-\end{array} \right]
-+ ...
-+ v_{m}    
-\left[\begin{array}{c}
+\end{array} \right] + ... + v_{m}\left[\begin{array}{c}
 a_{1n} \\
 a_{2n} \\
 ... \\
 a_{mn}    
-\end{array} \right]
-= \left[\begin{array}{c}
+\end{array} \right] = \left[\begin{array}{c}
 v_1 a_{11} + v_2 a_{12} + ... + v_m a_{1n} \\
 v_1 a_{21} + v_2 a_{22} + ... + v_m a_{2n} \\
 ... \\
