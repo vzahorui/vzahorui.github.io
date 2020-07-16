@@ -4,7 +4,7 @@ title: "Matrix properties"
 description: Explaining some of the properties of matrices
 category: "Linear Algebra"
 tags: rank full-rank-matrix vector matrix condition-number ill-conditioned-matrix column-space null-space kernel span linear-combination
-date: 2020-07-15
+date: 2020-07-16
 ---
  
 Below I've provided intuition behind some of the properties of matrices, which are useful to understand in order to apply them in more complex algorithms.   
@@ -20,7 +20,6 @@ Rank defines the number of dimensions in which a matrix performs transformations
  
 Column space is a closely related term to the rank of a matrix and it means the span of all linearly independent vectors from the matrix. Span of vectors is a set of all possible linear combinations of vectors. So to speak, any type of transformation which is achievable by multiplying a matrix with a vector form the column space of this matrix, and the number of dimensions in the column space is the same as the rank of the matrix.
  
-&nbsp;&nbsp;&nbsp;&nbsp;
 $$
 \left[\begin{array}{cccc}
 a_{11} & a_{12} & ... & a_{1n} \\
