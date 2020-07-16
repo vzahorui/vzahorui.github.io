@@ -67,7 +67,7 @@ a_{mn}
 $$
 
 
-
+$$
 = \left[\begin{array}{c}
 v_1 a_{11} + v_2 a_{12} + ... + v_m a_{1n} \\
 v_1 a_{21} + v_2 a_{22} + ... + v_m a_{2n} \\
@@ -82,6 +82,7 @@ Multiplying a matrix by another matrix results in a composition matrix which rep
  
 In a nutshell, multiplying one matrix with the other is the same as applying matrix A to each of the vectors from matrix B separately and combining the resulting vectors into a new matrix.
 
+&nbsp;&nbsp;&nbsp;&nbsp;
 $$
 \left[\begin{array}{cccc}
 a_{11} & a_{12} & ... & a_{1n} \\
