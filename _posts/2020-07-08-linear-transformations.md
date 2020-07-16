@@ -27,28 +27,6 @@ As stated before, matrix is an array of vectors. What it means is that matrices 
 It is worth pointing out a special case of matrices called the identity matrices. These matrices are square with diagonal elements equal to 1 and other elements equal to 0. In the literature these matrices are often denoted as $I$ and they mean no transformation. In fact the identity matrices stretch in each direction of a vector space by a single unit, forming the basis of it with the unit vectors. If we take any matrix or vector and multiply it with the identity matrix, we will end up with the same original matrix or vector.
 
 Applying matrix transformation is essentially the same as multiplying by a matrix from the left. Here is an example of what happens if a vector is multiplied by a matrix:
- 
-$$
-\left[\begin{array}{cccc}
-a_{11} & a_{12} & ... & a_{1n} \\
-a_{21} & a_{22} & ... & a_{2n} \\
-... & ... & ... & ... \\
-a_{m1} & a_{m2} & ... & a_{mn}
-\end{array} \right]
-\left[\begin{array}{c}
-v_{1} \\
-v_{2} \\
-... \\
-v_{m}    
-\end{array} \right]
-= v_{1}    
-\left[\begin{array}{c}
-a_{11} \\
-a_{21} \\
-... \\
-a_{m1}    
-\end{array} \right] + 
-$$
 
 $$
 \left[\begin{array}{cccc}
@@ -69,7 +47,12 @@ a_{11} \\
 a_{21} \\
 ... \\
 a_{m1}    
-\end{array} \right] + v_{2}
+\end{array} \right] + v_{2}\left[\begin{array}{c}
+a_{12} \\
+a_{22} \\
+... \\
+a_{m2}    
+\end{array} \right]
 $$
 
 $$
@@ -108,24 +91,6 @@ As we see, the result of such operation is the sum of scaled versions of the vec
 Multiplying a matrix by another matrix results in a composition matrix which represents linear transformation of the two original matrices applied in particular order (from right to left because order does matter im matrix multiplication). So, for example if matrix A is first applied to vector $v$ and then matrix B is applied to the new vector, this will be equivalent to applying the product of B and A to the vector $v$.  
  
 In a nutshell, multiplying one matrix with the other is the same as applying matrix A to each of the vectors from matrix B separately and combining the resulting vectors into a new matrix.
-
-&nbsp;&nbsp;&nbsp;&nbsp;
-$$
-\left[\begin{array}{cccc}
-a_{11} & a_{12} & ... & a_{1n} \\
-a_{21} & a_{22} & ... & a_{2n} \\
-... & ... & ... & ... \\
-a_{n1} & a_{n2} & ... & a_{nn}
-\end{array} \right]
-\left[\begin{array}{cccc}
-b_{11} & b_{12} & ... & b_{1n} \\
-b_{21} & b_{22} & ... & b_{2n} \\
-... & ... & ... & ... \\
-b_{n1} & b_{n2} & ... & b_{nn}
-\end{array} \right] =
-$$
-
-some text
 
 $$
 \left[\begin{array}{cccc}
