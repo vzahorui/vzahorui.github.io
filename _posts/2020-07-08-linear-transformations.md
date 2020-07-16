@@ -28,7 +28,6 @@ It is worth pointing out a special case of matrices called the identity matrices
 
 Applying matrix transformation is essentially the same as multiplying by a matrix from the left. Here is an example of what happens if a vector is multiplied by a matrix:
  
-&nbsp;&nbsp;&nbsp;&nbsp;
 $$
 \left[\begin{array}{cccc}
 a_{11} & a_{12} & ... & a_{1n} \\
@@ -48,8 +47,7 @@ a_{11} \\
 a_{21} \\
 ... \\
 a_{m1}    
-\end{array} \right]
-+ v_{2}    
+\end{array} \right]   
 $$
 
 $$
@@ -106,7 +104,7 @@ b_{n1} & b_{n2} & ... & b_{nn}
 $$
 
 some text
-&nbsp;&nbsp;&nbsp;&nbsp;
+
 $$
 \left[\begin{array}{cccc}
 a_{11} & a_{12} & ... & a_{1n} \\
