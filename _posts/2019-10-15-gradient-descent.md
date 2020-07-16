@@ -17,7 +17,7 @@ As we know, the [derivative]({{ site.baseurl }}{% link _posts/2019-09-14-derivat
  3. Subtracting step size from the current point so that a new point is selected.
  
 Here is a simple example of gradient descent towards a local minimum of a function.
- 
+
 ![](/assets/images/optimization/gradient_descent_example.png){: .align-center}
  
 Starting from randomly selected point $A$ the derivative shows upward slope - the derivative of the function is positive and high. Multiplying this high number by the learning rate results into reduced but still substantial step size. Subtracting this step size from the previous point gets us to point $B$. The slope at $B$ is still high so another step is also quite significant - we move to point $C$. Now it becomes obvious that the slope is getting lower, so multiplying it by the learning rate results in a smaller step size during each following iteration. One of the nice things about gradient descent is that it takes larger steps when the slope is far from zero and very small steps when it approaches the minimum of a loss function. Decreasing step size ensures that gradient descent doesn't overstep the function's minimum, however as it reaches the minimum the slope becomes almost unnoticeable - so is the step size, which in turn leads to a very high number of iterations and computation cost which is undesirable. Setting a stopping criteria is useful in cutting the number of iterations. Such criteria may be simply the total number of allowed iterations or a point where the slope is close to zero meaning that further steps lead to insignificant improvements.    
