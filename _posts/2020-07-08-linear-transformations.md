@@ -49,21 +49,6 @@ a_{21} \\
 ... \\
 a_{m1}    
 \end{array} \right]
-+ v_{2}    
-\left[\begin{array}{c}
-a_{12} \\
-a_{22} \\
-... \\
-a_{m2}    
-\end{array} \right]
-+ ...
-+ v_{m}    
-\left[\begin{array}{c}
-a_{1n} \\
-a_{2n} \\
-... \\
-a_{mn}    
-\end{array} \right]
 $$
 
 $$
@@ -123,6 +108,7 @@ b_{n1} & b_{n2} & ... & b_{nn}
 \end{array} \right] = 
 $$
 
+&nbsp;&nbsp;&nbsp;&nbsp;
 $$
 = \left[\begin{array}{cccc}
 b_{11} a_{11} + b_{21} a_{12} + ... + b_{n1} a_{1n} & b_{12} a_{11} + b_{22} a_{12} + ... + b_{n2} a_{1n} & ... & b_{1n} a_{11} + b_{2n} a_{12} + ... + b_{nn} a_{1n} \\
