@@ -4,7 +4,7 @@ title: "Linear transformations"
 description: Diving into essence of vectors and matrices
 category: "Linear Algebra"
 tags: matrix vector vector-space dimensions span basis unit-vector linear-equations inverse determinant
-date: 2020-07-15
+date: 2020-07-16
 ---
  
 Linear algebra is all about making transformations of linear combinations of numbers, called vectors, and arrays of vectors, called matrices. The elements of linear combinations can be added and multiplied together but may also represent more complex forms of transformation. Linear algebra proves to be of great importance for performing mathematical operations on voluminous data, so having a grasp of it is a must-have skill for a data scientist.
@@ -47,7 +47,29 @@ a_{11} \\
 a_{21} \\
 ... \\
 a_{m1}    
-\end{array} \right]   
+\end{array} \right] + 
+$$
+
+$$
+\left[\begin{array}{cccc}
+a_{11} & a_{12} & ... & a_{1n} \\
+a_{21} & a_{22} & ... & a_{2n} \\
+... & ... & ... & ... \\
+a_{m1} & a_{m2} & ... & a_{mn}
+\end{array} \right]
+\left[\begin{array}{c}
+v_{1} \\
+v_{2} \\
+... \\
+v_{m}    
+\end{array} \right]
+= v_{1}    
+\left[\begin{array}{c}
+a_{11} \\
+a_{21} \\
+... \\
+a_{m1}    
+\end{array} \right] + v_{2}
 $$
 
 $$
@@ -117,7 +139,7 @@ b_{11} & b_{12} & ... & b_{1n} \\
 b_{21} & b_{22} & ... & b_{2n} \\
 ... & ... & ... & ... \\
 b_{n1} & b_{n2} & ... & b_{nn}
-\end{array} \right]
+\end{array} \right]=
 $$
 
 $$
