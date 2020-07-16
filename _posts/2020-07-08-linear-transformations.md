@@ -42,9 +42,6 @@ v_{2} \\
 ... \\
 v_{m}    
 \end{array} \right]
-$$
-
-
 = v_{1}    
 \left[\begin{array}{c}
 a_{11} \\
@@ -67,6 +64,10 @@ a_{2n} \\
 ... \\
 a_{mn}    
 \end{array} \right]
+$$
+
+
+
 = \left[\begin{array}{c}
 v_1 a_{11} + v_2 a_{12} + ... + v_m a_{1n} \\
 v_1 a_{21} + v_2 a_{22} + ... + v_m a_{2n} \\
@@ -81,7 +82,6 @@ Multiplying a matrix by another matrix results in a composition matrix which rep
  
 In a nutshell, multiplying one matrix with the other is the same as applying matrix A to each of the vectors from matrix B separately and combining the resulting vectors into a new matrix.
 
-&nbsp;&nbsp;&nbsp;&nbsp;
 $$
 \left[\begin{array}{cccc}
 a_{11} & a_{12} & ... & a_{1n} \\
@@ -94,7 +94,7 @@ b_{11} & b_{12} & ... & b_{1n} \\
 b_{21} & b_{22} & ... & b_{2n} \\
 ... & ... & ... & ... \\
 b_{n1} & b_{n2} & ... & b_{nn}
-\end{array} \right]$$
+\end{array} \right] = $$
 $$
 = \left[\begin{array}{cccc}
 b_{11} a_{11} + b_{21} a_{12} + ... + b_{n1} a_{1n} & b_{12} a_{11} + b_{22} a_{12} + ... + b_{n2} a_{1n} & ... & b_{1n} a_{11} + b_{2n} a_{12} + ... + b_{nn} a_{1n} \\
@@ -134,7 +134,7 @@ a_{21} x_1 + a_{22} x_2 + ... + a_{2n} x_n = b_2 \\
 a_{m1} x_1 + a_{m2} x_2 + ... + a_{mn} x_n = b_m
 \end{cases}$$
  
-In these systems matrices are used to scale variables, so that each vector of a matrix scales the same variable in each equation appropriately. In addition, the whole system looks like matrix vector multiplication, so it could be rewritten as $Ax = b$. With the knowledge of matrix inverse we can solve the system of equations for $x$ just by multiplying both sides of the equation with the inverse of $A$:
+In these systems matrices are used to scale variables, so that each vector of a matrix scales the same variable in each equation appropriately. In addition, the whole system looks like matrix vector multiplication, so it could be rewritten as $Ax = b$. With the knowledge of matrix inverse we can solve the system of equations for $x$ just by multiplying both sides with the inverse of $A$:
  
 &nbsp;&nbsp;&nbsp;&nbsp;
 $A^{-1}Ax = A^{-1}b$<br>
