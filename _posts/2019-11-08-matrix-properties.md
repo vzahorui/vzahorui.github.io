@@ -40,17 +40,12 @@ a_{11} \\
 a_{21} \\
 ... \\
 a_{m1}     
-\end{array} \right]
-+ v_{2}     
-\left[\begin{array}{c}
+\end{array} \right] + v_{2} \left[\begin{array}{c}
 a_{12} \\
 a_{22} \\
 ... \\
 a_{m2}     
-\end{array} \right]
-+ ...
-+ v_{m}     
-\left[\begin{array}{c}
+\end{array} \right] + ... + v_{m} \left[\begin{array}{c}
 a_{1n} \\
 a_{2n} \\
 ... \\
@@ -67,7 +62,7 @@ If a matrix is not full-rank then some of its vectors may be represented as line
 The linear combination of vectors from the matrix is nothing else than matrix vector multiplication, where the components of the vector represent scaled versions of the vectors from the matrix. Therefore the null space of a matrix can be described as a set of all vectors, which by multiplying with the matrix produces zero vector.  
  
 &nbsp;&nbsp;&nbsp;&nbsp;
-$N(A) = \{v \in K^n|Av=0\}$
+$N(A) = \\{v \in K^n|Av=0\\}$
  
 If the columns of a matrix are linearly independent then the null space of this matrix is just zero vector. Any column space includes zero vector, as multiplying a matrix with a vector which contains only zero results into another zero vector. Zero vector can be viewed as a dot - the origin of vectors and matrices. Any type of linear transformation keeps origin in the same place.
  
