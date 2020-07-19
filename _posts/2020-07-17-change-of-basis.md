@@ -19,13 +19,12 @@ Let's take a look at simple example:
  
 Vector $v$ can be described using the basis of unit vectors (basis A) just like that:
  
-&nbsp;&nbsp;&nbsp;&nbsp;
-$
+$$
 \left[\begin{array}{c}
 1.5 \\
 2.5 \\    
 \end{array} \right]
-$
+$$
  
 However with a different basis, as in basis B, the same vector definition will produce a different linear transformation - in our case vector $w$. In order to get the same one as we have in basis A we would need to account for the existing basis.  
  
