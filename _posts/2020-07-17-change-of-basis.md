@@ -37,7 +37,7 @@ a & b \\
 \\
 \end{array} \right] = \left[\begin{array}{cc}
 \\
-k_{1}i + k{2}j & k_{3}i + k{4}j \\   
+k_{1}i + k_{2}j & k_{3}i + k_{4}j \\   
 \\
 \end{array} \right]
 $$
