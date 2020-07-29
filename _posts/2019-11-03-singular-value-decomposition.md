@@ -81,18 +81,24 @@ $AA^{+}A=A$
 
 where $A^{+}$ is the pseudoinverse of a matrix.
 
-&nbsp;&nbsp;&nbsp;&nbsp;
 $|AA^{-1}-I|_{2}$
 
 some text
 
 &nbsp;&nbsp;&nbsp;&nbsp;
-$|AA^{-1}-I|_{2}$<br>
+$\left |AA^{-1}-I\right|_{2}$
 
-some text after br
+some text2
 
 &nbsp;&nbsp;&nbsp;&nbsp;
-$\left |AA^{-1}-I\right|_{2}$
+$\lvert AA^{-1}-I\rvert_{2}$
+
+fd
+
+&nbsp;&nbsp;&nbsp;&nbsp;
+$\lvert AA^{-1}-I\rvert _{2}$
+
+some text
 
 While the Euclidean norm for the expression $ \left |AA^{-1}-I\right|_{2} $ is zero, the norm for $ \left |AA^{+}-I\right|_{2} $ is maximally close to zero. Therefore, if the true inverse of a matrix exists it will be found via the algorithm of finding pseudoinverses.   
  
