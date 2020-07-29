@@ -80,8 +80,8 @@ The general solution which can be obtained with the pseudoinverse looks like thi
 $AA^{+}A=A$
 
 where $A^{+}$ is the pseudoinverse of a matrix.
- 
-While the Euclidean norm for the expression $|AA^{-1}-I|_2$ is zero, 
+
+While the Euclidean norm for the expression $\left |AA^{-1}-I\right|_{2}$ is zero, <br>
 
 
 While the Euclidean norm for the expression $\left |AA^{-1}-I\right|_{2}$ is zero, 
