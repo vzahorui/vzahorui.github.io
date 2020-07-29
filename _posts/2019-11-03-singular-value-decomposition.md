@@ -38,7 +38,8 @@ $\Sigma$ is a matrix of size $n \times m$, which represents the magnitude of mov
 If we multiply the original matrix $A$ with its transpose from the left we will get a square $m \times m$ matrix. This square matrix $A^{T}A$ is guaranteed to be symmetric positive semidefinite so it is possible to apply [eigenvectors and eigenvalues]({{ site.baseurl }}{% link _posts/2019-11-02-eigenvectors-and-eigenvalues.md %}) decomposition to it:
  
 &nbsp;&nbsp;&nbsp;&nbsp;
-$A^{T}A = V\Lambda V^{-1}$ <br>
+$A^{T}A = V\Lambda V^{-1}$
+
 where $V$ is a matrix of eigenvectors, and $\Lambda$ is a matrix of eigenvalues. Since $A^{T}A$ is symmetric its eigenvectors are orthonormal.
  
 Same operation can be performed for $n \times n$ matrix $AA^{T}$ matrix where we can decompose it in the following form:
@@ -76,10 +77,11 @@ However, if the determinant of a matrix is zero then such matrix has no inverse 
 A pseudoinverse matrix is a generalization of an inverse matrix, which can be defined for all matrices (even non-square). Yet, it inherits fewer guaranteed properties than a "regular" inverted matrix.<br>
 The general solution which can be obtained with the pseudoinverse looks like this:
  
-$AA^{+}A=A$, <br>
+$AA^{+}A=A$
+
 where $A^{+}$ is the pseudoinverse of a matrix.
  
-While the Euclidean norm for the expression $\left |AA^{-1}-I\right|_2$ is zero, the norm for $\left |AA^{+}-I\right|_2$ is maximally close to zero. Therefore, if the true inverse of a matrix exists it will be found via the algorithm of finding pseudoinverses.   
+While the Euclidean norm for the expression $\left |AA^{-1}-I\right|_{2}$ is zero, the norm for $\left |AA^{+}-I\right|_{2}$ is maximally close to zero. Therefore, if the true inverse of a matrix exists it will be found via the algorithm of finding pseudoinverses.   
  
 Suppose we cannot obtain an inverse of a matrix. Yet, we can apply singular value decomposition to any matrix, get its diagonal representation, and then take the inverse of it:
  
