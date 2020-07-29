@@ -102,8 +102,7 @@ The momentum can be achieved by applying the concept of exponential moving avera
 &nbsp;&nbsp;&nbsp;&nbsp;
 $V_t = \beta V_{t-1} + (1-\beta) S_t$
  
-where $S_t$ is the value from a new observation,<br>
-$\beta$ is a coefficient of weight, which takes value from 0 to 1 and is responsible for determining which fraction of value to take from previous observations. For gradient descent with momentum $\beta = 0.9$ is a good choice.
+where $S_t$ is the value from a new observation, and $\beta$ is a coefficient of weight, which takes value from 0 to 1 and is responsible for determining which fraction of value to take from previous observations. For gradient descent with momentum $\beta = 0.9$ is a good choice.
 One way to view this equation is by making analogy with physics, where $V_{t-1}$ is velocity at the previous point, $\beta$ is air resistance due to which a part of velocity is somewhat decreased, and $S_t$ is acceleration added at new point.   
  
 The momentum works well for gradient descent because within the formation of the compound effect of gradients $V$ all oscillations from previous iterations largely cancel each other out. The new gradient, which is computed at each next step, accounts for the value $S_t$ in the equation of exponential moving average. For here with respect to gradient descent the moving average of all gradients can be expressed like this:

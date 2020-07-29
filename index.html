@@ -66,6 +66,8 @@ var graph =
         
         {"id": "Vector Projection", "url":"{{ site.baseurl }}{% link _posts/2020-03-04-vector-projection.md %}",
 "size":4, "font":1},
+        {"id": "Eigenvectors and Eigenvalues", "url":"{{ site.baseurl }}{% link _posts/2019-11-02-eigenvectors-and-eigenvalues.md %}",
+"size":4, "font":1},
         {"id": "Text Similarity", "url":"{{ site.baseurl }}{% link _posts/2020-03-03-text-similarity.md %}",
 "size":4, "font":1}
       
@@ -88,9 +90,10 @@ var graph =
         {"source": "Vector Projection", "target": "Text Similarity", "distance": 220},
         {"source": "Text Similarity", "target": "NLP", "distance": 120},
         
-        {"source": "Linear Algebra", "target": "Singular Value Decomposition", "distance": 120},
         {"source": "Linear Algebra", "target": "QR Decomposition", "distance": 120},
-        
+        {"source": "Linear Algebra", "target": "Eigenvectors and Eigenvalues", "distance": 120},
+        {"source": "Eigenvectors and Eigenvalues", "target": "Singular Value Decomposition", "distance": 90},
+                
         {"source": "Calculus", "target": "Derivatives", "distance": 220},
         {"source": "Calculus", "target": "Integrals", "distance": 90},
         {"source": "Integrals", "target": "Differential Equations", "distance": 120},

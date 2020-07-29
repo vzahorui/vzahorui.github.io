@@ -114,7 +114,7 @@ The determinant can be defined only for square matrices and it represents the hy
  
 The most simple example is the determinant of the identity matrix. The identity matrix stretches in each direction of a vector space by a single unit so the volume of the space covered by such matrix is 1. The determinant of the identity matrix is therefore 1. However, if we take any row from it and multiply it by some number $k$, the length of the vector along the corresponding axis will be scaled by $k$, so is the volume of the space covered with the vectors. By scaling a single row of the identity matrix we changed the way it transforms other matrices along the appropriate axis. So to speak, determinant can be seen as a scaling factor of the volume of linear transformation. Negative determinant apart from scaling means also reverting direction of transformation.
 
-If the determinant of a matrix is zero then the matrix is not invertible and has zero volume, so it can be interpreted as something that has zero volume, like a line or a dot. Such matrices are called degenerate or singular matrices.<br>
+If the determinant of a matrix is zero then the matrix is not invertible and has zero volume, so it can be interpreted as something that has zero volume, like a line or a dot. Such matrices are called degenerate or singular matrices and represent squishing into a lower dimensional space.<br>
 In addition, the rows of such matrices represent linearly dependent equations, while the columns are linearly dependent vectors.
  
 ## Linear equations
