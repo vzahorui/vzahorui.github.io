@@ -81,14 +81,6 @@ $AA^{+}A=A$
 
 where $A^{+}$ is the pseudoinverse of a matrix.
 
-&nbsp;&nbsp;&nbsp;&nbsp;
-$\left |AA^{-1}-I\right|_{2}$
-
-some text2
-
-&nbsp;&nbsp;&nbsp;&nbsp;
-$\lvert AA^{-1}-I\rvert_{2}$
-
 While the Euclidean norm for the expression $ \lvert AA^{-1}-I\rvert_{2} $ is zero, the norm for $ \lvert AA^{+}-I\rvert_{2} $ is maximally close to zero. Therefore, if the true inverse of a matrix exists it will be found via the algorithm of finding pseudoinverses.   
  
 Suppose we cannot obtain an inverse of a matrix. Yet, we can apply singular value decomposition to any matrix, get its diagonal representation, and then take the inverse of it:
