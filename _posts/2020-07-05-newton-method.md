@@ -7,7 +7,7 @@ tags: gradient-descent hessian derivative second-derivative loss-function taylor
 date: 2020-07-29
 ---
  
-Similarly to [gradient descent]({{ site.baseurl }}{% link _posts/2019-10-15-gradient-descent.md %}), Newton's method is used for finding a minimum of a function through iterations. Unlike gradient descent however, it uses a second order derivative of a function, which provides additional information about curvature of the function, so that it can navigate faster towards its minimum.
+Similarly to [gradient descent]({{ site.baseurl }}{% link _posts/2019-10-15-gradient-descent.md %}), Newton's method is used for finding a minimum of a function through iterations. Unlike gradient descent however, it uses a second order derivative of a function, which provides additional information about its curvature, so that the algorithm can navigate faster towards the minimum of the function.
  
 ## Newton's method for zero finding
  
@@ -74,4 +74,4 @@ The actual Hessian however might not be invertible and in this case it would hav
  
 If the original function is twice differentiable at each point of interest then according to Schwarz’s theorem the order of differentiation by different variables does not matter, which means that the Hessian is a symmetric matrix. In addition, the found critical point is a minimum only if the Hessian is a positive definite matrix. A symmetric positive definite matrix has real and positive [eigenvalues]({{ site.baseurl }}{% link _posts/2019-11-02-eigenvectors-and-eigenvalues.md %}), meaning that the linear transformation encoded in this matrix represents moving in positive direction along each of the eigenvectors. Regarding our function approximation, only the point of minimum satisfies the condition that moving in any direction from it will be seen as ascending. If the Hessian is not positive definite (for example when we have both positive and negative eigenvalues) then the convergence will be towards a saddle point which is not what we want. More about symmetric and positive definite matrices can be found [here]({{ site.baseurl }}{% link _posts/2019-11-08-matrix-properties.md %}).
  
-Although Newton's method is faster in terms of convergence it is computationally expensive, mainly due to the need to calculate the Hessian and its inverse. Other methods such as quasi-Newton methods are designed to compute only approximations of the Hessian.
+Although Newton's method is faster in terms of convergence it is computationally expensive, mainly due to the need to calculate the Hessian and its inverse. [Quasi-Newton methods]({{ site.baseurl }}{% link _posts/2020-07-29-quasi-newton-methods.md %}) are designed to combat this issue by calculating only approximations of the Hessian.

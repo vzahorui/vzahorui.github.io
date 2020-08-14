@@ -50,9 +50,10 @@ $\beta = (X^{T}X)^{-1}X^{T}Y$
  
 ## Iterative approaches
  
-In case of larger volumes of data computation of square matrix $X^{T}X$ and then the inverse of it might be quite expensive. Iterative approaches come to rescue in this case, and [gradient descent]({{ site.baseurl }}{% link _posts/2019-10-15-gradient-descent.md %}) is one way to solve least squares problem. The results may be unreliable, however, since the minimum of the loss function may not be accurately determined. 
- 
-## Singular value decomposition (SVD)  
+In case of larger volumes of data computation of square matrix $X^{T}X$ and then the inverse of it might be quite expensive. Iterative approaches come to rescue in this case, and [gradient descent]({{ site.baseurl }}{% link _posts/2019-10-15-gradient-descent.md %}) is one way to solve least squares problem. 
+
+## Singular value decomposition (SVD)
+
 If the matrix $X^{T}X$ is ill-conditioned then computation of its inverse may result in errors during rounding of floating point numbers, hence the result may be inaccurate. In addition, large condition number of a matrix is squared after performing $X^{T}X$ multiplication. Furthermore, if the matrix $X^{T}X$ is singular then it is impossible to get its inverse. This is where [singular value decomposition]({{ site.baseurl }}{% link _posts/2019-11-03-singular-value-decomposition.md %}) comes to the rescue. SVD may be applied to any matrix, including singular matrices.
  
 &nbsp;&nbsp;&nbsp;&nbsp;

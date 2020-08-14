@@ -54,6 +54,7 @@ var graph =
         {"id": "Simplex Method", "url":"{{ site.baseurl }}{% link _posts/2019-09-07-simplex-method.md %}", "size": 4, "font": 1},
         {"id": "Gradient Descent", "url": "{{ site.baseurl }}{% link _posts/2019-10-15-gradient-descent.md %}", "size": 10, "font": 1.5},
         {"id": "Newton's Method", "url": "{{ site.baseurl }}{% link _posts/2020-07-05-newton-method.md %}", "size": 4, "font": 1},
+        {"id": "Quasi-Newton Methods", "url": "{{ site.baseurl }}{% link _posts/2020-07-29-quasi-newton-methods.md %}", "size": 4, "font": 1},
         
         {"id": "Derivatives", "url":"{{ site.baseurl }}{% link _posts/2019-09-14-derivatives.md %}",
 "size":10, "font":1.5},
@@ -92,7 +93,7 @@ var graph =
         
         {"source": "Linear Algebra", "target": "QR Decomposition", "distance": 120},
         {"source": "Linear Algebra", "target": "Eigenvectors and Eigenvalues", "distance": 120},
-        {"source": "Eigenvectors and Eigenvalues", "target": "Singular Value Decomposition", "distance": 90},
+        {"source": "Eigenvectors and Eigenvalues", "target": "Singular Value Decomposition", "distance": 70},
                 
         {"source": "Calculus", "target": "Derivatives", "distance": 220},
         {"source": "Calculus", "target": "Integrals", "distance": 90},
@@ -104,6 +105,7 @@ var graph =
         {"source": "Taylor Series", "target": "Newton's Method", "distance": 90},
         
         {"source": "Newton's Method", "target": "Optimization", "distance": 120},
+        {"source": "Newton's Method", "target": "Quasi-Newton Methods", "distance": 70},
         {"source": "Gradient Descent", "target": "Optimization", "distance": 120},
         {"source": "Optimization", "target": "Simplex Method", "distance": 120},
         
@@ -150,7 +152,7 @@ var svg = d3.select("div#chartId")
     .classed("svg-container", true)
     .append("svg")
     .attr("preserveAspectRatio", "xMinYMin meet")
-    .attr("viewBox", "0 0 1800 1400")
+    .attr("viewBox", "0 0 1800 1500")
     .classed("svg-content-responsive", true);
   
 var container = svg.append("g");

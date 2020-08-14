@@ -1,0 +1,65 @@
+---
+layout: single
+title: "Line search"
+description: "Explaining line search and its use case in optimizaton problems"
+category: "Optimization"
+tags: nonlinear-regression loss-function gradient-descent Wolfe-conditions learning-rate Armijo-rule minimization
+date: 2020-08-13
+---
+ 
+Line search methods are used in the context of non-linear minimization of the [loss function]({{ site.baseurl }}{% link _posts/2019-10-14-loss-functions.md %}) as they help in determining the proper step size for each iteration thus reducing their number before convergence. The step length in iterative optimization algorithm might be either too short, leading to a slow approach towards the minimum of the loss function, or too long which results in overshooting the minimum on each iteration. In [gradient descent]({{ site.baseurl }}{% link _posts/2019-10-15-gradient-descent.md %}) for example line search could be used for determining the proper learning rate. In practice however line search is rarely used because determining the step size at each iteration may be computationally expensive and thus inefficient. In addition, line search in stochastic methods will only determine the optimal step for an approximation which is not really useful.  
+ 
+Yet it is useful to understand the ideas behind the line search methods as it may help in understanding other techniques in optimization. Below is the description of some of the known methods.
+ 
+## Exact line search
+ 
+Say if we have a function $f(x)$ which we want to minimize. In gradient descent we start with an initial guess and measure the gradient and that point. The gradient itself will provide information about the slope - the direction in which to move towards the minimum, so that the next point may be determined by moving along this slope at a learning rate.  
+ 
+&nbsp;&nbsp;&nbsp;&nbsp;
+$x_t = x_{t-1}- \eta\nabla f(x_{t-1})$
+ 
+The optimal learning rate would be selected as such that ensures minimum value for $f(x_t)$, so we need to find the derivative of $f(x_{t-1}- \eta\nabla f(x_{t-1}))$ with respect to $\eta$, set it equal to 0, and evaluate for $\eta$.
+ 
+Due to computational overhead this type of line search is not really practical.
+ 
+## Inexact line search
+ 
+Inexact line search methods are more preferred as they require less computations. Instead of finding the step size which will ensure moving to the exact minimum of the objective function is usually enough to find an approximate step which will move sufficiently close to the minimum.  
+ 
+There are two conditions, called Wolfe conditions, which are considered in order to determine the sufficient step size. The first condition, also known as Armijo rule, ensures that the step length leads to sufficient shift towards the minimum of the objective function:
+ 
+&nbsp;&nbsp;&nbsp;&nbsp;
+$f(x_k + \eta_k d_k) \leq f(x_k) + c_1 \eta_k\nabla f(x_k)d_k$
+ 
+where $\eta$ is the step size at point $k$ and $c_1$ is a small number between 0 and 1. Here $d$ is the search direction which in fact is determined by the sign of the derivative at point $x_k$ in order to ensure descent towards minimum. If the derivative $\nabla f(x_k)$ is positive then we have an upward slope, so in order to move towards minimum we need to move back along $x$ axis - $d$ becomes negative. Similarly, if $\nabla f(x_k)$ is negative - we must use positive $d$.  
+ 
+This is the graphical representation of an function which is dependent on the step size:  
+ 
+![](/assets/images/optimization/Armijo_rule.png){: .align-center}
+ 
+If we step along the slope at point $x_k$ in the direction of the decrease we want to reach a sufficient decrease of the objective function. As long as we select $\eta$ less than the point where two lines are crossing the Armijo rule will be satisfied, while further bigger steps will be considered too big.  
+ 
+If we select $c_1$ to be equal to 0 then $f(x_k) - c_1 \eta_k\nabla f(x_k)d_k$ will become a horizontal line. In this case it is possible to make such a step which will overshoot the minimum and land at an identically distant point, so the convergence is not guaranteed. If we take $c_1$  equal to 1 then $f(x_k) - c_1 \eta_k\nabla f(x_k)d_k$ will just become a tangent line which will not allow a "sufficient" decrease according to the Armijo rule. Generally taking $c_1$ closer to zero gives more freedom for selecting the step size.
+ 
+While the first Wolfe condition rejects too long steps, the second one aims at preventing too short steps. We know that at the point of the minimum the derivative of $f(x_k + \eta_k d_k)$ is zero. Yet as opposed to the exact line search we would be happy to make a sufficiently long step which does not necessarily land at the minimum. The derivative at the new step should be less than the derivative at the previous one and the relationship between them needs to be less or equal than some variable variable $c_2$ which is between 0 and 1:
+ 
+&nbsp;&nbsp;&nbsp;&nbsp;
+$\frac{\nabla f(x_k + \eta d_k)d_k}{\nabla f(x_k)d_k} \leq c_2$
+ 
+On rearrangement we get the equation for the second Wolfe condition:
+ 
+&nbsp;&nbsp;&nbsp;&nbsp;
+$\nabla f(x_k + \eta d_k)d_k \geq c_2 \nabla f(x_k)d_k$
+ 
+The sign is changed because $\nabla f(x_k)d_k$ is always negative.
+ 
+If we select $c_2$ close to 0 then we would force line search to look for a solution which is close to the minimum, while $c_2$ is closer to 1 then the search is less demanding. In order to apply both Wolfe conditions and ensure existence of $\eta$, $c_2$ needs to be selected greater than $c_1$.
+ 
+### Backtracking line search
+ 
+This type of line search is considered as a base method for other inexact line searches, and it makes use only of the first Wolfe condition. The algorithm starts with an initial relatively large guess for $\eta$ and then tests it whether it satisfies the Armijo rule. If the step size is deemed as too big the next estimate of $\eta$ is selected like:
+ 
+&nbsp;&nbsp;&nbsp;&nbsp;
+$\eta_{n+1} = \tau \eta_n$
+ 
+where $\tau$ is a reducing factor which is between 0 and 1.

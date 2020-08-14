@@ -8,7 +8,7 @@ date: 2020-05-06
 ---
  
 Regression analysis is used for estimating the relationship between variables, usually one dependent and one or several independent variables. Having a regression model at hand, we can predict some continuous value of the dependent variable based on the values of independent variables.
- 
+
 Single variable linear regression explains the relationship between single input variable and the output:
  
 &nbsp;&nbsp;&nbsp;&nbsp;
