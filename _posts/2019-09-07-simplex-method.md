@@ -3,11 +3,15 @@ layout: single
 title: "Simplex method"
 description: Here I am going to explain how simplex method can be used in optimization problems
 category: "Optimization"
-tags: simplex-method optimization linear-programming
-date: 2019-09-07
+tags: linear-programming constraints simplex objective-function maximization
+date: 2020-08-29
 ---
+ 
+Linear programming aims at finding the best outcome of mathematical problems provided constraints. The requirements for the linear programming problems are divided into two groups - constraints and the objective function, and can be represented as linear relationships. Simplex method is one common algorithm for solving linear programming and this article describes the mechanics of it.
+ 
+In geometry, a simplex is a special type of polytope in $n$-dimensional space which has $n+1$ vertices, that is the points where lines meet. For example, in 2-dimensional space a simplex will assume the form a triangle, and in 3-dimensional space it will become a tetrahedron.
 
-Linear programming aims at finding the best outcome of mathematical problem provided constraints.
+The simplex method employs the idea of simplex by projecting the whole subspace of all possible solutions onto a polytope. The shape of this polytope is defined by the constraints of the problem, and the optimal solution is found at some specific vertex. 
 
 Suppose the company is engaged in manufacturing of black, milk and white chocolate. Each product is sold by its own price and is made by three ingredients: cocoa, milk and sugar. The company has only limited supply of ingredients and thus is bound by certain restrictions.<br>
 Let’s define black, milk and white chocolate as $x_1$, $x_2$ and $x_3$ and ingredients as $a$, $b$ and $c$. Bearing in mind that each type of chocolate requires different amount of ingredients for manufacturing, we can write down a system of equations which represents restrictions due to the limited ingredients supply.
