@@ -47,9 +47,7 @@ We can see that the shape of the loss function is actually a quadratic function,
  
 In a more general case where a function is dependent on multiple input variables, for example if we need to estimate both $a$ and $b$ in the simple linear regression, the same logic with calculating derivatives for the loss function applies. However, in this case the loss function becomes multidimensional and instead of a single slope we need to find a direction in n-dimensional space in which to descend. The so-called multidimensional slope is determined by calculating partial derivatives with respect to each of the parameters, thus obtaining gradient (vector of slopes). Gradient is commonly depicted with $\nabla$, and here is how the gradient of loss function $J$ can be expressed:
  
-&nbsp;&nbsp;&nbsp;&nbsp;
-$$\nabla J(\theta) =    
-\left[\begin{array}{c}
+$$\nabla J(\theta) = \left[\begin{array}{c}
 \frac{\partial J}{\partial \theta_1} \\
 \frac{\partial J}{\partial \theta_2} \\
 ... \\
