@@ -3,13 +3,34 @@ layout: single
 title: "Line search"
 description: "Explaining line search and its use case in optimizaton problems"
 category: "Optimization"
-tags: nonlinear-regression loss-function gradient-descent Wolfe-conditions learning-rate Armijo-rule minimization
-date: 2020-08-13
+tags: nonlinear-regression loss-function gradient-descent Wolfe-conditions learning-rate Armijo-rule minimization steepest-descent search-direction
+date: 2020-09-10
 ---
- 
-Line search methods are used in the context of non-linear minimization of the [loss function]({{ site.baseurl }}{% link _posts/2019-10-14-loss-functions.md %}) as they help in determining the proper step size for each iteration thus reducing their number before convergence. The step length in iterative optimization algorithm might be either too short, leading to a slow approach towards the minimum of the loss function, or too long which results in overshooting the minimum on each iteration. In [gradient descent]({{ site.baseurl }}{% link _posts/2019-10-15-gradient-descent.md %}) for example line search could be used for determining the proper learning rate. In practice however line search is rarely used because determining the step size at each iteration may be computationally expensive and thus inefficient. In addition, line search in stochastic methods will only determine the optimal step for an approximation which is not really useful.  
- 
-Yet it is useful to understand the ideas behind the line search methods as it may help in understanding other techniques in optimization. Below is the description of some of the known methods.
+
+Generally speaking, line search is one of the two (the other is [trust region]({{ site.baseurl }}{% link _posts/2020-09-07-trust-region.md %})) major strategies in non-linear optimization. Line search methods first determine the direction in which to move the value of the parameter and then perform calculations in order to select the appropriate step size which will produce sufficient decrease in the objective function. In iterative optimization algorithms the step size might be either too short, leading to a slow convergence towards the minimum of the loss function, or too long which results in overshooting the minimum on each iteration. Line search hence aims at reducing the number of iterations before convergence by selecting the appropriate step size at each pass. In [gradient descent]({{ site.baseurl }}{% link _posts/2019-10-15-gradient-descent.md %}) for example line search could be used for determining the proper learning rate.
+
+In practice however line search is rarely used because determining the step size at each iteration may be computationally expensive and thus inefficient. In addition, line search in stochastic methods will only determine the optimal step for an approximation which is not really useful. Yet it is useful to understand the ideas behind the line search methods as it may help in understanding other techniques in optimization.
+
+## Search direction
+
+The direction of the parameter change is determined by the direction of the steepest descent, that is by taking the derivatives of a function with respect to each parameter at a given point. Since the direction does not provide information about the length, the vector of the derivatives should be scaled accordingly. So the formula of the search direction in case of gradient descent at step $k$ will be as follows:
+
+&nbsp;&nbsp;&nbsp;&nbsp;
+$d_k = \frac{-\nabla f_k}{\left|\left|f_k\right|\right|}$
+
+For the conjugate gradient descent the search direction will be determined like this:
+
+&nbsp;&nbsp;&nbsp;&nbsp;
+$d_k = -\nabla f_k + \beta_k d_{k-1}$
+
+where $\beta$ is a coefficient that enforces $d_k$ and $d_{k-1}$ be conjugate.
+
+Other options are Newton or quasi-Newton search directions. 
+
+&nbsp;&nbsp;&nbsp;&nbsp;
+$d_k = - \nabla^2 f_k^{-1} \nabla f_k$ or $d_k = - B_k^{-1} \nabla f_k$
+
+where $B_k$ is an approximation of a Hessian matrix.
  
 ## Exact line search
  

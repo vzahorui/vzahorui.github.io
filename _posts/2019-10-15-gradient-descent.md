@@ -124,7 +124,7 @@ Here is a display of SGD with momentum in comparison with vanila SGD:
  
 ![](/assets/images/gradient_descent/gradient_descent_with_momentum_demo.gif){: .align-center}
  
-An improvement to gradient descent with momentum ,namely Nesterov accelerated descent (NAG), was introduced to prevent the descent from making too big steps when the direction of the slope changes. While gradient descent with momentum measures the slope of a loss function at its current point and then takes modified with momentum step in the direction of this slope, NAG instead measures the slope at the point where the momentum step alone would be applied so that it can check if the slope changes direction at its next point. The combined effect of the momentum and the look-ahead slope define the actual step of such descent. So to speak, the slope at the look-ahead point "corrects" the momentum force.
+An improvement to gradient descent with momentum, namely Nesterov accelerated descent (NAG), was introduced to prevent the descent from making too big steps when the direction of the slope changes. While gradient descent with momentum measures the slope of a loss function at its current point and then takes modified with momentum step in the direction of this slope, NAG instead measures the slope at the point where the momentum step alone would be applied so that it can check if the slope changes direction at its next point. The combined effect of the momentum and the look-ahead slope define the actual step of such descent. So to speak, the slope at the look-ahead point "corrects" the momentum force.
  
 ![](/assets/images/gradient_descent/Nesterov_momentum_demo.png){: .align-center}
 
