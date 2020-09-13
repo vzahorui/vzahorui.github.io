@@ -61,7 +61,7 @@ In practice we usually have to deal with functions of multiple variables of cour
 &nbsp;&nbsp;&nbsp;&nbsp;
 $\phi(x) = f(x_0) + \nabla f(x_0)^{T}(x-x_0) + \frac{1}{2}(x-x_0)^{T}Hf(x_0)(x-x_0)$
  
-where $\nabla f(x_0)$ is a matrix of partial derivatives (Jacobian matrix) at the centering point and $H f(x_0)$ is a matrix of partial second derivatives (Hessian matrix) at that point.  
+where $\nabla f(x_0)$ is a vector of partial derivatives at the centering point (the gradient) and $H f(x_0)$ is a matrix of partial second derivatives (Hessian matrix) at that point.  
  
 Eventually the equation for finding the minimum will transform into this:
  

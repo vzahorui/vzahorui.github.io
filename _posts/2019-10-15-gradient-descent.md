@@ -153,9 +153,9 @@ AdaGrad extension is still sensitive to the choice of the global learning rate, 
 AdaDelta was developed with a purpose to eliminate the shortcomings of AdaGrad. While AdaGrad uses accumulated sum of squares of all previous gradients in denominator which leads to rapidly diminishing learning rate, AdaDelta instead puts in denominator exponential moving average of squared gradients:  
  
 &nbsp;&nbsp;&nbsp;&nbsp;
-$E\lbrack g^2\rbrack_t = \rho E\lbrack g^2\rbrack_{t-1} + (1-\rho) g_t^2$
+$E\lbrack g^2\rbrack_t = \beta E\lbrack g^2\rbrack_{t-1} + (1-\beta) g_t^2$
  
-Similarly to the equation of moving average used in momentum calculation $\rho$ is a coefficient of weight, which takes value from 0 to 1 and is responsible for determining which fraction of value to take from previous observations. In practice the choice of $\rho$ does not make a significant impact on the performance of the algorithm.  
+Similarly to the equation of moving average used in momentum calculation $\beta$ is a coefficient of weight, which takes value from 0 to 1 and is responsible for determining which fraction of value to take from previous observations. In practice the choice of $\rho$ does not make a significant impact on the performance of the algorithm.  
  
 The square root of such exponential moving average used in denominator is known as root mean square (RMS) of all previous updates of parameters.
  
@@ -181,7 +181,7 @@ It is worth noting that RMS of $\theta$ should also include the value of $\epsil
 Adam (adaptive moment estimation) may be viewed as an extension to RMSprop algorithm where momentum is added to the gradient calculation. In its core Adam utilizes first and second order moments, hence the name. Both moments decay over time as in AdaDelta and RMSprop:
 
 &nbsp;&nbsp;&nbsp;&nbsp;
-$E\lbrack g\rbrack_{t} = E\lbrack g\rbrack_{t-1} + (1-\beta_1) g_t$<br>
+$E\lbrack g\rbrack_{t} = \beta_1 E\lbrack g\rbrack_{t-1} + (1-\beta_1) g_t$<br>
 &nbsp;&nbsp;&nbsp;&nbsp;
 $E\lbrack g^2\rbrack_t = \beta_2 E\lbrack g^2\rbrack_{t-1} + (1-\beta_2) g_t^2$
 
