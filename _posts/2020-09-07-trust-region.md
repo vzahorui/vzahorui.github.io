@@ -40,7 +40,7 @@ These conditions do not always hold so an approximate solution should be found w
 
 ## Cauchy point
 
-Cauchy point is a solution to the problem of finding the minimum of a trust region which is determined along the direction of the steepest descent. At the center of the trust region just like in line search the gradient is measured is order to determine the direction of the steepest descent. Following this, the vector from the center to the edge of the trust region can be expressed like this:
+Cauchy point is a solution to the problem of finding the minimum of a trust region which is determined along the direction of the steepest descent. At the center of the trust region just like in line search the gradient in measured is order to determine the direction of the steepest descent. Following this, the vector from the center to the edge of the trust region can be expressed like this:
 
 &nbsp;&nbsp;&nbsp;&nbsp;
 $p_k^s = \Delta_k \frac{-\nabla f_k}{\left|\left|\nabla f_k\right|\right|}$
@@ -85,11 +85,11 @@ In fact, Cauchy point optimization can be viewed as the steepest descent with li
 
 ## Dogleg method
 
-This method can be applied if the Hessian of the function approximation is positive definite. According to this method if it is possible to make a Newton step within a trust region then such step is performed. If the Newton step finds a minimum is outside the borders of the trust region then the algorithm selects a point on the border which intersects the line connecting Cauchy point and the point obrained with the Newton step.
+This method can be applied if the Hessian of the function approximation is positive definite. According to this method if it is possible to make a Newton step within a trust region then such step is performed. If the Newton step finds a minimum outside the borders of the trust region then the algorithm selects a point on the border which intersects the line connecting Cauchy point and the point obtained with the Newton step.
 
 ![](/assets/images/optimization/dogleg.png){: .align-center}
 
-On the image above the vector displaying the dogleg step is marked as $p^d$. Essentailly $p^d$ is a sum of $p^C$ and a fraction of another vector pointing from the Cauchy point to the point determined by Newton step ($p^b - p^C$). Let's indicate this fraction as $\beta$. From here were have an equation which compares the lengths of the radius and the step $p^d$.
+On the image above the vector displaying the dogleg step is marked as $p^d$. Essentially $p^d$ is a sum of $p^C$ and a fraction of another vector pointing from the Cauchy point to the point determined by Newton step ($p^b - p^C$). Let's indicate this fraction as $\beta$. From here were have an equation which compares the lengths of the radius and the step $p^d$.
 
 &nbsp;&nbsp;&nbsp;&nbsp;
 $\lvert\lvert p^C + \beta(p^b - p^C) \rvert\rvert^2 = \Delta_k^2$
