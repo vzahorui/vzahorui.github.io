@@ -32,7 +32,7 @@ where $uv^{T}$ is an outer product of two vectors. Matrix $uv^{T}$ has rank one 
 In Broyden's method the following formula may be used to update $B$:
 
 &nbsp;&nbsp;&nbsp;&nbsp;
-$B_{k+1} = B_k + \frac{\Delta f_x - B_k \Delta x}{\left|\left|\Delta x\right|\right|^2}\Delta x$
+$B_{k+1} = B_k + \frac{\Delta f_x - B_k \Delta x}{\lvert\lvert\Delta x\rvert\rvert^2}\Delta x$
 
 This formula exploits the idea of rank-one update by setting $u = \frac{\Delta f_x - B_k \Delta x}{\left|\left|\Delta x\right|\right|^2}$ and $v = \Delta x$. Here is one way of building intuition behind it. If the Jacobian (and its approximation) are giving information about the rate of change the construct $B_k \Delta x$ should roughly provide the estimate of how much the function changes. In our case the value of $u$ gets the difference between the actual change in the function and the predicted change at the previous iteration, and scales it by the length of change in the variables, so that in the end vector $u$ gives information about the direction of correction to the  function's change. Computing the cross product between $u$ and $v$ builds up a correction matrix in the same dimensions in which the previous matrix $B$ was computed.
 
