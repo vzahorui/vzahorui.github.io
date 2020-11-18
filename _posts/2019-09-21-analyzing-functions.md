@@ -33,12 +33,15 @@ Suppose we have a function $f(x) = x^6-3x^5$.<br>
 The function is decreasing over the ponts where its derivative is less then 0. The derivative of the function looks like this: $f'(x)=6x^5-15x^4$.<br>
 The derive can be further decomposed to this form: $3x^4(2x-5)$. Given that this equation has to be less than 0 we have the following inequalities:
 
-&nbsp;&nbsp;&nbsp;&nbsp;
 $$\begin{cases}
 3x^4 > 0 \\
 22x-5 < 0
 \end{cases}
+$$
+
 or
+
+$$
 \begin{cases}
 3x^4 < 0 \\
 22x-5 > 0

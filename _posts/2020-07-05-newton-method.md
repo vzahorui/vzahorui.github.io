@@ -9,7 +9,7 @@ date: 2020-07-29
  
 Similarly to [gradient descent]({{ site.baseurl }}{% link _posts/2019-10-15-gradient-descent.md %}), Newton's method is used for finding a minimum of a function through iterations. Unlike gradient descent however, it uses a second order derivative of a function, which provides additional information about its curvature, so that the algorithm can navigate faster towards the minimum of the function.
  
-## Newton's method for zero finding
+## Newton's method for root finding
  
 In order to better understand how the formula for Newton's optimization works let's take a look at a simpler problem: finding zero of a function. Suppose we have a simple function like this:
  

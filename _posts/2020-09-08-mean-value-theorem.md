@@ -18,7 +18,7 @@ $f' (c)=\frac{f(x)-f(a)}{x-a}$
 
 It should be noted that the mean value theorem tells only about the existence of this point, not its value.
 
-With help of this theorem the difference between the values of a function at different points can be expressed as a scaled version of the difference between the  dependent variables which depends on the slope that happens somewhere between these points.
+With help of this theorem the difference between the values of a function at different points can be expressed as a scaled version of the difference between the  dependent variable values which depends on the slope that happens somewhere between these points.
 
 &nbsp;&nbsp;&nbsp;&nbsp;
 $f(x)-f(a) = f' (c) \cdot (x-a)$
@@ -45,4 +45,4 @@ So that the original function can be further decomposed using the second derivat
 &nbsp;&nbsp;&nbsp;&nbsp;
 $f(a+p) = f(a) + f(a)^T p + \frac{1}{2} \nabla^2 p^T f(a+tp) p$
 
-What we obtained is very similar to the second-order Taylor approximation.
+What we have obtained is very similar to the second-order Taylor approximation.
