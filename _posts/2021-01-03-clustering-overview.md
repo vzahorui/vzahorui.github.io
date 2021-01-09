@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "Clustering"
+title: "Clustering overview"
 description: Describing what clustering is and its main types
 category: "Clustering"
 tags: grouping segmentation unsupervised-learning machine-learning hierarchical-clustering agglomerative-clustering dendrogram k-means linkage ward
