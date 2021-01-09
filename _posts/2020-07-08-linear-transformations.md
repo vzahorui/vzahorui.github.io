@@ -121,13 +121,14 @@ In addition, the rows of such matrices represent linearly dependent equations, w
  
 Matrices and vectors are generally used for solving systems of linear equations like these:
  
-&nbsp;&nbsp;&nbsp;&nbsp;
-$$\begin{cases}
+$$
+\begin{cases}
 a_{11} x_1 + a_{12} x_2 + ... + a_{1n} x_n = b_1 \\
 a_{21} x_1 + a_{22} x_2 + ... + a_{2n} x_n = b_2 \\
 .......................... \\
 a_{m1} x_1 + a_{m2} x_2 + ... + a_{mn} x_n = b_m
-\end{cases}$$
+\end{cases}
+$$
  
 In these systems matrices are used to scale variables, so that each vector of a matrix scales the same variable in each equation appropriately. In addition, the whole system looks like matrix vector multiplication, so it could be rewritten as $Ax = b$. With the knowledge of matrix inverse we can solve the system of equations for $x$ just by multiplying both sides with the inverse of $A$:
  
