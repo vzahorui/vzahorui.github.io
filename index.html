@@ -35,8 +35,10 @@ var graph =
         {"id": "Calculus", "size": 50, "font": 2},
         {"id": "Linear Algebra", "url": "{{ site.baseurl }}{% link _posts/2020-07-08-linear-transformations.md %}", "size": 50, "font": 2},
         {"id": "Regression", "size": 30, "font": 2},
+        {"id": "Classification", "size": 30, "font": 2},
         {"id": "Optimization", "size": 30, "font": 2},
         {"id": "Time Series", "url":"{{ site.baseurl }}{% link _posts/2019-07-19-time-series-modeling.md %}", "size": 30, "font": 2},
+        {"id": "Clustering", "url":"{{ site.baseurl }}{% link _posts/2021-01-03-clustering.md %}", "size": 30, "font": 2},
         {"id": "NLP", "size": 30, "font": 2},
       
         {"id": "Loss Functions", "url": "{{ site.baseurl }}{% link _posts/2019-10-14-loss-functions.md %}", "size": 4, "font": 1},
@@ -86,6 +88,9 @@ var graph =
         {"source": "Probability", "target": "Normal Distribution", "distance": 120},
         
         {"source": "Probability", "target": "Regression", "distance": 320},
+        {"source": "Probability", "target": "Classification", "distance": 320},
+        
+        {"source": "Classification", "target": "Clustering", "distance": 220},
         
         {"source": "Regression", "target": "Time Series", "distance": 320},
         {"source": "Regression", "target": "Linear Regression", "distance": 120},
