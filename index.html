@@ -38,7 +38,7 @@ var graph =
         {"id": "Classification", "size": 30, "font": 2},
         {"id": "Optimization", "size": 30, "font": 2},
         {"id": "Time Series", "url":"{{ site.baseurl }}{% link _posts/2019-07-19-time-series-modeling.md %}", "size": 30, "font": 2},
-        {"id": "Clustering", "url":"{{ site.baseurl }}{% link _posts/2021-01-03-clustering.md %}", "size": 30, "font": 2},
+        {"id": "Clustering", "url":"{{ site.baseurl }}{% link _posts/2021-01-03-clustering-overview.md %}", "size": 30, "font": 2},
         {"id": "NLP", "size": 30, "font": 2},
       
         {"id": "Loss Functions", "url": "{{ site.baseurl }}{% link _posts/2019-10-14-loss-functions.md %}", "size": 4, "font": 1},
@@ -174,7 +174,7 @@ var svg = d3.select("div#chartId")
     .classed("svg-container", true)
     .append("svg")
     .attr("preserveAspectRatio", "xMinYMin meet")
-    .attr("viewBox", "0 0 1800 1500")
+    .attr("viewBox", "0 0 1800 1700")
     .classed("svg-content-responsive", true);
   
 var container = svg.append("g");
