@@ -33,106 +33,13 @@ var graph =
     "nodes": [
         {"id": "Probability", "size": 50, "font": 2},
         {"id": "Calculus", "size": 50, "font": 2},
-        {"id": "Linear Algebra", "url": "{{ site.baseurl }}{% link _posts/2020-07-08-linear-transformations.md %}", "size": 50, "font": 2},
-        {"id": "Regression", "size": 30, "font": 2},
-        {"id": "Classification", "size": 30, "font": 2},
-        {"id": "Optimization", "size": 30, "font": 2},
-        {"id": "Time Series", "url":"{{ site.baseurl }}{% link _posts/2019-07-19-time-series-modeling.md %}", "size": 30, "font": 2},
-        {"id": "Clustering", "url":"{{ site.baseurl }}{% link _posts/2021-01-03-clustering-overview.md %}", "size": 30, "font": 2},
-        {"id": "NLP", "size": 30, "font": 2},
-      
-        {"id": "Loss Functions", "url": "{{ site.baseurl }}{% link _posts/2019-10-14-loss-functions.md %}", "size": 4, "font": 1},
-        {"id": "Linear Regression", "url": "{{ site.baseurl }}{% link _posts/2019-10-25-linear-regression.md %}", "size": 10, "font": 1},
-        {"id": "Non-Linear Regression", "url": "{{ site.baseurl }}{% link _posts/2020-05-07-non-linear-regression.md %}", "size": 10, "font": 1},
-        {"id": "LOESS", "url": "{{ site.baseurl }}{% link _posts/2020-05-05-loess.md %}", "size": 4, "font": 1},
-        {"id": "Interpolation", "url": "{{ site.baseurl }}{% link _posts/2019-12-08-interpolation.md %}", "size": 4, "font": 1},
-        
-        {"id": "Sampling Distribution", "url": "{{ site.baseurl }}{% link _posts/2021-01-16-normal-ditribution.md %}", 
-         "size": 4, "font": 1},
-        {"id": "Normal Distribution", "url": "{{ site.baseurl }}{% link _posts/2019-07-28-normal-ditribution.md %}", 
-         "size": 4, "font": 1},
-        
-        {"id": "Eigenvectors and Eigenvalues", "url":"{{ site.baseurl }}{% link _posts/2019-11-02-eigenvectors-and-eigenvalues.md %}",
-"size":4, "font":1},
-        {"id": "Singular Value Decomposition", "url":"{{ site.baseurl }}{% link _posts/2019-11-03-singular-value-decomposition.md %}",
-"size":4, "font":1},
-        {"id": "QR Decomposition", "url":"{{ site.baseurl }}{% link _posts/2019-11-19-qr-decomposition.md %}",
-"size":4, "font":1},
-        {"id": "Vector Projection", "url":"{{ site.baseurl }}{% link _posts/2020-03-04-vector-projection.md %}",
-"size":4, "font":1},
-
-        {"id": "Simplex Method", "url":"{{ site.baseurl }}{% link _posts/2019-09-07-simplex-method.md %}", "size": 4, "font": 1},
-        {"id": "Gradient Descent", "url": "{{ site.baseurl }}{% link _posts/2019-10-15-gradient-descent.md %}", "size": 10, "font": 1},
-        {"id": "Newton's Method", "url": "{{ site.baseurl }}{% link _posts/2020-07-05-newton-method.md %}", "size": 10, "font": 1},
-        {"id": "Quasi-Newton Methods", "url": "{{ site.baseurl }}{% link _posts/2020-07-29-quasi-newton-methods.md %}", "size": 4, "font": 1},
-        {"id": "Line Search", "url": "{{ site.baseurl }}{% link _posts/2020-08-08-line-search.md %}", "size": 10, "font": 1},
-        {"id": "Trust Region", "url": "{{ site.baseurl }}{% link _posts/2020-09-07-trust-region.md %}", "size": 10, "font": 1},
-        {"id": "Conjugate Gradient", "url": "{{ site.baseurl }}{% link _posts/2020-10-22-conjugate-gradient.md %}", "size": 10, "font": 1},
-        
-        {"id": "Derivatives", "url":"{{ site.baseurl }}{% link _posts/2019-09-14-derivatives.md %}",
-"size":10, "font":1},
-        {"id": "Integrals", "url":"{{ site.baseurl }}{% link _posts/2019-09-24-integrals.md %}",
-"size":10, "font":1},
-        {"id": "Differential Equations", "url":"{{ site.baseurl }}{% link _posts/2019-09-30-differential-equations.md %}",
-"size":4, "font":1},
-        {"id": "Taylor Series", "url":"{{ site.baseurl }}{% link _posts/2020-05-08-taylor-series.md %}",
-"size":4, "font":1},
-        
-        {"id": "Text Similarity", "url":"{{ site.baseurl }}{% link _posts/2020-03-03-text-similarity.md %}",
-"size":4, "font":1}
+        {"id": "Linear Algebra", "url": "{{ site.baseurl }}{% link _posts/2020-07-08-linear-transformations.md %}", "size": 50, "font": 2}
       
     ],
     "links": [
         {"source": "Calculus", "target": "Probability", "distance": 280},
         {"source": "Linear Algebra", "target": "Calculus", "distance": 280},
-        {"source": "Linear Algebra", "target": "Probability", "distance": 280},
-        
-        {"source": "Probability", "target": "Sampling Distribution", "distance": 120},
-        {"source": "Sampling Distribution", "target": "Normal Distribution", "distance": 120},
-        
-        {"source": "Probability", "target": "Regression", "distance": 320},
-        {"source": "Probability", "target": "Classification", "distance": 300},
-        
-        {"source": "Classification", "target": "Clustering", "distance": 220},
-        
-        {"source": "Regression", "target": "Time Series", "distance": 320},
-        {"source": "Regression", "target": "Linear Regression", "distance": 120},
-        {"source": "Regression", "target": "Non-Linear Regression", "distance": 150},
-        {"source": "Regression", "target": "LOESS", "distance": 120},
-        {"source": "Regression", "target": "Interpolation", "distance": 120},
-        {"source": "Regression", "target": "Loss Functions", "distance": 120},
-        
-        {"source": "Linear Algebra", "target": "Vector Projection", "distance": 120},
-        {"source": "Vector Projection", "target": "Text Similarity", "distance": 220},
-        {"source": "Text Similarity", "target": "NLP", "distance": 120},
-        
-        {"source": "Linear Algebra", "target": "QR Decomposition", "distance": 120},
-        {"source": "Linear Algebra", "target": "Eigenvectors and Eigenvalues", "distance": 120},
-        {"source": "Eigenvectors and Eigenvalues", "target": "Singular Value Decomposition", "distance": 70},
-                
-        {"source": "Calculus", "target": "Derivatives", "distance": 220},
-        {"source": "Calculus", "target": "Integrals", "distance": 90},
-        {"source": "Integrals", "target": "Differential Equations", "distance": 150},
-        {"source": "Derivatives", "target": "Differential Equations", "distance": 150},
-        
-        {"source": "Derivatives", "target": "Gradient Descent", "distance": 120},
-        {"source": "Derivatives", "target": "Taylor Series", "distance": 90},
-        {"source": "Taylor Series", "target": "Newton's Method", "distance": 120},
-        
-        {"source": "Newton's Method", "target": "Optimization", "distance": 220},
-        {"source": "Newton's Method", "target": "Quasi-Newton Methods", "distance": 70},
-        {"source": "Gradient Descent", "target": "Optimization", "distance": 220},
-        
-        {"source": "Gradient Descent", "target": "Trust Region", "distance": 120},
-        {"source": "Gradient Descent", "target": "Line Search", "distance": 110},
-        {"source": "Newton's Method", "target": "Line Search", "distance": 110},
-        {"source": "Newton's Method", "target": "Trust Region", "distance": 120},
-        {"source": "Optimization", "target": "Simplex Method", "distance": 120},
-        {"source": "Optimization", "target": "Conjugate Gradient", "distance": 220},
-        {"source": "Gradient Descent", "target": "Conjugate Gradient", "distance": 140},
-        
-        
-        {"source": "Optimization", "target": "Non-Linear Regression", "distance": 570}
+        {"source": "Linear Algebra", "target": "Probability", "distance": 280}
         
         
     ]   
