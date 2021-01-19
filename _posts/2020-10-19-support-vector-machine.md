@@ -2,7 +2,7 @@
 layout: single
 title: "Support vector machine"
 description: Explaining what support vector machine is and why we should use it
-category: "Machine learning"
+category: "Classification"
 tags: classification supervised-machine-learning svm 
 date: 2020-10-19
 ---

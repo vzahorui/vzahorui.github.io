@@ -3,7 +3,7 @@ layout: single
 title: "Clustering overview"
 description: Describing what clustering is and its main types
 category: "Clustering"
-tags: grouping segmentation unsupervised-learning machine-learning hierarchical-clustering agglomerative-clustering dendrogram k-means linkage ward
+tags: grouping segmentation unsupervised-learning machine-learning hierarchical-clustering agglomerative-clustering dendrogram k-means linkage ward mean-shift
 date: 2021-01-09
 ---
 
@@ -27,7 +27,7 @@ The choice of initial centroids is important as the algorithm may converge to so
 ![](/assets/images/clustering/K_means_clustering.png){: .align-center}
 
 ## Hierarchical clustering
- 
+
 These models can be divided into two groups: agglomerative and divisive. The former start off by considering each single datapoint as a separate cluster and then merge them into bigger ones until a single cluster is formed. The latter start off with a single cluster and then divide it into smaller one.
 
 In exploratory data analysis dendrograms are used for visual representation of the linkage between clusters, so that the number of clusters may be deduced.
@@ -46,5 +46,4 @@ Other than that, _**ward**_ linkage may be used which determines clusters by min
 
 ![](/assets/images/clustering/agglomerative_linkage_comparison.png){: .align-center}
 
-From the example above we see how single linkage clustering slightly outperformed ward in case of irregular but more or less evenly spaced clusters. However it fully failed in case of evenly spaced round clusters due to the presence of an outlier.
-
+From the example above we see how single linkage clustering only slightly outperformed ward in case of irregular but more or less evenly spaced clusters. However it fully failed in case of evenly spaced round clusters due to the presence of an outlier.

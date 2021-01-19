@@ -26,7 +26,7 @@ title: Unlocking the power of data
  
 <script>
 var width = 1800;
-var height = 1500;
+var height = 1600;
 
 var graph = 
 {
@@ -47,6 +47,8 @@ var graph =
         {"id": "LOESS", "url": "{{ site.baseurl }}{% link _posts/2020-05-05-loess.md %}", "size": 4, "font": 1},
         {"id": "Interpolation", "url": "{{ site.baseurl }}{% link _posts/2019-12-08-interpolation.md %}", "size": 4, "font": 1},
         
+        {"id": "Sampling Distribution", "url": "{{ site.baseurl }}{% link _posts/2021-01-16-normal-ditribution.md %}", 
+         "size": 4, "font": 1},
         {"id": "Normal Distribution", "url": "{{ site.baseurl }}{% link _posts/2019-07-28-normal-ditribution.md %}", 
          "size": 4, "font": 1},
         
@@ -85,10 +87,11 @@ var graph =
         {"source": "Linear Algebra", "target": "Calculus", "distance": 280},
         {"source": "Linear Algebra", "target": "Probability", "distance": 280},
         
-        {"source": "Probability", "target": "Normal Distribution", "distance": 120},
+        {"source": "Probability", "target": "Sampling Distribution", "distance": 120},
+        {"source": "Sampling Distribution", "target": "Normal Distribution", "distance": 120},
         
         {"source": "Probability", "target": "Regression", "distance": 320},
-        {"source": "Probability", "target": "Classification", "distance": 320},
+        {"source": "Probability", "target": "Classification", "distance": 300},
         
         {"source": "Classification", "target": "Clustering", "distance": 220},
         
