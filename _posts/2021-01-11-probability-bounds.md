@@ -54,7 +54,7 @@ $P(\lvert X-\mu \rvert \geq k\sigma) \leq \frac{\sigma^2}{k^2 \sigma^2} \leq \fr
 
 Therefore, no more than $\frac{1}{k^2}$ of the distribution's values can be more than $k$ standard deviations away from the mean. On the contrary, at least $(1-\frac{1}{k^2})$ samples of the distribution are within $k$ standard deviations from the mean.
 
-One of the consequences of Chebyshev's inequality is the Weak law of large numbers. It states that if the number of independent samples drawn from population goes to infinity, [the sample mean]({{ site.baseurl }}{% link _posts/2021-01-16-sample-distribution.md %}) converges to the population mean. Or in other words, the more samples we have, the closer the sample mean represents the true mean. Here is how it plays out. For a set of independently drawn samples from some population we can take the sample mean and use it as a random variable in the inequality:
+One of the consequences of Chebyshev's inequality is the Weak law of large numbers. It states that if the number of independent samples drawn from population goes to infinity, [the sample mean]({{ site.baseurl }}{% link _posts/2021-01-16-sampling-distribution.md %}) converges to the population mean. Or in other words, the more samples we have, the closer the sample mean represents the true mean. Here is how it plays out. For a set of independently drawn samples from some population we can take the sample mean and use it as a random variable in the inequality:
 
 &nbsp;&nbsp;&nbsp;&nbsp;
 $P(\lvert \bar X -\mu \rvert \geq \varepsilon) \leq \frac{Var(\bar X)}{\varepsilon^2} = \frac{\sigma^2}{n \varepsilon^2}$
