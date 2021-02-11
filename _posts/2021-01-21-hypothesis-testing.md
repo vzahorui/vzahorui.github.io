@@ -87,7 +87,7 @@ $E = Z \cdot \frac{\sigma}{\sqrt{n}}$
 Knowing the population's standard deviation (or having an estimate of it), the level of significance, and the desired margin of error, it is possible to calculate the required sample size by rearranging the formula:
 
 &nbsp;&nbsp;&nbsp;&nbsp;
-$n = \frac{Z^2 sigma^2}{E^2}$
+$n = \frac{Z^2 \sigma^2}{E^2}$
 
 When determining sample size for the hypothesis test the significance level, type of the alternative hypothesis, and the detectable difference are selected besides the desired statistical power. Let's look again at the example of overlapping distributions above. If the null hypothesis is incorrect, and the true mean is at $\mu_1$ then we set the desired detectable difference between the initially assumed mean $\mu_0$ and $\mu_1$ as $(\mu_1 - \mu_0)$. If the null hypothesis is true then the margin of error is:
 
