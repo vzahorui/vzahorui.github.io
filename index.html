@@ -41,7 +41,7 @@ var graph =
         {"id": "Clustering", "url":"{{ site.baseurl }}{% link _posts/2021-01-03-clustering-overview.md %}", "size": 30, "font": 2},
         {"id": "NLP", "size": 30, "font": 2},
       
-        {"id": "Loss Functions", "url": "{{ site.baseurl }}{% link _posts/2019-10-14-loss-functions.md %}", "size": 4, "font": 1},
+        {"id": "Loss Functions", "url": "{{ site.baseurl }}{% link _posts/2019-10-14-loss-functions.md %}", "size": 10, "font": 1},
         {"id": "Linear Regression", "url": "{{ site.baseurl }}{% link _posts/2019-10-25-linear-regression.md %}", "size": 10, "font": 1},
         {"id": "Non-Linear Regression", "url": "{{ site.baseurl }}{% link _posts/2020-05-07-non-linear-regression.md %}", "size": 10, "font": 1},
         {"id": "LOESS", "url": "{{ site.baseurl }}{% link _posts/2020-05-05-loess.md %}", "size": 4, "font": 1},
@@ -50,7 +50,9 @@ var graph =
         {"id": "Sampling Distribution", "url": "{{ site.baseurl }}{% link _posts/2021-01-16-sampling-distribution.md %}",
          "size": 4, "font": 1},
         {"id": "Normal Distribution", "url": "{{ site.baseurl }}{% link _posts/2019-07-28-normal-ditribution.md %}",
-         "size": 4, "font": 1},
+         "size": 10, "font": 1},
+        {"id": "Hypothesis Testing", "url": "{{ site.baseurl }}{% link _posts/2021-01-21-hypothesis-testing.md %}",
+         "size": 10, "font": 1},
         
         {"id": "Eigenvectors and Eigenvalues", "url":"{{ site.baseurl }}{% link _posts/2019-11-02-eigenvectors-and-eigenvalues.md %}",
 "size":4, "font":1},
@@ -85,10 +87,11 @@ var graph =
     "links": [
         {"source": "Calculus", "target": "Probability", "distance": 280},
         {"source": "Linear Algebra", "target": "Calculus", "distance": 280},
-        {"source": "Linear Algebra", "target": "Probability", "distance": 280},
         
         {"source": "Probability", "target": "Sampling Distribution", "distance": 120},
         {"source": "Sampling Distribution", "target": "Normal Distribution", "distance": 120},
+        {"source": "Normal Distribution", "target": "Linear Regression", "distance": 420},
+        {"source": "Normal Distribution", "target": "Hypothesis Testing", "distance": 120},
         
         {"source": "Probability", "target": "Regression", "distance": 320},
         {"source": "Probability", "target": "Classification", "distance": 300},
@@ -96,11 +99,13 @@ var graph =
         {"source": "Classification", "target": "Clustering", "distance": 220},
         
         {"source": "Regression", "target": "Time Series", "distance": 320},
-        {"source": "Regression", "target": "Linear Regression", "distance": 120},
+        {"source": "Regression", "target": "Linear Regression", "distance": 180},
         {"source": "Regression", "target": "Non-Linear Regression", "distance": 150},
         {"source": "Regression", "target": "LOESS", "distance": 120},
         {"source": "Regression", "target": "Interpolation", "distance": 120},
-        {"source": "Regression", "target": "Loss Functions", "distance": 120},
+        {"source": "Regression", "target": "Loss Functions", "distance": 240},
+        
+        {"source": "Classification", "target": "Loss Functions", "distance": 240},
         
         {"source": "Linear Algebra", "target": "Vector Projection", "distance": 120},
         {"source": "Vector Projection", "target": "Text Similarity", "distance": 220},
@@ -177,7 +182,7 @@ var svg = d3.select("div#chartId")
     .classed("svg-container", true)
     .append("svg")
     .attr("preserveAspectRatio", "xMinYMin meet")
-    .attr("viewBox", "0 0 1800 2000")
+    .attr("viewBox", "0 0 1800 2300")
     .classed("svg-content-responsive", true);
  
 var container = svg.append("g");

@@ -3,8 +3,8 @@ layout: single
 title: "Linear regression"
 description: Explaining linear regression and its properties
 category: "Regression"
-tags: multiple-regression linear-regression multivariable-regression gaussian-noise
-date: 2020-05-06
+tags: multiple-regression linear-regression multivariable-regression gaussian-noise normal-distribution homoscedasticity multicolinearity
+date: 2021-01-20
 ---
  
 Regression analysis is used for estimating the relationship between variables, usually one dependent and one or several independent variables. Having a regression model at hand, we can predict some continuous value of the dependent variable based on the values of independent variables.
@@ -17,12 +17,14 @@ $y = a + bx + \varepsilon$,
 where $a$ and $b$ are parameters which explain the behaviour of the dependent variable according to the values of the independent one, and $\varepsilon$ is the residual.
  
 The general form of linear regression however is the multivariable one where multiple predictors are taken into consideration:
- 
+
 &nbsp;&nbsp;&nbsp;&nbsp;
 $y = \beta_0 + \sum_{i=1}^n \beta_i x_i + \varepsilon$,
  
 where $\beta_i$ are the weights of each independent variable.
- 
+
+A key feature of linear regression models is that it is assumed that a certain change in the variables causes proportional change in the output (which is not the case in non-linear models). The output is basically treated as a linear combination of predictors. In the real life scenarios this behaviour can only be observed for short periods of time as many natural and social processes tend to have non-linear rate of change.
+
 ## Gaussian noise
  
 In practice there are always factors which are impossible to explain and predict and which may cause surprisingly different results from those that we expect. Therefore there is always going to be some difference between estimated (predicted) and actually observed values - the residuals, even for the variables which seem to be perfectly correlated.
@@ -31,20 +33,20 @@ It is common to view the relationship between two observed variables on a scatte
  
 ![](/assets/images/regression/residuals_demo.png){: .align-center}
  
-According to the Central Limit Theorem if the number of observations is large enough - the residuals have normal distribution with the mean value of 0. This basically means that for a modeled relationship between two or more variables the observed variation is mainly clustered around the estimated values. Since normal distribution is also called Gaussian distribution, the distribution of residuals around estimated values is called Gaussian noise.
+According to the Central Limit Theorem if the number of observations is large enough - the residuals have [normal distribution]({{ site.baseurl }}{% link _posts/2019-07-28-normal-ditribution.md %}) with the mean value of 0. This basically means that for a modeled relationship between two or more variables the observed variation is mainly clustered around the estimated values. Since normal distribution is also called Gaussian distribution, the distribution of residuals around estimated values is called Gaussian noise.
  
-## Assumptions
+## Other assumptions
  
-Linear regression estimation relies on a number of assumptions about the predictor variables and their relationship with the output:
+Apart from the linear nature of relationship between predictors and the output the linear regression estimation relies on a number of other assumptions:
  
 * Homoscedasticity - constant variance of error regardless of the values of independent variables.
 * Independence of errors - absence of correlation among errors in different output values.
 * Absence of perfect multicollinearity among predictors - that is that none of the predictors can be expressed as a copy or a linear combination of other predictors.
- 
-In addition, linear regression by itself assumes that the variables are linearly dependent, that is a certain change in independent variable leads to proportional changes in the dependent one. However, inreal life scenarios such behaviour can be observed only for short periods of time as many natural and social processes tend to have non-linear rate of change.
- 
+
+If not all of the assumptions satisfied then the model might not have some of the required variables which explain the bahaviour of errors, or instead might have redundant variables causing multicolinearity.  
+
 ## Matrix notation
- 
+
 For computation purposes it is better to represent the relationship between the dependent and independent variables with matrix notation:
  
 &nbsp;&nbsp;&nbsp;&nbsp;
@@ -52,8 +54,8 @@ $Y = \beta X + \varepsilon$,
  
 where $Y$ is the group of all outputs and $X$ is the composition of all predictors for each particular output:
  
-&nbsp;&nbsp;&nbsp;&nbsp;
-$$Y = \left[ \begin{array}{c}
+$$
+Y = \left[ \begin{array}{c}
 y_1 \\
 y_2 \\
 ... \\
@@ -65,7 +67,8 @@ X = \left[ \begin{array}{ccccc}
 1 & x_21 & x_22 & ... & x_2n \\
 ... & ... & ... & ... & ... \\
 1 & x_n1 & x_n2 & ... & x_nn
-\end{array} \right]$$
+\end{array} \right]
+$$
  
 $\beta$ is the vector of parameters (weights) of each predictor,<br>
 $\varepsilon$ is the vector of errors (Gaussian noise). This variable captures all other factors which influence the dependent variable y other than the regressors.

@@ -3,12 +3,10 @@ layout: single
 title: "Normal distribution"
 description: In this post I described all the essential stuff in order to understand normal distribution and how to use it.
 category: "Probability"
-tags: normal-distibution statistics z-score z-table six-sigma
+tags: normal-distibution statistics z-score z-table six-sigma z-value central-limit-theorem
 date: 2019-07-28
 ---
 
-Here I am going to discuss some essential features of normal distribution.<br>
-<br>
 Normal distribution is one of the most fundamental building blocks of statistics. According to the central limit theorem, averages of random samples, which are drawn independently from some independent distribution converge around some central value. They become normally distributed when the number of observations is sufficiently large. At this point the distribution of the original values from which the samples are drawn doesn't even have to be normally distributed.<br>
 <br>
 Suppose, we decided to measure the weight of all newborns in multitude of different hospitals and calculate the average weight in each hospital. Most likely the distribution of those average weights will resemble a bell-shaped curve. 
@@ -18,9 +16,10 @@ Suppose, we decided to measure the weight of all newborns in multitude of differ
 Here we see that the average of all measured averages converges around a certain central value, 3.2 kilos in this case. This means that among all measured averages we encountered mostly values which are very close or equal to 3.2. The closer the hospital average to 3.2 - the higher the frequency of such encounters. By contrast, we see that there are very few averages that have values, say, higher than 4 or lower than 2.5 kilos.<br>
 <br>
 Normal distribution has very nice statistical properties, with regard to probability in particular. From the example above we can see that  we have a 50% chance of getting an average newborn weight higher or lower than 3.2 kilos. The whole area under the curve represents 100% probability.<br>
-<br>
-Before moving on to calculating the probability of getting certain interval values let’s introduce $z$-score metric. Plainly speaking, $z$-score tells us how many standard deviations a given value is away from the mean of a distribution. 
-<br>
+
+## Z-score
+
+Before moving on to calculating the probability of getting certain interval values let’s introduce $z$-score metric. Plainly speaking, $z$-score tells us how many standard deviations a given value is away from the mean of its distribution. 
 
 &nbsp;&nbsp;&nbsp;&nbsp;
 $z = \frac{x-\mu}{\sigma}$
