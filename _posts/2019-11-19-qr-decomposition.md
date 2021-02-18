@@ -17,8 +17,8 @@ One drawback of using Householder decomposition is that the process is not paral
  
 Unlike traditional Gram-Schmidt QR decomposition, which may introduce instability in floating point numbers, Householder decomposition does not form matrix $Q$ explicitly but instead performs series of multiplications to the original matrix $A$ where each multiplication transforms one column of $A$ forming zeros in it.
  
-&nbsp;&nbsp;&nbsp;&nbsp;
-$$A =  
+$$
+A =  
 \left[\begin{array}{ccccc}
 x & x & x & x & x \\
 x & x & x & x & x \\
@@ -99,9 +99,10 @@ The process is repeated for the next columns of $A$ until it becomes upper-trian
  
 Since we do not want to transform already transformed columns of $A$, the matrix $Q$ of each next step is calculated for a smaller rank, which is obtained by removing upper row and left column from the $Q$ of previous step. However, in order to make possible multiplication with the previously transformed $A$ the matrix is expanded to the upper left again by adding 1 at the diagonal, or in general:
  
-&nbsp;&nbsp;&nbsp;&nbsp;
-$$Q_k =  
+$$
+Q_k =  
 \left[\begin{array}{cc}
 I_{k-1} & 0\\
 0 & Q_k
-\end{array} \right]$$
+\end{array} \right]
+$$

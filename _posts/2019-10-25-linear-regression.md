@@ -3,8 +3,8 @@ layout: single
 title: "Linear regression"
 description: Explaining linear regression and its properties
 category: "Regression"
-tags: multiple-regression linear-regression multivariable-regression gaussian-noise normal-distribution homoscedasticity multicolinearity
-date: 2021-01-20
+tags: multiple-regression linear-regression multivariable-regression gaussian-noise normal-distribution homoscedasticity multicolinearity correlation-coefficient
+date: 2021-02-20
 ---
  
 Regression analysis is used for estimating the relationship between variables, usually one dependent and one or several independent variables. Having a regression model at hand, we can predict some continuous value of the dependent variable based on the values of independent variables.
@@ -38,10 +38,10 @@ According to the Central Limit Theorem if the number of observations is large en
 ## Other assumptions
  
 Apart from the linear nature of relationship between predictors and the output the linear regression estimation relies on a number of other assumptions:
- 
-* Homoscedasticity - constant variance of error regardless of the values of independent variables.
-* Independence of errors - absence of correlation among errors in different output values.
+
 * Absence of perfect multicollinearity among predictors - that is that none of the predictors can be expressed as a copy or a linear combination of other predictors.
+* Independence of errors - absence of correlation among errors in different output values.
+* Homoscedasticity - constant variance of error regardless of the values of independent variables.
 
 If not all of the assumptions satisfied then the model might not have some of the required variables which explain the bahaviour of errors, or instead might have redundant variables causing multicolinearity.  
 
@@ -74,3 +74,31 @@ $\beta$ is the vector of parameters (weights) of each predictor,<br>
 $\varepsilon$ is the vector of errors (Gaussian noise). This variable captures all other factors which influence the dependent variable y other than the regressors.
  
 The parameters $\beta$ of such equation are usually estimated with [least squares]({{ site.baseurl }}{% link _posts/2019-10-27-linear-least-squares.md %}), however other methods such as maximum likelihood or robust estimation techniques can be employed.
+
+## Validation of assumptions 
+
+Linear regression is safe to apply if all of the assumptions are satisfied. Using the Boston house prices dataset I'll perform a typical check in order to ascertain whether it is reasonable to apply linear regression to predict prices.
+
+### Linear relationship
+
+This can be validated by checking [correlation coefficients]({{ site.baseurl }}{% link _posts/2019-10-27-linear-least-squares.md %}) between predictors and the dependent variable. Coefficients with absolute values closer 1 hint at linear relationship between variables. Below is the plot of the relationship between price and some of the predictors.
+
+![](/assets/images/regression/residuals_demo.png){: .align-center}
+
+As we see, the percentage of lower status population, and number of rooms are somewhat linearly correlated with the price, pupil-teacher ratio shows weak correlation, and the distance to the employment centers doesn't seem to matter at all.
+
+### Absence of perfect multicolinearity among predictors
+
+Multicolinearity 
+ - high condition number
+ - high standard error for coefficeints indicates their instability
+ - non-significant coefficients
+ 
+
+Eventually we decide to include only three variables in the model and estimate parametrers for them. This is the model that we've got:
+
+&nbsp;&nbsp;&nbsp;&nbsp;
+
+
+### Independence of errors
+

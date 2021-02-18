@@ -44,7 +44,7 @@ $$
  
 The resulting matrix (let's call it $Q$), translates linear transformation set in basis B into a coordinate system expressed by basis A. In the example above multiplying vector $v$ with $Q$ results into vector $w$ because the elements of $v$ scale vectors $a$ and $b$ instead of $\hat{i}$ and $\hat{j}$.
  
-While matrix $Q$ allows to switch from basis B to basis A, its iverse $M^{-1}$ does exactly the opposite. Therefore, if we multiply vector $v$ with $Q^{-1}$ we would obtain the same vector but expressed in the coordinate system of basis B.  
+While matrix $Q$ allows to switch from basis B to basis A, its iverse $Q^{-1}$ does exactly the opposite. Therefore, if we multiply vector $v$ with $Q^{-1}$ we would obtain the same vector but expressed in the coordinate system of basis B.  
  
 ## Linear transformation in different bases
  
@@ -52,9 +52,9 @@ Now what if we want to represent the same type of linear transformation which ca
  
 Say we have our linear transformation captured in some matrix $X$ defined in space with basis A, and transformation matrix $Q$ which translates vectors from basis B to basis A. In this case we do the following:
  1. Take $Q$ in order to have transformations in basis B represented with basis A.
- 2. Multiply $Q$ with $X$ on the left. This will produce the transformation in basis B that we need. However this transformation is stil expressed in coordinate terms of basis A.
- 3. Multiply the result from the previous stem with $Q^{-1}$ on the left in order to have our transformation represented with basis B.
- 
+ 2. Multiply $Q$ with $X$ on the left. This will produce the transformation in basis B that we need but it will be expressed in coordinate terms of basis A.
+ 3. Multiply the result from the previous step with $Q^{-1}$ on the left in order to have our transformation represented with basis B.
+
 &nbsp;&nbsp;&nbsp;&nbsp;
 $X_B = Q^{-1}X_{A}Q$
  

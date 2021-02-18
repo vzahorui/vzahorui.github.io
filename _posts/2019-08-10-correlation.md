@@ -3,7 +3,7 @@ layout: single
 title: "Correlation"
 description: Here I am going to explain what is correlation and correlation coefficients, the intuition behind their calculations and how they may be useful
 category: "Regression"
-tags: correlation correlation-coefficients covariation regression
+tags: correlation correlation-coefficients covariation regression Pearson's-correlation-coefficient
 date: 2019-08-10
 ---
 
@@ -15,7 +15,7 @@ Calculation of covariance is very similar to the calculation of distribution var
 &nbsp;&nbsp;&nbsp;&nbsp;
 $cov(X,Y)$ = $\frac{1}{n}\sum_{i=1}^n (x_i-\overline{x})(y_i-\overline{y})$
 
-In turn, correlation coefficient (also known as Pearson’s correlation coefficient) is a standardised (or scaled) version of covariance.
+In turn, correlation coefficient (also known as Pearson's correlation coefficient) is a standardised (or scaled) version of covariance.
 
 &nbsp;&nbsp;&nbsp;&nbsp;
 $\rho_{X,Y} = \frac{cov(X,Y)}{\sigma_X \sigma_Y}$
