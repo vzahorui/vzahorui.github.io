@@ -15,8 +15,8 @@ Under other assumptions of linear regression, the residuals are normally distrib
  
 For the expression $Y = \beta X + \varepsilon$ we want to minimize squared $\varepsilon$, which can be expressed like this:
  
-&nbsp;&nbsp;&nbsp;&nbsp;
-$$\sum_{i=0}^n \varepsilon_i^2 =
+$$
+\sum_{i=0}^n \varepsilon_i^2 =
 \left[ \begin{array}{cccc}
 \varepsilon_1 & \varepsilon_2 & ... & \varepsilon_n
 \end{array} \right]_{1 \times n}
@@ -26,7 +26,8 @@ $$\sum_{i=0}^n \varepsilon_i^2 =
 ... \\
 \varepsilon_n
 \end{array} \right]_{n \times 1}
-$$ <br>
+$$
+
 where $\varepsilon_i$ is an error of individual observation point.
  
 Using general matrix notation of linear regression the squared error can be rewritten as follows:
@@ -87,7 +88,6 @@ From here $Q^{T}y$ and $Q^{T}\varepsilon$ result into vectors, and $R$ becomes a
 
 Vector $Q^{T}\varepsilon$ is minimized when $R \beta - Q^{T}y$ is maximally close to 0. Now, when $n > m$ the expression takes the following generalized form:
 
-&nbsp;&nbsp;&nbsp;&nbsp;
 $$
 Q^{T}\varepsilon = 
 \left[\begin{array}{c}

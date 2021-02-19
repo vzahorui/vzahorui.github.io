@@ -89,15 +89,16 @@ As we see, the percentage of lower status population, and number of rooms are so
 
 ### Absence of perfect multicolinearity among predictors
 
+Eventually we decide to include only three variables in the model and estimate parametrers for them. This is the model that we've got:
+
+&nbsp;&nbsp;&nbsp;&nbsp;
+
 Multicolinearity 
  - high condition number
  - high standard error for coefficeints indicates their instability
  - non-significant coefficients
  
-
-Eventually we decide to include only three variables in the model and estimate parametrers for them. This is the model that we've got:
-
-&nbsp;&nbsp;&nbsp;&nbsp;
+Some methods of finding coefficients of linear regression for example as 
 
 
 ### Independence of errors
