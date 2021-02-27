@@ -84,16 +84,13 @@ $Var(A) = E[AA^{T}]-E[A][E[A]]^{T}$
 Using it we build a formula for variance of $\hat \beta$:
 
 $$
-\begin{align}
 Var[\hat \beta] = E[((X^{T}X)^{-1}X^{T}Y)((X^{T}X)^{-1}X^{T}Y)^{T}] - E[\hat \beta][E[\hat \beta]] \\
 = E[((X^{T}X)^{-1}X^{T}(X \beta + \varepsilon))((X^{T}X)^{-1}X^{T}(X \beta + \varepsilon))^{T}] - \beta^2 \\
 = E[((X^{T}X)^{-1}X^{T}X \beta + (X^{T}X)^{-1}X^{T}\varepsilon))((X^{T}X)^{-1}X^{T}X \beta + (X^{T}X)^{-1}X^{T}\varepsilon))^{T}] - \beta^2 \\
-E[(\beta + (X^{T}X)^{-1}X^{T}\varepsilon))(\beta + (X^{T}X)^{-1}X^{T}\varepsilon))^{T}] - \beta^2
-\end{align}
+= E[(\beta + (X^{T}X)^{-1}X^{T}\varepsilon))(\beta + (X^{T}X)^{-1}X^{T}\varepsilon))^{T}] - \beta^2 \\
+= \beta^2 + E[((X^{T}X)^{-1}X^{T}\varepsilon)((X^{T}X)^{-1}X^{T}\varepsilon)^{T}] - \beta^2 \\
+= E[(X^{T}X)^{-1}X^{T}\varepsilon \varepsilon^{T}X(X^{T}X)^{-1}] = \sigma^2 (X^{T}X)^{-1}
 $$
-
-&nbsp;&nbsp;&nbsp;&nbsp;
-E[(\beta + (X^{T}X)^{-1}X^{T}\varepsilon))(\beta + (X^{T}X)^{-1}X^{T}\varepsilon))^{T}] - \beta^2 = \beta^2 + E[((X^{T}X)^{-1}X^{T}\varepsilon)((X^{T}X)^{-1}X^{T}\varepsilon)^{T}] - \beta^2 = E[(X^{T}X)^{-1}X^{T}\varepsilon \varepsilon^{T}X(X^{T}X)^{-1}] = E[\varepsilon^2](X^{T}X)^{-1}X^{T}X(X^{T}X)^{-1} = \sigma^2 (X^{T}X)^{-1}$
 
 Where $\sigma^2$ is the variance of the error term.
 
