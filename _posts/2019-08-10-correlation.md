@@ -79,7 +79,7 @@ One of the core assumptions in the linear regression is the [normal distribution
 Recall that $\hat \beta = (X^{T}X)^{-1}X^{T}Y$, and $Y = X \beta + \varepsilon$, where $\beta$ is the true value of coefficients, and $\hat \beta$ is the estimate. The general formula for variance in matrix form is this:
 
 &nbsp;&nbsp;&nbsp;&nbsp;
-$Var(A) = E[AA^{T}]$
+$Var(A) = E[AA^{T}]-E[A]$
 
 &nbsp;&nbsp;&nbsp;&nbsp;
 $Var(A) = E[AA^{T}] - E[A](E[A])^{T}$
