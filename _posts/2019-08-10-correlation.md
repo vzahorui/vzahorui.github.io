@@ -83,12 +83,9 @@ $Var(A) = E[AA^{T}]-E[A][E[A]]^{T}$
 
 Using it we build a formula for variance of $\hat \beta$:
 
-&nbsp;&nbsp;&nbsp;&nbsp;
 $$
-\begin{multlined}[b]
 Var[\hat \beta] = E[((X^{T}X)^{-1}X^{T}Y)((X^{T}X)^{-1}X^{T}Y)^{T}] - E[\hat \beta][E[\hat \beta]] \\
 = E[((X^{T}X)^{-1}X^{T}(X \beta + \varepsilon))((X^{T}X)^{-1}X^{T}(X \beta + \varepsilon))^{T}]
-\end{multlined}
 $$
 
 &nbsp;&nbsp;&nbsp;&nbsp;
