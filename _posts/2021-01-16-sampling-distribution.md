@@ -3,8 +3,7 @@ layout: single
 title: "Sampling distribution"
 description: Sample mean and variance
 category: "Probability"
-tags: variance sample mean Central-limit-theorem normal-distribution standard-error standard-deviation sample-variance sample-mean unbiased-estimate
-confidence-interval margin-of-error significance-level confidence-level z-value t-value t-statistic z-statistic z-score
+tags: variance sample mean Central-limit-theorem normal-distribution standard-error standard-deviation sample-variance sample-mean unbiased-estimate confidence-interval margin-of-error significance-level confidence-level z-value t-value t-statistic z-statistic z-score
 date: 2021-02-01
 ---
 
