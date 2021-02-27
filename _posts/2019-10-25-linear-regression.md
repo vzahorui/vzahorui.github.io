@@ -4,7 +4,7 @@ title: "Linear regression"
 description: Explaining linear regression and its properties
 category: "Regression"
 tags: multiple-regression linear-regression multivariable-regression gaussian-noise normal-distribution homoscedasticity multicolinearity correlation-coefficient
-date: 2021-02-20
+date: 2021-02-26
 ---
  
 Regression analysis is used for estimating the relationship between variables, usually one dependent and one or several independent variables. Having a regression model at hand, we can predict some continuous value of the dependent variable based on the values of independent variables.
@@ -41,6 +41,7 @@ Apart from the linear nature of relationship between predictors and the output t
 
 * Absence of perfect multicollinearity among predictors - that is that none of the predictors can be expressed as a copy or a linear combination of other predictors.
 * Independence of errors - absence of correlation among errors in different output values.
+* Normal distribution of the error term with the mean value of 0.
 * Homoscedasticity - constant variance of error regardless of the values of independent variables.
 
 If not all of the assumptions satisfied then the model might not have some of the required variables which explain the bahaviour of errors, or instead might have redundant variables causing multicolinearity.  
@@ -50,7 +51,7 @@ If not all of the assumptions satisfied then the model might not have some of th
 For computation purposes it is better to represent the relationship between the dependent and independent variables with matrix notation:
  
 &nbsp;&nbsp;&nbsp;&nbsp;
-$Y = \beta X + \varepsilon$,
+$Y = X \beta + \varepsilon$,
  
 where $Y$ is the group of all outputs and $X$ is the composition of all predictors for each particular output:
  
@@ -83,15 +84,22 @@ Linear regression is safe to apply if all of the assumptions are satisfied. Usin
 
 This can be validated by checking [correlation coefficients]({{ site.baseurl }}{% link _posts/2019-10-27-linear-least-squares.md %}) between predictors and the dependent variable. Coefficients with absolute values closer 1 hint at linear relationship between variables. Below is the plot of the relationship between price and some of the predictors.
 
-![](/assets/images/regression/residuals_demo.png){: .align-center}
+![](/assets/images/regression/correlation_example2.png){: .align-center}
 
-As we see, the percentage of lower status population, and number of rooms are somewhat linearly correlated with the price, pupil-teacher ratio shows weak correlation, and the distance to the employment centers doesn't seem to matter at all.
+As we see, the percentage of lower status population, and number of rooms are somewhat linearly correlated with the price, pupil-teacher ratio shows weak correlation, and the distance to the employment centers doesn't seem to matter at all, so we exclude this particular variable from further use.
 
 ### Absence of perfect multicolinearity among predictors
+
+Similarly, in order to detect multicolinearity we may check correletion coefficients between predictors. In our example among three remaining variables the correlation coefficients between the percentage of lower status population and the number of rooms is -0.61, which makes perfect sense as these categories are certainly related but not fully.
+
+Multicolinearity could also be detected when the sign at coefficient at a certain parameter is not what we would expect. This happens if the model tries to compensate the effect of several correlated predictors. Also, if the coefficients are estimated multiple times using different samples - the estimations of highly correlated variables will be unstable.
+
+
 
 Eventually we decide to include only three variables in the model and estimate parametrers for them. This is the model that we've got:
 
 &nbsp;&nbsp;&nbsp;&nbsp;
+$y = 18.57 - 0.93x_1 + 4.52x_2 - 0.57x_3$
 
 Multicolinearity 
  - high condition number

@@ -7,13 +7,13 @@ tags: linear-regression ols svd gradient-descent pseudoinverse ill-conditioned-m
 date: 2019-10-27
 ---
  
-Ordinary least squares method (OLS) estimates analytically parameters for a linear regression by minimizing the sum of the squares of the differences between predicted and observed values of the dependent variable. As a result, this method produces a single set of parameters of the regression model, which fits the best to the observed data.
+Ordinary least squares method (OLS) estimates analytically parameters for a [linear regression]({{ site.baseurl }}{% link _posts/2019-10-25-linear-regression.md %}) by minimizing the sum of the squares of the differences between predicted and observed values of the dependent variable. As a result, this method produces a single set of parameters of the regression model, which fits the best to the observed data.
  
 Under other assumptions of linear regression, the residuals are normally distributed with the value of mean which equals to 0.
  
 ## Analytical solving (normal equations)
  
-For the expression $Y = \beta X + \varepsilon$ we want to minimize squared $\varepsilon$, which can be expressed like this:
+For the expression $Y = X \beta + \varepsilon$ we want to minimize squared $\varepsilon$, which can be expressed like this:
  
 $$
 \sum_{i=0}^n \varepsilon_i^2 =
@@ -33,7 +33,7 @@ where $\varepsilon_i$ is an error of individual observation point.
 Using general matrix notation of linear regression the squared error can be rewritten as follows:
  
 &nbsp;&nbsp;&nbsp;&nbsp;
-$\varepsilon^{T}\varepsilon = (Y - \beta X)^2 = Y^{T}Y - 2\beta^{T}X^{T}Y + \beta^{T}X^{T}X\beta$
+$\varepsilon^{T}\varepsilon = (Y - X \beta)^2 = Y^{T}Y - \beta^{T}X^{T}Y - Y^{T}X\beta + \beta^{T}X^{T}X\beta$
  
 In order to find $\beta$ that minimizes squared error we need to find its critical point by taking the derivative of this equation with respect to $\beta$ and solve it when it equals to 0. (The second derivative with respect to $\beta$ is always positive, hence the critical point is the minimum. More about analyzing functions can be found [here]({{ site.baseurl }}{% link _posts/2019-09-21-analyzing-functions.md %}).)
  
@@ -42,9 +42,6 @@ $\frac{\partial \varepsilon^{T}\varepsilon}{\partial \beta} = -2X^{T}Y + 2X^{T}X
  
 &nbsp;&nbsp;&nbsp;&nbsp;
 $(X^{T}X)\beta = X^{T}Y$
- 
-&nbsp;&nbsp;&nbsp;&nbsp;
-$(X^{T}X)^{-1}(X^{T}X)\beta = (X^{T}X)^{-1}X^{T}Y$
  
 &nbsp;&nbsp;&nbsp;&nbsp;
 $\beta = (X^{T}X)^{-1}X^{T}Y$
@@ -58,7 +55,8 @@ In case of larger volumes of data computation of square matrix $X^{T}X$ and then
 If the matrix $X^{T}X$ is ill-conditioned then computation of its inverse may result in errors during rounding of floating point numbers, hence the result may be inaccurate. In addition, large condition number of a matrix is squared after performing $X^{T}X$ multiplication. Furthermore, if the matrix $X^{T}X$ is singular then it is impossible to get its inverse. This is where [singular value decomposition]({{ site.baseurl }}{% link _posts/2019-11-03-singular-value-decomposition.md %}) comes to the rescue. SVD may be applied to any matrix, including singular matrices.
  
 &nbsp;&nbsp;&nbsp;&nbsp;
-$A = U \Sigma V^{T}$,<br>
+$A = U \Sigma V^{T}$
+
 where $U$ and $V$ are orthogonal matrices and $\Sigma$ is a diagonal matrix of singular values.
  
 Remember, the inverse of an orthogonal matrix equals its transpose. Here is how SVD transforms analytical formula for finding $\beta$ in the least squares problem:
