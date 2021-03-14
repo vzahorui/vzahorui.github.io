@@ -8,7 +8,7 @@ title: Unlocking the power of data
   display: inline-block;
   position: relative;
   width: 100%;
-  padding-bottom: 90%; /* aspect ratio */
+  padding-bottom: 120%; /* aspect ratio */
   vertical-align: middle;
   overflow: hidden;
 }
@@ -17,7 +17,8 @@ title: Unlocking the power of data
   position: absolute;
   top: 10px;
   left: 0; 
-    width: auto;
+  height: 100%; 
+  width : 100%;
 }
 </style>
 
@@ -51,7 +52,7 @@ var graph =
         {"id": "Correlation", "url": "{{ site.baseurl }}{% link _posts/2019-08-10-correlation.md %}", "size": 10, "font": 1},
         
         {"id": "Sampling Distribution", "url": "{{ site.baseurl }}{% link _posts/2021-01-16-sampling-distribution.md %}",
-         "size": 4, "font": 1},
+         "size": 10, "font": 1},
         {"id": "Normal Distribution", "url": "{{ site.baseurl }}{% link _posts/2019-07-28-normal-ditribution.md %}",
          "size": 10, "font": 1},
         {"id": "Hypothesis Testing", "url": "{{ site.baseurl }}{% link _posts/2021-01-21-hypothesis-testing.md %}",
@@ -60,7 +61,7 @@ var graph =
         {"id": "Eigenvectors and Eigenvalues", "url":"{{ site.baseurl }}{% link _posts/2019-11-02-eigenvectors-and-eigenvalues.md %}",
 "size":4, "font":1},
         {"id": "Singular Value Decomposition", "url":"{{ site.baseurl }}{% link _posts/2019-11-03-singular-value-decomposition.md %}",
-"size":4, "font":1},
+"size":18, "font":1.3},
         {"id": "QR Decomposition", "url":"{{ site.baseurl }}{% link _posts/2019-11-19-qr-decomposition.md %}",
 "size":4, "font":1},
         {"id": "Vector Projection", "url":"{{ site.baseurl }}{% link _posts/2020-03-04-vector-projection.md %}",
@@ -84,17 +85,19 @@ var graph =
 "size":4, "font":1},
         
         {"id": "Text Similarity", "url":"{{ site.baseurl }}{% link _posts/2020-03-03-text-similarity.md %}",
-"size":4, "font":1}
+"size":4, "font":1},
+        
+        {"id": "Feature Extraction", "size": 30, "font": 2}
       
     ],
     "links": [
-        {"source": "Calculus", "target": "Probability", "distance": 280},
-        {"source": "Linear Algebra", "target": "Calculus", "distance": 280},
+        {"source": "Probability", "target": "Integrals", "distance": 280},
         
-        {"source": "Probability", "target": "Sampling Distribution", "distance": 120},
-        {"source": "Sampling Distribution", "target": "Normal Distribution", "distance": 120},
-        {"source": "Normal Distribution", "target": "Linear Regression", "distance": 420},
-        {"source": "Normal Distribution", "target": "Hypothesis Testing", "distance": 120},
+        {"source": "Probability", "target": "Normal Distribution", "distance": 220},
+        {"source": "Normal Distribution", "target": "Hypothesis Testing", "distance": 150},
+        {"source": "Normal Distribution", "target": "Sampling Distribution", "distance": 180},
+        
+        {"source": "Sampling Distribution", "target": "Correlation", "distance": 320},
         
         {"source": "Probability", "target": "Regression", "distance": 320},
         {"source": "Probability", "target": "Classification", "distance": 300},
@@ -104,11 +107,13 @@ var graph =
         {"source": "Regression", "target": "Time Series", "distance": 320},
         {"source": "Regression", "target": "Linear Regression", "distance": 180},
         {"source": "Regression", "target": "Non-Linear Regression", "distance": 150},
-        {"source": "Regression", "target": "LOESS", "distance": 120},
-        {"source": "Regression", "target": "Interpolation", "distance": 120},
+        {"source": "Regression", "target": "LOESS", "distance": 150},
+        {"source": "Regression", "target": "Interpolation", "distance": 150},
         {"source": "Regression", "target": "Loss Functions", "distance": 240},
         
-        {"source": "Linear Regression", "target": "Correlation", "distance": 180},
+        {"source": "Linear Regression", "target": "Correlation", "distance": 150},
+        {"source": "Linear Regression", "target": "QR Decomposition", "distance": 250},
+        {"source": "Linear Regression", "target": "Singular Value Decomposition", "distance": 250},
         
         {"source": "Classification", "target": "Loss Functions", "distance": 240},
         
@@ -116,13 +121,13 @@ var graph =
         {"source": "Vector Projection", "target": "Text Similarity", "distance": 220},
         {"source": "Text Similarity", "target": "NLP", "distance": 120},
         
-        {"source": "Linear Algebra", "target": "QR Decomposition", "distance": 120},
-        {"source": "Linear Algebra", "target": "Eigenvectors and Eigenvalues", "distance": 120},
+        {"source": "Linear Algebra", "target": "QR Decomposition", "distance": 180},
+        {"source": "Linear Algebra", "target": "Eigenvectors and Eigenvalues", "distance": 180},
         {"source": "Eigenvectors and Eigenvalues", "target": "Singular Value Decomposition", "distance": 70},
                 
         {"source": "Calculus", "target": "Derivatives", "distance": 220},
-        {"source": "Calculus", "target": "Integrals", "distance": 90},
-        {"source": "Integrals", "target": "Differential Equations", "distance": 150},
+        {"source": "Calculus", "target": "Integrals", "distance": 150},
+        {"source": "Integrals", "target": "Differential Equations", "distance": 250},
         {"source": "Derivatives", "target": "Differential Equations", "distance": 150},
         
         {"source": "Derivatives", "target": "Gradient Descent", "distance": 120},
@@ -141,8 +146,9 @@ var graph =
         {"source": "Optimization", "target": "Conjugate Gradient", "distance": 220},
         {"source": "Gradient Descent", "target": "Conjugate Gradient", "distance": 140},
         
+        {"source": "Optimization", "target": "Non-Linear Regression", "distance": 570},
         
-        {"source": "Optimization", "target": "Non-Linear Regression", "distance": 570}
+        {"source": "Singular Value Decomposition", "target": "Feature Extraction", "distance": 300},
         
         
     ]   

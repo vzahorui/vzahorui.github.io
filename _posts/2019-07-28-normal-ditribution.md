@@ -7,8 +7,8 @@ tags: normal-distibution statistics z-score z-table six-sigma z-value central-li
 date: 2019-07-28
 ---
 
-Normal distribution is one of the most fundamental building blocks of statistics. According to the central limit theorem, averages of random samples, which are drawn independently from some independent distribution converge around some central value. They become normally distributed when the number of observations is sufficiently large. At this point the distribution of the original values from which the samples are drawn doesn't even have to be normally distributed.<br>
-<br>
+Normal distribution is one of the most fundamental building blocks of statistics. According to the central limit theorem, averages of random samples, which are drawn independently from some independent distribution converge around some central value. They become normally distributed when the number of observations is sufficiently large. At this point the distribution of the original values from which the samples are drawn doesn't even have to be normally distributed.
+
 Suppose, we decided to measure the weight of all newborns in multitude of different hospitals and calculate the average weight in each hospital. Most likely the distribution of those average weights will resemble a bell-shaped curve. 
 
 ![](/assets/images/distributions/toy_newborn_weight_distribution.png){: .align-center}
@@ -30,8 +30,8 @@ Suppose we want to calculate the percentage of newborns who have weight less tha
 
 ![](/assets/images/distributions/toy_newborn_weight_distribution_area.png){: .align-center}
 
-In the first case we simply calculate $z$-score of the value 3 and look up the area under the curve from the $z$-table for negative values (since 3 is lower than the mean 3.2). In this example it approximates to 0.2514. So conclude that only 25.14% of all newborns have weight 3 kilos or less.<br>
-<br>
+In the first case we simply calculate $z$-score of the value 3 and look up the area under the curve from the $z$-table for negative values (since 3 is lower than the mean 3.2). In this example it approximates to 0.2514. So conclude that only 25.14% of all newborns have weight 3 kilos or less.
+
 In the second example we have an area with two cut-off points. $Z$-table allows us to find the area to the left from a specific value, so here is what we do. First we calculated $z$-scores for 3.5 and for 3, then we look up the area under the curve for all weights which are less than 3.5 kilos and those which are less than 3 kilos. Then we simply subtract the second from the first. Finally we end up with something like 0.8413 - 0.2514, which equals to 0.59. Here we conclude that nearly 59% of all newborns have weight between 3 and 3.5 kilos.
 
 ## Six Sigma rule

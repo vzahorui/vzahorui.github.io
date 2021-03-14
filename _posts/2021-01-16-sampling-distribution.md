@@ -25,7 +25,7 @@ $E[\bar X] = \frac{1}{n}(\mu + \mu + ... + \mu) = \frac{n \mu}{n} = \mu$
 
 Eventually the expected value of the sample mean is equal to the mean of the population.
 
-Interestingly the distribution of means of different independently drawn samples tend to resemble [normal distribution]({{ site.baseurl }}{% link _posts/2019-07-28-normal-ditribution.md %}) as the number of samples increases. This phenomenon is known as the Central limit theorem and it applies to any type of population distribution.
+Interestingly, the distribution of means of different independently drawn samples tend to resemble [normal distribution]({{ site.baseurl }}{% link _posts/2019-07-28-normal-ditribution.md %}) as the number of samples increases. This phenomenon is known as the Central limit theorem and it applies to any type of population distribution.
 
 ### Variance of the sample mean
 
