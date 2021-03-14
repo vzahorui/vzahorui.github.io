@@ -3,13 +3,9 @@ layout: single
 title: "Correlation and variance in linear regression"
 description: Here I am going to explain what is correlation and correlation coefficients, the intuition behind their calculations and how they may be useful
 category: "Regression"
-tags: correlation correlation-coefficients covariation regression Pearson's-correlation-coefficient coefficient-of-determination r-squared adjusted-r-squared regression-model variation error-term variance-of-coefficients
-date: 2021-02-27
+tags: correlation correlation-coefficients covariation regression Pearson's-correlation-coefficient coefficient-of-determination r-squared adjusted-r-squared regression-model variation error-term variance-of-coefficients covariance-matrix
+date: 2021-03-14
 ---
-
-## What is correlation?
-
-Generally speaking correlation is a measure of how two variables are related. Increase of one variable may cause another to increase or decrease and vice versa. In linear regression we use correlation coefficient in order to understand how well a line describes the relationship between two variables. One other measure which is used to measure correlation is covariance.
 
 ## What is covariance?
 
@@ -18,14 +14,35 @@ Covariance is a measure of the joint variability of two random variables. If the
 Calculation of covariance is very similar to the calculation of distribution variance, however instead of squaring the difference we take a product of differences of both variables from the mean.
 
 &nbsp;&nbsp;&nbsp;&nbsp;
-$Cov(X,Y)$ = $\frac{1}{n}\sum_{i=1}^n (x_i-\overline{x})(y_i-\overline{y})$
+$Cov(X,Y)$ = $\frac{1}{n-1}\sum_{i=1}^n (x_i-\overline{x})(y_i-\overline{y})$
 
-In turn, correlation coefficient (also known as Pearson's correlation coefficient) is a standardised (or scaled) version of covariance.
+In the denominator we have $(n-1)$ instead of just $n$ in order to account for the variance of the sample mean. More to it can be found [here]({{ site.baseurl }}{% link _posts/2021-01-16-sampling-distribution.md %})).
+
+For multiple variables it is possible to calculate the covariance matrix which contains all covariance values of all pairwise combinations of the variables. It's a square symmetric matrix with the diagonal elements equal to the variance of corresponding variables.
+
+$$
+C = \frac{1}{n-1}\sum_{i=1}^n (x_i - \bar x)(x_i - \bar x)^{T} =
+\left[\begin{array}{cccc}
+Var(x_{1}) & Cov(x_1, x_2) & ... & Cov(x_1, x_m) \\
+Cov(x_2, x_1) & Var(x_{2}) & ... & Cov(x_2, x_m) \\
+... & ... & ... & ... \\
+Cov(x_m, x_1) & Cov(x_m, x_2) & ... & Var(x_{m})
+\end{array} \right]
+$$
+
+If the variables in each vector of a matrix are centered around their respective mean values then the covariance matrix can be calculated just like this:
+
+&nbsp;&nbsp;&nbsp;&nbsp;
+$C = \frac{1}{n-1}X^{T}X$
+
+## What is correlation?
+
+Correlation coefficient (also known as Pearson's correlation coefficient) is a standardised (or scaled) version of covariance. Generally speaking correlation is a measure of how two variables are related. Increase of one variable may cause another to increase or decrease and vice versa. In linear regression with two variables we use correlation coefficient in order to understand how well a line describes the relationship between them.
 
 &nbsp;&nbsp;&nbsp;&nbsp;
 $\rho_{X,Y} = \frac{Cov(X,Y)}{\sigma_X \sigma_Y}$
 
-The value of correlation coefficient lies between -1.0 and 1.0. If correlation coefficient equals 1 then the upward sloping line can completely describe the relationship. And vice verca, if the correlation coefficient equals -1 then the relationship can be completely described with the downward slope. And if the correlation coefficient is close to 0 then the line is not describing the relationship well at all.
+The value of correlation coefficient lies between -1.0 and 1.0. If correlation coefficient equals 1 then the upward sloping line can completely describe the relationship. And vice versa, if the correlation coefficient equals -1 then the relationship can be completely described with the downward slope. And if the correlation coefficient is close to 0 then the line is not describing the relationship well at all.
 
 Below is representation of different kinds of simple linear regression where correlation coefficient assumes different values.
 
@@ -33,7 +50,7 @@ Below is representation of different kinds of simple linear regression where cor
 
 ## Coefficient of determination
 
-A related concept to correlation with regard to the [linear regression]({{ site.baseurl }}{% link _posts/2019-10-25-linear-regression.md %}) is the coefficient of determination, also known as $R$-squared. This coefficient represents the strength of linear relationship in the model by measuring how much of the variation in the dependent variable caused by independent variables.
+A related concept to correlation with regard to the [linear regression]({{ site.baseurl }}{% link _posts/2019-10-25-linear-regression.md %}) is the coefficient of determination, also known as $R$-squared. This coefficient represents the strength of linear relationship in the model by measuring how much of the variation in the dependent variable is caused by independent variables.
 
 The predicted value $\hat Y$ constitutes the range of variance which is explained by independent variables while the observed value $Y$ represents the total variance which consists of the variance of $\hat Y$ and the variance of the error term $\varepsilon$. From here the coefficient of determination is the ratio of explained variance to the total observed variance.
 
@@ -95,3 +112,12 @@ $$
 Where $\sigma^2$ is the variance of the error term.
 
 From this we make a conclusion that the variance of coefficients is bigger in noisy datasets. At the same time, the variance decreases if the spread in $X$ increases which makes sense, since increasing the range of possible values of independent variables reduces the effect of the noise, and according to the [Central limit theorem]({{ site.baseurl }}{% link _posts/2021-01-16-sampling-distribution.md %}), the distribution of the error term and the parameters start to resemble normal distribution.
+
+## Variance inflation factor
+
+Variance inflation factor (VIF) is a measure of variance of a coefficient in a linear regression which is caused by multicollinearity. This indicator is calculated separately for each independent variable in the model by building a regression where this variable is described by other independent variables (the dependent variable is omitted here). Looking at the coefficient of determination for the built regression it is possible to get the idea of how much the variance of the variable is determined by other variables, and it also serves as an indicator of multicollinearity. Now let's take a look at the how VIF is constructed:
+
+&nbsp;&nbsp;&nbsp;&nbsp;
+$VIF_i = \frac{1}{1-R_i^2}$
+
+If there is no multicollinearity for a given variable VIF will assume the value of 1, otherwise it will be higher. Compared to $R$-squared the variance inflation factor has one additional statistical property - it provides a numerical measure of how much the variance of coefficient is inflated due to multicollinearity (just like the name suggests). For practical reasons values of VIF higher than 5 (this corresponds to the values of $R$-squared higher than 0.8) indicate multicollinearity.

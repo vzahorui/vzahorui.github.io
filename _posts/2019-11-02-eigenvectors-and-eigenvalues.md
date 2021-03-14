@@ -7,7 +7,7 @@ tags: vector identity-matrix determinant matrix matrix-diagonalization column-sp
 date: 2020-07-26
 ---
  
-In machine learning eigenvectors and eigenvalues is one of the heavily used concepts, which among other things is fundamental for dimension reduction and finding principal components.
+In machine learning eigenvectors and eigenvalues is one of the heavily used concepts, which among other things is fundamental for dimension reduction and finding [principal components]({{ site.baseurl }}{% link _posts/2019-11-03-singular-value-decomposition.md %}).
  
 Let's recall that matrices represent linear transformations and their columns are just vectors of some specific length pointing in certain directions. Performing matrix vector multiplication results in a scaled linear combination of the vectors of a matrix, and the set of all possible combinations spanning the vector space is called column space of a matrix.  
  

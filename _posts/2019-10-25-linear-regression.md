@@ -4,7 +4,7 @@ title: "Linear regression"
 description: Explaining linear regression and its properties
 category: "Regression"
 tags: multiple-regression linear-regression multivariable-regression gaussian-noise normal-distribution homoscedasticity multicolinearity correlation-coefficient
-date: 2021-02-26
+date: 2021-02-28
 ---
  
 Regression analysis is used for estimating the relationship between variables, usually one dependent and one or several independent variables. Having a regression model at hand, we can predict some continuous value of the dependent variable based on the values of independent variables.
@@ -34,17 +34,6 @@ It is common to view the relationship between two observed variables on a scatte
 ![](/assets/images/regression/residuals_demo.png){: .align-center}
  
 According to the Central Limit Theorem if the number of observations is large enough - the residuals have [normal distribution]({{ site.baseurl }}{% link _posts/2019-07-28-normal-ditribution.md %}) with the mean value of 0. This basically means that for a modeled relationship between two or more variables the observed variation is mainly clustered around the estimated values. Since normal distribution is also called Gaussian distribution, the distribution of residuals around estimated values is called Gaussian noise.
- 
-## Other assumptions
- 
-Apart from the linear nature of relationship between predictors and the output the linear regression estimation relies on a number of other assumptions:
-
-* Absence of perfect multicollinearity among predictors - that is that none of the predictors can be expressed as a copy or a linear combination of other predictors.
-* Independence of errors - absence of correlation among errors in different output values.
-* Normal distribution of the error term with the mean value of 0.
-* Homoscedasticity - constant variance of error regardless of the values of independent variables.
-
-If not all of the assumptions satisfied then the model might not have some of the required variables which explain the bahaviour of errors, or instead might have redundant variables causing multicolinearity.  
 
 ## Matrix notation
 
@@ -75,6 +64,17 @@ $\beta$ is the vector of parameters (weights) of each predictor,<br>
 $\varepsilon$ is the vector of errors (Gaussian noise). This variable captures all other factors which influence the dependent variable y other than the regressors.
  
 The parameters $\beta$ of such equation are usually estimated with [least squares]({{ site.baseurl }}{% link _posts/2019-10-27-linear-least-squares.md %}), however other methods such as maximum likelihood or robust estimation techniques can be employed.
+ 
+## Other assumptions
+ 
+Apart from the linear nature of relationship between predictors and the output the linear regression estimation relies on a number of other assumptions:
+
+* Absence of perfect multicollinearity among predictors - that is that none of the predictors can be expressed as a copy or a linear combination of other predictors.
+* Independence of errors - absence of correlation among errors in different output values.
+* Normal distribution of the error term with the mean value of 0.
+* Homoscedasticity - constant variance of error regardless of the values of independent variables.
+
+If not all of the assumptions satisfied then the model might not have some of the required variables which explain the bahaviour of errors, or instead might have redundant variables causing multicolinearity.  
 
 ## Validation of assumptions 
 
@@ -90,11 +90,25 @@ As we see, the percentage of lower status population, and number of rooms are so
 
 ### Absence of perfect multicolinearity among predictors
 
-Similarly, in order to detect multicolinearity we may check correletion coefficients between predictors. In our example among three remaining variables the correlation coefficients between the percentage of lower status population and the number of rooms is -0.61, which makes perfect sense as these categories are certainly related but not fully.
+Similarly, in order to detect multicolinearity we may check correletion coefficients between predictors. In our example among three remaining variables the correlation coefficients between the percentage of lower status population and the number of rooms is -0.61, which makes perfect sense as these categories are certainly related but not fully. 
 
-Multicolinearity could also be detected when the sign at coefficient at a certain parameter is not what we would expect. This happens if the model tries to compensate the effect of several correlated predictors. Also, if the coefficients are estimated multiple times using different samples - the estimations of highly correlated variables will be unstable.
+And yet, checking pairwise correlation coefficinets alone is not enough as ony variable may be dependent on multiple other variables. To tackle this problem we should check variance inflation inflation factor (more to in can be found [here]({{ site.baseurl }}{% link _posts/2019-10-27-linear-least-squares.md %})), as it measures the variance in coefficients caused by multicolinearity in the variables of the model.
 
+For our example we get the following values of VIF for the variables:
 
+|Varaible name|VIF|
+|:---:|:---:|
+|% of lower status population|5.9|
+|Number of rooms|36.1|
+|Pupil-teacher ratio|51.8|
+
+Therefore, either the number of rooms or pupil-teacher ration should be removed as the variance of their coefficients is inflated due to multicollinearity.
+
+Multicolinearity could also be detected when the sign at coefficient at a certain parameter is not what we would expect. This happens if the model tries to compensate the effect of several correlated predictors. Also, if the coefficients are estimated multiple times using different samples - as the consequence of the inflated variance the estimations of highly correlated variables will be unstable.
+
+High [condition number]({{ site.baseurl }}{% link _posts/2019-11-08-matrix-properties.md %}) of the matrix of predictor variables menas that along at least one dimension the transformation is not significant, that is at least one dimension might be redundant. This in turn also indicates multicolinearity. In our example with for the tree remaining varaibles the condition number is 24.3 which is somewhat high.
+
+-- TODO elaborate on SVD and how it can help
 
 Eventually we decide to include only three variables in the model and estimate parametrers for them. This is the model that we've got:
 
@@ -102,8 +116,6 @@ Eventually we decide to include only three variables in the model and estimate p
 $y = 18.57 - 0.93x_1 + 4.52x_2 - 0.57x_3$
 
 Multicolinearity 
- - high condition number
- - high standard error for coefficeints indicates their instability
  - non-significant coefficients
  
 Some methods of finding coefficients of linear regression for example as 

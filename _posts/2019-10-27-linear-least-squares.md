@@ -4,7 +4,7 @@ title: "Linear least squares"
 description: "Explaining how least squares method works and how it is applied in solving analytically linear regression"
 category: "Regression"
 tags: linear-regression ols svd gradient-descent pseudoinverse ill-conditioned-matrix normal-equations qr-decomposition
-date: 2019-10-27
+date: 2021-03-06
 ---
  
 Ordinary least squares method (OLS) estimates analytically parameters for a [linear regression]({{ site.baseurl }}{% link _posts/2019-10-25-linear-regression.md %}) by minimizing the sum of the squares of the differences between predicted and observed values of the dependent variable. As a result, this method produces a single set of parameters of the regression model, which fits the best to the observed data.
@@ -62,9 +62,9 @@ where $U$ and $V$ are orthogonal matrices and $\Sigma$ is a diagonal matrix of s
 Remember, the inverse of an orthogonal matrix equals its transpose. Here is how SVD transforms analytical formula for finding $\beta$ in the least squares problem:
  
 &nbsp;&nbsp;&nbsp;&nbsp;
-$(X^{T}X)^{-1}X^{T} = (V \Sigma^{T} U^{T} U \Sigma V^{T})^{-1} V \Sigma^{T} U^{T} = V \Sigma^{-1} (\Sigma^{T})^{-1} V^{T} V \Sigma^{T} U^{T} = V \Sigma^{-1} U^{T}$
+$(X^{T}X)^{-1}X^{T} = (V \Sigma^{T} U^{T} U \Sigma V^{T})^{-1} V \Sigma^{T} U^{T} = V \Sigma^{-1} (\Sigma^{T})^{-1} V^{T} V \Sigma^{T} U^{T} = V \Sigma^{-1} U^{T} = A^{+}$
  
-In the end we get a formula of finding pseudoinverse of a matrix, so eventually, $X = A^{+}Y$. More about pseudoinverses can be found [here]({{ site.baseurl }}{% link _posts/2019-11-03-singular-value-decomposition.md %}). <br>  
+In the end we get a formula of finding pseudoinverse of a matrix, so eventually, $\beta = A^{+}Y$. More about pseudoinverses can be found [here]({{ site.baseurl }}{% link _posts/2019-11-03-singular-value-decomposition.md %}). <br>  
 By using SVD for the least square problem there is no need to calculate inverse of any matrix other than diagonal (which is plain easy), which simplifies calculations and makes the result more accurate.
 
 ## QR decomposition

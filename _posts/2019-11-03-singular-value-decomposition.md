@@ -1,13 +1,55 @@
 ---
 layout: single
-title: "Singular value decomposition"
-description: Explaining what singular value decomposition is and how it is used
-category: "Linear Algebra"
-tags: svd vector principal-components dimension-reduction matrix-transformation matrix pseudoinverse inverse positive-definite-matrix symmertic-matrix
-date: 2021-02-18
+title: "Principal component analysis and singular value decomposition"
+description: Explaining what SVD and PCA are, how they are related, and what is their use case
+category: "Feature Extraction"
+tags: svd vector principal-components pca principal-component-analysis dimensionality-reduction matrix-transformation matrix pseudoinverse inverse positive-definite-matrix symmertic-matrix feature-extraction variance covariance-matrix
+date: 2021-03-18
 ---
+
+## Principal component analysis
+
+In general principal component analysis (PCA) is a method of reducing the number of dimensions in data by employing unsupervised feature extraction. In its core the method transforms the matrix of data so that all vectors become orthogonal to each other while also capturing all variation in the dataset. If the transformed features diplay high variance across different observations then they can be used to make a distinction among them, and therefore they become good candidates for usage in machine leraning models. Among these new features only those are kept that capture the most of the variation in the dataset, while the others are viewed as noise, and, therefore, discarded. If the dataset consists of highly correlated dimensions their number may be dramatically reduced after applying PCA, however the remaining new dimensions (or features) become harder to interpret.
+
+Before performing PCA all features in the dataset should be centered, that is the mean value of each variable shoud be substracted from the observed values. The point of centering is to make all of the directions have the same origin (zero), so that the variance will be measured around a single point. If this step is omitted then the difference in mean values across different features will be captures as part of the variance across new dimensions, leading to incorrect results.
+
+The [covariance matrix]({{ site.baseurl }}{% link _posts/2019-08-10-correlation.md %}) is used as a generalization of the variance within the dataset. It is a square, symmetric and positive semi-definite matrix, so it is possible to find its [eigenvectors and eigenvalues]({{ site.baseurl }}{% link _posts/2019-11-02-eigenvectors-and-eigenvalues.md %}).
+
+For the matrix with centered features $X$ the covariance matrix is calculated just like this:
+
+&nbsp;&nbsp;&nbsp;&nbsp;
+$C = \frac{1}{n-1}X^{T}X$
+
+
+
+
+
+Speaking in language of linear algebra, in PCA a matrix is transformed in such a way that it becomes [full-rank]({{ site.baseurl }}{% link _posts/2019-11-08-matrix-properties.md %}). 
+
+
+
+
+
+
  
-As a matter of fact, singular value decomposition (SVD) is an algorithm of transforming any matrix into a set of special matrices which are useful for dimension reduction and extracting principal components.
+Singular value decomposition (SVD) is an important algorithm of transforming any matrix into a set of special matrices which are useful for solving [linear least squares]({{ site.baseurl }}{% link _posts/2019-10-27-linear-least-squares.md %}) problem, and also for dimensionality reduction.
+
+Say we have matrix $A$ is of size $n \times m$, where $n$ is the number of observations and $m$ is the number of dimensions. The dimensions of this matrix may not lie on orthogonal axes, which means that some of them may be correlated. This is how SVD would decompose the matrix:
+
+&nbsp;&nbsp;&nbsp;&nbsp;
+$A = U \Sigma V^{T}$
+
+where $U$ is an orthonormal matrix (meaning each column of the meatrix is normalized and is orthogonal with respect to any other column) of observations, which is of size $n \times n$. $V$ is an orthonormal matrix of dimensions, which is of size $m \times m$. The vectors in matrices $U$ and $V$ are called singular vectors, and they represent all possible directions along which the original matrix $A$ performs linear transformations: in matrix $U$ in the coordinates of observations, and in matrix $V$ in the coordinates of dimensions.
+
+Also since both $U$ and $V$ are orthonormal matrices, the transpose of each of them is equivalent to their respective inverses:
+ 
+&nbsp;&nbsp;&nbsp;&nbsp;
+$U^{-1} = U^{T}$; $V^{-1} = V^{T}$
+
+$\Sigma$ is a diagonal matrix of size $n \times m$, the elements of which appear in decreasing order representing the magnitude of movement along each of the derived orthogonal axes.
+
+
+
  
 In its core SVD transforms each vector of a matrix into its projections on orthogonal axes.     
  
@@ -17,27 +59,23 @@ Decomposed elements share two properties:
  * Unit vectors $\overrightarrow{v_i}$, representing directions onto which the vector is projected.
  * Magnitudes of projections $s_i$, which represent the amount of unit vectors $\overrightarrow{v_i}$ in each direction.
  
-## Components of singular value decomposition
- 
-The formula for SVD looks like this:
- 
-&nbsp;&nbsp;&nbsp;&nbsp;
-$A = U \Sigma V^{T}$
- 
-Say, matrix $A$ is of size $n \times m$, where $n$ is the number of observations and $m$ is the number of original dimensions. The dimensions of the original matrix may not lie on orthogonal axes, which means that some of them may be correlated.  
- 
-$U$ is an orthonormal matrix (meaning each column of the meatrix is normalized and is orthogonal with respect to any other column) of observations, which is of size $n \times n$. $V$ is an orthonormal matrix of dimensions, which is of size $m \times m$. $U$ shows distribution of observations (their vectors) within the space of their orthogonal axes, whereas $V$ represents distribution of original dimensions within their own space of orthogonal axes, which eliminates multicollinearity. The newly derived axes are also called principal directions and the vectors in matrices $U$ and $V$ are called singular vectors. 
 
-Since both $U$ and $V$ are orthonormal matrices, the transpose of each of them is equivalent to their respective inverses:
+
+
+
+
  
-&nbsp;&nbsp;&nbsp;&nbsp;
-$U^{-1} = U^{T}$; $V^{-1} = V^{T}$  
+
+  
  
-$\Sigma$ is a matrix of size $n \times m$, which represents the magnitude of movement along each of the derived orthogonal axes. It is a diagonal matrix, where the elements along the diagonal (also called singular values) show the variance of each principal component, in other words their relative strengths. These elements should appear in decreasing order. For practical reasons, based on this matrix we can decide which and how many principal components to choose for further use in models. Usually only the ones with the highest variance are chosen while all the others are treated as noise.
+ where the elements along the diagonal (also called singular values) show the variance of each principal component. For practical reasons, based on this matrix we can decide which and how many principal components to choose for further use in models. Usually only the ones with the highest variance are chosen while all the others are treated as noise.
 
 SVD may be viewed as a form of [basis change]({{ site.baseurl }}{% link _posts/2020-07-17-change-of-basis.md %}) where the transformation of the original matrix $A$ is described by:
  1. $\Sigma V^{T}$ - the power of transformation expressed in the basis of orthogonal dimensions.
  2. Multiplication $U \Sigma V^{T}$ is the translation back to the original coordinates of $A$.
+ 
+ 
+ 
  
 ## Calculation of SVD
  
