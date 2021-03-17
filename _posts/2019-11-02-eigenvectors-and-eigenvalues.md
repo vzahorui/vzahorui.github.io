@@ -13,7 +13,7 @@ Let's recall that matrices represent linear transformations and their columns ar
  
 A matrix usually has eigenvectors - such special vectors which by multiplying with the matrix do not change their direction. These vectors belong to the lines in space, around which the whole matrix column space spans, so they serve as some sort of axes. Eigenvectors may be only stretched or shrunk reflecting the volume of a linear transformation, and the factor by which an eigenvector is scaled is called eigenvalue. Representing matrix through eigenvectors and eigenvalues makes the whole linear transformation easier to understand because in this case it becomes just scaling by factor of eigenvalues along principal direction (eigenvectors).
  
-Essentially, eigenvectors are such special cases of vectors which by multiplying with a square matrix result into their own scaled version:
+Eigenvectors are such special cases of vectors which by multiplying with a square matrix result into their own scaled version:
  
 &nbsp;&nbsp;&nbsp;&nbsp;
 $M \cdot v = \lambda \cdot v$

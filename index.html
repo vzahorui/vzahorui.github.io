@@ -99,8 +99,8 @@ var graph =
         
         {"source": "Sampling Distribution", "target": "Correlation", "distance": 320},
         
-        {"source": "Probability", "target": "Regression", "distance": 320},
-        {"source": "Probability", "target": "Classification", "distance": 300},
+        {"source": "Probability", "target": "Regression", "distance": 420},
+        {"source": "Probability", "target": "Classification", "distance": 400},
         
         {"source": "Classification", "target": "Clustering", "distance": 220},
         
@@ -112,8 +112,9 @@ var graph =
         {"source": "Regression", "target": "Loss Functions", "distance": 240},
         
         {"source": "Linear Regression", "target": "Correlation", "distance": 150},
-        {"source": "Linear Regression", "target": "QR Decomposition", "distance": 250},
-        {"source": "Linear Regression", "target": "Singular Value Decomposition", "distance": 250},
+        {"source": "Linear Regression", "target": "QR Decomposition", "distance": 270},
+        {"source": "QR Decomposition", "target": "Singular Value Decomposition", "distance": 120},
+        {"source": "Linear Regression", "target": "Singular Value Decomposition", "distance": 270},
         
         {"source": "Classification", "target": "Loss Functions", "distance": 240},
         
@@ -124,10 +125,11 @@ var graph =
         {"source": "Linear Algebra", "target": "QR Decomposition", "distance": 180},
         {"source": "Linear Algebra", "target": "Eigenvectors and Eigenvalues", "distance": 180},
         {"source": "Eigenvectors and Eigenvalues", "target": "Singular Value Decomposition", "distance": 70},
+        {"source": "Singular Value Decomposition", "target": "Correlation", "distance": 410},
                 
         {"source": "Calculus", "target": "Derivatives", "distance": 220},
         {"source": "Calculus", "target": "Integrals", "distance": 150},
-        {"source": "Integrals", "target": "Differential Equations", "distance": 250},
+        {"source": "Integrals", "target": "Differential Equations", "distance": 280},
         {"source": "Derivatives", "target": "Differential Equations", "distance": 150},
         
         {"source": "Derivatives", "target": "Gradient Descent", "distance": 120},

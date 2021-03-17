@@ -106,9 +106,7 @@ Therefore, either the number of rooms or pupil-teacher ration should be removed 
 
 Multicolinearity could also be detected when the sign at coefficient at a certain parameter is not what we would expect. This happens if the model tries to compensate the effect of several correlated predictors. Also, if the coefficients are estimated multiple times using different samples - as the consequence of the inflated variance the estimations of highly correlated variables will be unstable.
 
-High [condition number]({{ site.baseurl }}{% link _posts/2019-11-08-matrix-properties.md %}) of the matrix of predictor variables menas that along at least one dimension the transformation is not significant, that is at least one dimension might be redundant. This in turn also indicates multicolinearity. In our example with for the tree remaining varaibles the condition number is 24.3 which is somewhat high.
-
--- TODO elaborate on SVD and how it can help
+High [condition number]({{ site.baseurl }}{% link _posts/2019-11-08-matrix-properties.md %}) of the [covariance matrix]({{ site.baseurl }}{% link _posts/2019-08-10-correlation.md %}) of predictor variables means that there is at least one direction in which the variance is almost non-existant. This indicates multicolinearity as the number of dimensions may be reduced without losing much of the variation. Some methods, such as [singular value decomposition]({{ site.baseurl }}{% link _posts/2019-11-03-singular-value-decomposition.md %}) may be used to deal with multicolinearity internally by extracting new fully independent features, and selecting among them only those that capture the most of the variance in the dataset.
 
 Eventually we decide to include only three variables in the model and estimate parametrers for them. This is the model that we've got:
 
