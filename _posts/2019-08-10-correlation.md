@@ -85,7 +85,7 @@ In order to deal with this shortcoming, an enhanced version of the coefficient o
 &nbsp;&nbsp;&nbsp;&nbsp;
 $\bar R^2 = 1-(1 - R^2)\frac{n-1}{n-p-1}$
 
-where $n$ is the number of observations, and $p$ is the number of independent variables. $(n-1)$ is the number of degrees of freedom of the total variance in the model (1 is subtracted because the mean value used for calculation of the total variance is estimated from the sample. More to it can be found [here]({{ site.baseurl }}{% link _posts/2021-01-16-sampling-distribution.md %})), and $(n-p-1)$ is the degrees of freedom of the variance of error.
+where $n$ is the number of observations, and $p$ is the number of independent variables. $(n-1)$ is the number of [degrees of freedom]({{ site.baseurl }}{% link _posts/2021-03-19-degrees-of-freedom.md %}) of the total variance in the model (1 is subtracted because the mean value used for calculation of the total variance is estimated from the sample. More to it can be found [here]({{ site.baseurl }}{% link _posts/2021-01-16-sampling-distribution.md %})), and $(n-p-1)$ is the number of degrees of freedom for the variance of the error term.
 
 The adjusted $R$-squared is never greater than the vanilla $R$-squared, and it actually decreases if meaningless variables are added to the model.
 
@@ -98,7 +98,7 @@ Recall that $\hat \beta = (X^{T}X)^{-1}X^{T}Y$, and $Y = X \beta + \varepsilon$,
 &nbsp;&nbsp;&nbsp;&nbsp;
 $Var(A) = E[AA^{T}]-E[A][E[A]]^{T}$
 
-Using it we build a formula for variance of $\hat \beta$:
+Using it we build a formula for the variance-covariance matrix of $\hat \beta$:
 
 $$
 Var[\hat \beta] = E[((X^{T}X)^{-1}X^{T}Y)((X^{T}X)^{-1}X^{T}Y)^{T}] - E[\hat \beta][E[\hat \beta]] \\
@@ -109,7 +109,7 @@ Var[\hat \beta] = E[((X^{T}X)^{-1}X^{T}Y)((X^{T}X)^{-1}X^{T}Y)^{T}] - E[\hat \be
 = E[(X^{T}X)^{-1}X^{T}\varepsilon \varepsilon^{T}X(X^{T}X)^{-1}] = \sigma^2 (X^{T}X)^{-1}
 $$
 
-Where $\sigma^2$ is the variance of the error term.
+Where $\sigma^2$ is the variance of the error term. The diagonal elements of the resulting matrix represent the variance of the coefficients.
 
 From this we make a conclusion that the variance of coefficients is bigger in noisy datasets. At the same time, the variance decreases if the spread in $X$ increases which makes sense, since increasing the range of possible values of independent variables reduces the effect of the noise, and according to the [Central limit theorem]({{ site.baseurl }}{% link _posts/2021-01-16-sampling-distribution.md %}), the distribution of the error term and the parameters start to resemble normal distribution.
 

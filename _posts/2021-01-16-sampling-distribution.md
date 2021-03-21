@@ -68,7 +68,7 @@ $\hat{\sigma^2} = \sigma^2 - \frac{\sigma^2}{n} = \sigma^2 \cdot \frac{n-1}{n}$
 From this we get the unbiased estimate of the true variance:
 
 &nbsp;&nbsp;&nbsp;&nbsp;
-$\sigma^2 = \frac{\hat{\sigma^2}}{\frac{n-1}{n}} = \frac{\sum_{i=1}^n(X-\bar X)^2}{n-1}$
+$\sigma^2 = \frac{\hat{\sigma^2}}{\frac{n-1}{n}} = \frac{\sum_{i=1}^n(x_i-\bar x)^2}{n-1}$
 
 ## Confidence interval and margin of error
 

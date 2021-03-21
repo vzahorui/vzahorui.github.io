@@ -4,7 +4,7 @@ title: "Linear regression"
 description: Explaining linear regression and its properties
 category: "Regression"
 tags: multiple-regression linear-regression multivariable-regression gaussian-noise normal-distribution homoscedasticity multicolinearity correlation-coefficient
-date: 2021-02-28
+date: 2021-03-18
 ---
  
 Regression analysis is used for estimating the relationship between variables, usually one dependent and one or several independent variables. Having a regression model at hand, we can predict some continuous value of the dependent variable based on the values of independent variables.
@@ -72,17 +72,44 @@ Apart from the linear nature of relationship between predictors and the output t
 * Absence of perfect multicollinearity among predictors - that is that none of the predictors can be expressed as a copy or a linear combination of other predictors.
 * Independence of errors - absence of correlation among errors in different output values.
 * Normal distribution of the error term with the mean value of 0.
-* Homoscedasticity - constant variance of error regardless of the values of independent variables.
+* [Homoscedasticity]({{ site.baseurl }}{% link _posts/2019-08-18-heteroscedasticity.md %}) - constant variance of error regardless of the values of independent variables.
 
-If not all of the assumptions satisfied then the model might not have some of the required variables which explain the bahaviour of errors, or instead might have redundant variables causing multicolinearity.  
+If not all of the assumptions satisfied then the model might not have some of the required variables which explain the bahaviour of errors, or instead might have redundant variables causing multicolinearity. Or maybe the relationship among variables is non-linear.
+
+## Hypothesis testing in linear regression
+
+In scope of linear regression we may want to test the significance of the model in general, and the significance of each individual parameter.
+
+### Significance of the parameters
+
+When testing the parameters we perform the [hypothesis test]({{ site.baseurl }}{% link _posts/2021-01-21-hypothesis-testing.md %}) of whether a given parameter is equal to 0:
+
+&nbsp;&nbsp;&nbsp;&nbsp;
+$H_0: \beta_i = 0$
+
+&nbsp;&nbsp;&nbsp;&nbsp;
+$H_a: \beta_i \ne 0.6$
+
+So for a given significance level $t$-statistic is calculated:
+
+&nbsp;&nbsp;&nbsp;&nbsp;
+$t = \frac{\beta_i - 0}{s_i}$
+
+where $s_i$ is the standard error of the coefficient which is the square root of its variance, and the variance of the coefficients may be estimated with the covariance matrix, as described [here]({{ site.baseurl }}{% link _posts/2019-08-10-correlation.md %}).
+
+If the resulting $t$-statistic has corresponding $p$-value less than the significance level then the null hypothesis is rejected, and the parameter of the regression is considered significant.
+
+### Significance of the model
+
+
 
 ## Validation of assumptions 
 
-Linear regression is safe to apply if all of the assumptions are satisfied. Using the Boston house prices dataset I'll perform a typical check in order to ascertain whether it is reasonable to apply linear regression to predict prices.
+Linear regression is safe to apply if all of the assumptions are satisfied. Using the Boston house prices dataset let's perform a typical check in order to ascertain whether it is reasonable to apply linear regression to predict prices.
 
 ### Linear relationship
 
-This can be validated by checking [correlation coefficients]({{ site.baseurl }}{% link _posts/2019-10-27-linear-least-squares.md %}) between predictors and the dependent variable. Coefficients with absolute values closer 1 hint at linear relationship between variables. Below is the plot of the relationship between price and some of the predictors.
+This can be validated by checking [correlation coefficients]({{ site.baseurl }}{% link _posts/2019-08-10-correlation.md %}) between predictors and the dependent variable. Coefficients with absolute values closer 1 hint at linear relationship between variables. Below is the plot of the relationship between price and some of the predictors.
 
 ![](/assets/images/regression/correlation_example2.png){: .align-center}
 
@@ -90,7 +117,7 @@ As we see, the percentage of lower status population, and number of rooms are so
 
 ### Absence of perfect multicolinearity among predictors
 
-Similarly, in order to detect multicolinearity we may check correletion coefficients between predictors. In our example among three remaining variables the correlation coefficients between the percentage of lower status population and the number of rooms is -0.61, which makes perfect sense as these categories are certainly related but not fully. 
+Similarly, in order to detect multicolinearity we may check correlation coefficients between predictors. In our example among three remaining variables the correlation coefficients between the percentage of lower status population and the number of rooms is -0.61, which makes perfect sense as these categories are certainly related but not fully. 
 
 And yet, checking pairwise correlation coefficinets alone is not enough as ony variable may be dependent on multiple other variables. To tackle this problem we should check variance inflation inflation factor (more to in can be found [here]({{ site.baseurl }}{% link _posts/2019-10-27-linear-least-squares.md %})), as it measures the variance in coefficients caused by multicolinearity in the variables of the model.
 
@@ -107,6 +134,8 @@ Therefore, either the number of rooms or pupil-teacher ration should be removed 
 Multicolinearity could also be detected when the sign at coefficient at a certain parameter is not what we would expect. This happens if the model tries to compensate the effect of several correlated predictors. Also, if the coefficients are estimated multiple times using different samples - as the consequence of the inflated variance the estimations of highly correlated variables will be unstable.
 
 High [condition number]({{ site.baseurl }}{% link _posts/2019-11-08-matrix-properties.md %}) of the [covariance matrix]({{ site.baseurl }}{% link _posts/2019-08-10-correlation.md %}) of predictor variables means that there is at least one direction in which the variance is almost non-existant. This indicates multicolinearity as the number of dimensions may be reduced without losing much of the variation. Some methods, such as [singular value decomposition]({{ site.baseurl }}{% link _posts/2019-11-03-singular-value-decomposition.md %}) may be used to deal with multicolinearity internally by extracting new fully independent features, and selecting among them only those that capture the most of the variance in the dataset.
+
+
 
 Eventually we decide to include only three variables in the model and estimate parametrers for them. This is the model that we've got:
 

@@ -1,19 +1,19 @@
 ---
 layout: single
 title: "Hypothesis testing"
-description: Unveiling what t-tests are, z-scores, p-values and how they might be useful in hypothesis testing
+description: Unveiling what t-tests are, z-scores, $p$-values and how they might be useful in hypothesis testing
 category: "Probability"
-tags: significance-test null-hypothesis p-value significance-level type-1-error type-2-error p-value-hacking false-discovery-rate z-score z-value t-score t-value alternative-hypothesis power-analysis z-statistic t-statistic normal-distribution sampling-distribution t-distribution margin-of-error confidence-interval sample-size family-wise-error-rate multiple-testing false-discovery-rate Benjamini–Hochberg-procedure FWER
+tags: significance-test null-hypothesis $p$-value significance-level type-1-error type-2-error $p$-value-hacking false-discovery-rate z-score z-value t-score t-value alternative-hypothesis power-analysis z-statistic t-statistic normal-distribution sampling-distribution t-distribution margin-of-error confidence-interval sample-size family-wise-error-rate multiple-testing false-discovery-rate Benjamini–Hochberg-procedure FWER
 date: 2021-02-11
 ---
 
 In a nutshell hypothesis testing is a process of validation of plausibility of an assumption about population data using sample data. The assumption which is being tested is called the null hypothesis. Alongside the null hypothesis the alternative hypothesis is defined as rejection of the null hypothesis.
 
-Under the framework of hypothesis testing we assume that the null hypothesis is true, calculate statistic over the sample data (sample mean for example), and evaluate the probability of having this (or more extreme) statistic if the null hypothesis is true, which is called p-value. If the probability is greater then some threshold (the significance level), then the hypothesis is not rejected. On the other hand, if the probability of getting that sample statistic under the null hypothesis is small (smaller than the significance level), then it is rejected and the alternative hypothesis is assumed.
+Under the framework of hypothesis testing we assume that the null hypothesis is true, calculate statistic over the sample data (sample mean for example), and evaluate the probability of having this (or more extreme) statistic if the null hypothesis is true, which is called $p$-value. If the probability is greater then some threshold (the significance level), then the hypothesis is not rejected. On the other hand, if the probability of getting that sample statistic under the null hypothesis is small (smaller than the significance level), then it is rejected and the alternative hypothesis is assumed.
 
-One important consideration about p-values is that it reflects probability of getting statistic at least that extreme as we get from a sample. In other words, if a sample produces a statistic of value $x$ then the p-value shows probability of getting exactly $x$ or other values which are more rare then $x$.
+One important consideration about $p$-values is that it reflects probability of getting statistic at least that extreme as we get from a sample. In other words, if a sample produces a statistic of value $x$ then the $p$-value shows probability of getting exactly $x$ or other values which are more rare then $x$.
 
-In the following illustration we see that for some distribution of a random variable, the p-value covers an area of probability smaller than the area covered by the significance level, hence the hypothesis is rejected.
+In the following illustration we see that for some distribution of a random variable, the $p$-value covers an area of probability smaller than the area covered by the significance level, hence the hypothesis is rejected.
 
 ![](/assets/images/probability/significance_level_demo.png){: .align-center}
 
@@ -31,7 +31,7 @@ $H_a: \mu < 0.6$
 
 We gather a sample of 1000 people and ask each of them as to where they prefer to take vacation in summer. The result of the sample reveals that 572 of them replied positive. Should we reject the null hypothesis knowing that?
 
-Let's set beforehand the significance level as 0.05. Here we have a one-tailed hypothesis test where we need to calculate the area to the left from our test statistic 0.572 and see if it's smaller than the significance level. In general the probability area is calculated with [integral calculus]({{ site.baseurl }}{% link _posts/2019-09-24-integrals.md %}) but assuming that the distribution is close to normal we can use a table of precomputed $z$-scores which contains corresponding p-values.
+Let's set beforehand the significance level as 0.05. Here we have a one-tailed hypothesis test where we need to calculate the area to the left from our test statistic 0.572 and see if it's smaller than the significance level. In general the probability area is calculated with [integral calculus]({{ site.baseurl }}{% link _posts/2019-09-24-integrals.md %}) but assuming that the distribution is close to normal we can use a table of precomputed $z$-scores which contains corresponding $p$-values.
 
 In normal distribution $z$-score tells how many standard deviations a given value is away from the mean of its distribution.
 
@@ -53,9 +53,9 @@ In our example we are checking the proportion using Bernoulli distribution where
 &nbsp;&nbsp;&nbsp;&nbsp;
 $z = \frac{0.572 - 0.6}{\sqrt{\frac{0.6 \cdot (1-0.6)}{1000}}} = -1.8074$
 
-We see that our expected sample mean is nearly 1.8 standard errors away from the true mean (assuming the null hypothesis is true). From the table of $z$-scores this corresponds to p-value of 0.03515. It is less than our significance level of 0.05 so we reject the null hypothesis. It looks like less than 60% of the working population tends to take vacation in summer.
+We see that our expected sample mean is nearly 1.8 standard errors away from the true mean (assuming the null hypothesis is true). From the table of $z$-scores this corresponds to $p$-value of 0.03515. It is less than our significance level of 0.05 so we reject the null hypothesis. It looks like less than 60% of the working population tends to take vacation in summer.
 
-We used $z$-score in our example which is based on [normal distribution]({{ site.baseurl }}{% link _posts/2019-07-28-normal-ditribution.md %}). As an alternative in hypothesis testing $t$-score could be used instead which is based on $t$-distribution. Compared to the normal distribution it has thicker tails so under the same significance level it allows test statistic to stray further from the true mean. Therefore $t$-score is generally used when the variance of the population is unknown and if the sample size is small (smaller than 30). According to the Central limit theorem, if we draw more samples, the distribution of the sample mean starts to resemble normal distribution, so for the larger samples we may use the sample's standard deviation and consider it to be equal that of the population, and use $z$-score accordingly without sacrificing accuracy in scope of hypothesis testing.
+We used $z$-score in our example which is based on [normal distribution]({{ site.baseurl }}{% link _posts/2019-07-28-normal-ditribution.md %}). As an alternative in hypothesis testing $t$-score could be used instead which is based on $t$-distribution with $(n-1)$ [degrees of freedom]({{ site.baseurl }}{% link _posts/2021-03-19-degrees-of-freedom.md %}). Compared to the normal distribution it has thicker tails so under the same significance level it allows test statistic to stray further from the true mean. Therefore $t$-score is generally used when the variance of the population is unknown and if the sample size is small (smaller than 30). According to the Central limit theorem, if we draw more samples, the distribution of the sample mean starts to resemble normal distribution, so for the larger samples we may use the sample's standard deviation and consider it to be equal that of the population, and use $z$-score accordingly without sacrificing accuracy in scope of hypothesis testing.
 
 ## Type I and type II errors
 
@@ -65,7 +65,7 @@ With regard to this, the level of significance should be determined beforehand, 
 
 ## Statistical power
 
-Statistical power is the probability of correctly rejecting the null hypothesis. In other words, it is the probability of correctly getting a small p-value when the null hypothesis is wrong, so it can be expressed as 1 minus probability of type II error.
+Statistical power is the probability of correctly rejecting the null hypothesis. In other words, it is the probability of correctly getting a small $p$-value when the null hypothesis is wrong, so it can be expressed as 1 minus probability of type II error.
 
 Two different distributions might have regions where they overlap. Getting a sample which belongs to the overlapping region might cause us to fail rejecting the null hypothesis that the mean value of distributions are equal. The higher the overlapping region - the lower the statistical power.
 
@@ -115,7 +115,7 @@ $n = \frac{(Z_{\alpha} + Z_{\beta})^2\sigma^2}{(\mu_1 - \mu_0)^2}$
 
 ## Multiple hypothesis tests
 
-Sometimes it is impossible to come up with a single metric for performing comparison over two groups. For example a new method of learning is tested across several aspects, such as the ability to keep knowledge in the long-term memory, the intuitiveness of the material, the level of engagement and stress, etc, but there is no compound metric which could be used for a single test. Another common case is testing of the effectiveness of some method of treatment against a number of indicators. Multiple (or global) hypothesis testing refers to simultaneous testing of multiple hypotheses using the same sample, and checking whether the compound p-value exceeds the significance level.
+Sometimes it is impossible to come up with a single metric for performing comparison over two groups. For example a new method of learning is tested across several aspects, such as the ability to keep knowledge in the long-term memory, the intuitiveness of the material, the level of engagement and stress, etc, but there is no compound metric which could be used for a single test. Another common case is testing of the effectiveness of some method of treatment against a number of indicators. Multiple (or global) hypothesis testing refers to simultaneous testing of multiple hypotheses using the same sample, and checking whether the compound $p$-value exceeds the significance level.
 
 The significance level determines the probability of making type I error, and if there are multiple independent hypotheses, they make up for the total significance level, thus increasing the probability of claiming that the two groups are different (that is making a false discovery). The family-wise error rate (FWER) can be computed with the formula:
 
@@ -128,7 +128,7 @@ It becomes obvious that for a larger number of hypotheses the compound probabili
 
 ### Benjamini–Hochberg procedure
 
-The method controls family-wise error rate in multiple testing ensuring that it is less or equal to a given significance level. Before discussing how and why it works let's note that if the null hypothesis is true then the $p$-values are uniformly distributed between 0 and 1. This concurs with the definition of significance level as the probability of having a small $p$-value (a value between 0 and $\alpha$). If the alternative hypothesis is true then there is a high probability of getting a small $p$-value, so in this case the distribution of $p$-values is highly skewed to the left. To demonstrate this I've made a simulation of multiple tests for the scenarios when the null hypothesis is true and false, and visualized the distribution of p-values in both cases:
+The method controls family-wise error rate in multiple testing ensuring that it is less or equal to a given significance level. Before discussing how and why it works let's note that if the null hypothesis is true then the $p$-values are uniformly distributed between 0 and 1. This concurs with the definition of significance level as the probability of having a small $p$-value (a value between 0 and $\alpha$). If the alternative hypothesis is true then there is a high probability of getting a small $p$-value, so in this case the distribution of $p$-values is highly skewed to the left. To demonstrate this I've made a simulation of multiple tests for the scenarios when the null hypothesis is true and false, and visualized the distribution of $p$-values in both cases:
 
 ![](/assets/images/probability/p_values_distribution.png){: .align-center}
 
@@ -157,4 +157,4 @@ Benjamini–Hochberg procedure basically consists of sorting $p$-values and reje
 
 ## P-value hacking
 
-P-value hacking is associated with making incorrect decisions based on test statistic when the desired outcome is made to look true based on the significance test. Since the significance level implies the chance to reject the null hypothesis when it is true, we might be tempted to draw multiple tests from the same distribution until we finally get the one with the test statistic lower than the significance level, which it turn will ostensibly give us the reason to reject the null hypothesis. Adjusting the significance level after the conduction of the experiment is also considered as p-hacking.
+$p$-value hacking is associated with making incorrect decisions based on test statistic when the desired outcome is made to look true based on the significance test. Since the significance level implies the chance to reject the null hypothesis when it is true, we might be tempted to draw multiple tests from the same distribution until we finally get the one with the test statistic lower than the significance level, which it turn will ostensibly give us the reason to reject the null hypothesis. Adjusting the significance level after the conduction of the experiment is also considered as p-hacking.
