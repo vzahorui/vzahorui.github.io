@@ -25,7 +25,7 @@ $E[\bar X] = \frac{1}{n}(\mu + \mu + ... + \mu) = \frac{n \mu}{n} = \mu$
 
 Eventually the expected value of the sample mean is equal to the mean of the population.
 
-Interestingly, the distribution of means of different independently drawn samples tend to resemble [normal distribution]({{ site.baseurl }}{% link _posts/2019-07-28-normal-ditribution.md %}) as the number of samples increases. This phenomenon is known as the Central limit theorem and it applies to any type of population distribution.
+Interestingly, the distribution of means of different independently drawn samples tend to resemble [normal distribution]({{ site.baseurl }}{% link _posts/2021-03-27-statistical-distributions.md %}) as the number of samples increases. This phenomenon is known as the Central limit theorem and it applies to any type of population distribution.
 
 ### Variance of the sample mean
 
@@ -53,7 +53,7 @@ $SE = \frac{\sigma}{\sqrt{n}}$
 
 where $\sigma$ is the standard deviation in the sample.
 
-## Sample variance
+## Sample variance vs estimation of the true variance
 
 It should be stated that the sample variance is not quite the true representative of the population's variance, since we usually know only the expectation of the true mean (the mean of the sample) but not the true mean itself. As was discussed in the previous section, the sample mean has its own variance which is equal to the true variance divided by the number of samples. Thus, the true variance will have to incorporate this metric, as well as the variance of the sample.
 
