@@ -3,8 +3,8 @@ layout: single
 title: "Statistical distributions"
 description: In this post I described all essential stuff statistical distributions
 category: "Probability"
-tags: probability-distribution normal-distribution statistics z-score z-table six-sigma z-value central-limit-theorem Student's-distribution t-distribution probability-mass-function probability-density-function PDF degrees-of-freedom chi-square-distribution binomial-distribution Bernoulli-trial
-date: 2021-03-27
+tags: probability-distribution normal-distribution statistics z-score z-table six-sigma z-value central-limit-theorem Student's-distribution t-distribution probability-mass-function probability-density-function PDF degrees-of-freedom chi-square-distribution binomial-distribution Bernoulli-trial geometric-distribution exponential-distribution poisson-distribution uniform-distribution
+date: 2021-03-28
 ---
 
 A set of discrete values or a range of continuous values of a random variable is characterized by a certain probability distribution. In statistics various distributions arise in the context of estimating probabilities of random values or events.
@@ -64,23 +64,19 @@ Similarly to $z$-scores for the normal distribution, for $t$-distribution there 
 
 ## Binomial distribution
 
-This is a discrete probability distribution for cases where each observation may have one of the two possible outcomes. These observations are known as Bernoulli trials or experiments and their end results are restricted to only two possible outcomes. The most referred example would be tossing of a coin and expecting the outcome to be either heads or tails. However in fact any variable may be translated into a Bernouli trial, even a continuous one. For example we may consider one of the possible outcomes as a success, and all the rest as a failure. For continuous variables we may specify a threshold, and then consider the outcomes as crossing or not crossing of it.
+This distribution is used for getting probabilities in a discrete random variable which consists of Bernoulli trials (or experiments) - observations the end results of which are restricted to only two possible outcomes. The most referred example of a Bernoulli trial would be tossing of a coin and expecting the outcome to be either heads or tails. However in fact any variable may be translated into a Bernouli trial, even a continuous one. For example we may consider one of the possible outcomes as a success, and all the rest as a failure. For continuous variables we may specify a threshold, and then consider the outcomes as crossing or not crossing of it.
 
-Binomial distribution provides the expected number of successes in realizations of $n$ Bernoulli trials using prior knowledge of probability of success in a single experiment. The assumption of this type of distribution are independence of each observation and the same probability of success for each individual Bernoulli trial.
-
-Let's set the value of success as 1, and the value of failure as 0. Then the probability of 1 is $p$ while the probability of 0 is $(1-p)$. The weighted average of a single experiment will be:
+A random variable follows binomial distribution if it represents the number of successes in a sequence of Bernoulli experiments. The probability mass function is constructed using the knowledge of probability of success in a single experiment: 
 
 &nbsp;&nbsp;&nbsp;&nbsp;
-$E(x) = 1*p+0(1-q) = p$
+$f(x; p) = {\binom{n}{x}}p^{x}(1-p)^{n-x}$
 
-From this the expected value (or the mean) of the distribution is simply $np$.
-
-Now let's recall that the variance measures the squared distance between the observed value of a random variable and its expected value. For a successful outcome of a Bernoulli trial where we have 1, the distance to the mean ($p$) will be $(1-p)$. SImilarly, for the unsuccessful outcome where we have 0 the distance to the mean will be $(0-p)$. Then the weighted average of these two will be:
+where $p$ is a probability of success in a single experiment, $k$ is the number of expected successes, $n$ is the number or experiments, and where
 
 &nbsp;&nbsp;&nbsp;&nbsp;
-$Var(x) = p(1-p)^2+(1-p)(0-p)^2 = p(1-p)^2+(1-p)p^2 = p(1-p)(1-p+p) = p(1-p)$
+$\binom{n}{x} = \frac{n!}{x!(n-x)!}$ 
 
-Therefore the variance for the binomial distribution is $np(1-p)$.
+The assumptions of this type of distribution are independence of each observation and the same probability of success for each individual Bernoulli trial.
 
 In order to achieve better accuracy with binomial distribution testing the whole experiment may be performed multiple times (or the observations may be resampled with replacement). For example we want to estimate how well the audience likes a new movie. The outcome for each individual cinema visitor is viewed as a Bernoulli trial while the number of satisfied visitors after a session is the result of a single binomial test. Since this measure itself may depend on many factors the results after each session may be quite different. In order to understand the average percentage of the audience satisfaction it may be useful to visualize with a histogram the total number of outcomes for the binomial tests across all sessions. Below is a plot displaying distribution of binomial test
 results for 1000 sessions each containing 200 visitors.
@@ -88,3 +84,66 @@ results for 1000 sessions each containing 200 visitors.
 ![](/assets/images/probability/binomial_distribution.png){: .align-center}
 
 As we see just like in the normal distribution the resulting values are concentrated around a certain central value - the mean of the binomial distribution. In fact, if the number of tests is reasonably high (at least both $np$ and $n(1-p)$ are greater than 5) then the binomial distribution may be approximated with the normal distribution.
+
+Let's set the value of success as 1, and the value of failure as 0. Then the probability of 1 is $p$ while the probability of 0 is $(1-p)$. The weighted average of a single experiment will be:
+
+&nbsp;&nbsp;&nbsp;&nbsp;
+$E(x) = 1 \cdot p+0 \cdot (1-q) = p$
+
+From this the expected value (or the mean) of the distribution is simply $np$.
+
+Now let's recall that the variance measures the sum of squared distances between the observed and expected values of a random variable. For a successful outcome of a Bernoulli trial where we have 1, the distance to the mean ($p$) will be $(1-p)$. SImilarly, for the unsuccessful outcome where we have 0 the distance to the mean will be $(0-p)$. Then the weighted average of these two will be:
+
+&nbsp;&nbsp;&nbsp;&nbsp;
+$Var(x) = p(1-p)^2+(1-p)(0-p)^2 = p(1-p)^2+(1-p)p^2 = p(1-p)(1-p+p) = p(1-p)$
+
+Therefore the variance for the binomial distribution is $np(1-p)$.
+
+## Geometric distribution
+
+This is a type of distribution which is used to model the number of failures in sequences of Bernoulli trials before the first success. For example we want to know how many customers a retail shop has to engage with before the first sale is made. 
+
+![](/assets/images/probability/geometric_distribution.png){: .align-center}
+
+The mean of the distribution is defined as $\frac{1-p}{p}$, and the variance is $\frac{1-p}{p^2}$.
+
+## Uniform distribution
+
+This type of distribution describes processes where every posible outcome has the same chance of occuring. An example of a discrete uniform distribution is rolling of a dice once and expecting any of the possible 6 values. Random number generation is an example of a continuous uniform distribution.
+
+![](/assets/images/probability/uniform_distribution.png){: .align-center}
+
+The expected value of the uniform distribution is defined as the center of the range over which the value is distributed $\frac{a+b}{2}$, while the variance is calculated as $\frac{(b-a)^2}{12}$.
+
+## Poisson distribution
+
+This distribution is used to model the number of events which occur during a fixed period of time, for example the number of customer complaints per month or the number of trains arriving during a certain hour. Similarly to the binomial distribution all occurrences of events are considered random and independent, so the occurrence of one event does not affect probability of another event.
+
+The probability mass function of the Poisson distribution uses prior knowledge of the average number of occurrences per period - parameter $\lambda$. This parameter can actually be derived from the binomial distribution as $\lambda = np$, where $p$ is the probability of a single event occurrence, and $n$ is the number of Bernoulli trials. Both mean and variance of a random variable which follows the Poisson distribution are equal to $\lambda$, and this is the formula of its PMF:
+
+&nbsp;&nbsp;&nbsp;&nbsp;
+$f(x; \lambda) = \frac{\lambda^{x}e^{-\lambda}}{x!}$
+
+For example, a person receives on average 5 promotional emails from different sellers. The probability of receiveng 3 emails would be
+
+&nbsp;&nbsp;&nbsp;&nbsp;
+$f(3; 5) = \frac{5^{3}e^{-5}}{3!} \approx 0.14$
+
+Here is an examle of an observed distribution of the number of received emails for a sample of 2000 users.
+
+![](/assets/images/probability/poisson_distribution.png){: .align-center}
+
+## Chi-square distribution
+
+In a nutshell the chi-square distribution is the distribution of sum of squred values sampled from a normally distributed variable.
+
+&nbsp;&nbsp;&nbsp;&nbsp;
+$\chi_k^{2} = \sum_{i=1}^k Z_i$
+
+where $Z_i$ is a randomly drawn value from a normal distribution, and $k$ is the number of [degrees of freedom]({{ site.baseurl }}{% link _posts/2021-03-19-degrees-of-freedom.md %}), which is also equal to the number drawn values.
+
+Below is a vizualization of the probability density function of the chi-square distribution for a different number of degrees of freedom if the values are drawn from the normal distribution with the mean value 0, and the standard deviation 1.
+
+![](/assets/images/probability/chi_squared_distributions.png){: .align-center}
+
+Notice that since we are squaring the values there are no negative values in chi-square distribution. If we draw only one value, then there is a high probability that this value is close to 0, since the normal distribution is centered around 0. Therefore the shape of the PDF of chi-square distribution with 1 degree of freedom is heavily skewed towards zero, while the probability of getting bigger numbers becomes minuscule. If we draw more and more numbers increasing the number of degrees of freedom, the sum of squared values causes the center of the PDF of chi-square dsitribution to be shifted to the right.
