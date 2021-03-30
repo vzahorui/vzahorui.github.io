@@ -3,8 +3,8 @@ layout: single
 title: "Statistical distributions"
 description: In this post I described all essential stuff statistical distributions
 category: "Probability"
-tags: probability-distribution normal-distribution statistics z-score z-table six-sigma z-value central-limit-theorem Student's-distribution t-distribution probability-mass-function probability-density-function PDF degrees-of-freedom chi-square-distribution binomial-distribution Bernoulli-trial geometric-distribution exponential-distribution poisson-distribution uniform-distribution
-date: 2021-03-28
+tags: probability-distribution normal-distribution statistics z-score z-table six-sigma z-value central-limit-theorem Student's-distribution t-distribution probability-mass-function probability-density-function PDF degrees-of-freedom chi-square-distribution binomial-distribution Bernoulli-trial geometric-distribution exponential-distribution poisson-distribution uniform-distribution negative-binomial-distribution
+date: 2021-03-30
 ---
 
 A set of discrete values or a range of continuous values of a random variable is characterized by a certain probability distribution. In statistics various distributions arise in the context of estimating probabilities of random values or events.
@@ -35,8 +35,6 @@ Based on the example above, we may deduce that:
 * 95.44% - from 2.6 to 3.8 kilos (two standard deviations away from the mean)
 * 99.73% - from 2.3 to 4.1 kilos (three standard deviations away from the mean)
 
-### Z-score
-
 Before moving on to calculating the probability of getting certain interval values let’s introduce $z$-score metric. Plainly speaking, $z$-score tells us how many standard deviations a given value is away from the mean of its distribution.
 
 &nbsp;&nbsp;&nbsp;&nbsp;
@@ -51,6 +49,11 @@ Suppose we want to calculate the percentage of newborns who have weight less tha
 In the first case we simply calculate $z$-score of the value 3 and look up the area under the curve from the $z$-table for negative values (since 3 is lower than the mean 3.2). In this example it approximates to 0.2514. So conclude that only 25.14% of all newborns have weight 3 kilos or less.
 
 In the second example we have an area with two cut-off points. $Z$-table allows us to find the area to the left from a specific value, so here is what we do. First we calculated $z$-scores for 3.5 and for 3, then we look up the area under the curve for all weights which are less than 3.5 kilos and those which are less than 3 kilos. Then we simply subtract the second from the first. Finally we end up with something like 0.8413 - 0.2514, which equals to 0.59. Here we conclude that nearly 59% of all newborns have weight between 3 and 3.5 kilos.
+
+The probability density function of the normal distribution which was used in construction of $z$-table, and which is generally used for calculating probability looks like this:
+
+&nbsp;&nbsp;&nbsp;&nbsp;
+$f(x) = \frac{1}{\sigma\sqrt{2\pi}}e^{-\frac{1}{2}(\frac{x-\mu}{\sigma})^2}$
 
 ## Student's t-distribution
 
@@ -69,7 +72,7 @@ This distribution is used for getting probabilities in a discrete random variabl
 A random variable follows binomial distribution if it represents the number of successes in a sequence of Bernoulli experiments. The probability mass function is constructed using the knowledge of probability of success in a single experiment: 
 
 &nbsp;&nbsp;&nbsp;&nbsp;
-$f(x; p) = {\binom{n}{x}}p^{x}(1-p)^{n-x}$
+$f(x) = {\binom{n}{x}}p^{x}(1-p)^{n-x}$
 
 where $p$ is a probability of success in a single experiment, $k$ is the number of expected successes, $n$ is the number or experiments, and where
 
@@ -101,19 +104,58 @@ Therefore the variance for the binomial distribution is $np(1-p)$.
 
 ## Geometric distribution
 
-This is a type of distribution which is used to model the number of failures in sequences of Bernoulli trials before the first success. For example we want to know how many customers a retail shop has to engage with before the first sale is made. 
+This is a type of distribution which is used to model the number of failures in sequences of Bernoulli trials before the first success (or vice versa). For example we want to know how many customers a retail shop has to engage with before the first sale is made.
+
+The PMF of the geometric distribution is given by the following formula:
+
+&nbsp;&nbsp;&nbsp;&nbsp;
+$f(x) = (1-p)^{x} p$
+
+The formula is pretty intuitive as it just calculates the joint probability of $x$ failures in Bernoulli trials, each having probability of $(1-p)$, and 1 success probability of which is $p$.
+
+Below is an example of what an observed geometric distribution could look like:
 
 ![](/assets/images/probability/geometric_distribution.png){: .align-center}
 
-The mean of the distribution is defined as $\frac{1-p}{p}$, and the variance is $\frac{1-p}{p^2}$.
+From our example above the probability of having the first successful sale after 2 unsuccessful customer engagements would be
+
+&nbsp;&nbsp;&nbsp;&nbsp;
+$f(2) = (1-0.2)^{2} \cdot 0.2 = 0.128$
+
+The mean of the geometric distribution is defined as $\frac{1-p}{p}$, and the variance is $\frac{1-p}{p^2}$.
+
+## Negative binomial distribution
+
+This distribution is the generalization of the geometric distribution which is used to model the number of failures before the $n$th success. The PMF is the following:
+
+&nbsp;&nbsp;&nbsp;&nbsp;
+$f(x; r) = \binom{x+r-1}{r-1}(1-p)^{x}p^r$ 
+
+where $r$ is the required number of successes, $p$ is the probability of a success in a single Bernoulli experiment, and where
+
+&nbsp;&nbsp;&nbsp;&nbsp;
+$\binom{x+r-1}{r-1} = \frac{(x+r-1)!}{(r-1)!x!}$
+
+Using the same example as with the geometric distribution let's see how the distribution looks like for the number of unsuccessful customer engagements before 10 sales were made.
+
+![](/assets/images/probability/negative_binomial_distribution.png){: .align-center}
+
+The mean of the negative binomial distribution is defined as $\frac{pr}{(1-p)}$, and the variance is $\frac{pr}{(1-p)^2}$.
 
 ## Uniform distribution
 
-This type of distribution describes processes where every posible outcome has the same chance of occuring. An example of a discrete uniform distribution is rolling of a dice once and expecting any of the possible 6 values. Random number generation is an example of a continuous uniform distribution.
+This type of distribution describes processes where every possible outcome has the same chance of occurring. An example of a discrete uniform distribution is rolling of a dice once and expecting any of the possible 6 values. Random number generation is an example of a continuous uniform distribution.
 
 ![](/assets/images/probability/uniform_distribution.png){: .align-center}
 
-The expected value of the uniform distribution is defined as the center of the range over which the value is distributed $\frac{a+b}{2}$, while the variance is calculated as $\frac{(b-a)^2}{12}$.
+The PMF for the discrete distribution is just $\frac{1}{n}$, where $n$ is the number of partitions with the equal probability. For the continuous distributions the PDF is a constant line:
+
+&nbsp;&nbsp;&nbsp;&nbsp;
+$f(x) = \frac{1}{b-a}$
+
+where $a$ and $b$ are the borders of the distribution.
+
+The expected value of the uniform distribution is defined as the center of the range over which the value is distributed $\frac{a+b}{2}$. For the discrete distribution the variance is calculated as $\frac{n^2-1}{12}$ while for the continuous distribution as $\frac{(b-a)^2}{12}$.
 
 ## Poisson distribution
 
