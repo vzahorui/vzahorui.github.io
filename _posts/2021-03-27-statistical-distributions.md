@@ -4,7 +4,7 @@ title: "Statistical distributions"
 description: In this post I described all essential stuff statistical distributions
 category: "Probability"
 tags: probability-distribution normal-distribution statistics z-score z-table six-sigma z-value central-limit-theorem Student's-distribution t-distribution probability-mass-function probability-density-function PDF degrees-of-freedom chi-square-distribution binomial-distribution Bernoulli-trial geometric-distribution exponential-distribution poisson-distribution uniform-distribution negative-binomial-distribution
-date: 2021-03-30
+date: 2021-03-31
 ---
 
 A set of discrete values or a range of continuous values of a random variable is characterized by a certain probability distribution. In statistics various distributions arise in the context of estimating probabilities of random values or events.
@@ -175,17 +175,30 @@ Here is an examle of an observed distribution of the number of received emails f
 
 ![](/assets/images/probability/poisson_distribution.png){: .align-center}
 
+## Exponential distribution
+
+This is a continuous distribution which is closely related to Poisson distribution as it models the time between random independent events. It may also be viewed as a continuous analogue of the geometric distribution. The PDF of the distribution is calculated as follows:
+
+&nbsp;&nbsp;&nbsp;&nbsp;
+$f(x; \lambda) = \lambda e^{-\lambda x}$
+
+Suppose we would like to model the time between arrival of two buses at some station when on average there are 4 incoming busses for an hour. Translating this into minutes we have $\lambda = \frac{4}{60} \approx 0.07$. This is what a hypothetical distribution of time in minutes would look like:
+
+![](/assets/images/probability/exponential_distribution.png){: .align-center}
+
+The mean of the exponential distribution is $\frac{1}{\lambda}$, and the variance is $\frac{1}{\lambda^2}$.
+
 ## Chi-square distribution
 
-In a nutshell the chi-square distribution is the distribution of sum of squred values sampled from a normally distributed variable.
+In a nutshell the chi-square distribution is the distribution of sum of squared values sampled from a normally distributed variable.
 
 &nbsp;&nbsp;&nbsp;&nbsp;
 $\chi_k^{2} = \sum_{i=1}^k Z_i$
 
 where $Z_i$ is a randomly drawn value from a normal distribution, and $k$ is the number of [degrees of freedom]({{ site.baseurl }}{% link _posts/2021-03-19-degrees-of-freedom.md %}), which is also equal to the number drawn values.
 
-Below is a vizualization of the probability density function of the chi-square distribution for a different number of degrees of freedom if the values are drawn from the normal distribution with the mean value 0, and the standard deviation 1.
+Below is a visualization of the probability density function of the chi-square distribution for a different number of degrees of freedom if the values are drawn from the normal distribution with the mean value 0, and the standard deviation 1.
 
 ![](/assets/images/probability/chi_squared_distributions.png){: .align-center}
 
-Notice that since we are squaring the values there are no negative values in chi-square distribution. If we draw only one value, then there is a high probability that this value is close to 0, since the normal distribution is centered around 0. Therefore the shape of the PDF of chi-square distribution with 1 degree of freedom is heavily skewed towards zero, while the probability of getting bigger numbers becomes minuscule. If we draw more and more numbers increasing the number of degrees of freedom, the sum of squared values causes the center of the PDF of chi-square dsitribution to be shifted to the right.
+Notice that since we are squaring the values there are no negative values in chi-square distribution. If we draw only one value, then there is a high probability that this value is close to 0, since the normal distribution is centered around 0. Therefore the shape of the PDF of chi-square distribution with 1 degree of freedom is heavily skewed towards zero, while the probability of getting bigger numbers becomes minuscule. If we draw more and more numbers increasing the number of degrees of freedom, the sum of squared values causes the center of the PDF of chi-square distribution to be shifted to the right.
