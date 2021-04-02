@@ -4,7 +4,7 @@ title: "Statistical distributions"
 description: In this post I described all essential stuff statistical distributions
 category: "Probability"
 tags: probability-distribution normal-distribution statistics z-score z-table six-sigma z-value central-limit-theorem Student's-distribution t-distribution probability-mass-function probability-density-function PDF degrees-of-freedom chi-square-distribution binomial-distribution Bernoulli-trial geometric-distribution exponential-distribution poisson-distribution uniform-distribution negative-binomial-distribution
-date: 2021-03-31
+date: 2021-04-01
 ---
 
 A set of discrete values or a range of continuous values of a random variable is characterized by a certain probability distribution. In statistics various distributions arise in the context of estimating probabilities of random values or events.
@@ -193,9 +193,9 @@ The mean of the exponential distribution is $\frac{1}{\lambda}$, and the varianc
 In a nutshell the chi-square distribution is the distribution of sum of squared values sampled from a normally distributed variable.
 
 &nbsp;&nbsp;&nbsp;&nbsp;
-$\chi_k^{2} = \sum_{i=1}^k Z_i$
+$\chi_k^{2} = \sum_{i=1}^k Z_i^2$
 
-where $Z_i$ is a randomly drawn value from a normal distribution, and $k$ is the number of [degrees of freedom]({{ site.baseurl }}{% link _posts/2021-03-19-degrees-of-freedom.md %}), which is also equal to the number drawn values.
+where $Z_i$ is a randomly drawn value from a normal distribution, and $k$ is the number of [degrees of freedom]({{ site.baseurl }}{% link _posts/2021-03-19-degrees-of-freedom.md %}), which is also equal to the number of drawn values.
 
 Below is a visualization of the probability density function of the chi-square distribution for a different number of degrees of freedom if the values are drawn from the normal distribution with the mean value 0, and the standard deviation 1.
 
