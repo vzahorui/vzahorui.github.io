@@ -74,7 +74,7 @@ A random variable follows binomial distribution if it represents the number of s
 &nbsp;&nbsp;&nbsp;&nbsp;
 $f(x) = {\binom{n}{x}}p^{x}(1-p)^{n-x}$
 
-where $p$ is a probability of success in a single experiment, $k$ is the number of expected successes, $n$ is the number or experiments, and where
+where $p$ is a probability of success in a single experiment, $x$ is the number of expected successes, $n$ is the number or experiments, and where
 
 &nbsp;&nbsp;&nbsp;&nbsp;
 $\binom{n}{x} = \frac{n!}{x!(n-x)!}$ 
