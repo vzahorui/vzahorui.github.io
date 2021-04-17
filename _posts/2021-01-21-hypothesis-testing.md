@@ -3,20 +3,22 @@ layout: single
 title: "Hypothesis testing"
 description: General overview of hypothesis testing, power analysis and multiple testing procedure
 category: "Probability"
-toc: true
 tags: significance-test null-hypothesis p-value significance-level type-1-error type-2-error p-value-hacking false-discovery-rate alternative-hypothesis power-analysis normal-distribution margin-of-error confidence-interval sample-size family-wise-error-rate multiple-testing false-discovery-rate Benjamini–Hochberg-procedure FWER
 date: 2021-04-17
 ---
 
-## Table of contents
-
-* [Introduction](#introduction)
+## In this article
+* [What is hypothesis testing](#introduction)
 * [P-value hacking](#p_hacking)
 * [Type I and type II errors](#error_types)
 * [Statistical power](#stat_power)
+* [Power analysis](#power_analysis)
+* [Multiple hypothesis testing](#multiple_testing)
+  * [Benjamini–Hochberg procedure](#Benjamini_procedure)
+
 
 <div id='introduction'/>
-## Introduction
+## What is hypothesis testing
 
 In a nutshell hypothesis testing is a process of validation of plausibility of an assumption about population data using sample data. The assumption which is being tested is called the null hypothesis. Alongside the null hypothesis the alternative hypothesis is defined as rejection of the null hypothesis.
 
@@ -58,6 +60,7 @@ In the plot above the distribution assumed by the null hypothesis has mean value
  
 In order to increase statistical power and thus to reduce the probability of type II error we can increase the level of significance so that the overlapping regions are being cut off. This however will make type I error more likely. A better option for increasing statistical power would be to increase the sample size. Since for the [normal distribution]({{ site.baseurl }}{% link _posts/2021-03-27-statistical-distributions.md %}) the values are concentrated around its mean, drawing more samples will have a better chance of getting a sample mean close to the true mean, which is a consequence of the Weak law of large numbers (more to it can be found [here]({{ site.baseurl }}{% link _posts/2021-01-11-probability-bounds.md %})).
 
+<div id='power_analysis'/>
 ## Power analysis
 
 Power analysis is a method which helps to define the size of a sample in order to get a certain level of statistical power. It won't hurt to have a sample of greater size but in practice this might be expensive so the desired minimum should be determined beforehand. Apart from the desired level of statistical power among factors affecting the required sample are the significance level (the smaller the significance level - the larger sample size is needed), type of the alternative hypothesis (whether we have a one- or two-tailed test), the difference between two distributions which needs to be detected, and the variance.
@@ -96,7 +99,8 @@ So the formula for the required minimum of the sample size looks like this:
 &nbsp;&nbsp;&nbsp;&nbsp;
 $n = \frac{(Z_{\alpha} + Z_{\beta})^2\sigma^2}{(\mu_1 - \mu_0)^2}$
 
-## Multiple hypothesis tests
+<div id='multiple_testing'/>
+## Multiple hypothesis testing
 
 Sometimes it is impossible to come up with a single metric for performing comparison over two groups. For example a new method of learning is tested across several aspects, such as the ability to keep knowledge in the long-term memory, the intuitiveness of the material, the level of engagement, and the level of stress. Another common case is testing of the effectiveness of some method of treatment against a number of indicators.  In these examples there is no compound metric which could be used for a single test. Multiple (or global) hypothesis testing refers to simultaneous testing of multiple hypotheses using the same sample, and checking whether the compound $p$-value exceeds the significance level.
 
@@ -109,6 +113,7 @@ where $n$ is the number of hypotheses, and $\alpha_i$ is the significance level 
 
 It becomes obvious that for a larger number of hypotheses the compound probability of making a false discovery becomes too high. In order to control the family-wise error rate, several approaches have been suggested, among which false discovery rate method (FDR, also known as Benjamini–Hochberg procedure) is one of the most preferred ones, as it helps to keep FWER at an acceptable level while not being too conservative and keeping statistical power.
 
+<div id='benjamini_procedure'/>
 ### Benjamini–Hochberg procedure
 
 The method controls family-wise error rate in multiple testing ensuring that it is less or equal to a given significance level. Before discussing how and why it works let's note that if the null hypothesis is true then the $p$-values are [uniformly distributed]({{ site.baseurl }}{% link _posts/2021-03-27-statistical-distributions.md %}) between 0 and 1. This concurs with the definition of significance level as the probability of having a small $p$-value (a value between 0 and $\alpha$). If the alternative hypothesis is true then there is a high probability of getting a small $p$-value, so in this case the distribution of $p$-values is highly skewed to the left. To demonstrate this I've made a simulation of multiple tests for the scenarios when the null hypothesis is true and false, and visualized the distribution of $p$-values in both cases:
