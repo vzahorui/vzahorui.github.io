@@ -3,6 +3,7 @@ layout: single
 title: "Hypothesis testing"
 description: General overview of hypothesis testing, power analysis and multiple testing procedure
 category: "Probability"
+toc: true
 tags: significance-test null-hypothesis p-value significance-level type-1-error type-2-error p-value-hacking false-discovery-rate alternative-hypothesis power-analysis normal-distribution margin-of-error confidence-interval sample-size family-wise-error-rate multiple-testing false-discovery-rate Benjamini–Hochberg-procedure FWER
 date: 2021-04-17
 ---
