@@ -11,7 +11,6 @@ date: 2021-04-02
 
 * [Introduction](#introduction)
 * [P-value hacking](#p_value_hacking)
-* [Example2](#example2)
 * [Example3](#id-section1)
 
 
@@ -42,7 +41,7 @@ Whether we reject the null hypothesis or not, we might still be wrong in doing s
 
 With regard to this, the level of significance should be determined beforehand, so as not to "adjust" the obtained result to be more suitable for the researcher. The higher the level of significance - the higher probability of making type I error, and vice versa the lower the significance level - the higher probability of type II error. Therefore, setting a low significance level means that we require stronger evidence for rejecting the null hypothesis but if the hypothesis happens to be false there is a higher chance of not rejecting it.
 
-## Statistical power [](#){name=example2}
+## Statistical power <a href="#page-title" class="back-to-top">{{ site.data.ui-text[site.locale].back_to_top | default: 'Back to Top' }} &uarr;</a>
 
 Statistical power is the probability of correctly rejecting the null hypothesis. In other words, it is the probability of correctly getting a small $p$-value when the null hypothesis is wrong, so it can be expressed as 1 minus probability of type II error.
 
