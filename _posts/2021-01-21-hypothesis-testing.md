@@ -117,6 +117,7 @@ $\bar \alpha = 1 - (1  - \alpha_i)^n$
 where $n$ is the number of hypotheses, and $\alpha_i$ is the significance level of $i$th hypothesis.
 
 It becomes obvious that for a larger number of hypotheses the compound probability of making a false discovery becomes too high. In order to control the family-wise error rate, several approaches have been suggested, among which false discovery rate method (FDR, also known as Benjamini–Hochberg procedure) is one of the most preferred ones, as it helps to keep FWER at an acceptable level while not being too conservative and keeping statistical power.
+<a href="#page-title" class="back-to-top">{{ site.data.ui-text[site.locale].back_to_top | default: 'Back to Top' }} &uarr;</a>
 
 <div id='benjamini_procedure'/>
 ### Benjamini–Hochberg procedure

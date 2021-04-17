@@ -20,7 +20,7 @@ title                    : "Unlocking the power of data"
 title_separator          : "|"
 subtitle                 : "by Vladyslav Zahorui"
 name                     : "Vladyslav Zahorui"
-description              : "Knowledge base related to data science. In depth description of statistical concepts and conducted experiments with machine learning."
+description              : "Knowledge base related to data science. In depth description of statistical concepts and machine learning models."
 url                      : "https://vzahorui.github.io"
 teaser                   : # path of fallback teaser image, e.g. "/assets/images/500x300.png"
 logo                     : # path of logo image to display in the masthead, e.g. "/assets/images/88x88.png"
@@ -286,4 +286,4 @@ defaults:
       read_time: true
       comments: true
       share: true
-      related: false
+      related: true
