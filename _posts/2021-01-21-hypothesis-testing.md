@@ -7,8 +7,12 @@ tags: significance-test null-hypothesis p-value significance-level type-1-error 
 date: 2021-04-02
 ---
 
-[Introduction](#introduction)
-[P-value hacking](#p_value_hacking)
+## Table of contents
+
+* [Introduction](#introduction)
+* [P-value hacking](#p_value_hacking)
+* [Example2](#example2)
+* [Example3](#id-section1)
 
 
 ## Introduction <a name="introduction"></a>
@@ -31,13 +35,14 @@ Depending on the type of hypothesis testing a different [test statistic]({{ site
 
 $p$-value hacking is associated with making incorrect decisions based on test statistics when the desired outcome is made to look true based on the significance test. Since the significance level implies the chance to reject the null hypothesis when it is true, one might be tempted to draw multiple tests from the same distribution until we finally get the one with the test statistic lower than the significance level, which it turn will ostensibly give the reason to reject the null hypothesis. Adjusting the significance level after the conduction of the experiment is also considered as p-hacking.
 
+<div id='id-section1'/>
 ## Type I and type II errors
 
 Whether we reject the null hypothesis or not, we might still be wrong in doing so. The significance level implies that there is a small chance (probability of which is equal to the significance level) that we reject the null hypothesis when in fact it is true. Another way to look at it is that we might get an unusual sample with the test statistic probability of which is less than the significance level. In this case we reject the null hypothesis without knowing that the sample was a bad representation of the population. This type of error is known as type I error. On the contrary, type II error occurs if we fail to reject an incorrect null hypothesis.
 
 With regard to this, the level of significance should be determined beforehand, so as not to "adjust" the obtained result to be more suitable for the researcher. The higher the level of significance - the higher probability of making type I error, and vice versa the lower the significance level - the higher probability of type II error. Therefore, setting a low significance level means that we require stronger evidence for rejecting the null hypothesis but if the hypothesis happens to be false there is a higher chance of not rejecting it.
 
-## Statistical power
+## Statistical power [](#){name=example2}
 
 Statistical power is the probability of correctly rejecting the null hypothesis. In other words, it is the probability of correctly getting a small $p$-value when the null hypothesis is wrong, so it can be expressed as 1 minus probability of type II error.
 
