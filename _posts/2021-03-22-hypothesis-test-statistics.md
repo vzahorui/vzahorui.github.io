@@ -122,7 +122,7 @@ $P(x \leq a) = P(x < a+0.5)$
 
 When applying continuity correction, each whole number gets an additional region around it where the normally distributed value could land, so that it can be attributed to the nearest neighboring whole number - the possible outcome of the binomial distribution.
 
-The $z$-score with continuity correction for our example of the college dropouts would look like this:
+The $z$-score with continuity correction for our example of the college dropouts looks like this:
 
 &nbsp;&nbsp;&nbsp;&nbsp;
 $z = \frac{31-500 \cdot 0.07+0.5}{\sqrt{500 \cdot 0.07(1-0.07)}} \approx -0.61$
@@ -141,9 +141,30 @@ Also note that the formula above does not make use of the continuity correction 
 &nbsp;&nbsp;&nbsp;&nbsp;
 $z = \frac{x-p \pm \frac{0.5}{n}}{\sqrt{\frac{p(1-p)}{n}}}$
 
-Plus or minus are used depending on the direction of the one-tailed test (whether the sample statistic is smaller or greater than the expected value).
+Plus or minus are used depending on the direction of the one-tailed test (whether the sample statistic is smaller or greater than the expected value). If the test result is smaller than the expected value, and the test is lower-tailed we should use plus. And vice versa, if the test statistic is bigger than the expected value, and the test is upper-tailed, minus should be used.
 
 ### Proportion between two samples
+
+In order to test the equality of proportions in two samples, it is also possible to use normal approximation provided that the sample sizes are large enough. Here we may also use the normally distributed random variable which is the difference of means in two samples.
+
+&nbsp;&nbsp;&nbsp;&nbsp;
+$\hat p_1 - \hat p_2 = N(p_1 - p_2, \sqrt{\frac{p_1(1-p_1)}{n_1} + \frac{p_2(1-p_2)}{n_2}})$
+
+The $z$-score is calculated similarly to the $t$-statistic for the difference in means of two samples using the pooled version of variance:
+
+&nbsp;&nbsp;&nbsp;&nbsp;
+$z=\frac{\hat p_1 - \hat p_2}{\sqrt{\hat p(1- \hat p)\frac{1}{n_1}+\frac{1}{n_2}}}$
+
+where 
+
+&nbsp;&nbsp;&nbsp;&nbsp;
+$\hat p = \frac{\hat p_1 n_1 +\hat p_2 n_2}{n_1+n_2}$
+
+And after applying continuity correction:
+
+&nbsp;&nbsp;&nbsp;&nbsp;
+$z=\frac{\hat p_1 - \hat p_2 \pm \frac{1}{2}(\frac{1}{n_1}+\frac{1}{n_2})}{\sqrt{\hat p(1- \hat p)\frac{1}{n_1}+\frac{1}{n_2}}}$
+
 
 
 

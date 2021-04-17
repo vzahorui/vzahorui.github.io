@@ -7,6 +7,12 @@ tags: significance-test null-hypothesis p-value significance-level type-1-error 
 date: 2021-04-02
 ---
 
+# Table of contents
+
+{:toc}
+
+## Introduction
+
 In a nutshell hypothesis testing is a process of validation of plausibility of an assumption about population data using sample data. The assumption which is being tested is called the null hypothesis. Alongside the null hypothesis the alternative hypothesis is defined as rejection of the null hypothesis.
 
 Under the framework of hypothesis testing we assume that the null hypothesis is true, calculate statistic over the sample data (sample mean for example), and evaluate the probability of having this (or more extreme) statistic if the null hypothesis is true, which is called $p$-value. If the probability is greater then some threshold (the significance level), then the hypothesis is not rejected. On the other hand, if the probability of getting that sample statistic under the null hypothesis is small (smaller than the significance level), then it is rejected and the alternative hypothesis is assumed.
