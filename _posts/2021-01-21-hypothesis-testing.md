@@ -7,11 +7,11 @@ tags: significance-test null-hypothesis p-value significance-level type-1-error 
 date: 2021-04-02
 ---
 
-# Table of contents
+[Introduction](#introduction)
+[P-value hacking](#p_value_hacking)
 
-{:toc}
 
-## Introduction
+## Introduction <a name="introduction"></a>
 
 In a nutshell hypothesis testing is a process of validation of plausibility of an assumption about population data using sample data. The assumption which is being tested is called the null hypothesis. Alongside the null hypothesis the alternative hypothesis is defined as rejection of the null hypothesis.
 
@@ -27,7 +27,7 @@ As a rule, the null hypothesis is the hypothesis of no change. For example we as
 
 Depending on the type of hypothesis testing a different [test statistic]({{ site.baseurl }}{% link _posts/2021-03-22-hypothesis-test-statistics.md %}) is used. The choice depends for example on whether the difference is tested between a sample and the population, or between two or samples. Also we might be testing the difference in means, the difference in variance or the difference in discrete value distributions, which would also affect the choice of test statistic.
 
-## P-value hacking
+## P-value hacking <a name="p_value_hacking"></a>
 
 $p$-value hacking is associated with making incorrect decisions based on test statistics when the desired outcome is made to look true based on the significance test. Since the significance level implies the chance to reject the null hypothesis when it is true, one might be tempted to draw multiple tests from the same distribution until we finally get the one with the test statistic lower than the significance level, which it turn will ostensibly give the reason to reject the null hypothesis. Adjusting the significance level after the conduction of the experiment is also considered as p-hacking.
 
