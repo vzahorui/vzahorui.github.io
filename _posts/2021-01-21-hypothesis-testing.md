@@ -33,11 +33,13 @@ In the following illustration we see that for some distribution of a random vari
 As a rule, the null hypothesis is the hypothesis of no change. For example we assume that the mean value of some distribution of a random variable is equal to some number, or that the mean values of two distributions are equal, or that the proportion of the population is equal to some percentage. The alternative hypothesis may suggest that the statistic is either greater or smaller than the one in the null hypothesis - in this case we have a one-tailed test (as in the picture above). Or it may suggest that the statistic is not equal to the one in the null hypothesis (varying in either direction) - then we have a two-tailed test. In case of two-tailed tests the probability area of significance level area is split into halves and placed on either side of the mean.
 
 Depending on the type of hypothesis testing a different [test statistic]({{ site.baseurl }}{% link _posts/2021-03-22-hypothesis-test-statistics.md %}) is used. The choice depends for example on whether the difference is tested between a sample and the population, or between two or samples. Also we might be testing the difference in means, the difference in variance or the difference in discrete value distributions, which would also affect the choice of test statistic.
+<a href="#page-title" class="back-to-top">{{ site.data.ui-text[site.locale].back_to_top | default: 'Back to Top' }} &uarr;</a>
 
 <div id='p_hacking'/>
 ## P-value hacking
 
 $p$-value hacking is associated with making incorrect decisions based on test statistics when the desired outcome is made to look true based on the significance test. Since the significance level implies the chance to reject the null hypothesis when it is true, one might be tempted to draw multiple tests from the same distribution until we finally get the one with the test statistic lower than the significance level, which it turn will ostensibly give the reason to reject the null hypothesis. Adjusting the significance level after the conduction of the experiment is also considered as p-hacking.
+<a href="#page-title" class="back-to-top">{{ site.data.ui-text[site.locale].back_to_top | default: 'Back to Top' }} &uarr;</a>
 
 <div id='error_types'/>
 ## Type I and type II errors
@@ -59,6 +61,7 @@ Two different distributions might have regions where they overlap. Getting a sam
 In the plot above the distribution assumed by the null hypothesis has mean value at $\mu_0$ while the true distribution is centered at $\mu_1$. In this case the null hypothesis will not be rejected if the sample mean is greater than $x_0$ (the critical level at significance level $\alpha$). Hence, the probability of type II error will be equal to the area of the true distribution to the left from $x_0$, which can be obtained from the $z$-score at $x_0$ provided that the true mean of the population is $\mu_1$. This probability is usually signed with $\beta$, and the power is then equal to $1-\beta$.
  
 In order to increase statistical power and thus to reduce the probability of type II error we can increase the level of significance so that the overlapping regions are being cut off. This however will make type I error more likely. A better option for increasing statistical power would be to increase the sample size. Since for the [normal distribution]({{ site.baseurl }}{% link _posts/2021-03-27-statistical-distributions.md %}) the values are concentrated around its mean, drawing more samples will have a better chance of getting a sample mean close to the true mean, which is a consequence of the Weak law of large numbers (more to it can be found [here]({{ site.baseurl }}{% link _posts/2021-01-11-probability-bounds.md %})).
+<a href="#page-title" class="back-to-top">{{ site.data.ui-text[site.locale].back_to_top | default: 'Back to Top' }} &uarr;</a>
 
 <div id='power_analysis'/>
 ## Power analysis
@@ -98,6 +101,8 @@ So the formula for the required minimum of the sample size looks like this:
 
 &nbsp;&nbsp;&nbsp;&nbsp;
 $n = \frac{(Z_{\alpha} + Z_{\beta})^2\sigma^2}{(\mu_1 - \mu_0)^2}$
+
+<a href="#page-title" class="back-to-top">{{ site.data.ui-text[site.locale].back_to_top | default: 'Back to Top' }} &uarr;</a>
 
 <div id='multiple_testing'/>
 ## Multiple hypothesis testing
@@ -142,3 +147,4 @@ In order to reduce FDR we can simply adjust for a given significance level by tr
 ![](/assets/images/probability/false_dsicovery_rate_viz.png){: .align-center}
 
 Benjamini–Hochberg procedure basically consists of sorting $p$-values and rejecting only those which are lower than $\alpha \frac{p_k}{n}$.
+<a href="#page-title" class="back-to-top">{{ site.data.ui-text[site.locale].back_to_top | default: 'Back to Top' }} &uarr;</a>
