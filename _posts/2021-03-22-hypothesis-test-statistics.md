@@ -3,14 +3,24 @@ layout: single
 title: "Hypothesis test statistics"
 description: "overview of test statistics: when to use each"
 category: "Probability"
-tags: degrees-of-freedom Pearson's-chi-square-test goodness-of-fit significance-test hypothesis-testing z-score z-test t-test normal-distribution t-distribution f-statistic f-distribution Student's-distribution continuity-correction Welch's-t-test
+tags: degrees-of-freedom Pearson's-chi-square-test goodness-of-fit significance-test hypothesis-testing z-score z-test t-test normal-distribution t-distribution f-statistic f-distribution Student's-distribution continuity-correction Welch's-t-test exact-Fisher's-test
 date: 2021-04-25
 ---
 
-This article provides an overview of the most commonly used statistics in [hypothesis testing]({{ site.baseurl }}{% link _posts/2021-01-21-hypothesis-testing.md %}) explaining when to use each.
+This is an overview of the most commonly used statistics in [hypothesis testing]({{ site.baseurl }}{% link _posts/2021-01-21-hypothesis-testing.md %}) explaining when to use each.
 
+## In this article
+
+* [Testing the difference in means](#difference_means)
+  * [The mean between sample and population](#mean_sample_and_population)
+  * [The mean between two samples](#mean_two_samples)
+* [Testing the difference in proportions](#difference_proportions)
+
+
+<div id='difference_means'/>
 ## Testing the difference in means
 
+<div id='mean_sample_and_population'/>
 ### The mean between sample and population
 
 When we draw multiple samples from a population, the mean of each sample becomes a random variable, and the [expectation of the mean]({{ site.baseurl }}{% link _posts/2021-01-16-sampling-distribution.md %}) of those samples is equal to the mean of the population. Recall that for the [normal distribution]({{ site.baseurl }}{% link _posts/2021-03-27-statistical-distributions.md %}) the $z$-score tells us how many standard deviations a given value is away from the mean of its distribution. The idea of the $z$-score can be applied to a single samples's mean, so that its relative distance from the population's mean is estimated, but instead of the standard deviation, the standard error of the mean is used as the scaling factor:
@@ -39,7 +49,9 @@ First let's set the significance level as 0.05. Assuming the data has normal dis
 $t = \frac{26.5-26}{\frac{3}{\sqrt{500}}} \approx 3.7268$
 
 For this one-sided $t$-test the $p$-value corresponding to our $t$-statistics is 0.0001, which is less than the significance level. Based on this we reject the null hypothesis and assume that the age of mothers at the time of birth of their first child increased indeed.
+<a href="#page-title" class="back-to-top">{{ site.data.ui-text[site.locale].back_to_top | default: 'Back to Top' }} &uarr;</a>
 
+<div id='mean_two_samples'/>
 ### The mean between two samples
 
 In case of testing the mean between two samples the null hypothesis is constructed as no difference between them.
@@ -88,10 +100,14 @@ $s_p = \sqrt{\frac{(n_{1}-1)s_1^2 + (n_{2}-1)s_2^2}{n_{1}+n_{2}-2}}$
 The number of degrees of freedom in this case is $(n_1 + n_2 - 2)$.
 
 In practice the variance of two populations is rarely equal, so the Welch's $t$-test should be used by default as it is more robust. At the same time, if the variance is equal the power of this test comes close to the power of the $t$-test based on the pooled standard deviation.
+<a href="#page-title" class="back-to-top">{{ site.data.ui-text[site.locale].back_to_top | default: 'Back to Top' }} &uarr;</a>
 
+<div id='difference_proportions'/>
 ## Testing the difference in proportions
 
 ### The proportion between sample and population
+
+First let's consider cases of binomial distribution
 
 This type of testing is performed on binomially distributed data where each observation has only two possible outcomes. For example we know that the average rate of college dropout across a country is 7%. For a particular college we conducted a survey and found out that among 500 originally enlisted students 31 left before graduation. We would like to test the hypothesis that the dropout rate for this college is the same as the average across the country. The alternative hypothesis would be that it is less than the average.
 
@@ -165,8 +181,15 @@ And after applying continuity correction:
 &nbsp;&nbsp;&nbsp;&nbsp;
 $z=\frac{\hat p_1 - \hat p_2 \pm \frac{1}{2}(\frac{1}{n_1}+\frac{1}{n_2})}{\sqrt{\hat p(1- \hat p)\frac{1}{n_1}+\frac{1}{n_2}}}$
 
+For small samples the normal approximation simply won't work, so an exact method of calculating the $p$-value should be used. For example we want to test whether the taxi drivers are more likely to receive 5-star rating when they are silent during the whole ride. For this we gathered two samples of drivers: those who tend to talk with the customers, and those prefer to stay silent, and counted the number of rides where the driver was given a 5-star rating through the app. The rusult is shown in the following contingency table:
 
+|                      |Talkative|Silent|_Row Total_|
+|:--------------------:|:-------:|:---:|:---:|
+|Received 5-star rating|12|15|27|
+|Did not receive 5-star rating|23|21|44|
+|___Column Total___|35|36|71|
 
+One method of calculting the $p$-value here would be the exact Fisher's test.
 
 ## Chi-square
 
