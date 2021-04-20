@@ -3,7 +3,7 @@ layout: single
 title: "Hypothesis test statistics"
 description: "overview of test statistics: when to use each"
 category: "Probability"
-tags: degrees-of-freedom Pearson's-chi-square-test goodness-of-fit significance-test hypothesis-testing z-score z-test t-test normal-distribution t-distribution f-statistic f-distribution Student's-distribution continuity-correction Welch's-t-test exact-Fisher's-test
+tags: degrees-of-freedom Pearson's-chi-square-test goodness-of-fit significance-test hypothesis-testing z-score z-test t-test normal-distribution t-distribution f-statistic f-distribution Student's-distribution continuity-correction Welch's-t-test exact-Fisher's-test Barnard's-test contingency-table
 date: 2021-04-25
 ---
 
@@ -15,7 +15,9 @@ This is an overview of the most commonly used statistics in [hypothesis testing]
   * [The mean between sample and population](#mean_sample_and_population)
   * [The mean between two samples](#mean_two_samples)
 * [Testing the difference in proportions](#difference_proportions)
-
+  * [The proportion between sample and population](#proportion_sample_and_population)
+  * [The proportion betwen two samples](#proportion_two_samples)
+    * [Contingency tables with small numbers](#contingency_tables_small_numbers)
 
 <div id='difference_means'/>
 ## Testing the difference in means
@@ -105,11 +107,10 @@ In practice the variance of two populations is rarely equal, so the Welch's $t$-
 <div id='difference_proportions'/>
 ## Testing the difference in proportions
 
+<div id='proportion_sample_and_population'/>
 ### The proportion between sample and population
 
-First let's consider cases of binomial distribution
-
-This type of testing is performed on binomially distributed data where each observation has only two possible outcomes. For example we know that the average rate of college dropout across a country is 7%. For a particular college we conducted a survey and found out that among 500 originally enlisted students 31 left before graduation. We would like to test the hypothesis that the dropout rate for this college is the same as the average across the country. The alternative hypothesis would be that it is less than the average.
+This type of testing is popular for the cases of binomially distributed data where each observation has only two possible outcomes. For example we know that the average rate of college dropout across a country is 7%. For a particular college we conducted a survey and found out that among 500 originally enlisted students 31 left before graduation. We would like to test the hypothesis that the dropout rate for this college is the same as the average across the country. The alternative hypothesis would be that it is less than the average.
 
 Considering that each student may or may not leave before graduation we're dealing with the [binomial distribution]({{ site.baseurl }}{% link _posts/2021-03-27-statistical-distributions.md %}). For this kind of distribution we can employ its probability mass function and calculate directly the $p$-value - the probability of having from 0 to 31 dropouts among 500 considering that the average dropout rate is 7%:
 
@@ -158,8 +159,10 @@ Also note that the formula above does not make use of the continuity correction 
 $z = \frac{x-p \pm \frac{0.5}{n}}{\sqrt{\frac{p(1-p)}{n}}}$
 
 Plus or minus are used depending on the direction of the one-tailed test (whether the sample statistic is smaller or greater than the expected value). If the test result is smaller than the expected value, and the test is lower-tailed we should use plus. And vice versa, if the test statistic is bigger than the expected value, and the test is upper-tailed, minus should be used.
+<a href="#page-title" class="back-to-top">{{ site.data.ui-text[site.locale].back_to_top | default: 'Back to Top' }} &uarr;</a>
 
-### Proportion between two samples
+<div id='proportion_two_samples'/>
+### The proportion between two samples
 
 In order to test the equality of proportions in two samples, it is also possible to use normal approximation provided that the sample sizes are large enough. Here we may also use the normally distributed random variable which is the difference of means in two samples.
 
@@ -180,16 +183,31 @@ And after applying continuity correction:
 
 &nbsp;&nbsp;&nbsp;&nbsp;
 $z=\frac{\hat p_1 - \hat p_2 \pm \frac{1}{2}(\frac{1}{n_1}+\frac{1}{n_2})}{\sqrt{\hat p(1- \hat p)\frac{1}{n_1}+\frac{1}{n_2}}}$
+<a href="#page-title" class="back-to-top">{{ site.data.ui-text[site.locale].back_to_top | default: 'Back to Top' }} &uarr;</a>
 
-For small samples the normal approximation simply won't work, so an exact method of calculating the $p$-value should be used. For example we want to test whether the taxi drivers are more likely to receive 5-star rating when they are silent during the whole ride. For this we gathered two samples of drivers: those who tend to talk with the customers, and those prefer to stay silent, and counted the number of rides where the driver was given a 5-star rating through the app. The rusult is shown in the following contingency table:
+<div id='contingency_tables_small_numbers'/>
+#### Contingency tables with small numbers
+
+For small samples the normal approximation of discrete variables won't work, so exact methods of calculating the $p$-value should be used instead. This is similar to calculating the exact $p$-value from the PMF of the binomial distribution, as was the case of one sample and known probability of a single Bernoulli trial in the population. However, in case of two samples the probability of success can only be estimated from the sample data. As a rule, 2 $\times$ 2 contingency tables are used for representing the joint distribution of two samples.
+
+For example we want to test whether the taxi drivers are more likely to receive a 5-star rating when they are silent during the whole ride. For this we gathered two samples of drivers: those who tend to talk with the customers, and those who prefer to stay silent, and counted the number of rides where the driver was given a 5-star rating through the app. The result is shown in the following contingency table:
 
 |                      |Talkative|Silent|_Row Total_|
-|:--------------------:|:-------:|:---:|:---:|
+|:--------------------:|:-------:|:---:|/85*9:---:|
 |Received 5-star rating|12|15|27|
 |Did not receive 5-star rating|23|21|44|
 |___Column Total___|35|36|71|
 
-One method of calculting the $p$-value here would be the exact Fisher's test.
+One method of calculating the $p$-value here would be the exact Fisher's test which relies on conditional probability.
+
+However due to its discreteness, Fisher's exact method may be overly conservative in rejecting the null hypothesis, hence it has low power. 
+
+The method sets the general number of successes across two samples, and the size of each sample fixed. So in our example it considers possible only cases when the total number of receiving a 5-star rating is 27, and the sample sizes are 35 and 36. Therefore, the general probability of success is $\frac{12+15}{35+36}$.
+
+In the real life situations the sample sizes, and the distribution may vary from sample to sample.
+
+
+<a href="#page-title" class="back-to-top">{{ site.data.ui-text[site.locale].back_to_top | default: 'Back to Top' }} &uarr;</a>
 
 ## Chi-square
 
