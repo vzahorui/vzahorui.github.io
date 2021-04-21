@@ -188,24 +188,45 @@ $z=\frac{\hat p_1 - \hat p_2 \pm \frac{1}{2}(\frac{1}{n_1}+\frac{1}{n_2})}{\sqrt
 <div id='contingency_tables_small_numbers'/>
 #### Contingency tables with small numbers
 
-For small samples the normal approximation of discrete variables won't work, so exact methods of calculating the $p$-value should be used instead. This is similar to calculating the exact $p$-value from the PMF of the binomial distribution, as was the case of one sample and known probability of a single Bernoulli trial in the population. However, in case of two samples the probability of success can only be estimated from the sample data. As a rule, 2 $\times$ 2 contingency tables are used for representing the joint distribution of two samples.
+For small samples the normal approximation of discrete variables won't work, so exact methods of calculating the $p$-value should be used instead. This is similar to calculating the exact $p$-value from the PMF of the binomial distribution, as was the case of one sample and known probability of a single Bernoulli trial in the population. However, in case of two samples the probability of success can only be estimated from the sample data. The null hypothesis is then constructed as the equality of probability of success in two samples, which is also equal to the general probability.
+
+&nbsp;&nbsp;&nbsp;&nbsp;
+$H_0: p_1 = p_2 = p$
 
 For example we want to test whether the taxi drivers are more likely to receive a 5-star rating when they are silent during the whole ride. For this we gathered two samples of drivers: those who tend to talk with the customers, and those who prefer to stay silent, and counted the number of rides where the driver was given a 5-star rating through the app. The result is shown in the following contingency table:
 
 |                      |Talkative|Silent|_Row Total_|
-|:--------------------:|:-------:|:---:|/85*9:---:|
+|:--------------------:|:-------:|:---:|:---:|
 |Received 5-star rating|12|15|27|
 |Did not receive 5-star rating|23|21|44|
 |___Column Total___|35|36|71|
 
-One method of calculating the $p$-value here would be the exact Fisher's test which relies on conditional probability.
+One method of calculating the $p$-value here would be the exact Fisher's test which relies on conditional probability. The method sets the general number of successes across two samples, and the size of each sample fixed. So in our example it considers possible only cases when the total number of receiving a 5-star rating is 27, and the sample sizes are 35 and 36. Therefore, the general probability of success is $\frac{12+15}{35+36}$. It is possible to calculate the conditional probability of having 12 successes out of 35 trials and 15 successes out of 36 trials provided that the general probability is $\frac{27}{71}$. This is how the probability of this particular distribution is calculated:
 
-However due to its discreteness, Fisher's exact method may be overly conservative in rejecting the null hypothesis, hence it has low power. 
+&nbsp;&nbsp;&nbsp;&nbsp;
+$p = \frac{\binom{35}{12}\binom{36}{15}}{\binom{71}{27}}$
 
-The method sets the general number of successes across two samples, and the size of each sample fixed. So in our example it considers possible only cases when the total number of receiving a 5-star rating is 27, and the sample sizes are 35 and 36. Therefore, the general probability of success is $\frac{12+15}{35+36}$.
+From combinatorics recall that the binomial operator $\binom{n}{k}$ calculates the number of ways to choose $k$ elements from $n$.
 
-In the real life situations the sample sizes, and the distribution may vary from sample to sample.
+Similarly, the probability of less likely distributions are also calculated so that eventually the $p$-value is defined as the sum of these distributions. Whether the distribution is less likely or not from that of the contingency table may be determined with the Wald statistic (may be viewed as the pooled $z$-score):
 
+&nbsp;&nbsp;&nbsp;&nbsp;
+$W = \frac{\hat p_1 - \hat p_2}{\sqrt{\hat p(1-\hat p)(\frac{1}{n_1}+\frac{1}{n_2})}}$
+
+where $\hat p_1$ and $\hat p_2$ are hypothetically observed proportions, and $\hat p$ is the general proportion (in our example $\frac{27}{71}$).
+
+In our setting the resulting $p$-value is 0.63 which does not give us the reason to reject the null hypothesis.
+
+Fisher's exact method may be overly conservative in rejecting the null hypothesis in case of small samples, hence it has low power. This happens due to its discreteness. If the number of samples is small, big chunks of probability are distributed among a relatively small number of possible combinations of successes and failures. Therefore, the rare combinations might get too big shares of the combined probability, and the $p$-value will end up being too high.
+
+Barnard’s test was designed to combat the shortcoming of Fisher's exact method by increasing the power. In real life situations the sample sizes, and the distribution of successes among them may vary. Provided that the null hypothesis is true, the probability of success in a single experiment might not be equal to the one obtained from the totals of the contingency table. Instead, it is equal to some hypothetical value $\hat p$. In this case the probability of distribution observed in the contingency table is calculated similarly to the PMF of the [binomial distribution]({{ site.baseurl }}{% link _posts/2021-03-27-statistical-distributions.md %}):
+
+&nbsp;&nbsp;&nbsp;&nbsp;
+$p = \binom{35}{12}\binom{36}{15} \hat p^{(12+15)}(1-\hat p)^{(72-12-15)}$
+
+Then the probability of less likely distributions is also computed in order to obtain the $p$-values. Within Barnard’s test the $p$-value is calculated for each possible value of $\hat p$ between 0 and 1, so that a continuous range of hypothetical $p$-values can be built. The value of $\hat p$ is then selected as the value which produces the largest $p$-value, which will still be less than the $p$-value obtained with Fisher's exact method. This is due to the fact that Barnard's method does not set a strict condition of total number of successes equal to some number, so it makes the distribution of probabilities among possible combinations less discrete.
+
+In Barnard's test the rule of maximization of the $p$-value may work against preserving the statistical power if the number of rows and columns in contingency tables grows. Therefore, the method should be generally applied only for 2 $\times$ 2 tables.
 
 <a href="#page-title" class="back-to-top">{{ site.data.ui-text[site.locale].back_to_top | default: 'Back to Top' }} &uarr;</a>
 
