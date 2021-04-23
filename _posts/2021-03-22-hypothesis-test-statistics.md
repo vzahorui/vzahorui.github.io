@@ -3,7 +3,7 @@ layout: single
 title: "Hypothesis test statistics"
 description: "overview of test statistics: when to use each"
 category: "Probability"
-tags: degrees-of-freedom Pearson's-chi-square-test goodness-of-fit significance-test hypothesis-testing z-score z-test t-test normal-distribution t-distribution f-statistic f-distribution Student's-distribution continuity-correction Welch's-t-test exact-Fisher's-test Barnard's-test contingency-table
+tags: degrees-of-freedom Pearson's-chi-square-test significance-test hypothesis-testing z-score z-test t-test normal-distribution t-distribution f-statistic f-distribution Student's-distribution continuity-correction Welch's-t-test exact-Fisher's-test Barnard's-test contingency-table
 date: 2021-04-25
 ---
 
@@ -12,18 +12,21 @@ This is an overview of the most commonly used statistics in [hypothesis testing]
 ## In this article
 
 * [Testing the difference in means](#difference_means)
-  * [The mean between sample and population](#mean_sample_and_population)
-  * [The mean between two samples](#mean_two_samples)
+  * [The sample mean and the mean of the population](#mean_sample_and_population)
+  * [The mean in two samples](#mean_two_samples)
 * [Testing the difference in proportions](#difference_proportions)
-  * [The proportion between sample and population](#proportion_sample_and_population)
-  * [The proportion betwen two samples](#proportion_two_samples)
-    * [Contingency tables with small numbers](#contingency_tables_small_numbers)
+  * [Sample proportion and population proportion](#proportion_sample_and_population)
+    * [Sample proportion and population proportion for the binomial distribution](#proportion_sample_and_population_binomial)
+    * [Sample proportion and population proportion for the multinomial distribution](#proportion_sample_and_population_multinomial)
+  * [Proportions in two samples](#proportion_two_samples)
+    * [Proportions in two samples for the binomial distribution](#proportion_two_samples_binomial)
+    * [Proportion is samples with small numbers](#contingency_tables_small_numbers)
 
 <div id='difference_means'/>
 ## Testing the difference in means
 
 <div id='mean_sample_and_population'/>
-### The mean between sample and population
+### The sample mean and the mean of the population
 
 When we draw multiple samples from a population, the mean of each sample becomes a random variable, and the [expectation of the mean]({{ site.baseurl }}{% link _posts/2021-01-16-sampling-distribution.md %}) of those samples is equal to the mean of the population. Recall that for the [normal distribution]({{ site.baseurl }}{% link _posts/2021-03-27-statistical-distributions.md %}) the $z$-score tells us how many standard deviations a given value is away from the mean of its distribution. The idea of the $z$-score can be applied to a single samples's mean, so that its relative distance from the population's mean is estimated, but instead of the standard deviation, the standard error of the mean is used as the scaling factor:
 
@@ -54,7 +57,7 @@ For this one-sided $t$-test the $p$-value corresponding to our $t$-statistics is
 <a href="#page-title" class="back-to-top">{{ site.data.ui-text[site.locale].back_to_top | default: 'Back to Top' }} &uarr;</a>
 
 <div id='mean_two_samples'/>
-### The mean between two samples
+### The mean in two samples
 
 In case of testing the mean between two samples the null hypothesis is constructed as no difference between them.
 
@@ -84,7 +87,7 @@ In practice we usually don't know the standard deviation in both populations so 
 &nbsp;&nbsp;&nbsp;&nbsp;
 $t = \frac{\bar x_1 - \bar x_2}{\sqrt{\frac{s_1^2}{n_1} + \frac{s_2^2}{n_2}}}$
 
-This type of the $t$-test where the variance in different populations is assumed to be different is known as Welch's $t$-test. The number of degrees of freedom for this $t$-statistic is approximated via the following equation:
+This type of the $t$-test where the variance in different populations is assumed to be different is known as Welch's $t$-test. The number of [degrees of freedom]({{ site.baseurl }}{% link _posts/2021-03-19-degrees-of-freedom.md %}) for this $t$-statistic is approximated via the following equation:
 
 &nbsp;&nbsp;&nbsp;&nbsp;
 $df = \frac{(\frac{s_1^2}{n_1}+\frac{s_2^2}{n_2})^2}{\frac{(\frac{s_1^2}{n_1})^2}{n_{1}-1}+\frac{(\frac{s_2^2}{n_2})^2}{n_{2}-1}}$
@@ -108,7 +111,10 @@ In practice the variance of two populations is rarely equal, so the Welch's $t$-
 ## Testing the difference in proportions
 
 <div id='proportion_sample_and_population'/>
-### The proportion between sample and population
+### Sample proportion and population proportion
+
+<div id='proportion_sample_and_population_binomial'/>
+#### Sample proportion and population proportion for the binomial distribution
 
 This type of testing is popular for the cases of binomially distributed data where each observation has only two possible outcomes. For example we know that the average rate of college dropout across a country is 7%. For a particular college we conducted a survey and found out that among 500 originally enlisted students 31 left before graduation. We would like to test the hypothesis that the dropout rate for this college is the same as the average across the country. The alternative hypothesis would be that it is less than the average.
 
@@ -119,8 +125,7 @@ $P(x \leq 31) = \sum_{i=0}^{31} {\binom{500}{i}}0.07^{i}(1-0.07)^{500-i} \approx
 
 So under the significance level of 0.05 we cannot reject the null hypothesis.
 
-For large samples the [Central limit theorem]({{ site.baseurl }}{% link _posts/2021-01-16-sampling-distribution.md %}) helps to make an approximation of the binomial distribution with the normal distribution. In this case the mean and the variance of the population are estimated as $np$ and $np(p-1)$ respectively, so
-it is possible to calculate the $z$-score and get the corresponding $p$-value for it.
+For large samples the [Central limit theorem]({{ site.baseurl }}{% link _posts/2021-01-16-sampling-distribution.md %}) helps to make an approximation of the binomial distribution with the normal distribution. In this case the mean and the variance of the population are estimated as $np$ and $np(p-1)$ respectively, so it is possible to calculate the $z$-score and get the corresponding $p$-value for it.
 
 &nbsp;&nbsp;&nbsp;&nbsp;
 $z = \frac{x-np}{\sqrt{np(1-p)}}$
@@ -161,10 +166,28 @@ $z = \frac{x-p \pm \frac{0.5}{n}}{\sqrt{\frac{p(1-p)}{n}}}$
 Plus or minus are used depending on the direction of the one-tailed test (whether the sample statistic is smaller or greater than the expected value). If the test result is smaller than the expected value, and the test is lower-tailed we should use plus. And vice versa, if the test statistic is bigger than the expected value, and the test is upper-tailed, minus should be used.
 <a href="#page-title" class="back-to-top">{{ site.data.ui-text[site.locale].back_to_top | default: 'Back to Top' }} &uarr;</a>
 
-<div id='proportion_two_samples'/>
-### The proportion between two samples
+<div id='proportion_sample_and_population_multinomial'/>
+#### Sample proportion and population proportion for the multinomial distribution
 
-In order to test the equality of proportions in two samples, it is also possible to use normal approximation provided that the sample sizes are large enough. Here we may also use the normally distributed random variable which is the difference of means in two samples.
+In case of multinomial distributed data, when we compare the proportion in the sample among multiple categories with the expected proportion, Pearson's chi-square test may be used, also known as goodness of fit test. This test uses chi-square statistic which is calculated like this:
+
+&nbsp;&nbsp;&nbsp;&nbsp;
+$\chi^2 = \sum_{i=1}^k \frac{(O_{i}-E_{i})^2}{E_{i}}$
+
+where $k$ is the number of categories, $O_i$ and $E_i$ are the observed and the expected numbers for the $i$th category respectively.
+
+When the total number of observations is large enough, the chi-square statistic may be approximated with the [chi-square distribution]({{ site.baseurl }}{% link _posts/2021-03-27-statistical-distributions.md %}) with ($k$-1) [degrees of freedom]({{ site.baseurl }}{% link _posts/2021-03-19-degrees-of-freedom.md %}). A rule of thumb is that both the observed and expected values in each category should be at least greater than 5.
+
+The $p$-value obtained from the chi-square statistic corresponds to the area of probability for the numbers greater or equal to this statistic, so the  test is in fact an upper-tailed test. Nonetheless, it is used in the context of distribution in the sample not being equal to the distribution in the population, just as with the two-tailed tests. When applied to the binomially distributed data, the chi-squre test produces the same result as the two-tailed $z$-test.
+<a href="#page-title" class="back-to-top">{{ site.data.ui-text[site.locale].back_to_top | default: 'Back to Top' }} &uarr;</a>
+
+<div id='proportion_two_samples'/>
+### Proportions in two samples
+
+<div id='proportion_two_samples_binomial'/>
+### Proportions in two samples for the binomial distribution
+
+For the binomially distributed variables in order to test the equality of proportions in two samples, we may also use the normally distributed random variable which is the difference of means in two samples. Application of normal approximation is justified via the [Central limit theorem]({{ site.baseurl }}{% link _posts/2021-01-16-sampling-distribution.md %}) provided that the sample sizes are large enough.
 
 &nbsp;&nbsp;&nbsp;&nbsp;
 $\hat p_1 - \hat p_2 = N(p_1 - p_2, \sqrt{\frac{p_1(1-p_1)}{n_1} + \frac{p_2(1-p_2)}{n_2}})$
@@ -183,10 +206,37 @@ And after applying continuity correction:
 
 &nbsp;&nbsp;&nbsp;&nbsp;
 $z=\frac{\hat p_1 - \hat p_2 \pm \frac{1}{2}(\frac{1}{n_1}+\frac{1}{n_2})}{\sqrt{\hat p(1- \hat p)\frac{1}{n_1}+\frac{1}{n_2}}}$
+
+<div id='proportion_two_samples_multinomial'/>
+### Proportions in two samples for the multinomial distribution
+
+In case of multinomial distribution of data the chi-square test is used, which in case of testing the difference in two or more samples is known as the chi-square test of independence.
+
+Let's see an example. Suppose we had two types of classes at school studying physics and languages, and we want to test whether there is a difference between the distribution of school graduates among disciplines in college depending on their specialty at school. Below is the contingency table of the observed distribution.
+
+|           |Physics at school|Languages at school|_Row Total_|
+|:---------:|:-------:|:---:|:---:|
+|Science|113|56|169|
+|Arts|42|87|129|
+|Business|58|73|131|
+|___Column Total___|213|216|429|
+
+Under the null hypothesis the proportion of distribution is equal in both types of school classes, and thus it should be equal to the general distribution which is obtained from the totals. Therefore, the generally observed distribution adjusted by the sample size is viewed as the expected value with which the actual distributions in the groups are compared.
+
+In our example the general proportion of students who went to study science is $\frac{169}{429}$, so considering that there were 213 students at physics class at school, the expected value for the first cell would be 213 $\cdot \frac{169}{429} \approx$ 83.91.
+
+The chi-square test statistic is calculated like this:
+
+&nbsp;&nbsp;&nbsp;&nbsp;
+$\chi^2 = \sum_{i=1}^r \sum_{j=i}^c \frac{(O_{i,j}-E_{i,j})^2}{E_{i,j}}$
+
+where $r$ is the number of rows, $c$ is the number of columns of the contingency table, $O_{i,j}$ is the observed number in a cell from $i$th row and $j$th column, and $E_{i,j}$ is the expected number.
+
+Similarly to the case of single sample and population, if the number of observations is sufficiently high, the chi-square statistic is approximated with the [chi-square distribution]({{ site.baseurl }}{% link _posts/2021-03-27-statistical-distributions.md %}) with the number of [degrees of freedom]({{ site.baseurl }}{% link _posts/2021-03-19-degrees-of-freedom.md %}) equal to $(r-1)(c-1)$.
 <a href="#page-title" class="back-to-top">{{ site.data.ui-text[site.locale].back_to_top | default: 'Back to Top' }} &uarr;</a>
 
 <div id='contingency_tables_small_numbers'/>
-#### Contingency tables with small numbers
+#### Proportion is samples with small numbers
 
 For small samples the normal approximation of discrete variables won't work, so exact methods of calculating the $p$-value should be used instead. This is similar to calculating the exact $p$-value from the PMF of the binomial distribution, as was the case of one sample and known probability of a single Bernoulli trial in the population. However, in case of two samples the probability of success can only be estimated from the sample data. The null hypothesis is then constructed as the equality of probability of success in two samples, which is also equal to the general probability.
 
@@ -227,13 +277,4 @@ $p = \binom{35}{12}\binom{36}{15} \hat p^{(12+15)}(1-\hat p)^{(72-12-15)}$
 Then the probability of less likely distributions is also computed in order to obtain the $p$-values. Within Barnard’s test the $p$-value is calculated for each possible value of $\hat p$ between 0 and 1, so that a continuous range of hypothetical $p$-values can be built. The value of $\hat p$ is then selected as the value which produces the largest $p$-value, which will still be less than the $p$-value obtained with Fisher's exact method. This is due to the fact that Barnard's method does not set a strict condition of total number of successes equal to some number, so it makes the distribution of probabilities among possible combinations less discrete.
 
 In Barnard's test the rule of maximization of the $p$-value may work against preserving the statistical power if the number of rows and columns in contingency tables grows. Therefore, the method should be generally applied only for 2 $\times$ 2 tables.
-
 <a href="#page-title" class="back-to-top">{{ site.data.ui-text[site.locale].back_to_top | default: 'Back to Top' }} &uarr;</a>
-
-## Chi-square
-
-Chi-square test, also known as Pearson's chi-square test is used in hypothesis testing regarding datapoints being distributed among categories according to some theoretical distribution. In other words the significance test is performed on the difference between the observed and the theoretical distribution of observations among categories. Under the null hypothesis there is no difference between these distributions, so the test checks how likely the observed distribution among categories is, assuming the null hypothesis is true.
-
-Another application of chi-square tests is checking whether two random variables are independent.
-
-Each observation may be viewed separately for each category as a realization of the Bernoulli trial where the outcome may result in either belonging to the category or not. The chi-square tests are performed under the assumptions that the observations are random, independent and normally distributed which is often justified via the [Central limit theorem]({{ site.baseurl }}{% link _posts/2021-01-16-sampling-distribution.md %}).
