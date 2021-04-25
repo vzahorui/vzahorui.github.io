@@ -20,7 +20,7 @@ This is an overview of the most commonly used statistics in [hypothesis testing]
     * [Sample proportion and population proportion for the multinomial distribution](#proportion_sample_and_population_multinomial)
   * [Proportions in two samples](#proportion_two_samples)
     * [Proportions in two samples for the binomial distribution](#proportion_two_samples_binomial)
-    * [Proportion is samples with small numbers](#contingency_tables_small_numbers)
+    * [Proportion in samples with small numbers](#contingency_tables_small_numbers)
 
 <div id='difference_means'/>
 ## Testing the difference in means
@@ -236,7 +236,7 @@ Similarly to the case of single sample and population, if the number of observat
 <a href="#page-title" class="back-to-top">{{ site.data.ui-text[site.locale].back_to_top | default: 'Back to Top' }} &uarr;</a>
 
 <div id='contingency_tables_small_numbers'/>
-#### Proportion is samples with small numbers
+#### Proportion in samples with small numbers
 
 For small samples the normal approximation of discrete variables won't work, so exact methods of calculating the $p$-value should be used instead. This is similar to calculating the exact $p$-value from the PMF of the binomial distribution, as was the case of one sample and known probability of a single Bernoulli trial in the population. However, in case of two samples the probability of success can only be estimated from the sample data. The null hypothesis is then constructed as the equality of probability of success in two samples, which is also equal to the general probability.
 

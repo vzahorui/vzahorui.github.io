@@ -1,7 +1,7 @@
 ---
 layout: single
 title: "Statistical distributions"
-description: In this post I described all essential stuff statistical distributions
+description: In this post I described all essential statistical distributions
 category: "Probability"
 tags: probability-distribution normal-distribution statistics z-score z-table six-sigma z-value central-limit-theorem Student's-distribution t-distribution probability-mass-function probability-density-function PDF degrees-of-freedom chi-square-distribution binomial-distribution Bernoulli-trial geometric-distribution exponential-distribution poisson-distribution uniform-distribution negative-binomial-distribution
 date: 2021-04-01
