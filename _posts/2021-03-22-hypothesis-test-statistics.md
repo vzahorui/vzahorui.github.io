@@ -3,8 +3,8 @@ layout: single
 title: "Hypothesis test statistics"
 description: "overview of test statistics: when to use each"
 category: "Probability"
-tags: degrees-of-freedom Pearson's-chi-square-test significance-test hypothesis-testing z-score z-test t-test normal-distribution t-distribution f-statistic f-distribution Student's-distribution continuity-correction Welch's-t-test exact-Fisher's-test Barnard's-test contingency-table
-date: 2021-04-25
+tags: degrees-of-freedom Pearson's-chi-square-test significance-test hypothesis-testing z-score z-test t-test normal-distribution t-distribution f-statistic f-distribution Student's-distribution continuity-correction Welch's-t-test exact-Fisher's-test Barnard's-test contingency-table G-test
+date: 2021-04-27
 ---
 
 This is an overview of the most commonly used statistics in [hypothesis testing]({{ site.baseurl }}{% link _posts/2021-01-21-hypothesis-testing.md %}) explaining when to use each.
@@ -179,6 +179,19 @@ where $k$ is the number of categories, $O_i$ and $E_i$ are the observed and the 
 When the total number of observations is large enough, the chi-square statistic may be approximated with the [chi-square distribution]({{ site.baseurl }}{% link _posts/2021-03-27-statistical-distributions.md %}) with ($k$-1) [degrees of freedom]({{ site.baseurl }}{% link _posts/2021-03-19-degrees-of-freedom.md %}). A rule of thumb is that both the observed and expected values in each category should be at least greater than 5.
 
 The $p$-value obtained from the chi-square statistic corresponds to the area of probability for the numbers greater or equal to this statistic, so the  test is in fact an upper-tailed test. Nonetheless, it is used in the context of distribution in the sample not being equal to the distribution in the population, just as with the two-tailed tests. When applied to the binomially distributed data, the chi-squre test produces the same result as the two-tailed $z$-test.
+
+A better alternative to the chi-square test would be the G-test which is based on [log-likelihood ratio]({{ site.baseurl }}{% link _posts/2021-04-24-maximum-likelihood.md %}) test. According to this test, under the null hypothesis the theoretical distribution is defined by the parameters of maximum likelihood. Each parameter is defined as a ratio of datapoints belonging to a specific category: $\tilde \theta_i = \frac{e_i}{n}$. The observed proportions define the parameters of another model - the one which is compared with the model of maximum likelihood, so that the log-likelihood ratio can be calculated:
+
+&nbsp;&nbsp;&nbsp;&nbsp;
+$\ln \left({\frac {\mathcal L({\tilde {\theta }}|x)}{\mathcal L({\hat {\theta }}|x)}}\right)=\ln \left({\frac {\prod _{i=1}^{m}{\tilde {\theta }}_{i}^{x_{i}}}{\prod _{i=1}^{m}{\hat {\theta }}_{i}^{x_{i}}}}\right)$
+
+Having this expression multiplied by -2 makes it asymptotically chi-square distribution with the same number of degrees of freedom as the chi-square statistic. In fact, the chi-square test statistic is an approximation of the G-test statistic, so the latter is preferred.
+
+The final formula of the G-statistic looks like this:
+
+&nbsp;&nbsp;&nbsp;&nbsp;
+$2\sum _{i=1}^{m}O_{i}\ln \left({\frac {O_{i}}{E_{i}}}\right)$
+
 <a href="#page-title" class="back-to-top">{{ site.data.ui-text[site.locale].back_to_top | default: 'Back to Top' }} &uarr;</a>
 
 <div id='proportion_two_samples'/>
@@ -233,6 +246,9 @@ $\chi^2 = \sum_{i=1}^r \sum_{j=i}^c \frac{(O_{i,j}-E_{i,j})^2}{E_{i,j}}$
 where $r$ is the number of rows, $c$ is the number of columns of the contingency table, $O_{i,j}$ is the observed number in a cell from $i$th row and $j$th column, and $E_{i,j}$ is the expected number.
 
 Similarly to the case of single sample and population, if the number of observations is sufficiently high, the chi-square statistic is approximated with the [chi-square distribution]({{ site.baseurl }}{% link _posts/2021-03-27-statistical-distributions.md %}) with the number of [degrees of freedom]({{ site.baseurl }}{% link _posts/2021-03-19-degrees-of-freedom.md %}) equal to $(r-1)(c-1)$.
+
+Similar to the case of testing the sample distribution with theoretical one, G-test is preferred to the chi-square test.
+
 <a href="#page-title" class="back-to-top">{{ site.data.ui-text[site.locale].back_to_top | default: 'Back to Top' }} &uarr;</a>
 
 <div id='contingency_tables_small_numbers'/>
