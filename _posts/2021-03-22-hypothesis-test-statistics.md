@@ -183,14 +183,14 @@ The $p$-value obtained from the chi-square statistic corresponds to the area of 
 A better alternative to the chi-square test would be the G-test which is based on [log-likelihood ratio]({{ site.baseurl }}{% link _posts/2021-04-24-maximum-likelihood.md %}) test. According to this test, under the null hypothesis the theoretical distribution is defined by the parameters of maximum likelihood. Each parameter is defined as a ratio of datapoints belonging to a specific category: $\tilde \theta_i = \frac{e_i}{n}$. The observed proportions define the parameters of another model - the one which is compared with the model of maximum likelihood, so that the log-likelihood ratio can be calculated:
 
 &nbsp;&nbsp;&nbsp;&nbsp;
-$\ln \left({\frac {\mathcal L({\tilde {\theta }}|x)}{\mathcal L({\hat {\theta }}|x)}}\right)=\ln \left({\frac {\prod _{i=1}^{m}{\tilde {\theta }}_{i}^{x_{i}}}{\prod _{i=1}^{m}{\hat {\theta }}_{i}^{x_{i}}}}\right)$
+$\ln \left(\frac{\mathcal L(\tilde \theta \mid x)}{\mathcal L(\hat \theta \mid x)}\right) = \ln \left(\frac {\prod_{i=1}^{m} \tilde \theta_{i}^{x_{i}}}{\prod_{i=1}^{m} \hat \theta_{i}^{x_{i}}}\right)$
 
 Having this expression multiplied by -2 makes it asymptotically chi-square distribution with the same number of degrees of freedom as the chi-square statistic. In fact, the chi-square test statistic is an approximation of the G-test statistic, so the latter is preferred.
 
 The final formula of the G-statistic looks like this:
 
 &nbsp;&nbsp;&nbsp;&nbsp;
-$2\sum _{i=1}^{m}O_{i}\ln \left({\frac {O_{i}}{E_{i}}}\right)$
+$2\sum_{i=1}^{m}O_{i}\ln \left(\frac{O_{i}}{E_{i}}\right)$
 
 <a href="#page-title" class="back-to-top">{{ site.data.ui-text[site.locale].back_to_top | default: 'Back to Top' }} &uarr;</a>
 
