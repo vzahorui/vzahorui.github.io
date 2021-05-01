@@ -95,7 +95,7 @@ $E(x) = 1 \cdot p+0 \cdot (1-q) = p$
 
 From this the expected value (or the mean) of the distribution is simply $np$.
 
-Now let's recall that the variance measures the sum of squared distances between the observed and expected values of a random variable. For a successful outcome of a Bernoulli trial where we have 1, the distance to the mean ($p$) will be $(1-p)$. SImilarly, for the unsuccessful outcome where we have 0 the distance to the mean will be $(0-p)$. Then the weighted average of these two will be:
+Now let's recall that the variance measures the sum of squared distances between the observed and expected values of a random variable. For a successful outcome of a Bernoulli trial where we have 1, the distance to the mean ($p$) will be $(1-p)$. Similarly, for the unsuccessful outcome where we have 0 the distance to the mean will be $(0-p)$. Then the weighted average of these two will be:
 
 &nbsp;&nbsp;&nbsp;&nbsp;
 $Var(x) = p(1-p)^2+(1-p)(0-p)^2 = p(1-p)^2+(1-p)p^2 = p(1-p)(1-p+p) = p(1-p)$

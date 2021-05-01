@@ -4,7 +4,8 @@ title: "Hypothesis test statistics"
 description: "overview of test statistics: when to use each"
 category: "Probability"
 tags: degrees-of-freedom Pearson's-chi-square-test significance-test hypothesis-testing z-score z-test t-test normal-distribution t-distribution f-statistic f-distribution Student's-distribution continuity-correction Welch's-t-test exact-Fisher's-test Barnard's-test contingency-table G-test
-date: 2021-04-27
+paired-t-test McNemar's-test binomial-distribution
+date: 2021-05-01
 ---
 
 This is an overview of the most commonly used statistics in [hypothesis testing]({{ site.baseurl }}{% link _posts/2021-01-21-hypothesis-testing.md %}) explaining when to use each.
@@ -13,14 +14,17 @@ This is an overview of the most commonly used statistics in [hypothesis testing]
 
 * [Testing the difference in means](#difference_means)
   * [The sample mean and the mean of the population](#mean_sample_and_population)
-  * [The mean in two samples](#mean_two_samples)
+  * [The mean in two independent samples](#mean_two_samples_independent)
+  * [The mean in two paired samples](#mean_two_samples_paired)
 * [Testing the difference in proportions](#difference_proportions)
   * [Sample proportion and population proportion](#proportion_sample_and_population)
     * [Sample proportion and population proportion for the binomial distribution](#proportion_sample_and_population_binomial)
     * [Sample proportion and population proportion for the multinomial distribution](#proportion_sample_and_population_multinomial)
-  * [Proportions in two samples](#proportion_two_samples)
+  * [Proportions in two independent samples](#proportion_two_samples_independent)
     * [Proportions in two samples for the binomial distribution](#proportion_two_samples_binomial)
+    * [Proportions in two samples for the multinomial distribution](#proportion_two_samples_multinomial)
     * [Proportion in samples with small numbers](#contingency_tables_small_numbers)
+  * [Proportions in two paired samples](#proportion_two_samples_paired)
 
 <div id='difference_means'/>
 ## Testing the difference in means
@@ -56,10 +60,10 @@ $t = \frac{26.5-26}{\frac{3}{\sqrt{500}}} \approx 3.7268$
 For this one-sided $t$-test the $p$-value corresponding to our $t$-statistics is 0.0001, which is less than the significance level. Based on this we reject the null hypothesis and assume that the age of mothers at the time of birth of their first child increased indeed.
 <a href="#page-title" class="back-to-top">{{ site.data.ui-text[site.locale].back_to_top | default: 'Back to Top' }} &uarr;</a>
 
-<div id='mean_two_samples'/>
-### The mean in two samples
+<div id='mean_two_samples_independent'/>
+### The mean in two independent samples
 
-In case of testing the mean between two samples the null hypothesis is constructed as no difference between them.
+In case of testing the mean between two independent samples the null hypothesis is constructed as no difference between them.
 
 &nbsp;&nbsp;&nbsp;&nbsp;
 $H_0: \mu_1 - \mu_2 = 0$
@@ -104,7 +108,22 @@ $s_p = \sqrt{\frac{(n_{1}-1)s_1^2 + (n_{2}-1)s_2^2}{n_{1}+n_{2}-2}}$
 
 The number of degrees of freedom in this case is $(n_1 + n_2 - 2)$.
 
-In practice the variance of two populations is rarely equal, so the Welch's $t$-test should be used by default as it is more robust. At the same time, if the variance is equal the power of this test comes close to the power of the $t$-test based on the pooled standard deviation.
+In practice the variance of two populations is rarely equal, so Welch's $t$-test should be used by default as it is more robust. At the same time, if the variance is equal the power of this test comes close to the power of the $t$-test based on the pooled standard deviation.
+<a href="#page-title" class="back-to-top">{{ site.data.ui-text[site.locale].back_to_top | default: 'Back to Top' }} &uarr;</a>
+
+<div id='mean_two_samples_paired'/>
+### The mean in two paired samples 
+
+This is usually the case when each observation in the same sample is measured twice in different conditions. For example for a group of patients the level of cholesterol in blood is measured before and after the treatment. The null hypothesis would assume no change in the level of cholesterol.
+
+The test statistic which is appropriate in this case is paired (or dependent) $t$-test. According to this test, for each observation the difference in two measures is calculated so that the average and the standard deviation of those differences can be obtained. We need to test whether this average difference is sufficiently different from 0.
+
+&nbsp;&nbsp;&nbsp;&nbsp;
+$t=\frac{\bar X_D}{\frac{s_D}{\sqrt{n}}}$
+
+Notice that this test statistic is very similar from the one when the mean of one sample is compared to the mean of population.
+
+Compared to the case of independent samples, paired test has smaller standard error, and therefore it has more statistical power in rejecting the null hypothesis.
 <a href="#page-title" class="back-to-top">{{ site.data.ui-text[site.locale].back_to_top | default: 'Back to Top' }} &uarr;</a>
 
 <div id='difference_proportions'/>
@@ -178,7 +197,7 @@ where $k$ is the number of categories, $O_i$ and $E_i$ are the observed and the 
 
 When the total number of observations is large enough, the chi-square statistic may be approximated with the [chi-square distribution]({{ site.baseurl }}{% link _posts/2021-03-27-statistical-distributions.md %}) with ($k$-1) [degrees of freedom]({{ site.baseurl }}{% link _posts/2021-03-19-degrees-of-freedom.md %}). A rule of thumb is that both the observed and expected values in each category should be at least greater than 5.
 
-The $p$-value obtained from the chi-square statistic corresponds to the area of probability for the numbers greater or equal to this statistic, so the  test is in fact an upper-tailed test. Nonetheless, it is used in the context of distribution in the sample not being equal to the distribution in the population, just as with the two-tailed tests. When applied to the binomially distributed data, the chi-squre test produces the same result as the two-tailed $z$-test.
+The $p$-value obtained from the chi-square statistic corresponds to the area of probability for the numbers greater or equal to this statistic, so the  test is in fact an upper-tailed test. Nonetheless, it is used in the context of distribution in the sample not being equal to the distribution in the population, just as with the two-tailed tests. When applied to the binomially distributed data, the chi-square test produces the same result as the two-tailed $z$-test.
 
 A better alternative to the chi-square test would be the G-test which is based on [log-likelihood ratio]({{ site.baseurl }}{% link _posts/2021-04-24-maximum-likelihood.md %}) test. According to this test, under the null hypothesis the theoretical distribution is defined by the parameters of maximum likelihood. Each parameter is defined as a ratio of datapoints belonging to a specific category: $\tilde \theta_i = \frac{e_i}{n}$. The observed proportions define the parameters of another model - the one which is compared with the model of maximum likelihood, so that the log-likelihood ratio can be calculated:
 
@@ -194,11 +213,11 @@ $2\sum_{i=1}^{m}O_{i}\ln \left(\frac{O_{i}}{E_{i}}\right)$
 
 <a href="#page-title" class="back-to-top">{{ site.data.ui-text[site.locale].back_to_top | default: 'Back to Top' }} &uarr;</a>
 
-<div id='proportion_two_samples'/>
-### Proportions in two samples
+<div id='proportion_two_samples_independent'/>
+### Proportions in two independent samples
 
 <div id='proportion_two_samples_binomial'/>
-### Proportions in two samples for the binomial distribution
+#### Proportions in two samples for the binomial distribution
 
 For the binomially distributed variables in order to test the equality of proportions in two samples, we may also use the normally distributed random variable which is the difference of means in two samples. Application of normal approximation is justified via the [Central limit theorem]({{ site.baseurl }}{% link _posts/2021-01-16-sampling-distribution.md %}) provided that the sample sizes are large enough.
 
@@ -220,8 +239,10 @@ And after applying continuity correction:
 &nbsp;&nbsp;&nbsp;&nbsp;
 $z=\frac{\hat p_1 - \hat p_2 \pm \frac{1}{2}(\frac{1}{n_1}+\frac{1}{n_2})}{\sqrt{\hat p(1- \hat p)\frac{1}{n_1}+\frac{1}{n_2}}}$
 
+<a href="#page-title" class="back-to-top">{{ site.data.ui-text[site.locale].back_to_top | default: 'Back to Top' }} &uarr;</a>
+
 <div id='proportion_two_samples_multinomial'/>
-### Proportions in two samples for the multinomial distribution
+#### Proportions in two samples for the multinomial distribution
 
 In case of multinomial distribution of data the chi-square test is used, which in case of testing the difference in two or more samples is known as the chi-square test of independence.
 
@@ -293,4 +314,44 @@ $p = \binom{35}{12}\binom{36}{15} \hat p^{(12+15)}(1-\hat p)^{(72-12-15)}$
 Then the probability of less likely distributions is also computed in order to obtain the $p$-values. Within Barnard’s test the $p$-value is calculated for each possible value of $\hat p$ between 0 and 1, so that a continuous range of hypothetical $p$-values can be built. The value of $\hat p$ is then selected as the value which produces the largest $p$-value, which will still be less than the $p$-value obtained with Fisher's exact method. This is due to the fact that Barnard's method does not set a strict condition of total number of successes equal to some number, so it makes the distribution of probabilities among possible combinations less discrete.
 
 In Barnard's test the rule of maximization of the $p$-value may work against preserving the statistical power if the number of rows and columns in contingency tables grows. Therefore, the method should be generally applied only for 2 $\times$ 2 tables.
+<a href="#page-title" class="back-to-top">{{ site.data.ui-text[site.locale].back_to_top | default: 'Back to Top' }} &uarr;</a>
+
+<div id='proportion_two_samples_paired'/>
+### Proportions in two paired samples
+
+Similarly to the testing of the mean, this is usually the case when each observation in the same sample is measured twice in different conditions but when the output of each observation is a binomially distributed variable. For example the same respondent may be asked two questions implying yes or no answer, or the same question may be asked twice where the second time it is asked after provision of some additional evidence. The null hypothesis is then set as no change is the proportion of yes and no answers.
+
+Say we've gathered a pool of respondents and asked them whether they enjoy jogging. After that we ask them to try going out and jogging regularly despite their attitude, and ask the same question in a couple of months. The result of the paired measuring can be condensed into a 2 $\times$ 2 contingency table.
+
+|                      |Enjoyed jogging after|Did not enjoy jogging after|_Row Total_|
+|:--------------------:|:-------------------:|:-------------------------:|:---------:|
+|Enjoyed jogging before|631|157|788|
+|Did not enjoy jogging before|498|948|1446|
+|___Column Total___|1129|1105|2234|
+
+McNemar's test can be used to test whether there is a significant difference in responses after a period of jogging practice. It is expected that some people who responded previously as positive changed their mind and stopped enjoying jogging. On the other hand, some people could get into it and change their response from negative to positive. If the period of jogging had no effect on the people's attitude, then the numbers of people changing their response in either direction should be random and more or less the same. If there is an effect after all, then the change in one of the directions should outweigh the other.
+
+The McNemar's test statistic follows [chi-square distribution]({{ site.baseurl }}{% link _posts/2021-03-27-statistical-distributions.md %}) with 1 degree of freedom and looks like this:
+
+&nbsp;&nbsp;&nbsp;&nbsp;
+$\chi^2 = \frac{(b-c)^2}{b+c}$
+
+where $b$ and $c$ are the numbers from the contingency table corresponding to the cells where the response was changed. In our example this will be
+
+&nbsp;&nbsp;&nbsp;&nbsp;
+$\chi^2 = \frac{(157-498)^2}{157+498} \approx 177.5$
+
+This test statistic is extremely unlikely if the null hypothesis is true (for 1 degree of freedom and significance level of 0.05 the critical value of chi-squared statistic is 3.85) so we may conclude that regular exercising helped in changing people's attitude to jogging.
+
+If either $b$ or $c$ is small (less than 25) then an exact version of a test should be used which is based on the binomial test. Here we are testing whether the sample is not balanced provided that the probability of a single Bernoulli experiment is 0.5. This is done by calculating the $p$-value for obtaining $b$ (if $b$ is less than $c$) successes out of $(b+c)$ observations.
+
+&nbsp;&nbsp;&nbsp;&nbsp;
+$2 \sum_{i=0}^{x} {\binom{b+c}{i}}0.5^{i}(1-0.5)^{b+c-i}$
+
+where $x$ is the smallest of $b$ and $c$. Multiplication by 2 is done in order to get the $p$-value of a two-tailed test.
+
+Due to its discreteness this particular version of the exact McNemar's test might be overly conservative in rejecting the null hypothesis. The recommended way to perform continuity correction is by calculating the so-called mid-$p$-value, that is by taking only half of the point estimate of probability for the case when the number of successes equals the observed number. This is equivalent to removal of one point estimate from the calculation of the two-tailed $p$-value.
+
+&nbsp;&nbsp;&nbsp;&nbsp;
+$p = 2 \sum_{i=0}^{x} {\binom{b+c}{i}}0.5^{i}(1-0.5)^{b+c-i} - {\binom{b+c}{b}}0.5^{b}(1-0.5)^{b+c-b}$
 <a href="#page-title" class="back-to-top">{{ site.data.ui-text[site.locale].back_to_top | default: 'Back to Top' }} &uarr;</a>
