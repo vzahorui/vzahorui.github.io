@@ -3,8 +3,7 @@ layout: single
 title: "Hypothesis test statistics"
 description: "overview of test statistics: when to use each"
 category: "Probability"
-tags: degrees-of-freedom Pearson's-chi-square-test significance-test hypothesis-testing z-score z-test t-test normal-distribution t-distribution f-statistic f-distribution Student's-distribution continuity-correction Welch's-t-test exact-Fisher's-test Barnard's-test contingency-table G-test
-paired-t-test McNemar's-test binomial-distribution
+tags: degrees-of-freedom Pearson's-chi-square-test significance-test hypothesis-testing z-score z-test t-test normal-distribution t-distribution f-statistic f-distribution Student's-distribution continuity-correction Welch's-t-test exact-Fisher's-test Barnard's-test contingency-table G-test paired-t-test McNemar's-test binomial-distribution
 date: 2021-05-01
 ---
 
