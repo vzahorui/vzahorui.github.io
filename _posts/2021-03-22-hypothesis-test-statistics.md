@@ -226,7 +226,7 @@ $\hat p_1 - \hat p_2 = N(p_1 - p_2, \sqrt{\frac{p_1(1-p_1)}{n_1} + \frac{p_2(1-p
 The $z$-score is calculated similarly to the $t$-statistic for the difference in means of two samples using the pooled version of variance:
 
 &nbsp;&nbsp;&nbsp;&nbsp;
-$z=\frac{\hat p_1 - \hat p_2}{\sqrt{\hat p(1- \hat p)\frac{1}{n_1}+\frac{1}{n_2}}}$
+$z=\frac{\hat p_1 - \hat p_2}{\sqrt{\hat p(1- \hat p)(\frac{1}{n_1}+\frac{1}{n_2})}}$
 
 where 
 
@@ -236,7 +236,7 @@ $\hat p = \frac{\hat p_1 n_1 +\hat p_2 n_2}{n_1+n_2}$
 And after applying continuity correction:
 
 &nbsp;&nbsp;&nbsp;&nbsp;
-$z=\frac{\hat p_1 - \hat p_2 \pm \frac{1}{2}(\frac{1}{n_1}+\frac{1}{n_2})}{\sqrt{\hat p(1- \hat p)\frac{1}{n_1}+\frac{1}{n_2}}}$
+$z=\frac{\hat p_1 - \hat p_2 \pm \frac{1}{2}(\frac{1}{n_1}+\frac{1}{n_2})}{\sqrt{\hat p(1- \hat p)(\frac{1}{n_1}+\frac{1}{n_2})}}$
 
 <a href="#page-title" class="back-to-top">{{ site.data.ui-text[site.locale].back_to_top | default: 'Back to Top' }} &uarr;</a>
 
