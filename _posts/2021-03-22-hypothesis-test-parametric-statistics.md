@@ -1,13 +1,13 @@
 ---
 layout: single
-title: "Hypothesis test statistics"
+title: "Hypothesis test parametric statistics"
 description: "overview of test statistics: when to use each"
 category: "Probability"
-tags: degrees-of-freedom Pearson's-chi-square-test significance-test hypothesis-testing z-score z-test t-test normal-distribution t-distribution f-statistic f-distribution Student's-distribution continuity-correction Welch's-t-test exact-Fisher's-test Barnard's-test contingency-table G-test paired-t-test McNemar's-test binomial-distribution
-date: 2021-05-01
+tags: degrees-of-freedom Pearson's-chi-square-test significance-test hypothesis-testing z-score z-test t-test normal-distribution t-distribution F-distribution Student's-distribution continuity-correction Welch's-t-test exact-Fisher's-test Barnard's-test contingency-table G-test paired-t-test McNemar's-test binomial-distribution ANOVA analysis-of-variance F-test F-statistic
+date: 2021-06-02
 ---
 
-This is an overview of the most commonly used statistics in [hypothesis testing]({{ site.baseurl }}{% link _posts/2021-01-21-hypothesis-testing.md %}) explaining when to use each.
+This is an overview of the most commonly used parametric statistics in [hypothesis testing]({{ site.baseurl }}{% link _posts/2021-01-21-hypothesis-testing.md %}) explaining when to use each. The parametric statistics here assume that the data has distribution close to the normal.
 
 ## In this article
 
@@ -15,6 +15,7 @@ This is an overview of the most commonly used statistics in [hypothesis testing]
   * [The sample mean and the mean of the population](#mean_sample_and_population)
   * [The mean in two independent samples](#mean_two_samples_independent)
   * [The mean in two paired samples](#mean_two_samples_paired)
+  * [The mean in more than two independent samples](#mean_more_samples)
 * [Testing the difference in proportions](#difference_proportions)
   * [Sample proportion and population proportion](#proportion_sample_and_population)
     * [Sample proportion and population proportion for the binomial distribution](#proportion_sample_and_population_binomial)
@@ -125,6 +126,49 @@ Notice that this test statistic is very similar from the one when the mean of on
 Compared to the case of independent samples, paired test has smaller standard error, and therefore it has more statistical power in rejecting the null hypothesis.
 <a href="#page-title" class="back-to-top">{{ site.data.ui-text[site.locale].back_to_top | default: 'Back to Top' }} &uarr;</a>
 
+<div id='mean_more_samples'/>
+### The mean in more than two independent samples
+
+This is usually the case when there are more than two sample groups, the means of which are assumed to be equal under the null hypothesis. For example the average score of 5 parallel classes at the same school is assumed to be equal.
+
+One might be tempted to use the $t$-test for each pair of the samples but this might lead to the increased percentage of type I error (as the error will add up with each additional test). Instead, the analysis of variance (ANOVA) could be applied to all samples at once maintaining the global significance level.
+
+The idea of ANOVA is that if there is a difference in the means of at least two groups of samples then the between-group variance will be more prominent that the within-group variance. In other words, the average distance by which the means of each group depart from the global mean should be greater than the average spread of the values around the means of each group.
+
+If all samples come from the same population it is reasonable to assume that they have the same variance and mean. Therefore the variance of the population should be the only source of variance in the dataset, and the variance of means should be close to the within-group variance.
+
+The between-group sum of squares is calculated like this:
+
+&nbsp;&nbsp;&nbsp;&nbsp;
+$\sum_{i=1}^{k}n_i(\bar X_i - \bar X)^2$
+
+where $n_i$ and $\bar X_i$ are the number of observations and the mean of the $i$th sample, and $\bar X$ is the global mean.
+
+There are ($k$ - 1) [degrees of freedom]({{ site.baseurl }}{% link _posts/2021-03-19-degrees-of-freedom.md %}) for this metric so the average mean of the between-group sum of squares (or the variance of the means of the groups) is obtained by dividing by ($k$ - 1).
+
+The within-group sum of squares is calculated like this:
+
+&nbsp;&nbsp;&nbsp;&nbsp;
+$\sum_{i=1}^{k}\sum_{j=1}^{n_i}(X_{ij} - \bar X_i)^2$
+
+where $X_{ij}$ is the $j$th observation in the $i$th group. The number of degrees of freedom for the within-group variance is ($n$-$k$), where $n$ is the total number of observations in all groups.
+
+At last, there is a measure of global variability in the whole dataset consisting of multiple groups - the total sum of squares:
+
+&nbsp;&nbsp;&nbsp;&nbsp;
+$\sum_{i=1}^{k}\sum_{j=1}^{n_i}(X_{ij} - \bar X)^2$
+
+The total sum of squares is also obtained by adding up the between-group and within-group sums of squares. The global variance has ($n$-1) degrees of freedom.
+
+The between-group and the within-group variances actually follow the [chi-square distribution]({{ site.baseurl }}{% link _posts/2021-03-27-statistical-distributions.md %}) (because they represent the sum of squared random variables) with the according number of degrees of freedom, and the ratio of these two variances, also called F-statistic, follows the F-distribution.
+
+Intuitively, if the null hypothesis is true, the F-statistic should not be too high. For a given significance level it is possible to get the critical value from the F-distribution, the excess of which should be a reason to reject the null hypothesis.
+
+The analysis of variance only checks whether the mean values of multiple samples are the same. However, it does not give an answer which exactly group is different if the null hypothesis is rejected, so the post-hoc analysis should be performed. 
+
+
+<a href="#page-title" class="back-to-top">{{ site.data.ui-text[site.locale].back_to_top | default: 'Back to Top' }} &uarr;</a>
+
 <div id='difference_proportions'/>
 ## Testing the difference in proportions
 
@@ -196,7 +240,7 @@ where $k$ is the number of categories, $O_i$ and $E_i$ are the observed and the 
 
 When the total number of observations is large enough, the chi-square statistic may be approximated with the [chi-square distribution]({{ site.baseurl }}{% link _posts/2021-03-27-statistical-distributions.md %}) with ($k$-1) [degrees of freedom]({{ site.baseurl }}{% link _posts/2021-03-19-degrees-of-freedom.md %}). A rule of thumb is that both the observed and expected values in each category should be at least greater than 5.
 
-The $p$-value obtained from the chi-square statistic corresponds to the area of probability for the numbers greater or equal to this statistic, so the  test is in fact an upper-tailed test. Nonetheless, it is used in the context of distribution in the sample not being equal to the distribution in the population, just as with the two-tailed tests. When applied to the binomially distributed data, the chi-square test produces the same result as the two-tailed $z$-test.
+The $p$-value obtained from the chi-square statistic corresponds to the area of probability for the numbers greater or equal to this statistic, so the test is in fact an upper-tailed test. Nonetheless, it is used in the context of distribution in the sample not being equal to the distribution in the population, just as with the two-tailed tests. When applied to the binomially distributed data, the chi-square test produces the same result as the two-tailed $z$-test.
 
 A better alternative to the chi-square test would be the G-test which is based on [log-likelihood ratio]({{ site.baseurl }}{% link _posts/2021-04-24-maximum-likelihood.md %}) test. According to this test, under the null hypothesis the theoretical distribution is defined by the parameters of maximum likelihood. Each parameter is defined as a ratio of datapoints belonging to a specific category: $\tilde \theta_i = \frac{e_i}{n}$. The observed proportions define the parameters of another model - the one which is compared with the model of maximum likelihood, so that the log-likelihood ratio can be calculated:
 
