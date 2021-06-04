@@ -82,7 +82,7 @@ Similarly to $z$-scores for the normal distribution, for $t$-distribution there 
 <div id='studentized_distribution'/>
 ### Studentized range distribution
 
-This type of distribution is used in [hypothesis testing]({{ site.baseurl }}{% link _posts/2021-01-21-hypothesis-testing.md %}) when the means of more than two samples [test statistic]({{ site.baseurl }}{% link _posts/2021-03-22-hypothesis-test-parametric-statistics.md#mean_more_samples %}) are tested for being equal (whether or not all samples come from the same normal distribution).
+This type of distribution is used in [hypothesis testing]({{ site.baseurl }}{% link _posts/2021-01-21-hypothesis-testing.md %}) when the means of more than two samples [test statistic]({{ site.baseurl }}{% link _posts/2021-03-22-hypothesis-test-parametric-statistics.md | append: "#mean_more_samples" %}) are tested for being equal (whether or not all samples come from the same normal distribution).
 
 If multiple samples of the same size are drawn from the same population then the following statistic will follow the studentized range distribution:
 
