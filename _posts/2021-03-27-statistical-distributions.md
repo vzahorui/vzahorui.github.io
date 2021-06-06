@@ -82,7 +82,7 @@ Similarly to $z$-scores for the normal distribution, for $t$-distribution there 
 <div id='studentized_distribution'/>
 ### Studentized range distribution
 
-This type of distribution is used in [hypothesis testing]({{ site.baseurl }}{% link _posts/2021-01-21-hypothesis-testing.md %}) when the means of [more than two samples]({{ site.baseurl }}{% link _posts/2021-03-22-hypothesis-test-parametric-statistics.md %}#mean_more_samples) are tested for being equal (whether or not all samples come from the same normal distribution).
+This type of distribution is used in [hypothesis testing]({{ site.baseurl }}{% link _posts/2021-01-21-hypothesis-testing.md %}) when the means of [more than two samples]({{ site.baseurl }}{% link _posts/2021-03-22-hypothesis-test-parametric-statistics.md %}#mean_more_samples) are tested for being equal (whether or not all samples come from the same [normal distribution](#normal_distribution)).
 
 If multiple samples of the same size are drawn from the same population then the following statistic will follow the studentized range distribution:
 
@@ -100,7 +100,7 @@ The studentized distribution depends on both the number of samples and the numbe
 <div id='chi_distribution'/>
 ### Chi-square distribution
 
-In a nutshell the chi-square distribution is the distribution of sum of squared values sampled from a normally distributed variable.
+In a nutshell the chi-square distribution is the distribution of sum of squared values sampled from a [normally distributed variable](#normal_distribution).
 
 &nbsp;&nbsp;&nbsp;&nbsp;
 $\chi_k^{2} = \sum_{i=1}^k Z_i^2$
