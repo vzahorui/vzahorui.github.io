@@ -32,7 +32,7 @@ This is an overview of the most commonly used parametric statistics in [hypothes
 <div id='mean_sample_and_population'/>
 ### The sample mean and the mean of the population
 
-When we draw multiple samples from a population, the mean of each sample becomes a random variable, and the [expectation of the mean]({{ site.baseurl }}{% link _posts/2021-01-16-sampling-distribution.md %}) of those samples is equal to the mean of the population. Recall that for the [normal distribution]({{ site.baseurl }}{% link _posts/2021-03-27-statistical-distributions.md %}) the $z$-score tells us how many standard deviations a given value is away from the mean of its distribution. The idea of the $z$-score can be applied to a single samples's mean, so that its relative distance from the population's mean is estimated, but instead of the standard deviation, the standard error of the mean is used as the scaling factor:
+When we draw multiple samples from a population, the mean of each sample becomes a random variable, and the [expectation of the mean]({{ site.baseurl }}{% link _posts/2021-01-16-sampling-distribution.md %}) of those samples is equal to the mean of the population. Recall that for the [normal distribution]({{ site.baseurl }}{% link _posts/2021-03-27-statistical-distributions.md %}#normal_distribution) the $z$-score tells us how many standard deviations a given value is away from the mean of its distribution. The idea of the $z$-score can be applied to a single samples's mean, so that its relative distance from the population's mean is estimated, but instead of the standard deviation, the standard error of the mean is used as the scaling factor:
 
 &nbsp;&nbsp;&nbsp;&nbsp;
 $z = \frac{\bar x-\mu}{\frac{\sigma}{\sqrt{n}}}$
@@ -160,7 +160,7 @@ $\sum_{i=1}^{k}\sum_{j=1}^{n_i}(X_{ij} - \bar X)^2$
 
 The total sum of squares is also obtained by adding up the between-group and within-group sums of squares. The global variance has ($n$-1) degrees of freedom.
 
-The between-group and the within-group variances actually follow the [chi-square distribution]({{ site.baseurl }}{% link _posts/2021-03-27-statistical-distributions.md %}) (because they represent the sum of squared random variables) with the according number of degrees of freedom, and the ratio of these two variances, also called F-statistic, follows the F-distribution.
+The between-group and the within-group variances actually follow the [chi-square distribution]({{ site.baseurl }}{% link _posts/2021-03-27-statistical-distributions.md %}#chi_distribution) (because they represent the sum of squared random variables) with the according number of degrees of freedom, and the ratio of these two variances, also called F-statistic, follows the F-distribution.
 
 Intuitively, if the null hypothesis is true, the F-statistic should not be too high. For a given significance level it is possible to get the critical value from the F-distribution, the excess of which should be a reason to reject the null hypothesis.
 
@@ -185,7 +185,7 @@ In determining the critical values the Games-Howell test relies on the [studenti
 
 This type of testing is popular for the cases of binomially distributed data where each observation has only two possible outcomes. For example we know that the average rate of college dropout across a country is 7%. For a particular college we conducted a survey and found out that among 500 originally enlisted students 31 left before graduation. We would like to test the hypothesis that the dropout rate for this college is the same as the average across the country. The alternative hypothesis would be that it is less than the average.
 
-Considering that each student may or may not leave before graduation we're dealing with the [binomial distribution]({{ site.baseurl }}{% link _posts/2021-03-27-statistical-distributions.md %}). For this kind of distribution we can employ its probability mass function and calculate directly the $p$-value - the probability of having from 0 to 31 dropouts among 500 considering that the average dropout rate is 7%:
+Considering that each student may or may not leave before graduation we're dealing with the [binomial distribution]({{ site.baseurl }}{% link _posts/2021-03-27-statistical-distributions.md %}#binomial_distribution). For this kind of distribution we can employ its probability mass function and calculate directly the $p$-value - the probability of having from 0 to 31 dropouts among 500 considering that the average dropout rate is 7%:
 
 &nbsp;&nbsp;&nbsp;&nbsp;
 $P(x \leq 31) = \sum_{i=0}^{31} {\binom{500}{i}}0.07^{i}(1-0.07)^{500-i} \approx 0.275$
@@ -243,7 +243,7 @@ $\chi^2 = \sum_{i=1}^k \frac{(O_{i}-E_{i})^2}{E_{i}}$
 
 where $k$ is the number of categories, $O_i$ and $E_i$ are the observed and the expected numbers for the $i$th category respectively.
 
-When the total number of observations is large enough, the chi-square statistic may be approximated with the [chi-square distribution]({{ site.baseurl }}{% link _posts/2021-03-27-statistical-distributions.md %}) with ($k$-1) [degrees of freedom]({{ site.baseurl }}{% link _posts/2021-03-19-degrees-of-freedom.md %}). A rule of thumb is that both the observed and expected values in each category should be at least greater than 5.
+When the total number of observations is large enough, the chi-square statistic may be approximated with the [chi-square distribution]({{ site.baseurl }}{% link _posts/2021-03-27-statistical-distributions.md %}#chi_distribution) with ($k$-1) [degrees of freedom]({{ site.baseurl }}{% link _posts/2021-03-19-degrees-of-freedom.md %}). A rule of thumb is that both the observed and expected values in each category should be at least greater than 5.
 
 The $p$-value obtained from the chi-square statistic corresponds to the area of probability for the numbers greater or equal to this statistic, so the test is in fact an upper-tailed test. Nonetheless, it is used in the context of distribution in the sample not being equal to the distribution in the population, just as with the two-tailed tests. When applied to the binomially distributed data, the chi-square test produces the same result as the two-tailed $z$-test.
 
@@ -314,7 +314,7 @@ $\chi^2 = \sum_{i=1}^r \sum_{j=i}^c \frac{(O_{i,j}-E_{i,j})^2}{E_{i,j}}$
 
 where $r$ is the number of rows, $c$ is the number of columns of the contingency table, $O_{i,j}$ is the observed number in a cell from $i$th row and $j$th column, and $E_{i,j}$ is the expected number.
 
-Similarly to the case of single sample and population, if the number of observations is sufficiently high, the chi-square statistic is approximated with the [chi-square distribution]({{ site.baseurl }}{% link _posts/2021-03-27-statistical-distributions.md %}) with the number of [degrees of freedom]({{ site.baseurl }}{% link _posts/2021-03-19-degrees-of-freedom.md %}) equal to $(r-1)(c-1)$.
+Similarly to the case of single sample and population, if the number of observations is sufficiently high, the chi-square statistic is approximated with the [chi-square distribution]({{ site.baseurl }}{% link _posts/2021-03-27-statistical-distributions.md %}#chi_distribution) with the number of [degrees of freedom]({{ site.baseurl }}{% link _posts/2021-03-19-degrees-of-freedom.md %}) equal to $(r-1)(c-1)$.
 
 Similar to the case of testing the sample distribution with theoretical one, G-test is preferred to the chi-square test.
 
@@ -354,7 +354,7 @@ In our setting the resulting $p$-value is 0.63 which does not give us the reason
 
 Fisher's exact method may be overly conservative in rejecting the null hypothesis in case of small samples, hence it has low power. This happens due to its discreteness. If the number of samples is small, big chunks of probability are distributed among a relatively small number of possible combinations of successes and failures. Therefore, the rare combinations might get too big shares of the combined probability, and the $p$-value will end up being too high.
 
-Barnard’s test was designed to combat the shortcoming of Fisher's exact method by increasing the power. In real life situations the sample sizes, and the distribution of successes among them may vary. Provided that the null hypothesis is true, the probability of success in a single experiment might not be equal to the one obtained from the totals of the contingency table. Instead, it is equal to some hypothetical value $\hat p$. In this case the probability of distribution observed in the contingency table is calculated similarly to the PMF of the [binomial distribution]({{ site.baseurl }}{% link _posts/2021-03-27-statistical-distributions.md %}):
+Barnard’s test was designed to combat the shortcoming of Fisher's exact method by increasing the power. In real life situations the sample sizes, and the distribution of successes among them may vary. Provided that the null hypothesis is true, the probability of success in a single experiment might not be equal to the one obtained from the totals of the contingency table. Instead, it is equal to some hypothetical value $\hat p$. In this case the probability of distribution observed in the contingency table is calculated similarly to the PMF of the [binomial distribution]({{ site.baseurl }}{% link _posts/2021-03-27-statistical-distributions.md %}#binomial_distribution):
 
 &nbsp;&nbsp;&nbsp;&nbsp;
 $p = \binom{35}{12}\binom{36}{15} \hat p^{(12+15)}(1-\hat p)^{(72-12-15)}$
@@ -379,7 +379,7 @@ Say we've gathered a pool of respondents and asked them whether they enjoy joggi
 
 McNemar's test can be used to test whether there is a significant difference in responses after a period of jogging practice. It is expected that some people who responded previously as positive changed their mind and stopped enjoying jogging. On the other hand, some people could get into it and change their response from negative to positive. If the period of jogging had no effect on the people's attitude, then the numbers of people changing their response in either direction should be random and more or less the same. If there is an effect after all, then the change in one of the directions should outweigh the other.
 
-The McNemar's test statistic follows [chi-square distribution]({{ site.baseurl }}{% link _posts/2021-03-27-statistical-distributions.md %}) with 1 degree of freedom and looks like this:
+The McNemar's test statistic follows [chi-square distribution]({{ site.baseurl }}{% link _posts/2021-03-27-statistical-distributions.md %}#chi_distribution) with 1 degree of freedom and looks like this:
 
 &nbsp;&nbsp;&nbsp;&nbsp;
 $\chi^2 = \frac{(b-c)^2}{b+c}$
