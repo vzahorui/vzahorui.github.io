@@ -3,8 +3,8 @@ layout: single
 title: "Hypothesis test parametric statistics"
 description: "overview of test statistics: when to use each"
 category: "Probability"
-tags: degrees-of-freedom Pearson's-chi-square-test significance-test hypothesis-testing z-score z-test t-test normal-distribution t-distribution F-distribution Student's-distribution continuity-correction Welch's-t-test exact-Fisher's-test Barnard's-test contingency-table G-test paired-t-test McNemar's-test binomial-distribution ANOVA analysis-of-variance F-test F-statistic
-date: 2021-06-02
+tags: degrees-of-freedom Pearson's-chi-square-test significance-test hypothesis-testing z-score z-test t-test normal-distribution t-distribution F-distribution Student's-distribution continuity-correction Welch's-t-test exact-Fisher's-test Barnard's-test contingency-table G-test paired-t-test McNemar's-test binomial-distribution ANOVA analysis-of-variance F-test F-statistic Games-Howell-test
+date: 2021-06-06
 ---
 
 This is an overview of the most commonly used parametric statistics in [hypothesis testing]({{ site.baseurl }}{% link _posts/2021-01-21-hypothesis-testing.md %}) explaining when to use each. The parametric statistics here assume that the data has distribution close to the normal.
@@ -164,9 +164,14 @@ The between-group and the within-group variances actually follow the [chi-square
 
 Intuitively, if the null hypothesis is true, the F-statistic should not be too high. For a given significance level it is possible to get the critical value from the F-distribution, the excess of which should be a reason to reject the null hypothesis.
 
-The analysis of variance only checks whether the mean values of multiple samples are the same. However, it does not give an answer which exactly group is different if the null hypothesis is rejected, so the post-hoc analysis should be performed. 
+The analysis of variance only checks whether the mean values of multiple samples are the same. However, it does not give an answer which exactly group is different if the null hypothesis is rejected, so the post-hoc analysis should be performed. The recommended type of test in this case is the Games-Howell test which tests the difference in each pair combination from the group of samples, and does not assume equal sample size and variance in the samples.
 
+The Games-Howell test is very similar to Welch's $t$-test, including the way it determines the number of degrees of freedom for each pair of samples. However, the standard error is calculated slightly differently:
 
+&nbsp;&nbsp;&nbsp;&nbsp;
+$SE = \sqrt{\frac{1}{2}(\frac{s_1^2}{n_1}+\frac{s_2^2}{n_2})}$
+
+In determining the critical values the Games-Howell test relies on the [studentized range distribution]({{ site.baseurl }}{% link _posts/2021-03-27-statistical-distributions.md %}#studentized_distribution), so it depends on the number of degrees of freedom, as well as the total number of samples.
 <a href="#page-title" class="back-to-top">{{ site.data.ui-text[site.locale].back_to_top | default: 'Back to Top' }} &uarr;</a>
 
 <div id='difference_proportions'/>
