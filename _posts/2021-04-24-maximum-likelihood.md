@@ -49,10 +49,10 @@ Maximization is done in the hyperspace of $\theta$, where the point of local max
 Since for obtaining the joint probability of observations the product of the PDF of each individual datapoint is used, for convenience log transformation of this product is used instead. The logarithm of the product equals the sum of logarithms of individual densities, so it makes computation of the derivative easier. Also since logarithmic functions are strictly increasing, maximizing the function is equivalent to maximizing its logarithm. This is why the term log-likelihood is commonly used in the context of MLE.
 
 &nbsp;&nbsp;&nbsp;&nbsp;
-$\hat \theta = \underset{\theta \in \Theta}{\operatorname{arg\;max}}\,\mathcal {L}_{n}(\theta \mid x) = \underset{\theta \in \Theta}{\operatorname{arg\;max}}\,\mathcal {L}_{n}(\theta \mid x)$
+$\hat \theta = \underset{\theta \in \Theta}{\operatorname{arg\;max}}\,\mathcal {L}_{n}(\theta \mid x) = x$
 
 &nbsp;&nbsp;&nbsp;&nbsp;
-$\hat \theta = \underset{\theta \in \Theta}{\operatorname{arg\;max}}\,\mathcal {L}_{n}(\theta \mid x) = \underset{\theta \in \Theta}{\operatorname{arg\;max}}\, \prod_{i=1}^n f(x_{i} \mid \theta) = \underset{\theta \in \Theta}{\operatorname{arg\;max}}\, \sum_{i=1}^n \log f(x_{i} \mid \theta)$
+$$\hat \theta = \underset{\theta \in \Theta}{\operatorname{arg\;max}}\,\mathcal {L}_{n}(\theta \mid x) = \underset{\theta \in \Theta}{\operatorname{arg\;max}}\, \prod_{i=1}^n f(x_{i} \mid \theta) = \underset{\theta \in \Theta}{\operatorname{arg\;max}}\, \sum_{i=1}^n \log f(x_{i} \mid \theta)$$
 
 ## Likelihood ratio
 
