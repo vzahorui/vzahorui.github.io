@@ -7,7 +7,7 @@ tags: degrees-of-freedom Pearson's-chi-square-test significance-test hypothesis-
 date: 2021-06-06
 ---
 
-This is an overview of the most commonly used parametric statistics in [hypothesis testing]({{ site.baseurl }}{% link _posts/2021-01-21-hypothesis-testing.md %}) explaining when to use each. The parametric statistics here assume that the data has distribution close to the normal.
+This is an overview of the most commonly used parametric statistics in [hypothesis testing]({{ site.baseurl }}{% link _posts/2021-01-21-hypothesis-testing.md %}) explaining when to use each. The parametric statistics here assume that the data has distribution close to the [normal]({{ site.baseurl }}{% link _posts/2021-03-27-statistical-distributions.md %}#normal_distribution). See [this article]({{ site.baseurl }}{% link _posts/2021-06-06-hypothesis-test-non-parametric-statistics.md %}) for an overview of the non-parametric tests.
 
 ## In this article
 

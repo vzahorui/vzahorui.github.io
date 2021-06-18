@@ -4,10 +4,10 @@ title: "Linear least squares"
 description: "Explaining how least squares method works and how it is applied in solving analytically linear regression"
 category: "Regression"
 tags: linear-regression ols svd gradient-descent pseudoinverse ill-conditioned-matrix normal-equations qr-decomposition
-date: 2021-03-06
+date: 2021-06-18
 ---
  
-Ordinary least squares method (OLS) estimates analytically parameters for a [linear regression]({{ site.baseurl }}{% link _posts/2019-10-25-linear-regression.md %}) by minimizing the sum of the squares of the differences between predicted and observed values of the dependent variable. As a result, this method produces a single set of parameters of the regression model, which fits the best to the observed data.
+Ordinary least squares method (OLS) is a widely used method which estimates the parameters of a [linear regression]({{ site.baseurl }}{% link _posts/2019-10-25-linear-regression.md %}) by minimizing the sum of the squares of the differences between predicted and observed values of the dependent variable. As a result, this method produces a single set of parameters of the regression model, which fits the best to the observed data, and minimizes the quadratic [loss function]({{ site.baseurl }}{% link _posts/2019-10-14-loss-functions.md %}).
  
 Under other assumptions of linear regression, the residuals are normally distributed with the value of mean which equals to 0.
  
@@ -45,6 +45,42 @@ $(X^{T}X)\beta = X^{T}Y$
  
 &nbsp;&nbsp;&nbsp;&nbsp;
 $\beta = (X^{T}X)^{-1}X^{T}Y$
+
+## Maximum likelihood estimation
+
+This method is mathematically the same as the one described above but instead of the [loss function]({{ site.baseurl }}{% link _posts/2019-10-14-loss-functions.md %}) it operates with the term [maximum likelihood]({{ site.baseurl }}{% link _posts/2021-04-24-maximum-likelihood.md %}).
+
+Let's assume that the dependent variable is continuous. Let's further asume that the errors are independent and [normally distributed]({{ site.baseurl }}{% link _posts/2021-03-27-statistical-distributions.md %}#normal_distribution) around zero. Then it is possible to write the probability density function for the dependent variable which is dependent of the known variable, the values of the parameters, and the standard deviation of the errors:
+
+&nbsp;&nbsp;&nbsp;&nbsp;
+$f(y \mid x, \beta, \sigma^2) = \frac{1}{\sigma\sqrt{2\pi}}e^{-\frac{1}{2}(\frac{y-\beta x}{\sigma})^2}$
+
+The likelihood function is then equal to the product of probability densities of each individual observation.
+
+&nbsp;&nbsp;&nbsp;&nbsp;
+$\mathcal {L}(\beta \mid y, x, \sigma^2) = \prod_{i=1}^n \frac{1}{\sigma\sqrt{2\pi}}e^{-\frac{1}{2}(\frac{y_i - \beta x_i}{\sigma})^2} = \left[ \frac{1}{\sigma\sqrt{2\pi}} \right]^n \prod_{i=1}^n e^{-\frac{1}{2}(\frac{y_i - \beta x_i}{\sigma})^2}$
+
+Let's take the logarithm of this expression so that it will be easier to calculate the [derivative]({{ site.baseurl }}{% link _posts/2019-09-14-derivatives.md %}) and set it to zero. Thus we will find the values of $\beta$ at which the likelihood function is at its critical point - namely at its maximum.
+
+&nbsp;&nbsp;&nbsp;&nbsp;
+$n\log \left[\frac{1}{\sigma\sqrt{2\pi}} \right] - \frac{1}{2\sigma^2} \sum_{i=1}^n (y_i - \beta x_i)^2$
+
+Then the derivative with respect to $\beta$ is just:
+
+&nbsp;&nbsp;&nbsp;&nbsp;
+$\frac{2}{2\sigma^2} \sum_{i=1}^n (y_i - \beta x_i)x_i$
+
+Setting it to zero will leave the following expression:
+
+&nbsp;&nbsp;&nbsp;&nbsp;
+$\sum_{i=1}^n (y_i - \beta x_i)x_i = \sum_{i=1}^n \varepsilon_i x_i = 0$
+
+From here 
+
+&nbsp;&nbsp;&nbsp;&nbsp;
+$\beta = \frac{\sum_{i=1}^n x_i y_i}{\sum_{i=1}^n x_i^2}$
+
+Which is equivalent to the solution of the normal equations in matrix form above.
  
 ## Iterative approaches
  

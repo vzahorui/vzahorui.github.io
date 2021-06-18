@@ -20,10 +20,10 @@ In a broad sense, with respect to the type of machine learning problem, the two 
 &nbsp;&nbsp;&nbsp;&nbsp;
 $MSE = \frac{\sum_{i=1}^n (\hat{y} - y_i)^2}{n}$
 
-Mean square error is in fact the average of the squared distance between predicted and observed values.<br>
-This function results into a single positive number regardless of the direction of the error. In addition, squaring bigger residuals produces even bigger values for the loss function, therefore, the function heavily penalizes significant deviations of the model compared to the lesser ones. So to speak, missing by a little lots of times is considered better than missing by a lot a few times. One has to be careful careful when applying this function to the data with outliers.
+Mean square error is the average of the squared distance between predicted and observed values. This function results into a single positive number regardless of the direction of the error. In addition, squaring bigger residuals produces even bigger values for the loss function, therefore, the function heavily penalizes significant deviations of the model compared to the lesser ones. So to speak, missing by a little lots of times is considered better than missing by a lot a few times. One has to be careful careful when applying this function to the data with outliers.
 
 Other than that, the function has nice mathematical properties, in particular regarding calculation of [gradient descent]({{ site.baseurl }}{% link _posts/2019-10-15-gradient-descent.md %}), since calculation of a derivative of quadratic function and finding the point of its minimum is quite straightforward.
+On overview of numeric methods for minimizing this particular loss function can be found [here]({{ site.baseurl }}{% link _posts/2019-10-27-linear-least-squares.md %}).
 
 ### Mean absolute error/L1 loss
 
@@ -32,6 +32,10 @@ $MAE = \frac{\sum_{i=1}^n |\hat{y} - y_i|}{n}$
 
 Mean square error is in fact the average of the squared distance between predicted and observed values<br>
 Like MSE this function does not consider the direction of errors and always results into positive number. However, MAE is harder to use when calculating gradient descent. On the other hand, this function is more robust to the effect of outliers.
+
+### M-estiamtors
+
+
 
 ## Classification losses
 
