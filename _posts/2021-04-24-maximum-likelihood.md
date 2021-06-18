@@ -35,7 +35,12 @@ When dealing with continuously distributed variables, the probability of observi
 &nbsp;&nbsp;&nbsp;&nbsp;
 $f(x \mid \theta) = \mathcal {L}(\theta \mid x)$
 
-One the whole, $\mathcal {L}(\theta \mid x)$ is the likelihood function of the joint density of observations from a sample, which depends on the vector of parameters $\theta$. Each observation is assumed to be independent, so the joint probability is calculated as a product of probability densities around values of each observation.
+For a sample of independent observations $\mathcal {L}(\theta \mid x)$ is the likelihood function of the joint probability of observations, which in case of a continuous variable is a product of densities around values of each observation.
+
+&nbsp;&nbsp;&nbsp;&nbsp;
+$\mathcal {L}(\theta \mid x) = \prod_{i=1}^n f(x_{i} \mid \theta)$
+
+In a general senese the likelihood function depends on the vector of parameters $\theta$.
 
 ## Maximum likelihood estimation
 
@@ -46,13 +51,10 @@ $\hat \theta = \underset{\theta \in \Theta}{\operatorname{arg\;max}}\,\mathcal {
 
 Maximization is done in the hyperspace of $\theta$, where the point of local maximum is found where the [gradient]({{ site.baseurl }}{% link _posts/2019-09-14-derivatives.md %}) with respect to all individual parameters is equal to zero. Since the maximum point in practice can rarely be found analytically, the search is done with iterative optimization techniques, such as [gradient descent]({{ site.baseurl }}{% link _posts/2019-10-15-gradient-descent.md %}) (or rather ascent) or [quasi-Newton methods]({{ site.baseurl }}{% link _posts/2020-07-29-quasi-newton-methods.md %}).
 
-Since for obtaining the joint probability of observations the product of the PDF of each individual datapoint is used, for convenience log transformation of this product is used instead. The logarithm of the product equals the sum of logarithms of individual densities, so it makes computation of the derivative easier. Also since logarithmic functions are strictly increasing, maximizing the function is equivalent to maximizing its logarithm. This is why the term log-likelihood is commonly used in the context of MLE.
+Since for obtaining the joint probability of observations the product of the PDF of each individual datapoint is used, for convenience log transformation of this product is used instead. The logarithm of the product equals the sum of logarithms of individual densities, so it makes computation of the derivative easier. Also because logarithmic functions are strictly increasing, maximizing the function is equivalent to maximizing its logarithm. This is why the term log-likelihood is commonly used in the context of MLE.
 
 &nbsp;&nbsp;&nbsp;&nbsp;
 $\hat \theta = \underset{\theta \in \Theta}{\operatorname{arg\;max}}\, \prod_{i=1}^n f(x_{i} \mid \theta) = \underset{\theta \in \Theta}{\operatorname{arg\;max}}\, \sum_{i=1}^n \log f(x_{i} \mid \theta)$
-
-&nbsp;&nbsp;&nbsp;&nbsp;
-$\hat \theta = \underset{\theta \in \Theta}{\operatorname{arg\;max}}\,\mathcal{L}_{n}(\theta \mid x) = \underset{\theta \in \Theta}{\operatorname{arg\;max}}\, \prod_{i=1}^n f(x_{i} \mid \theta) = \underset{\theta \in \Theta}{\operatorname{arg\;max}}\, \sum_{i=1}^n \log f(x_{i} \mid \theta)$
 
 ## Likelihood ratio
 
