@@ -52,7 +52,7 @@ Since for obtaining the joint probability of observations the product of the PDF
 $\hat \theta = \underset{\theta \in \Theta}{\operatorname{arg\;max}}\, \prod_{i=1}^n f(x_{i} \mid \theta) = \underset{\theta \in \Theta}{\operatorname{arg\;max}}\, \sum_{i=1}^n \log f(x_{i} \mid \theta)$
 
 &nbsp;&nbsp;&nbsp;&nbsp;
-$\hat \theta = \underset{\theta \in \Theta}{\operatorname{arg\;max}}\,\mathcal {L}_{n}(\theta \mid x) = \underset{\theta \in \Theta}{\operatorname{arg\;max}}\, \prod_{i=1}^n f(x_{i} \mid \theta) = \underset{\theta \in \Theta}{\operatorname{arg\;max}}\, \sum_{i=1}^n \log f(x_{i} \mid \theta)$
+$\hat \theta = \underset{\theta \in \Theta}{\operatorname{arg\;max}}\,\mathcal{L}_{n}(\theta \mid x) = \underset{\theta \in \Theta}{\operatorname{arg\;max}}\, \prod_{i=1}^n f(x_{i} \mid \theta) = \underset{\theta \in \Theta}{\operatorname{arg\;max}}\, \sum_{i=1}^n \log f(x_{i} \mid \theta)$
 
 ## Likelihood ratio
 
