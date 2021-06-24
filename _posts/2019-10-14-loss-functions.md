@@ -64,7 +64,7 @@ Actually the mean squared error function can also be viewed as an M-estimator wh
  * Non-negative
  * $H(0) = 0$
  * Symmetric, $H(-\varepsilon_i) = H(\varepsilon_i)$
- * Monotonic, that is if $\left|\varepsilon_i \right| > \left|\varepsilon_j \right|$ then $H(\varepsilon_i) > H(\varepsilon_j)$
+ * Monotonic, that is if $\lvert\varepsilon_i \rvert > \lvert\varepsilon_j \rvert$ then $H(\varepsilon_i) > H(\varepsilon_j)$
  * Continuos - we need to be able to calculate the derivative with respect to the parameters of the regression so that the minimum could be found. This is the property which MAE does not have
 
 So in case of the general form of the error function, the derivative with respect to $k$th parameter takes the following form after applying the chain rule:
