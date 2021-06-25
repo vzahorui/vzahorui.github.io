@@ -4,7 +4,7 @@ title: "Linear regression"
 description: Explaining linear regression and its properties
 category: "Regression"
 tags: multiple-regression linear-regression multivariable-regression gaussian-noise normal-distribution homoscedasticity multicolinearity correlation-coefficient
-date: 2021-03-18
+date: 2021-06-25
 ---
  
 Regression analysis is used for estimating the relationship between variables, usually one dependent and one or several independent variables. Having a regression model at hand, we can predict some continuous value of the dependent variable based on the values of independent variables.
@@ -90,7 +90,7 @@ $H_0: \beta_i = 0$
 &nbsp;&nbsp;&nbsp;&nbsp;
 $H_a: \beta_i \ne 0.6$
 
-So for a given significance level $t$-statistic is calculated:
+So for a given significance level the $t$-statistic is calculated:
 
 &nbsp;&nbsp;&nbsp;&nbsp;
 $t = \frac{\beta_i - 0}{s_i}$
@@ -101,7 +101,11 @@ If the resulting $t$-statistic has corresponding $p$-value less than the signifi
 
 ### Significance of the model
 
+In essence this test checks whether inclusion of independent variables (all at once) makes a better model than the model without independent variables.
 
+The null hypothesis here implies that all of the coefficients at independent variables are equal to 0, and the alternative would mean that at least one of them is not equal to zero. The test statistic in this case would be [F-test]({{ site.baseurl }}{% link _posts/2021-03-22-hypothesis-test-parametric-statistics.md %}#mean_more_samples).
+
+On the whole, there might be cases when the model in general is statistically significant but each individual coefficient is not. This happens when the predictor variables are highly correlated among themselves. Due to multicollinearity the coefficient values become unstable, and their confidence intervals inflated, so these intervals include 0.
 
 ## Validation of assumptions 
 
@@ -115,15 +119,15 @@ This can be validated by checking [correlation coefficients]({{ site.baseurl }}{
 
 As we see, the percentage of lower status population, and number of rooms are somewhat linearly correlated with the price, pupil-teacher ratio shows weak correlation, and the distance to the employment centers doesn't seem to matter at all, so we exclude this particular variable from further use.
 
-### Absence of perfect multicolinearity among predictors
+### Absence of perfect multicollinearity among predictors
 
-Similarly, in order to detect multicolinearity we may check correlation coefficients between predictors. In our example among three remaining variables the correlation coefficients between the percentage of lower status population and the number of rooms is -0.61, which makes perfect sense as these categories are certainly related but not fully. 
+Similarly, in order to detect multicollinearity we may check correlation coefficients between predictors. In our example among three remaining variables the correlation coefficient between the percentage of lower status population and the number of rooms is -0.61, which makes perfect sense as these categories are certainly related but not fully.
 
-And yet, checking pairwise correlation coefficinets alone is not enough as ony variable may be dependent on multiple other variables. To tackle this problem we should check variance inflation inflation factor (more to in can be found [here]({{ site.baseurl }}{% link _posts/2019-10-27-linear-least-squares.md %})), as it measures the variance in coefficients caused by multicolinearity in the variables of the model.
+And yet, checking pairwise correlation coefficients alone is not enough since any variable may be dependent on multiple other variables. To tackle this problem we should check variance inflation inflation factor (more to in can be found [here]({{ site.baseurl }}{% link _posts/2019-10-27-linear-least-squares.md %})), as it measures the variance in coefficients caused by multicollinearity in the variables of the model.
 
 For our example we get the following values of VIF for the variables:
 
-|Varaible name|VIF|
+|Variable name|VIF|
 |:---:|:---:|
 |% of lower status population|5.9|
 |Number of rooms|36.1|
@@ -131,13 +135,11 @@ For our example we get the following values of VIF for the variables:
 
 Therefore, either the number of rooms or pupil-teacher ration should be removed as the variance of their coefficients is inflated due to multicollinearity.
 
-Multicolinearity could also be detected when the sign at coefficient at a certain parameter is not what we would expect. This happens if the model tries to compensate the effect of several correlated predictors. Also, if the coefficients are estimated multiple times using different samples - as the consequence of the inflated variance the estimations of highly correlated variables will be unstable.
+Multicollinearity could also be detected when the sign coefficient at a certain parameter is not what we would expect. This happens if the model tries to compensate for the effect of several correlated predictors. Also, if the coefficients are estimated multiple times using different samples - as the consequence of the inflated variance the estimations of highly correlated variables will be unstable. This leads to the situations when the overall significance of the model is high while each individual predictor is not statistically significant.
 
-High [condition number]({{ site.baseurl }}{% link _posts/2019-11-08-matrix-properties.md %}) of the [covariance matrix]({{ site.baseurl }}{% link _posts/2019-08-10-correlation.md %}) of predictor variables means that there is at least one direction in which the variance is almost non-existant. This indicates multicolinearity as the number of dimensions may be reduced without losing much of the variation. Some methods, such as [singular value decomposition]({{ site.baseurl }}{% link _posts/2019-11-03-singular-value-decomposition.md %}) may be used to deal with multicolinearity internally by extracting new fully independent features, and selecting among them only those that capture the most of the variance in the dataset.
+High [condition number]({{ site.baseurl }}{% link _posts/2019-11-08-matrix-properties.md %}) of the [covariance matrix]({{ site.baseurl }}{% link _posts/2019-08-10-correlation.md %}) of predictor variables means that there is at least one direction in which the variance is almost non-existent. This also indicates multicollinearity because the number of dimensions may be reduced without losing much of the variation. Some methods, such as [singular value decomposition]({{ site.baseurl }}{% link _posts/2019-11-03-singular-value-decomposition.md %}) may be used to deal with multicollinearity internally by extracting new fully independent features, and selecting among them only those that capture the most of the variance in the dataset.
 
-
-
-Eventually we decide to include only three variables in the model and estimate parametrers for them. This is the model that we've got:
+Eventually we decide to include only three variables in the model and estimate parameters for them. This is the model that we've got:
 
 &nbsp;&nbsp;&nbsp;&nbsp;
 $y = 18.57 - 0.93x_1 + 4.52x_2 - 0.57x_3$
