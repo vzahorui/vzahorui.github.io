@@ -16,7 +16,6 @@ date: 2021-04-17
 * [Multiple hypothesis testing](#multiple_testing)
   * [Benjamini–Hochberg procedure](#Benjamini_procedure)
 
-
 <div id='introduction'/>
 ## What is hypothesis testing
 

@@ -3,11 +3,27 @@ layout: single
 title: "Linear regression"
 description: Explaining linear regression and its properties
 category: "Regression"
-tags: multiple-regression linear-regression multivariable-regression gaussian-noise normal-distribution homoscedasticity multicolinearity correlation-coefficient
-date: 2021-06-25
+tags: multiple-regression linear-regression multivariable-regression gaussian-noise normal-distribution homoscedasticity multicollinearity correlation-coefficient
+date: 2021-06-26
 ---
  
 Regression analysis is used for estimating the relationship between variables, usually one dependent and one or several independent variables. Having a regression model at hand, we can predict some continuous value of the dependent variable based on the values of independent variables.
+
+## In this article
+* [What is linear regression](#introduction)
+* [Gaussian noise](#gaussian_noise)
+* [Matrix notation](#matrix_notation)
+* [Confidence intervals of the coefficients](#confidence_interval_coef)
+* [Other assumptions](#other_assumptions)
+* [Hypothesis testing in linear regression](#hypothesis_tests)
+  * [Significance of the parameters](#significance_of_params)
+  * [Significance of the model](#significance_of_model)
+* [Validation of assumptions](#validation)
+  * [Linear relationship](#validation_of_linear)
+  * [Absence of perfect multicollinearity among predictors](#validation_of_multicolinear)
+
+<div id='introduction'/>
+## What is linear regression
 
 Single variable linear regression explains the relationship between single input variable and the output:
  
@@ -24,7 +40,9 @@ $y = \beta_0 + \sum_{i=1}^n \beta_i x_i + \varepsilon$,
 where $\beta_i$ are the weights of each independent variable.
 
 A key feature of linear regression models is that it is assumed that a certain change in the variables causes proportional change in the output (which is not the case in non-linear models). The output is basically treated as a linear combination of predictors. In the real life scenarios this behaviour can only be observed for short periods of time as many natural and social processes tend to have non-linear rate of change.
+<a href="#page-title" class="back-to-top">{{ site.data.ui-text[site.locale].back_to_top | default: 'Back to Top' }} &uarr;</a>
 
+<div id='gaussian_noise'/>
 ## Gaussian noise
  
 In practice there are always factors which are impossible to explain and predict and which may cause surprisingly different results from those that we expect. Therefore there is always going to be some difference between estimated (predicted) and actually observed values - the residuals, even for the variables which seem to be perfectly correlated.
@@ -33,8 +51,10 @@ It is common to view the relationship between two observed variables on a scatte
  
 ![](/assets/images/regression/residuals_demo.png){: .align-center}
  
-According to the Central Limit Theorem if the number of observations is large enough - the residuals have [normal distribution]({{ site.baseurl }}{% link _posts/2021-03-27-statistical-distributions.md %}) with the mean value of 0. This basically means that for a modeled relationship between two or more variables the observed variation is mainly clustered around the estimated values. Since normal distribution is also called Gaussian distribution, the distribution of residuals around estimated values is called Gaussian noise.
+According to the Central Limit Theorem if the number of observations is large enough - the residuals have [normal distribution]({{ site.baseurl }}{% link _posts/2021-03-27-statistical-distributions.md %}#normal_distribution) with the mean value of 0. This basically means that for a modeled relationship between two or more variables the observed variation is mainly clustered around the estimated values. Since normal distribution is also called Gaussian distribution, the distribution of residuals around estimated values is called Gaussian noise.
+<a href="#page-title" class="back-to-top">{{ site.data.ui-text[site.locale].back_to_top | default: 'Back to Top' }} &uarr;</a>
 
+<div id='matrix_notation'/>
 ## Matrix notation
 
 For computation purposes it is better to represent the relationship between the dependent and independent variables with matrix notation:
@@ -60,11 +80,27 @@ X = \left[ \begin{array}{ccccc}
 \end{array} \right]
 $$
  
-$\beta$ is the vector of parameters (weights) of each predictor,<br>
-$\varepsilon$ is the vector of errors (Gaussian noise). This variable captures all other factors which influence the dependent variable y other than the regressors.
+where $\beta$ is the vector of parameters (weights) of each predictor, and $\varepsilon$ is the vector of errors (Gaussian noise). This variable captures all other factors which influence the dependent variable y other than the regressors.
  
 The parameters $\beta$ of such equation are usually estimated with [least squares]({{ site.baseurl }}{% link _posts/2019-10-27-linear-least-squares.md %}), however other methods such as maximum likelihood or robust estimation techniques can be employed.
- 
+<a href="#page-title" class="back-to-top">{{ site.data.ui-text[site.locale].back_to_top | default: 'Back to Top' }} &uarr;</a>
+
+<div id='confidence_interval_coef'/>
+## Confidence intervals of the coefficients
+
+[Recall]({{ site.baseurl }}{% link _posts/2021-01-16-sampling-distribution.md %}#confidence interval) that the confidence interval from a sample is the region around the sample mean, which with a certain probability contains the true mean.
+
+&nbsp;&nbsp;&nbsp;&nbsp;
+$(\bar X - Z \cdot SE; \bar X + Z \cdot SE)$
+
+where $Z$ is the critical value for a given significance level (confidence level minus 1), and $SE$ is the [standard error]({{ site.baseurl }}{% link _posts/2021-01-16-sampling-distribution.md %}#sample_mean_variance).
+
+In case of the linear regression the coefficients are calculated based on sample data so they should be viewed as sample means. The variances of the coefficients may be estimated with the covariance matrix, as described [here]({{ site.baseurl }}{% link _posts/2019-08-10-correlation.md %}#variance_coefficients). Then the standard error can be obtained by dividing them by the square root of the number of observations.
+
+When we are dealing with a sample, and the true variance is unknown, instead of the critical value $Z$, which assumes the [normal distribution]({{ site.baseurl }}{% link _posts/2021-03-27-statistical-distributions.md %}#normal_distribution), the $t$-value from the [$t$-distribution]({{ site.baseurl }}{% link _posts/2021-03-27-statistical-distributions.md %}#student_distribution) is used. The number of [degrees of freedom]({{ site.baseurl }}{% link _posts/2021-03-19-degrees-of-freedom.md %}) for the $t$-value in case of the linear regression is ($n$-$m$-1), where $n$ is the number of observations, and $m$ is the number of independent variables.
+<a href="#page-title" class="back-to-top">{{ site.data.ui-text[site.locale].back_to_top | default: 'Back to Top' }} &uarr;</a>
+
+<div id='other_assumptions'/>
 ## Other assumptions
  
 Apart from the linear nature of relationship between predictors and the output the linear regression estimation relies on a number of other assumptions:
@@ -74,12 +110,15 @@ Apart from the linear nature of relationship between predictors and the output t
 * Normal distribution of the error term with the mean value of 0.
 * [Homoscedasticity]({{ site.baseurl }}{% link _posts/2019-08-18-heteroscedasticity.md %}) - constant variance of error regardless of the values of independent variables.
 
-If not all of the assumptions satisfied then the model might not have some of the required variables which explain the bahaviour of errors, or instead might have redundant variables causing multicolinearity. Or maybe the relationship among variables is non-linear.
+If not all of the assumptions are satisfied then the model might not have some of the required variables which explain the behaviour of errors, or instead might have redundant variables causing multicollinearity. Or maybe the relationship among variables is non-linear.
+<a href="#page-title" class="back-to-top">{{ site.data.ui-text[site.locale].back_to_top | default: 'Back to Top' }} &uarr;</a>
 
+<div id='hypothesis_tests'/>
 ## Hypothesis testing in linear regression
 
 In scope of linear regression we may want to test the significance of the model in general, and the significance of each individual parameter.
 
+<div id='significance_of_params'/>
 ### Significance of the parameters
 
 When testing the parameters we perform the [hypothesis test]({{ site.baseurl }}{% link _posts/2021-01-21-hypothesis-testing.md %}) of whether a given parameter is equal to 0:
@@ -93,12 +132,14 @@ $H_a: \beta_i \ne 0.6$
 So for a given significance level the $t$-statistic is calculated:
 
 &nbsp;&nbsp;&nbsp;&nbsp;
-$t = \frac{\beta_i - 0}{s_i}$
+$t = \frac{\beta_i - 0}{SE_i}$
 
-where $s_i$ is the standard error of the coefficient which is the square root of its variance, and the variance of the coefficients may be estimated with the covariance matrix, as described [here]({{ site.baseurl }}{% link _posts/2019-08-10-correlation.md %}).
+where $SE_i$ is the [standard error]({{ site.baseurl }}{% link _posts/2021-01-16-sampling-distribution.md %}#sample_mean_variance) of the $i$th coefficient.
 
 If the resulting $t$-statistic has corresponding $p$-value less than the significance level then the null hypothesis is rejected, and the parameter of the regression is considered significant.
+<a href="#page-title" class="back-to-top">{{ site.data.ui-text[site.locale].back_to_top | default: 'Back to Top' }} &uarr;</a>
 
+<div id='significance_of_model'/>
 ### Significance of the model
 
 In essence this test checks whether inclusion of independent variables (all at once) makes a better model than the model without independent variables.
@@ -106,11 +147,14 @@ In essence this test checks whether inclusion of independent variables (all at o
 The null hypothesis here implies that all of the coefficients at independent variables are equal to 0, and the alternative would mean that at least one of them is not equal to zero. The test statistic in this case would be [F-test]({{ site.baseurl }}{% link _posts/2021-03-22-hypothesis-test-parametric-statistics.md %}#mean_more_samples).
 
 On the whole, there might be cases when the model in general is statistically significant but each individual coefficient is not. This happens when the predictor variables are highly correlated among themselves. Due to multicollinearity the coefficient values become unstable, and their confidence intervals inflated, so these intervals include 0.
+<a href="#page-title" class="back-to-top">{{ site.data.ui-text[site.locale].back_to_top | default: 'Back to Top' }} &uarr;</a>
 
-## Validation of assumptions 
+<div id='validation'/>
+## Validation of assumptions
 
 Linear regression is safe to apply if all of the assumptions are satisfied. Using the Boston house prices dataset let's perform a typical check in order to ascertain whether it is reasonable to apply linear regression to predict prices.
 
+<div id='validation_of_linear'/>
 ### Linear relationship
 
 This can be validated by checking [correlation coefficients]({{ site.baseurl }}{% link _posts/2019-08-10-correlation.md %}) between predictors and the dependent variable. Coefficients with absolute values closer 1 hint at linear relationship between variables. Below is the plot of the relationship between price and some of the predictors.
@@ -118,7 +162,9 @@ This can be validated by checking [correlation coefficients]({{ site.baseurl }}{
 ![](/assets/images/regression/correlation_example2.png){: .align-center}
 
 As we see, the percentage of lower status population, and number of rooms are somewhat linearly correlated with the price, pupil-teacher ratio shows weak correlation, and the distance to the employment centers doesn't seem to matter at all, so we exclude this particular variable from further use.
+<a href="#page-title" class="back-to-top">{{ site.data.ui-text[site.locale].back_to_top | default: 'Back to Top' }} &uarr;</a>
 
+<div id='validation_of_multicolinear'/>
 ### Absence of perfect multicollinearity among predictors
 
 Similarly, in order to detect multicollinearity we may check correlation coefficients between predictors. In our example among three remaining variables the correlation coefficient between the percentage of lower status population and the number of rooms is -0.61, which makes perfect sense as these categories are certainly related but not fully.
@@ -143,12 +189,6 @@ Eventually we decide to include only three variables in the model and estimate p
 
 &nbsp;&nbsp;&nbsp;&nbsp;
 $y = 18.57 - 0.93x_1 + 4.52x_2 - 0.57x_3$
-
-Multicolinearity 
- - non-significant coefficients
- 
-Some methods of finding coefficients of linear regression for example as 
-
+<a href="#page-title" class="back-to-top">{{ site.data.ui-text[site.locale].back_to_top | default: 'Back to Top' }} &uarr;</a>
 
 ### Independence of errors
-

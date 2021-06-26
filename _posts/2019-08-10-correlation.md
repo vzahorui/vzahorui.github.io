@@ -3,7 +3,7 @@ layout: single
 title: "Correlation and variance in linear regression"
 description: Here I am going to explain what is correlation and correlation coefficients, the intuition behind their calculations and how they may be useful
 category: "Regression"
-tags: correlation correlation-coefficients covariation regression Pearson's-correlation-coefficient coefficient-of-determination r-squared adjusted-r-squared regression-model variation error-term variance-of-coefficients covariance-matrix
+tags: correlation correlation-coefficients covariation regression Pearson's-correlation-coefficient coefficient-of-determination r-squared adjusted-r-squared regression-model variation error-term variance-of-coefficients covariance-matrix variance
 date: 2021-03-14
 ---
 
@@ -89,6 +89,7 @@ where $n$ is the number of observations, and $p$ is the number of independent va
 
 The adjusted $R$-squared is never greater than the vanilla $R$-squared, and it actually decreases if meaningless variables are added to the model.
 
+<div id='variance_coefficients'/>
 ## Variance of coefficients in linear regression
 
 One of the core assumptions in the linear regression is the [normal distribution]({{ site.baseurl }}{% link _posts/2021-03-27-statistical-distributions.md %}) of the error term around the mean value of 0. According to this, the coefficients in the model are random values as well, and their means are found via [least squares]({{ site.baseurl }}{% link _posts/2019-10-27-linear-least-squares.md %}). This corresponds with the fact that for a different sample of observations the estimated coefficients are different. From here it is reasonable to estimate the variance of coefficients in order to derive their standard errors and confidence intervals. Below is some intuition on how the formula for the variance of coefficients in the linear regression is obtained.
