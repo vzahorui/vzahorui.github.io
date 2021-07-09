@@ -6,9 +6,15 @@ tags: stationarity hypothesis-testing autocorrelation Durbin–Watson-test Durbi
 date: 2021-07-08
 ---
 
+## In this article
+* [Stationarity tests](#stationarity_tests)
+* [Autocorrelation tests](#autocorrelation_tests)
+  * [Durbin-Watson test](#durbin_watson)
+  * [Breusch–Godfrey test](#breusch_godfrey)
+
 It is known that in order to make predictions with any time-series it needs to be stationarized. Below I will describe common methods of determining if the time series is stationary.
 
-<div id='stationatity_tests'/>
+<div id='stationarity_tests'/>
 ## Stationarity tests
 
 It is known that in order to make predictions with any time-series it needs to be stationarized. Below I will describe common methods of determining if the time series is stationary.
