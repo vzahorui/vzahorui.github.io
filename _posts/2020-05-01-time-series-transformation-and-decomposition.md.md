@@ -54,5 +54,5 @@ UA
 ![](/assets/images/time_series/toy_ice_cream_prices_transformed.png){: .align-center}
 
 The second image displays transformed data after taking the whole year difference and it looks like white noise. Hence we may conclude that we got stationary time series.<br>
-We can further test time series for stationarity by using Augmented Dickey-Fuller (ADF) and Kwiatkowski–Phillips–Schmidt–Shin (KPSS) tests. Mechanics of both tests is described [here]({{ site.baseurl }}{% link _posts/2019-07-12-time-series-stationarity-tests.md %}).
+We can further test time series for stationarity by using Augmented Dickey-Fuller (ADF) and Kwiatkowski–Phillips–Schmidt–Shin (KPSS) tests. Mechanics of both tests is described [here]({{ site.baseurl }}{% link _posts/2019-07-12-time-series-tests.md %}).
 
