@@ -3,10 +3,10 @@ layout: single
 title: "Linear regression"
 description: Explaining linear regression and its properties
 category: "Regression"
-tags: multiple-regression linear-regression multivariable-regression gaussian-noise normal-distribution homoscedasticity multicollinearity correlation-coefficient
-date: 2021-06-26
+tags: multiple-regression linear-regression multivariable-regression gaussian-noise normal-distribution homoscedasticity multicollinearity correlation-coefficient heteroscedasticity hypothesis-testing autocorrelation residuals error-term Cochrane–Orcutt-estimation Prais–Winsten-estimation
+date: 2021-07-09
 ---
- 
+
 Regression analysis is used for estimating the relationship between variables, usually one dependent and one or several independent variables. Having a regression model at hand, we can predict some continuous value of the dependent variable based on the values of independent variables.
 
 ## In this article
@@ -21,6 +21,7 @@ Regression analysis is used for estimating the relationship between variables, u
 * [Validation of assumptions](#validation)
   * [Linear relationship](#validation_of_linear)
   * [Absence of perfect multicollinearity among predictors](#validation_of_multicolinear)
+  * [Independence of errors](#independence_of_errors)
 
 <div id='introduction'/>
 ## What is linear regression
@@ -108,7 +109,7 @@ Apart from the linear nature of relationship between predictors and the output t
 * Absence of perfect multicollinearity among predictors - that is that none of the predictors can be expressed as a copy or a linear combination of other predictors.
 * Independence of errors - absence of correlation among errors in different output values.
 * Normal distribution of the error term with the mean value of 0.
-* [Homoscedasticity]({{ site.baseurl }}{% link _posts/2019-08-18-heteroscedasticity.md %}) - constant variance of error regardless of the values of independent variables.
+* [Homoscedasticity]({{ site.baseurl }}{% link _posts/2019-08-18-heteroscedasticity.md %}) - constant variance of the error term regardless of the values of independent variables.
 
 If not all of the assumptions are satisfied then the model might not have some of the required variables which explain the behaviour of errors, or instead might have redundant variables causing multicollinearity. Or maybe the relationship among variables is non-linear.
 <a href="#page-title" class="back-to-top">{{ site.data.ui-text[site.locale].back_to_top | default: 'Back to Top' }} &uarr;</a>
@@ -152,7 +153,7 @@ On the whole, there might be cases when the model in general is statistically si
 <div id='validation'/>
 ## Validation of assumptions
 
-Linear regression is safe to apply if all of the assumptions are satisfied. Using the Boston house prices dataset let's perform a typical check in order to ascertain whether it is reasonable to apply linear regression to predict prices.
+Linear regression is safe to apply if all of the assumptions are satisfied. Using the Boston houses prices dataset let's perform a typical check in order to ascertain whether it is reasonable to apply linear regression to predict prices.
 
 <div id='validation_of_linear'/>
 ### Linear relationship
@@ -185,10 +186,53 @@ Multicollinearity could also be detected when the sign coefficient at a certain 
 
 High [condition number]({{ site.baseurl }}{% link _posts/2019-11-08-matrix-properties.md %}) of the [covariance matrix]({{ site.baseurl }}{% link _posts/2019-08-10-correlation.md %}) of predictor variables means that there is at least one direction in which the variance is almost non-existent. This also indicates multicollinearity because the number of dimensions may be reduced without losing much of the variation. Some methods, such as [singular value decomposition]({{ site.baseurl }}{% link _posts/2019-11-03-singular-value-decomposition.md %}) may be used to deal with multicollinearity internally by extracting new fully independent features, and selecting among them only those that capture the most of the variance in the dataset.
 
-Eventually we decide to include only three variables in the model and estimate parameters for them. This is the model that we've got:
+Eventually we decide to include only two variables (the percentage of lower status population and the number of rooms) in the model and estimate parameters for them. This is the model that we've got:
 
 &nbsp;&nbsp;&nbsp;&nbsp;
-$y = 18.57 - 0.93x_1 + 4.52x_2 - 0.57x_3$
+$y = -1.3583 - 0.6424 x_1 + 5.09482 x_2$
 <a href="#page-title" class="back-to-top">{{ site.data.ui-text[site.locale].back_to_top | default: 'Back to Top' }} &uarr;</a>
 
+<div id='independence_of_errors'/>
 ### Independence of errors
+
+This assumption basically means that the residuals of the obtained regression model do not form any pattern, and that there is no autocorrelation. Usually autocorrelation is present if some of the important predictor variables are omitted or if the model exhibits [non-linear]({{ site.baseurl }}{% link _posts/2020-05-07-non-linear-regression.md %}) behaviour.
+
+In our example we see that residuals still form some non-linear pattern with respect to the predicted variables.
+
+![](/assets/images/regression/independence_of_errors.png){: .align-center}
+
+The [Durbin-Watson test]({{ site.baseurl }}{% link _posts/2019-07-12-time-series-tests.md %}#durbin_watson) produces value 0.834 (from the possible range of 0-4) which is an evidence of the positive autocorrelation of the residuals of the model at lag 1. Also the [Breusch–Godfrey test]({{ site.baseurl }}{% link _posts/2019-07-12-time-series-tests.md %}#breusch_godfrey) produces the $p$-value close to 0 for all cases when up to 10 lags are taken into consideration, which is a strong evidence of autocorrelation.
+
+The obvious way to remove the autocorrelation of the error term is to add some of the omitted variables if they are known. However in practice this information is usually absent, so another way to deal with it is to add the lag of the dependent variable as an additional predictor. Let's take a look at the Cochrane–Orcutt estimation which was designed specifically for this purpose. Suppose we have regression in form of
+
+&nbsp;&nbsp;&nbsp;&nbsp;
+$y_t = \alpha + \beta X_t + \varepsilon_t$
+
+And autocorrelation of the residuals at lag 1:
+
+&nbsp;&nbsp;&nbsp;&nbsp;
+$\varepsilon_t = \rho \varepsilon_{t-1} + u_t$
+
+where $u$ is the white noise, and $\rho$ is some coefficient which takes values from -1 and 1. By taking the difference (adjusted by $\rho$) between the residuals of consecutive results it is possible to replace the autocorrelated residuals with the white noise.
+
+&nbsp;&nbsp;&nbsp;&nbsp;
+$\varepsilon_t - \rho \varepsilon_{t-1} = u_t$
+
+&nbsp;&nbsp;&nbsp;&nbsp;
+$y_t - \alpha - \beta X_t - \rho(y_{t-1} - \alpha - \beta X_{t-1}) = u_t$
+
+&nbsp;&nbsp;&nbsp;&nbsp;
+$y_t - \rho y_{t-1} =  \alpha (1 - \rho) + \beta (X_t - \rho X_{t-1}) + u_t$
+
+In order to find the coefficients of this final equation, first the values of $\alpha$ and $\beta$ from the base regression need to be estimated. Then through iterations $\rho$ is estimated from the residuals, and $\alpha$ and $\beta$ are estimated with respect to the latest value of $\rho$ until the convergence is reached.
+
+A slightly better alternative would be Prais–Winsten estimation which is basically based on the Cochrane–Orcutt estimation but it doesn't remove the first observation from the series when calculating lags. Intead, for $t$=1 it adds this expression:
+
+&nbsp;&nbsp;&nbsp;&nbsp;
+$\sqrt{1-\rho^2} y_1 = \alpha \sqrt{1-\rho^2} + \beta \sqrt{1-\rho^2} X_1 + \sqrt{1-\rho^2} \varepsilon_1$
+
+After applying this to our model of Boston houses prices we get the following equation:
+
+&nbsp;&nbsp;&nbsp;&nbsp;
+$y_t = -1.09 + 4.9365(x_{1,t} - 0.65x_{1,t-1}) - 0.4286(x_{2,t} - 0.65x_{2,t-1}) + 0.65 y_{t-1} $
+<a href="#page-title" class="back-to-top">{{ site.data.ui-text[site.locale].back_to_top | default: 'Back to Top' }} &uarr;</a>
