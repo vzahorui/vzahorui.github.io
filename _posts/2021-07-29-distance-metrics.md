@@ -3,8 +3,8 @@ layout: single
 title: "Distance metrics"
 description: which metrics to use when determining the distance between datapoints
 category: "Linear Algebra"
-tags: vector Euclidean-distance Manhattan-distance Minkowski-distance vector-norm normed-vector-space
-date: 2021-07-29
+tags: vector Euclidean-distance Manhattan-distance Minkowski-distance vector-norm normed-vector-space Mahalanobis-distance
+date: 2021-07-30
 ---
 
 
@@ -14,11 +14,11 @@ The distance metrics are induced from the normed vector spaces, so let's first t
 
 ## Normed vector space
 
-This is a special type of space where vectors have norms - special functions which measure the distance of a vector from the origin. The norms are commonly denoted with double vertical lines, like this: $\| x \|$. The normed vector space has the following useful properties:
+This is a special type of space where vectors have norms - special functions which measure the distance of a vector from the origin. The norms are commonly denoted with double vertical lines, like this: $\lVert x \rVert$. The normed vector space has the following useful properties:
 
 * The norm is always non-negative, and it is equal to zero at the origin.
-* For any vector $x$ and every scalar $a$ the following holds true: $\lvert a \rvert \lvert\lvert x\rvert\rvert = \lvert\lvert ax\rvert\rvert$
-* Triangular inequality holds: $\lVert x+y\rVert \leq \|x\| + \|y\|$.
+* For any vector $x$ and every scalar $a$ the following holds true: $\lvert a \rvert \lVert x\rVert = \lVert ax\rVert$
+* Triangular inequality holds: $\lVert x+y\rVert \leq \lVertx\rVert + \lVerty\rVert$.
 
 The norm of the difference of two vectors calculates an aggregate measure of the pairwise difference of their elements, and this is equivalent to the distance metric between two points to which the vectors are pointing. So this is how the distance metrics are induced from the vector norms:
 
