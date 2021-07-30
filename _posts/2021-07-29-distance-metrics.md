@@ -17,7 +17,7 @@ The distance metrics are induced from the normed vector spaces, so let's first t
 This is a special type of space where vectors have norms - special functions which measure the distance of a vector from the origin. The norms are commonly denoted with double vertical lines, like this: $\| x \|$. The normed vector space has the following useful properties:
 
 * The norm is always non-negative, and it is equal to zero at the origin.
-* For any vector $x$ and every scalar $a$ the following holds true: $\lvert a \rvert \|x\| = \|ax\|$
+* For any vector $x$ and every scalar $a$ the following holds true: $\lvert a \rvert \lvert\lvert x\rvert\rvert = \lvert\lvert ax\rvert\rvert$
 * Triangular inequality holds: $\|x+y\| \leq \|x\| + \|y\|$.
 
 The norm of the difference of two vectors calculates an aggregate measure of the pairwise difference of their elements, and this is equivalent to the distance metric between two points to which the vectors are pointing. So this is how the distance metrics are induced from the vector norms:
@@ -62,4 +62,18 @@ If $p$ equals to 1 or 2, then we have the Manhattan or Euclidean distance respec
 
 This metric behaves like Euclidean distance but it takes into consideration the [correlation]({{ site.baseurl }}{% link _posts/2019-08-10-correlation.md %}) between the directions of the axes so it may be applied when the axes are not orthogonal.
 
-Mahalanobis distance can also be viewed as generalization of the idea of measuring the [$z$-score]({{ site.baseurl }}{% link _posts/2021-03-27-statistical-distributions.md %}#normal_distribution), that is how many standard deviations away a given point is from the mean value.
+Mahalanobis distance can also be viewed as generalization of the idea of measuring the [$z$-score]({{ site.baseurl }}{% link _posts/2021-03-27-statistical-distributions.md %}#normal_distribution), that is how many standard deviations away a given point is from the mean value. In the univariate space we would have had this:
+
+&nbsp;&nbsp;&nbsp;&nbsp;
+$z = \frac{x-\mu}{\sigma}$
+
+where $\mu$ is the mean, and $\sigma$ is the standard deviation. 
+
+In the multivariate space however, instead of the single scalar representing the standard deviation, we have a [covariance matrix]({{ site.baseurl }}{% link _posts/2019-08-10-correlation.md %}). Dividing by a matrix is equivalent to multiplying by an inverse of this matrix. Also, instead of the difference of two numbers we have the difference of two vectors. Eventually the formula above is transformed into this:
+
+&nbsp;&nbsp;&nbsp;&nbsp;
+$d(x, y) = \sqrt{(x-y)S^{-1}(x-y)}$
+
+where $S$ is the covariance matrix.
+
+As we see, the metric takes care of the correlated directions by adjusting with the covariance matrix, and if the axes are orthogonal then the covariance matrix becomes the identity matrix, and this whole metric becomes equivalent to the Euclidean distance.
