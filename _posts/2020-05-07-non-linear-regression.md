@@ -70,7 +70,7 @@ $\Delta \theta = (J_r^{T} J_r)^{-1} J_r^{T} r^{(k)}$
 Eventually we get a vector of differences which should be applied to the parameters in order for them to ensure the minimum of the loss function for a given approximation.
 After that the procedure is repeated through repetitive approximation at a new set of parameters each time until the sum of squared errors becomes small enough or other stopping criterion reached.
  
-Comparing Newton's method Gauss-Newton is easier to implement and compute as it does not require calculation of the matrix of second derivatives and its inverse. If we compute the vectors of parameters change for Newton's method we will get the same expression but with the Hessian instead of $J_r^{T} J_r$.   
+Compared to the Newton's method, Gauss-Newton is easier to implement and compute as it does not require calculation of the matrix of second derivatives and its inverse. If we compute the vectors of parameters change for Newton's method we will get the same expression but with the Hessian instead of $J_r^{T} J_r$.   
  
 Here is what the Jacobian of the loss function looks like:
  
@@ -84,7 +84,7 @@ $H = 2\sum_{i=0}^m (\frac{\partial r_i}{\partial \theta_j} \frac{\partial r_i}{\
  
 where $Q = \sum_{i=0}^m r_i\frac{\partial^2 r_i}{\partial \theta_j \partial \theta_i}$
  
-Gauss-Newton method may be seen as the result of neglecting with $Q$in Newton's method. While it simplifies computations convergence may be expected when either $r_i$ or $\frac{\partial^2 r_i}{\partial \theta_j \partial \theta_i}$ are small in magnitude (the function is "mildly" non-linear), as the method does not converge quadratically.   
+Gauss-Newton method may be seen as the result of neglecting with $Q$ in the Newton's method. While it simplifies computations, convergence may be expected when either $r_i$ or $\frac{\partial^2 r_i}{\partial \theta_j \partial \theta_i}$ are small in magnitude (the function is "mildly" non-linear), as the method does not converge quadratically.   
  
 As long as $J_r$ has full rank, $J_r^{T} J_r$ always produces a positive definite matrix which is not guaranteed for the Hessian. Therefore, another advantage of Gauss-Newton method is that the descent direction is always towards the minimum. Still, the update vector may produce insufficient decrease of the objective function as it may cause overshooting of the minimum if the starting point is far from the true minimum. This can be fixed by taking a scaled version $\eta \Delta \theta$ on each iteration instead of $\Delta \theta$, where $\eta$ is between 0 and 1.The value of $\eta$ can be determined with [line search]({{ site.baseurl }}{% link _posts/2020-08-08-line-search.md %}) methods such as backtracking line search. Another alternative is to use Levenberg–Marquardt algorithm.
  
@@ -97,7 +97,7 @@ So Gauss-Newton method produces an update vector which is dependent of the Jacob
 &nbsp;&nbsp;&nbsp;&nbsp;
 $\Delta \theta = (J_r^{T} J_r)^{-1} J_r^{T} r^{(k)}$
  
-Levenberg–Marquardt algorithm modifies the square matrix $J_r^{T} J_r$ of this equation by adding to it multiple of the identity matrix $\lambda I$, where $\lambda$ is a positive number known as a damping factor. By increasing the diagonal elements $J_r^{T} J_r$ its [eigenvalues]({{ site.baseurl }}{% link _posts/2019-11-02-eigenvectors-and-eigenvalues.md %}) are also increased. In addition, if the matrix is singular, it becomes ivertable. Compared to Gauss-Newton the elements of the update vector $\Delta \theta$ in Levenberg–Marquardt algorithm become smaller because they are defined by the inverse of a matrix with bigger eigenvalues. Increasing the damping factor $\lambda$ causes the algorithm to behave more like gradient descent by taking small steps in the direction of the minimum.
+Levenberg–Marquardt algorithm modifies the square matrix $J_r^{T} J_r$ of this equation by adding to it multiple of the identity matrix $\lambda I$, where $\lambda$ is a positive number known as a damping factor. By increasing the diagonal elements $J_r^{T} J_r$ its [eigenvalues]({{ site.baseurl }}{% link _posts/2019-11-02-eigenvectors-and-eigenvalues.md %}) are also increased. In addition, if the matrix is singular, it becomes invertable. Compared to Gauss-Newton the elements of the update vector $\Delta \theta$ in Levenberg–Marquardt algorithm become smaller because they are defined by the inverse of a matrix with bigger eigenvalues. Increasing the damping factor $\lambda$ causes the algorithm to behave more like gradient descent by taking small steps in the direction of the minimum.
  
 &nbsp;&nbsp;&nbsp;&nbsp;
 $\Delta \theta = (J_r^{T} J_r + \lambda I)^{-1} J_r^{T} r^{(k)}$

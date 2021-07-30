@@ -48,6 +48,7 @@ Below is representation of different kinds of simple linear regression where cor
 
 ![](/assets/images/regression/correlation_demo.png){: .align-center}
 
+<div id='r_squared'/>
 ## Coefficient of determination
 
 A related concept to correlation with regard to the [linear regression]({{ site.baseurl }}{% link _posts/2019-10-25-linear-regression.md %}) is the coefficient of determination, also known as $R$-squared. This coefficient represents the strength of linear relationship in the model by measuring how much of the variation in the dependent variable is caused by independent variables.
@@ -114,6 +115,7 @@ Where $\sigma^2$ is the variance of the error term. The diagonal elements of the
 
 From this we make a conclusion that the variance of coefficients is bigger in noisy datasets. At the same time, the variance decreases if the spread in $X$ increases which makes sense, since increasing the range of possible values of independent variables reduces the effect of the noise, and according to the [Central limit theorem]({{ site.baseurl }}{% link _posts/2021-01-16-sampling-distribution.md %}), the distribution of the error term and the parameters start to resemble normal distribution.
 
+<div id='variance_inflation_factor'/>
 ## Variance inflation factor
 
 Variance inflation factor (VIF) is a measure of variance of a coefficient in a linear regression which is caused by multicollinearity. This indicator is calculated separately for each independent variable in the model by building a regression where this variable is described by other independent variables (the dependent variable is omitted here). Looking at the coefficient of determination for the built regression it is possible to get the idea of how much the variance of the variable is determined by other variables, and it also serves as an indicator of multicollinearity. Now let's take a look at the how VIF is constructed:
