@@ -17,7 +17,7 @@ The distance metrics are induced from the normed vector spaces, so let's first t
 This is a special type of space where vectors have norms - special functions which measure the distance of a vector from the origin. The norms are commonly denoted with double vertical lines, like this: $\| x \|$. The normed vector space has the following useful properties:
 
 * The norm is always non-negative, and it is equal to zero at the origin.
-* For any vector $x$ and every scalar $a$ the following holds true: $|a|\|x\| = \|ax\|$
+* For any vector $x$ and every scalar $a$ the following holds true: $\lvert a \rvert \|x\| = \|ax\|$
 * Triangular inequality holds: $\|x+y\| \leq \|x\| + \|y\|$.
 
 The norm of the difference of two vectors calculates an aggregate measure of the pairwise difference of their elements, and this is equivalent to the distance metric between two points to which the vectors are pointing. So this is how the distance metrics are induced from the vector norms:
