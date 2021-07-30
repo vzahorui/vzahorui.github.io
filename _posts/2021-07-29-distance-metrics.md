@@ -17,8 +17,8 @@ The distance metrics are induced from the normed vector spaces, so let's first t
 This is a special type of space where vectors have norms - special functions which measure the distance of a vector from the origin. The norms are commonly denoted with double vertical lines, like this: $\lVert x \rVert$. The normed vector space has the following useful properties:
 
 * The norm is always non-negative, and it is equal to zero at the origin.
-* For any vector $x$ and every scalar $a$ the following holds true: $\lvert a \rvert \lVert x\rVert = \lVert ax\rVert$
-* Triangular inequality holds: $\lVert x+y\rVert \leq \lVertx\rVert + \lVerty\rVert$.
+* For any vector $x$ and every scalar $a$ the following holds true: $\lvert a \rvert \cdot \lVert x\rVert = \lVert ax\rVert$
+* Triangular inequality holds: $\lVert x+y\rVert \leq \lVert x\rVert + \lVert y\rVert$.
 
 The norm of the difference of two vectors calculates an aggregate measure of the pairwise difference of their elements, and this is equivalent to the distance metric between two points to which the vectors are pointing. So this is how the distance metrics are induced from the vector norms:
 
@@ -77,3 +77,22 @@ $d(x, y) = \sqrt{(x-y)S^{-1}(x-y)}$
 where $S$ is the covariance matrix.
 
 As we see, the metric takes care of the correlated directions by adjusting with the covariance matrix, and if the axes are orthogonal then the covariance matrix becomes the identity matrix, and this whole metric becomes equivalent to the Euclidean distance.
+
+<div id='cosine_similarity'/>
+### Cosine similarity and cosine distance
+
+These metrics are generally used to compare similarity of vectors. Cosine similarity does not take into account the magnitude of vectors when determining whether they are similar, as it only measures the angle between them. The wider the angle - the less similar the vectors.
+
+&nbsp;&nbsp;&nbsp;&nbsp;
+$\frac{\overrightarrow{x} \cdot \overrightarrow{y}}{\lVert x\rVert  \cdot \lVert y\rVert }$
+
+The derivation of this metric is based on the definition of cosine, and can be found [here]({{ site.baseurl }}{% link _posts/2020-03-04-vector-projection.md %}#cosine_calc).
+
+And the cosine distance is simply the difference between 1 and the cosine similarity:
+
+&nbsp;&nbsp;&nbsp;&nbsp;
+$1 - \frac{\overrightarrow{x} \cdot \overrightarrow{y}}{\lVert x\rVert  \cdot \lVert y\rVert }$
+
+If the two vectors are the same then the cosine similarity is 1, and the distance is 0.
+
+It makes sense to use these metrics in text analysis, when assessing the [similarity of the texts]({{ site.baseurl }}{% link _posts/2020-03-03-text-similarity.md %}). For example each unique word or a particular word combination from two texts may be viewed as one of many orthogonal directions in space. Then both texts are represented as vectors in this space whose elements represent the number of times when each word is occured. Both texts might be of different length but still convey the same meaning, so the magnitude of the vectors should be accounted for. Instead, the departure from the general direction should be considered as a measure of dissimilarity.

@@ -17,16 +17,17 @@ In this example we want to calculate vector $\overrightarrow{a_{1}}$ which has t
 Let's recall that in rectangular triangle cosine of an angle is the ratio between the adjacent side and the hypotenuse. Therefore, $\|\|a_{1}\|\|$, known as scalar projection, can be expressed as $\|\|a\|\| \cos{\alpha}$, where $\alpha$ is the angle between $\overrightarrow{a}$ and $\overrightarrow{b}$. The vector projection will be equal to the scalar projection multiplied by direction of $\overrightarrow{b}$:  
 
 &nbsp;&nbsp;&nbsp;&nbsp;
-$\overrightarrow{a_{1}} = \left|\left|a_{1}\right|\right|\frac{b}{\left|\left|b\right|\right|} = \left|\left|a\right|\right| \cos{\alpha}\frac{b}{\left|\left|b\right|\right|}$
+$\overrightarrow{a_{1}} = \lVert a_{1}\rVert\frac{b}{\lVert b\rVert} = \lVert a\rVert \cos{\alpha}\frac{b}{\lVert b\rVert}$
  
 The direction of $\overrightarrow{b}$ is a unit vector expressed as a scaled version of $\overrightarrow{b}$.
- 
+
+<div id='cosine_calc'/>
 ## Cosine calculation  
  
 When $\alpha$ is not known the cosine of $\alpha$ can be be expressed as follows:
  
 &nbsp;&nbsp;&nbsp;&nbsp;
-$\cos{\alpha} = \frac{\overrightarrow{a} \cdot \overrightarrow{b}}{\left|\left|a\right|\right| \cdot \left|\left|b\right|\right|}$,
+$\cos{\alpha} = \frac{\overrightarrow{a} \cdot \overrightarrow{b}}{\lVert a\rVert \cdot \lVert b\rVert}$,
  
 where $\overrightarrow{a} \cdot \overrightarrow{b}$ is the dot product of two vectors.
  
@@ -38,17 +39,17 @@ $c^{2} = a^{2} + b^{2} - 2ab \cos{\alpha}$
 In terms of vectors of our example we can write it down like this:
  
 &nbsp;&nbsp;&nbsp;&nbsp;
-$\left|\left|a_2\right|\right|^2 = \left|\left|a\right|\right|^2 + \left|\left|a_1\right|\right|^2 - 2 \left|\left|a\right|\right| \left|\left|a_1\right|\right| \cos{\alpha}$,  
+$\lVert a_2\rVert^2 = \lVert a\rVert^2 + \lVert a_1\rVert^2 - 2 \lVert a\rVert \lVert a_1\rVert \cos{\alpha}$,  
  
 where $\overrightarrow{a_2}$ can be expressed as $\overrightarrow{a} - \overrightarrow{a_1}$.
  
 &nbsp;&nbsp;&nbsp;&nbsp;
-$(\left|\left|a - a_1\right|\right|) (\left|\left|a - a_1\right|\right|) = \left|\left|a\right|\right|^2 + \left|\left|a_1\right|\right|^2 - 2 \left|\left|a\right|\right| \left|\left|a_1\right|\right| \cos{\alpha}$
+$(\lVert a - a_1\rVert) (\lVert a - a_1\rVert) = \lVert a\rVert^2 + \lVert a_1\rVert^2 - 2 \lVert a\rVert \lVert a_1\rVert \cos{\alpha}$
  
 &nbsp;&nbsp;&nbsp;&nbsp;
-$\left|\left|a\right|\right|^2 + \left|\left|a_1\right|\right|^2 - 2 \overrightarrow{a} \cdot \overrightarrow{a_1} = \left|\left|a\right|\right|^2 + \left|\left|a_1\right|\right|^2 - 2 \left|\left|a\right|\right| \left|\left|a_1\right|\right| \cos{\alpha}$
+$\lVert a\rVert^2 + \lVert a_1\rVert^2 - 2 \overrightarrow{a} \cdot \overrightarrow{a_1} = \lVert a\rVert^2 + \lVert a_1\rVert^2 - 2 \lVert a\rVert \lVert a_1\rVert \cos{\alpha}$
  
 &nbsp;&nbsp;&nbsp;&nbsp;
-$\overrightarrow{a} \cdot \overrightarrow{a_1} = \left|\left|a\right|\right| \left|\left|a_1\right|\right| \cos{\alpha}$
+$\overrightarrow{a} \cdot \overrightarrow{a_1} = \lVert a\rVert \lVert a_1\rVert \cos{\alpha}$
  
 The key takeaway from it is that the dot product of two vectors is useful in calculation of vector projection.

@@ -4,7 +4,7 @@ title: "Text similarity"
 description: Explaining how to calculate text similarity and select text which is the most similar to another text
 category: "NLP"
 tags: nlp  natural-language-processing documents-similarity Levenshtein-distance dot-product vector vector-magnitude cosine
-date: 2020-03-03
+date: 2021-07-30
 ---
  
 Doing text analysis you may encounter a case when you need to select the most similar text or a group of text to another chosen text.
@@ -15,10 +15,10 @@ Although calculating Levenshtein distance might be a good technique for detectin
  
 Another option to find similar texts is to produce *n*-dimensional vectors of word counts for each of the texts, where *n* is the number of unique words in all texts. By doing so we are placing each text within space of orthogonal vectors. Then these vectors can be compared in terms of their "closeness" with regard to the angle between them.  
  
-Let's recall that cosine of an angle between two vectors can be computed with the dot product:
+Let's [recall]({{ site.baseurl }}{% link _posts/2020-03-04-vector-projection.md %}#cosine_calc) that cosine of an angle between two vectors can be computed with the dot product:
  
 &nbsp;&nbsp;&nbsp;&nbsp;
-$\cos{\alpha} = \frac{\overrightarrow{a} \cdot \overrightarrow{b}}{\left|\left|a\right|\right| \cdot \left|\left|b\right|\right|}$
+$\cos{\alpha} = \frac{\overrightarrow{a} \cdot \overrightarrow{b}}{\lVert a\rVert  \cdot \lVert b\rVert }$
  
 Now imagine a simplified example where we have three texts with words belonging to three categories: business, infrastructure and people. Here is the word count for each category within each text:
  
