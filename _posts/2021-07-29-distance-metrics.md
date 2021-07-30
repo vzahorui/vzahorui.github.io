@@ -18,7 +18,7 @@ This is a special type of space where vectors have norms - special functions whi
 
 * The norm is always non-negative, and it is equal to zero at the origin.
 * For any vector $x$ and every scalar $a$ the following holds true: $\lvert a \rvert \lvert\lvert x\rvert\rvert = \lvert\lvert ax\rvert\rvert$
-* Triangular inequality holds: $\|x+y\| \leq \|x\| + \|y\|$.
+* Triangular inequality holds: $\lVert x+y\rVert \leq \|x\| + \|y\|$.
 
 The norm of the difference of two vectors calculates an aggregate measure of the pairwise difference of their elements, and this is equivalent to the distance metric between two points to which the vectors are pointing. So this is how the distance metrics are induced from the vector norms:
 
