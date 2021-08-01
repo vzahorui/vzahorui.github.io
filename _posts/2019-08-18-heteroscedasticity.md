@@ -4,7 +4,7 @@ title: "Heteroscedasticity"
 description: Here I am going to explain what heteroscedasticity means
 category: "Regression"
 tags: regression residuals heteroscedasticity variance homoscedasticity Breusch–Pagan-test White-test linear-regression
-date: 2021-07-18
+date: 2021-07-25
 ---
 
 ## What is heteroscedasticity
@@ -28,7 +28,7 @@ $Var(\varepsilon_i \mid X) = \sigma^2$
 And the covariance matrix of the residuals will be just $\sigma^2 I$. If however the variance of the errors is not constant, then the covariance matrix will be different:
 
 $$
-Var(\varepsilon \mid X) = E(\varepsilon \varepsilon^{T}) = \Sigma = 
+Var(\varepsilon \mid X) = E(\varepsilon \varepsilon^{T}) = \Omega = 
 \left[\begin{array}{cccc}
 \sigma_1^2 & 0 & ... & 0 \\
 0 & \sigma_2^2 & ... & 0 \\

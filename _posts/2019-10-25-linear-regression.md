@@ -3,8 +3,8 @@ layout: single
 title: "Linear regression"
 description: Explaining linear regression and its properties
 category: "Regression"
-tags: multiple-regression linear-regression multivariable-regression gaussian-noise normal-distribution homoscedasticity multicollinearity correlation-coefficient heteroscedasticity hypothesis-testing autocorrelation residuals error-term Cochrane–Orcutt-estimation Prais–Winsten-estimation weighted-least-squares WLS
-date: 2021-07-29
+tags: multiple-regression linear-regression multivariable-regression gaussian-noise normal-distribution homoscedasticity multicollinearity correlation-coefficient heteroscedasticity hypothesis-testing autocorrelation residuals error-term Cochrane–Orcutt-estimation Prais–Winsten-estimation weighted-least-squares WLS generalized-least-squares GLS feasible-generalized-least-squares FGLS
+date: 2021-08-01
 ---
 
 Regression analysis is used for estimating the relationship between variables, usually one dependent and one or several independent variables. Having a regression model at hand, we can predict some continuous value of the dependent variable based on the values of independent variables.
@@ -114,6 +114,15 @@ Apart from the linear nature of relationship between predictors and the output t
 * [Homoscedasticity]({{ site.baseurl }}{% link _posts/2019-08-18-heteroscedasticity.md %}) - constant variance of the error term regardless of the values of independent variables.
 
 If not all of the assumptions are satisfied then the model might not have some of the required variables which explain the behaviour of errors, or instead might have redundant variables causing multicollinearity. Or maybe the relationship among variables is non-linear.
+
+If the errors are correlated and/or heteroscedastic, instead of minimizing the sum of squares ($\varepsilon^{T} \varepsilon$), the following [Mahalanobis distance]({{ site.baseurl }}{% link _posts/2021-07-29-distance-metrics.md %}#mahalanobis_distance) has to be minimized: $\varepsilon^{T}\Omega^{-1}\varepsilon$. Where $\Omega$ is the covariance matrix of the errors, which is not equal to the identity matrix as in the case of homoscedastic independent errors.
+
+Then in order to estimate the parameters, instead of the [ordinary least squares]({{ site.baseurl }}{% link _posts/2019-10-27-linear-least-squares.md %}) (OLS) the generalized least squares provides the best estimation by taking into account the covariance of the error term:
+
+&nbsp;&nbsp;&nbsp;&nbsp;
+$\beta = (X^{T}\Omega^{-1}X)^{-1}X^{T}\Omega^{-1}Y$
+
+In practice however, the true covariance matrix is not known so it needs to be estimated from the sample. In this case the method of solving is called feasible generalized least squares (FGLS).
 <a href="#page-title" class="back-to-top">{{ site.data.ui-text[site.locale].back_to_top | default: 'Back to Top' }} &uarr;</a>
 
 <div id='hypothesis_tests'/>
@@ -155,7 +164,7 @@ On the whole, there might be cases when the model in general is statistically si
 <div id='validation'/>
 ## Validation of assumptions
 
-Linear regression via [ordinary least squares]({{ site.baseurl }}{% link _posts/2019-10-27-linear-least-squares.md %}) (OLS) is safe to apply if all of the assumptions are satisfied. Using the Boston houses prices dataset let's perform a typical check in order to ascertain whether it is reasonable to apply linear regression to predict prices.
+Linear regression via [ordinary least squares]({{ site.baseurl }}{% link _posts/2019-10-27-linear-least-squares.md %}) is safe to apply if all of the assumptions are satisfied. Using the Boston houses prices dataset let's perform a typical check in order to ascertain whether it is reasonable to apply linear regression to predict prices.
 
 <div id='validation_of_linear'/>
 ### Linear relationship
@@ -259,4 +268,15 @@ Upon visual inspection of the residual plot we observe some degree of [heterosce
 
 Despite the violation of homoscedasticity of errors, the estimates of the parameters obtained with the OLS remain unbiased, however their confidence intervals cannot be accurately determined. Recall that the [variance of the regression coefficients]({{ site.baseurl }}{% link _posts/2019-08-10-correlation.md %}#variance_coefficients) can be calculated as $\sigma^2 (X^{T}X)^{-1}$, where $\sigma^2$ is the variance of the error term. Under the condition of heteroscedasticity this variance is no longer a fixed number.
 
-Weighted least squares (WLS) is meant to deal with heteroscedasticity of the residuals by assigning smaller weights to observations with larger variance. The weight is determined as a reciprocal number of the true variance of the error term of an observation. In practice however, this true variance is not known, so it has to be estimated from the sample.
+If the errors are independent but heteroscedastic, then the covariance matrix of errors is diagonal with the elements equal to the different variance.
+By applying the idea of the generalized least squares, we can take the inverse of this matrix and use it for finding the new set of parameters for  regression. The inverse of a diagonal matrix is yet another diagonal matrix which consists of the reciprocals of its elements. In case of the linear regression this inverse is known as the matrix of weights. So the weighted least squares (WLS) is meant to deal with heteroscedasticity of the residuals by assigning smaller weights to observations with larger variance. Essentially, applying WLS is the same as transforming the whole dataset by adjusting for the individual variance of errors of each observation, and then applying OLS to it.
+
+In practice however, this true variance of the errors is unknown, so it has to be estimated from the sample after the initial OLS regression is built. Simply taking the squared values of each individual residual won't do because we need to find the general relationship between the residuals and the independent variables. The recommended way to go is to build another regression where the logarithm of the squared residuals is modelled with independent variables.
+
+&nbsp;&nbsp;&nbsp;&nbsp;
+$\log(\varepsilon^2) = X\beta^{*} + u$
+
+where $u$ is some white noise, and $\beta^{*}$ is a new set of coefficients. The logarithm is used in order to make the relationship closer to linear, and also to dampen the effect of outliers.
+
+From here the fitted values of $\varepsilon^2$ are recovered, and their reciprocals are used for the weight matrix of the WLS. It should be noted that since the weights are determined from merely an approximation of the error variance, the WLS may not remove heteroscedasticity completely. In practice if the heteroscedasticity is not evident by visual inspection, one may ignore it completely and just go with the OLS in order to safeguard himself from the possible false assumptions.
+<a href="#page-title" class="back-to-top">{{ site.data.ui-text[site.locale].back_to_top | default: 'Back to Top' }} &uarr;</a>
