@@ -116,7 +116,7 @@ In practice the variance of two populations is rarely equal, so Welch's $t$-test
 
 This is usually the case when each observation in the same sample is measured twice in different conditions. For example for a group of patients the level of cholesterol in blood is measured before and after the treatment. The null hypothesis would assume no change in the level of cholesterol.
 
-The test statistic which is appropriate in this case is paired (or dependent) $t$-test. According to this test, for each observation the difference in two measures is calculated so that the average and the standard deviation of those differences can be obtained. We need to test whether this average difference is sufficiently different from 0.
+The test statistic which is appropriate in this case is paired (or dependent) $t$-test. According to this test, for each pair of observations the difference in two measures is calculated so that the average and the standard deviation of those differences can be obtained. We need to test whether this average difference is sufficiently different from 0.
 
 &nbsp;&nbsp;&nbsp;&nbsp;
 $t=\frac{\bar X_D}{\frac{s_D}{\sqrt{n}}}$

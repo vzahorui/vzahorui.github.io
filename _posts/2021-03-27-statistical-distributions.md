@@ -89,7 +89,7 @@ If multiple samples of the same size are drawn from the same population then the
 &nbsp;&nbsp;&nbsp;&nbsp;
 $q = \frac{\bar x_{max} - \bar x_{min}}{\frac{s}{\sqrt{n}}}$
 
-where $\bar x_{max}$ and $\bar x_{min}$ are the largest and the smallest means of the samples, $s$ is the pooled standard deviation, and $n$ is the sample size.
+where $\bar x_{max}$ and $\bar x_{min}$ are the largest and the smallest means of the samples, $s$ is the pooled standard deviation, and $n$ is the sample size. The number of [degrees of freedom]({{ site.baseurl }}{% link _posts/2021-03-19-degrees-of-freedom.md %}) is selected as for the pooled variance: $k$($n$-1), where $k$ is the number of groups.
 
 If the $q$-statistic exceeds the critical value of the distribution for a given number of samples and degrees of freedom, then the null hypothesis that the two sample means are from the same normal distribution is rejected. 
 
