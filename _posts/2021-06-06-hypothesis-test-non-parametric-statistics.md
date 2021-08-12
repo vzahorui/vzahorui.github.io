@@ -70,7 +70,9 @@ where $X$ and $Y$ are the samples of ranks which are compared, and $S$ is a spec
 
 $$
 S(X,Y)={\begin{cases}
-1,&{\text{if }}Y<X,\\{\tfrac {1}{2}},&{\text{if }}Y=X,\\0,&{\text{if }}Y>X.
+1,&{\text{if }}Y<X,\\
+{\frac{1}{2}},&{\text{if }}Y=X,\\
+0,&{\text{if }}Y>X.
 \end{cases}}
 $$
 
