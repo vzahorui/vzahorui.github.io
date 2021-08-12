@@ -69,6 +69,6 @@ $U = \sum_{i=1}^n \sum_{j=1}^m S(X_{i},Y_{j})$
 where $X$ and $Y$ are the samples of ranks which are compared, and $S$ is a special function which does the comparison of two values:
 
 &nbsp;&nbsp;&nbsp;&nbsp;
-$S(X,Y)={\begin{cases}1,&{\text{if }}Y<X,\\{\tfrac {1}{2}},&{\text{if }}Y=X,\\0,&{\text{if }}Y>X.\end{cases}}$
+$$S(X,Y)={\begin{cases}1,&{\text{if }}Y<X,\\{\tfrac {1}{2}},&{\text{if }}Y=X,\\0,&{\text{if }}Y>X.\end{cases}}$$
 
 Then the sum of ranks for each group is calculated.
