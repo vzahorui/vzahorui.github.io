@@ -3,13 +3,13 @@ layout: single
 title: "Statistical distributions"
 description: In this post I described all essential statistical distributions
 category: "Probability"
-tags: probability-distribution normal-distribution statistics z-score z-table six-sigma z-value central-limit-theorem Student's-distribution t-distribution probability-mass-function probability-density-function PDF degrees-of-freedom chi-square-distribution binomial-distribution Bernoulli-trial geometric-distribution exponential-distribution poisson-distribution uniform-distribution negative-binomial-distribution studentized-range-distribution
-date: 2021-06-04
+tags: probability-distribution normal-distribution statistics z-score z-table six-sigma z-value central-limit-theorem Student's-distribution t-distribution probability-mass-function probability-density-function PDF degrees-of-freedom chi-square-distribution binomial-distribution Bernoulli-trial geometric-distribution exponential-distribution poisson-distribution uniform-distribution negative-binomial-distribution studentized-range-distribution beta-distribution gamma-function
+date: 2022-07-19
 ---
 
 A set of discrete values or a range of continuous values of a random variable is characterized by a certain probability distribution. In statistics various distributions arise in the context of estimating probabilities of random values or events.
 
-In case of discrete variables the distribution is described by probability mass function (PMF) which assigns a certain probability value for each individual value from the set. For continuous random variables probability density functions (PDF) provide values of relative likelihood of assuming a certain value. Although the probability that a continuous variable will assume a certain exact value is 0, PDF allows to compare the relative likelihoods in different ranges of values, as well as to calculate the probability of assuming a value within a specific range (using [integral calculus]({{ site.baseurl }}{% link _posts/2019-09-24-integrals.md %})).
+In case of discrete variables the distribution is described by the probability mass function (PMF) which assigns a certain probability value for each individual value from the set. For continuous random variables, probability density functions (PDF) provide values of relative likelihood of assuming a certain value. Although the probability that a continuous variable will assume a certain exact value is 0, PDF allows to compare the relative likelihoods in different ranges of values, as well as to calculate the probability of assuming a value within a specific range (using [integral calculus]({{ site.baseurl }}{% link _posts/2019-09-24-integrals.md %})).
 
 In this article the most useful probability distributions will be explained, as well as some of the distributions which derive from them.
 
@@ -20,6 +20,8 @@ In this article the most useful probability distributions will be explained, as 
 * [Binomial distribution](#binomial_distribution)
   * [Geometric distribution](#geometric_distribution)
   * [Negative binomial distribution](#negative_binomial_distribution)
+  * [Beta distribution](#beta_distribution)
+* [Uniform distribution](#uniform_distribution)
 * [Poisson distribution](#poisson_distribution)
   * [Exponential distribution](#exponential_distribution)
 
@@ -46,7 +48,7 @@ Based on the example above, we may deduce that:
 * 95.44% - from 2.6 to 3.8 kilos (two standard deviations away from the mean)
 * 99.73% - from 2.3 to 4.1 kilos (three standard deviations away from the mean)
 
-Before moving on to calculating the probability of getting certain interval values let’s introduce $z$-score metric. Plainly speaking, $z$-score tells us how many standard deviations a given value is away from the mean of its distribution.
+Before moving on to calculating the probability of getting certain interval values, let's introduce the $z$-score metric. Plainly speaking, $z$-score tells us how many standard deviations a given value is away from the mean of its distribution.
 
 &nbsp;&nbsp;&nbsp;&nbsp;
 $z = \frac{x-\mu}{\sigma}$
@@ -59,7 +61,7 @@ Suppose we want to calculate the percentage of newborns who have weight less tha
 
 In the first case we simply calculate $z$-score of the value 3 and look up the area under the curve from the $z$-table for negative values (since 3 is lower than the mean 3.2). In this example it approximates to 0.2514. So conclude that only 25.14% of all newborns have weight 3 kilos or less.
 
-In the second example we have an area with two cut-off points. $Z$-table allows us to find the area to the left from a specific value, so here is what we do. First we calculated $z$-scores for 3.5 and for 3, then we look up the area under the curve for all weights which are less than 3.5 kilos and those which are less than 3 kilos. Then we simply subtract the second from the first. Finally we end up with something like 0.8413 - 0.2514, which equals to 0.59. Here we conclude that nearly 59% of all newborns have weight between 3 and 3.5 kilos.
+In the second example we have an area with two cut-off points. $Z$-table allows us to find the area to the left from a specific value, so here is what we do. First we calculated $z$-scores for 3.5 and for 3, then we looked up the area under the curve for all weights which are less than 3.5 kilos and those which are less than 3 kilos. Then we simply subtract the second from the first. Finally we end up with something like 0.8413 - 0.2514, which equals 0.59. Here we conclude that nearly 59% of all newborns have weight between 3 and 3.5 kilos.
 
 The probability density function of the normal distribution which was used in construction of $z$-table, and which is generally used for calculating probability looks like this:
 
@@ -91,7 +93,7 @@ $q = \frac{\bar x_{max} - \bar x_{min}}{\frac{s}{\sqrt{n}}}$
 
 where $\bar x_{max}$ and $\bar x_{min}$ are the largest and the smallest means of the samples, $s$ is the pooled standard deviation, and $n$ is the sample size. The number of [degrees of freedom]({{ site.baseurl }}{% link _posts/2021-03-19-degrees-of-freedom.md %}) is selected as for the pooled variance: $k$($n$-1), where $k$ is the number of groups.
 
-If the $q$-statistic exceeds the critical value of the distribution for a given number of samples and degrees of freedom, then the null hypothesis that the two sample means are from the same normal distribution is rejected. 
+If the $q$-statistic exceeds the critical value of the distribution for a given number of samples and degrees of freedom, then the null hypothesis that the two sample means are from the same normal distribution is rejected.
 
 The studentized distribution depends on both the number of samples and the number of degrees of freedom. The more samples - the higher probability that the difference between the largest and the smallest means is due to chance. Therefore, the critical value becomes larger as the number of samples increases.
 
@@ -111,15 +113,15 @@ Below is a visualization of the probability density function of the chi-square d
 
 ![](/assets/images/probability/chi_squared_distributions.png){: .align-center}
 
-Notice that since we are squaring the values there are no negative values in chi-square distribution. If we draw only one value, then there is a high probability that this value is close to 0, since the normal distribution is centered around 0. Therefore the shape of the PDF of chi-square distribution with 1 degree of freedom is heavily skewed towards zero, while the probability of getting bigger numbers becomes minuscule. If we draw more and more numbers increasing the number of degrees of freedom, the sum of squared values causes the center of the PDF of chi-square distribution to be shifted to the right.
+Notice that since we are squaring the values there are no negative values in the chi-square distribution. If we draw only one value, then there is a high probability that this value is close to 0, since the normal distribution is centered around 0. Therefore the shape of the PDF of chi-square distribution with 1 degree of freedom is heavily skewed towards zero, while the probability of getting bigger numbers becomes minuscule. If we draw more and more numbers increasing the number of degrees of freedom, the sum of squared values causes the center of the PDF of chi-square distribution to be shifted to the right.
 <a href="#page-title" class="back-to-top">{{ site.data.ui-text[site.locale].back_to_top | default: 'Back to Top' }} &uarr;</a>
 
 <div id='binomial_distribution'/>
 ## Binomial distribution
 
-This distribution is used for getting probabilities in a discrete random variable which consists of Bernoulli trials (or experiments) - observations the end results of which are restricted to only two possible outcomes. The most referred example of a Bernoulli trial would be tossing of a coin and expecting the outcome to be either heads or tails. However in fact any variable may be translated into a Bernouli trial, even a continuous one. For example we may consider one of the possible outcomes as a success, and all the rest as a failure. For continuous variables we may specify a threshold, and then consider the outcomes as crossing or not crossing of it.
+This distribution is used for getting probabilities in a discrete random variable which consists of Bernoulli trials (or experiments) - observations the end results of which are restricted to only two possible outcomes. The most commonly referred example of a Bernoulli trial would be tossing of a coin and expecting the outcome to be either heads or tails. However, in fact any variable may be translated into a Bernouli trial, even a continuous one. For example we may consider one of the possible outcomes as a success, and all the rest as a failure. For continuous variables we may specify a threshold, and then consider the outcomes as crossing or not crossing it.
 
-A random variable follows binomial distribution if it represents the number of successes in a sequence of Bernoulli experiments. The probability mass function is constructed using the knowledge of probability of success in a single experiment: 
+A random variable follows binomial distribution if it represents the number of successes in a sequence of Bernoulli experiments. The probability mass function is constructed using the knowledge of probability of success in a single experiment:
 
 &nbsp;&nbsp;&nbsp;&nbsp;
 $f(x) = {\binom{n}{x}}p^{x}(1-p)^{n-x}$
@@ -127,7 +129,7 @@ $f(x) = {\binom{n}{x}}p^{x}(1-p)^{n-x}$
 where $p$ is a probability of success in a single experiment, $x$ is the number of expected successes, $n$ is the number or experiments, and where
 
 &nbsp;&nbsp;&nbsp;&nbsp;
-$\binom{n}{x} = \frac{n!}{x!(n-x)!}$ 
+$\binom{n}{x} = \frac{n!}{x!(n-x)!}$
 
 The assumptions of this type of distribution are independence of each observation and the same probability of success for each individual Bernoulli trial.
 
@@ -183,18 +185,54 @@ The mean of the geometric distribution is defined as $\frac{1-p}{p}$, and the va
 This distribution is the generalization of the geometric distribution which is used to model the number of failures before the $n$th success. The PMF is the following:
 
 &nbsp;&nbsp;&nbsp;&nbsp;
-$f(x; r) = \binom{x+r-1}{r-1}(1-p)^{x}p^r$ 
+$f(x; r) = \binom{x+r-1}{r-1}(1-p)^{x}p^r$
 
 where $r$ is the required number of successes, $p$ is the probability of a success in a single Bernoulli experiment, and where
 
 &nbsp;&nbsp;&nbsp;&nbsp;
 $\binom{x+r-1}{r-1} = \frac{(x+r-1)!}{(r-1)!x!}$
 
-Using the same example as with the geometric distribution let's see how the distribution looks like for the number of unsuccessful customer engagements before 10 sales were made.
+Using the same example as with the geometric distribution, let's see how the distribution looks like for the number of unsuccessful customer engagements before 10 sales were made.
 
 ![](/assets/images/probability/negative_binomial_distribution.png){: .align-center}
 
 The mean of the negative binomial distribution is defined as $\frac{pr}{(1-p)}$, and the variance is $\frac{pr}{(1-p)^2}$.<a href="#page-title" class="back-to-top">{{ site.data.ui-text[site.locale].back_to_top | default: 'Back to Top' }} &uarr;</a>
+
+<div id='beta_distribution'/>
+### Beta distribution
+
+This distribution is an extension of the negative binomial distribution to the continuous variables. However, instead of modeling the number of successes (or failures), it is used for modeling the distribution of probability.
+
+Let's imagine that out of 100 customers who went to a gym trial, only 63 decided to buy an annual membership. How would one describe the probability of purchasing a gym membership after trying a trial? The most obvious answer would be say 63%, and this is not wrong, yet it might be useful to resort to a distribution instead of picking just one number for probability. See, 63% is the statistic of a sample, and the true percentage might be different. As such, we might want to know the probability that the true probability of buying a gym membership is greater than 50% for example. This is where the beta distribution comes to rescue because using its probability density function we can simply integrate over all its values higher than 0.5.
+
+The beta distribution is defined for the inclusive range between 0 and 1, and its PDF looks like this:
+
+&nbsp;&nbsp;&nbsp;&nbsp;
+$f(x; \alpha, \beta) = \frac{x^{\alpha -1}(1-x)^{\beta -1}}{\mathrm{B}(\alpha, \beta)}$
+
+where $\alpha$ and $\beta$ reflect the proportion of successes and failures accordingly, and $\mathrm{B}(\alpha, \beta)$ is a normalization coefficient defined as follows:
+
+&nbsp;&nbsp;&nbsp;&nbsp;
+$\mathrm{B}(\alpha, \beta) = \frac{\Gamma(\alpha)\Gamma(\beta)}{\Gamma(\alpha+\beta)}$
+ 
+The gamma-function $\Gamma$ is an extension of the factorial expression to complex numbers which makes it possible to use it for a continuous range of numbers.
+
+&nbsp;&nbsp;&nbsp;&nbsp;
+$\Gamma (n) = (n-1)! = \int_{0}^{\infty} x^{n-1}e^{-x} dx$, for $n$ > 0
+
+Now, when we look at the formula of the PDF of the distribution more closely, we can see that it is very similar to the PMF of the negative binomial distribution. Since the beta distribution is continuous, the binomial coefficient from the binomial distribution is replaced with the expression which consists of the gamma functions:
+
+&nbsp;&nbsp;&nbsp;&nbsp;
+$\binom {n}{k} = \frac {n!}{k!(n-k)!} = \frac{\Gamma(n+1)}{\Gamma(k+1)\Gamma(n-k+1)} = \frac{1}{\mathrm{B}(k+1, n-k+1)}$
+
+Below we can see how the probability density function of the beta distribution would look like depending on the choice of the parameters.
+
+![](/assets/images/probability/beta_distribution.png){: .align-center}
+
+It is worth mentioning that the higher the value of the parameters - the tighter the values are centered around its mean, which reflects the certainty about the distribution.
+
+The mean of the beta distribution is defined as $\frac{\alpha}{(\alpha+\beta)}$, and the variance is $\frac{\alpha\beta}{(\alpha+\beta)^2(\alpha+\beta+1)}$.
+<a href="#page-title" class="back-to-top">{{ site.data.ui-text[site.locale].back_to_top | default: 'Back to Top' }} &uarr;</a>
 
 <div id='uniform_distribution'/>
 ## Uniform distribution
@@ -216,19 +254,19 @@ The expected value of the uniform distribution is defined as the center of the r
 <div id='poisson_distribution'/>
 ## Poisson distribution
 
-This distribution is used to model the number of events which occur during a fixed period of time, for example the number of customer complaints per month or the number of trains arriving during a certain hour. Similarly to the binomial distribution all occurrences of events are considered random and independent, so the occurrence of one event does not affect probability of another event.
+This distribution is used to model the number of events which occur during a fixed period of time, for example the number of customer complaints per month or the number of trains arriving during a certain hour. Similarly to the binomial distribution, all occurrences of events are considered random and independent, so the occurrence of one event does not affect the probability of another event.
 
 The probability mass function of the Poisson distribution uses prior knowledge of the average number of occurrences per period - parameter $\lambda$. This parameter can actually be derived from the binomial distribution as $\lambda = np$, where $p$ is the probability of a single event occurrence, and $n$ is the number of Bernoulli trials. Both mean and variance of a random variable which follows the Poisson distribution are equal to $\lambda$, and this is the formula of its PMF:
 
 &nbsp;&nbsp;&nbsp;&nbsp;
 $f(x; \lambda) = \frac{\lambda^{x}e^{-\lambda}}{x!}$
 
-For example, a person receives on average 5 promotional emails from different sellers. The probability of receiveng 3 emails would be
+For example, a person receives on average 5 promotional emails from different sellers. The probability of receiving 3 emails would be
 
 &nbsp;&nbsp;&nbsp;&nbsp;
 $f(3; 5) = \frac{5^{3}e^{-5}}{3!} \approx 0.14$
 
-Here is an examle of an observed distribution of the number of received emails for a sample of 2000 users.
+Here is an example of an observed distribution of the number of received emails for a sample of 2000 users.
 
 ![](/assets/images/probability/poisson_distribution.png){: .align-center}
 <a href="#page-title" class="back-to-top">{{ site.data.ui-text[site.locale].back_to_top | default: 'Back to Top' }} &uarr;</a>
@@ -236,14 +274,15 @@ Here is an examle of an observed distribution of the number of received emails f
 <div id='exponential_distribution'/>
 ### Exponential distribution
 
-This is a continuous distribution which is closely related to Poisson distribution as it models the time between random independent events. It may also be viewed as a continuous analogue of the geometric distribution. The PDF of the distribution is calculated as follows:
+This is a continuous distribution which is closely related to the Poisson distribution as it models the time between random independent events. It may also be viewed as a continuous analogue of the geometric distribution. The PDF of the distribution is calculated as follows:
 
 &nbsp;&nbsp;&nbsp;&nbsp;
 $f(x; \lambda) = \lambda e^{-\lambda x}$
 
-Suppose we would like to model the time between arrival of two buses at some station when on average there are 4 incoming busses for an hour. Translating this into minutes we have $\lambda = \frac{4}{60} \approx 0.07$. This is what a hypothetical distribution of time in minutes would look like:
+Suppose we would like to model the time between arrival of two buses at some station when on average there are 4 incoming buses for an hour. Translating this into minutes we have $\lambda = \frac{4}{60} \approx 0.07$. This is what a hypothetical distribution of time in minutes would look like:
 
 ![](/assets/images/probability/exponential_distribution.png){: .align-center}
 
 The mean of the exponential distribution is $\frac{1}{\lambda}$, and the variance is $\frac{1}{\lambda^2}$.
 <a href="#page-title" class="back-to-top">{{ site.data.ui-text[site.locale].back_to_top | default: 'Back to Top' }} &uarr;</a>
+

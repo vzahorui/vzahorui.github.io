@@ -82,7 +82,7 @@ So in this case
 &nbsp;&nbsp;&nbsp;&nbsp;
 $\frac{\partial S}{\partial \theta_k} = \sum_{i=1}^n w_i \varepsilon_i x_{ki} = \sum_{i=1}^n w_i (\theta_k x_i - y_i) x_{ki} = 0$
 
-All the weight are set to be equal to some guess variable, for example to 1, and then we have a system of linear equations which can be easily for $\theta$. Using the newly found values of $\theta$ the error terms are calculated as well, and then using the function of error $H(\varepsilon)$ a new set of weights $w$ is calculated. The whole procedure is repeated until the convergence is reached.
+All the weights are set to be equal to some guess variable, for example to 1, and then we have a system of linear equations which can be easily solved for $\theta$. Using the newly found values of $\theta$ the error terms are calculated as well, and then using the function of error $H(\varepsilon)$ a new set of weights $w$ is calculated. The whole procedure is repeated until the convergence is reached.
 
 There are a few notable functions which may be used as the residual function. Historically the first was the Huber M-estimator which looks like this:
 
