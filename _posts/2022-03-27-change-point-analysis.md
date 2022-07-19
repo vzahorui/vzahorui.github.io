@@ -24,7 +24,7 @@ $V(\tau, y ) = \sum_{k=0}^K c(y_{t_{k}})$
 
 where $y$ is the signal, $\tau$ represents the number of splits, and $c(y)$ is a piecewise cost function.
 
-In the literature, the actual break points are denoted by ${T}^{*}=\{{\tau}_{1}^{*}, ..., {\tau}_{K}^{*}\}$, while the estimated ones as ${\hat{T}}=\{{\hat{\tau}_{1}}, ..., {\hat{\tau}_{K}}\}$.
+In the literature, the actual break points are denoted by ${T}^{*}=\{\tau_{1}^{*}, ..., \tau_{K}^{*}\}$, while the estimated ones as ${\hat{T}}=\{\hat{\tau_{1}}, ..., \hat{\tau_{K}}\}$.
 
 Offline change point detection models have three components which distinguish them one from another. These are:
 
