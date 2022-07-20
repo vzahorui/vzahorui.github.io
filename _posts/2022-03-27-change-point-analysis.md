@@ -24,7 +24,7 @@ $V(\tau, y ) = \sum_{k=0}^K c(y_{t_{k}})$
 
 where $y$ is the signal, $\tau$ represents the number of splits, and $c(y)$ is a piecewise cost function.
 
-In the literature, the actual break points are denoted by ${T}^{*}=\{\tau_{1}^{*}, ..., \tau_{K}^{*}\}$, while the estimated ones as ${\hat{T}}=\{\hat{\tau_{1}}, ..., \hat{\tau_{K}}\}$.
+In the literature, the actual break points are denoted by ${T}^{\ast} = \\{ \tau_{1}^{\ast}, ..., \tau_{K}^{\ast} \\}$, while the estimated ones as ${\hat{T}}=\\{\hat{\tau_{1}}, ..., \hat{\tau_{K}}\\}$.
 
 Offline change point detection models have three components which distinguish them one from another. These are:
 
@@ -44,7 +44,7 @@ The accuracy can be measured by the Rand index which represents the number of ti
 The precision of the model can be determined as the proportion of determined change points which are true change points, while the recall is the number of true change points which are correctly determined. In addition, some user-defined margin ($M >0$) can be set where the break point is considered to be correctly determined. It is recommended to set the margin smaller than the minimum between the two true break points. With regard to the precision and recall, the $F1$ score is defined as a harmonic mean between these metrics:
 
 &nbsp;&nbsp;&nbsp;&nbsp;
-$\Delta_{F1}({T}^{*}, \hat{T}) = 2 \times \frac{Prec({T}^{*}, \hat{T}) \times Rec({T}^{*}, \hat{T})}{Prec({T}^{*}, \hat{T}) + Rec({T}^{*}, \hat{T})}$
+$\Delta_{F1}({T}^{\ast}, \hat{T}) = 2 \times \frac{Prec({T}^{\ast}, \hat{T}) \times Rec({T}^{\ast}, \hat{T})}{Prec({T}^{\ast}, \hat{T}) + Rec({T}^{\ast}, \hat{T})}$
 
 The $F1$ score assumes values between 1 and 0, whereas the greater its value - the better the model.
 
