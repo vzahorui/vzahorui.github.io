@@ -2,8 +2,8 @@
 layout: single
 title: "Bayesian inference"
 category: "Probability"
-tags: prior-probability Bayes-theorem Bayes-rule likelihood-function maximum-likelihood-estimation MLE posterior-probability conditional-probability MAP maximum-a-posteriori probability-distribution conjugate-prior-distribution probability-density-function expected-a-posteriori EAP
-date: 2022-07-22
+tags: prior-probability Bayes-theorem Bayes-rule likelihood-function maximum-likelihood-estimation MLE posterior-probability conditional-probability MAP maximum-a-posteriori probability-distribution conjugate-prior-distribution probability-density-function expected-a-posteriori EAP marginal-probability
+date: 2022-07-23
 ---
 
 Bayesian inference is the method of statistical inference where an estimated probability is updated when new data arrives. In a way, it may be viewed as an upgrade of the [maximum likelihood estimation]({{ site.baseurl }}{% link _posts/2021-04-24-maximum-likelihood.md %})(MLE) when some prior knowledge of probability is taken into account.
@@ -16,9 +16,9 @@ $P(\theta \mid X) = \frac{P(X \mid \theta) P(\theta)}{P(X)}$
 Here $\theta$ stands for a hypothesis or a set of parameters according to a particular hypothesis, and $P(\theta)$ is the prior probability which is known before observing the data.<br>
 $P(\theta \mid X)$ is the posterior probability of the hypothesis after observing the data $X$.<br>
 $P(X \mid \theta)$ is the probability of the data $X$ given the hypothesis $\theta$, in other words, the likelihood function.<br>
-$P(X)$ is the probability of observing the data regardless of any hypotheses.
+$P(X)$ is the probability of observing the data regardless of any hypotheses, also known as the marginal probability.
 
-$P(X)$ is also equivalent to the sum of all possible joint probabilities $P(X \mid \theta) P(\theta)$ in the space of all possible values of $\theta$. So
+$P(X)$ is the outcome of all possible joint probabilities $P(X \mid \theta) P(\theta)$ in the space of all possible values of $\theta$. So
 
 &nbsp;&nbsp;&nbsp;&nbsp;
 $P(X) = \int_{\theta} P(X \mid \theta) P(\theta) d\theta$

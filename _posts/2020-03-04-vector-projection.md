@@ -4,7 +4,7 @@ title: "Vector projection"
 description: Explaining what vector projection is, how it is done and what is the role of dot product and cosine in it
 category: "Linear Algebra"
 tags: cosine dot-product vector-length vector-multiplication
-date: 2020-03-04
+date: 2022-07-24
 ---
  
 In order to understand more advanced concepts from vector operations it is good to have an intuition on such terms as vector projection.  
@@ -52,4 +52,4 @@ $\lVert a\rVert^2 + \lVert a_1\rVert^2 - 2 \overrightarrow{a} \cdot \overrightar
 &nbsp;&nbsp;&nbsp;&nbsp;
 $\overrightarrow{a} \cdot \overrightarrow{a_1} = \lVert a\rVert \lVert a_1\rVert \cos{\alpha}$
  
-The key takeaway from it is that the dot product of two vectors is useful in calculation of vector projection.
+The key takeaway from it is that the dot product of two vectors is useful in calculation of vector projection. Other than that it is measure of similarity of two vectors.

@@ -3,7 +3,7 @@ layout: single
 title: "Statistical distributions"
 description: In this post I described all essential statistical distributions
 category: "Probability"
-tags: probability-distribution normal-distribution statistics z-score z-table six-sigma z-value central-limit-theorem Student's-distribution t-distribution probability-mass-function probability-density-function PDF degrees-of-freedom chi-square-distribution binomial-distribution Bernoulli-trial geometric-distribution exponential-distribution poisson-distribution uniform-distribution negative-binomial-distribution studentized-range-distribution beta-distribution gamma-function
+tags: probability-distribution normal-distribution statistics z-score z-table six-sigma z-value central-limit-theorem Student's-distribution t-distribution probability-mass-function probability-density-function PDF degrees-of-freedom chi-square-distribution binomial-distribution Bernoulli-trial geometric-distribution exponential-distribution poisson-distribution uniform-distribution negative-binomial-distribution studentized-range-distribution beta-distribution gamma-function Gaussian-distribution
 date: 2022-07-19
 ---
 
@@ -28,7 +28,7 @@ In this article the most useful probability distributions will be explained, as 
 <div id='normal_distribution'/>
 ## Normal distribution
 
-Normal distribution is one of the most fundamental building blocks of statistics. According to the [Central limit theorem]({{ site.baseurl }}{% link _posts/2021-01-16-sampling-distribution.md %}), averages of random samples, which are drawn independently from some independent distribution converge around some central value. They become normally distributed when the number of observations is sufficiently large. At this point the distribution of the original values from which the samples are drawn doesn't even have to be normally distributed.
+Normal distribution (also known as Gaussian distribution) is one of the most fundamental building blocks of statistics. According to the [Central limit theorem]({{ site.baseurl }}{% link _posts/2021-01-16-sampling-distribution.md %}), averages of random samples, which are drawn independently from some independent distribution converge around some central value. They become normally distributed when the number of observations is sufficiently large. At this point the distribution of the original values from which the samples are drawn doesn't even have to be normally distributed.
 
 Suppose, we decided to measure the weight of all newborns in a multitude of different hospitals and calculate the average weight in each hospital. Most likely the distribution of those average weights will resemble a bell-shaped curve.
 
