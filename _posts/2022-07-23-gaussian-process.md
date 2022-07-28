@@ -17,7 +17,7 @@ The [Gaussian distribution]({{ site.baseurl }}{% link _posts/2021-03-27-statisti
 
 Let's take a look at two-dimensional examples of the Gaussian distribution with the mean at the origin and variance of 1 along each of the dimensions:
 
-![](/assets/images/distributions/2d_gaussian_distribution.png.png){: .align-center}
+![](/assets/images/distributions/2d_gaussian_distribution.png){: .align-center}
 
 On the left-hand side the [covariance]({{ site.baseurl }}{% link _posts/2019-08-10-correlation.md %}) is 0, which means that both dimensions are independent. So for example if an observation is spotted with a value greater than the mean along $X_1$ (like $X_1$ = 1.1 on the plot above) it has equal chances of being higher or lower than the mean along $X_2$.
 
