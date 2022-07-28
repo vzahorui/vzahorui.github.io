@@ -30,5 +30,9 @@ All things considered, it makes sense to operate in terms of conditional probabi
 
 Suppose there is a set of variables which is split into two parts: $X$ and $Y$. Either of them may be a single dimension or a vector containing multiple dimensions. Assuming that both $X$ and $Y$ are normally distributed, it is possible to calculate the conditional mean and the conditional covariance matrix. As stated above, the resulting conditional distribution will be also Gaussian.
 
-&nbsp;&nbsp;&nbsp;&nbsp;
-$\left(\begin{array}{c}X\\ Y \end{array}\right) \sim N \left(\left(\begin{array}{c}\boldsymbol{\mu}_X\\\boldsymbol{\mu}_Y \end{array}\right), \left(\begin{array}{cc} \mathbf{\Sigma_{X}} & \mathbf{\Sigma_{XY}}\\ \mathbf{\Sigma_{YX}} & \mathbf{\Sigma_Y} \end{array}\right)\right)$
+$$
+\left(\begin{array}{c}X\\ 
+Y \end{array}\right) \sim N \left(\left(\begin{array}{c}\mu_X\\ 
+\mu_Y \end{array}\right), \left(\begin{array}{cc} \Sigma_{XX} & \Sigma_{XY} \\ 
+\Sigma_{YX} & \Sigma_{YY} \end{array}\right)\right)
+$$
