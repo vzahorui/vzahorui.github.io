@@ -3,13 +3,15 @@ layout: single
 title: "Loss functions"
 description: Explaining what the loss function is and how machine learning utilizes it
 category: "Optimization"
-tags: machine-learning loss-function penalization mse l2 mean-squared-error quadratic-loss l1 mean-absolute-error mae m-estimator huber-loss bisquare-loss-function
-date: 2021-06-24
+tags: machine-learning loss-function cost-function penalization mse l2 mean-squared-error quadratic-loss l1 mean-absolute-error mae m-estimator huber-loss bisquare-loss-function
+date: 2022-08-18
 ---
 
-In machine learning the loss function is something that lets the machine to actually "learn". The loss function is the function of parameters, it evaluates the error of a model by comparing each predicted result with the actual observed data, thus measuring the residuals for different sets of parameters. Then it aggregates all individual residuals and comes up with a single value which generally describes how badly the function fits to the actual input data: the greater the value of the loss function - the worse is the model. Using different optimization techniques the loss function is minimized to a reasonable extent, thus making a machine learning model better.
+In machine learning the loss function (or cost, or cost function) is something that lets the machine to actually "learn". The loss function is the function of parameters, it evaluates the error of a model by comparing each predicted result with the actual observed data, thus measuring the residuals for different sets of parameters. Then it aggregates all individual residuals and comes up with a single value which generally describes how badly the function fits to the actual input data: the greater the value of the loss function - the worse is the model. Using different optimization techniques the loss function is minimized to a reasonable extent, thus making a machine learning model better.
 
-Depending on specific situations, different types of the loss function may be employed. Among the factors that help to choose which loss function to use are the type of machine learning model, the presence of outliers, complexity of calculating the [derivatives]({{ site.baseurl }}{% link _posts/2019-09-14-derivatives.md %}), and the confidence level.
+Depending on specific situations, different types of the loss function may be employed. Among the factors that help to choose which loss function to use are the type of machine learning model, the presence of outliers, complexity of calculating the [derivatives]({{ site.baseurl }}{% link _posts/2019-09-14-derivatives.md %}), and some prior knowledge about the model.
+
+Usually the loss function is a realization of some [distance metric]({{ site.baseurl }}{% link _posts/2021-07-29-distance-metrics.md %}), for example the sum of all distances across all of the training datapoints.
 
 In a broad sense, with respect to the type of machine learning problem, the two main categories are regression losses and classification losses. This article should serve as an outline for the most used ones.
 

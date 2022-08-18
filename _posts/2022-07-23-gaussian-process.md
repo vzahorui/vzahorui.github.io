@@ -2,7 +2,7 @@
 layout: single
 title: "Gaussian process"
 category: "Regression"
-tags: normal-distribution gaussian-distribution covariance PDF probability-density-function conditional-probability kernel prior-distribution posterior-distribution
+tags: normal-distribution gaussian-distribution covariance PDF probability-density-function conditional-probability kernel prior-distribution posterior-distribution log-marginal-likelihood
 date: 2022-08-14
 ---
 
@@ -88,8 +88,28 @@ Provided that we can draw a random sample an infinite number of times - there is
 After observing some points, the function is similarly adjusted so that it passes through the points (or close to them), and the resulting distribution is now called the posterior. Below is an example of making predictions over unknown regions using the Gaussian process where the training points are generated using a sinusoid function with some added noise.
 
 ![](/assets/images/regression/gp_rbf_fit_example.png){: .align-center}
+
+Since the kernels define the relationship between the point and thus the shape of the resulting function, the choice of their hyperparameters plays an important role. These hyperparameters are estimated by maximizing the log marginal [likelihood]({{ site.baseurl }}{% link _posts/2021-04-24-maximum-likelihood.md %}) of observing the set of predicted points:
+
+&nbsp;&nbsp;&nbsp;&nbsp;
+$\log p(y|X) = -\frac{1}{2}y^T(K+\sigma^2_n I)^{-1}y - \frac{1}{2}\log|K+\sigma^2_n I|-\frac{n}{2}\log2\pi$ 
+
+where $K$ is the covariance function of $y$, and $\sigma^2$ is the variance of the noise. 
+
+The equation above is derived from the expression of the joint probability density of multivariate Gaussian distribution, and the logarithm is used because it transforms the product into sum so that it would be easier to calculate the [derivative]({{ site.baseurl }}{% link _posts/2019-09-14-derivatives.md %}) of the resulting function. 
+
+The local maximum points are found using gradient-based algorithms, such as [L-BFGS-B]({{ site.baseurl }}{% link _posts/2020-07-29-quasi-newton-methods.md %}), in a multidimensional space where the number of dimensions is equal to the number of the parameters.
+
+In case of the posterior distribution above, the kernel was constructed as a sum of [the squared exponential kernel]({{ site.baseurl }}{% link _posts/2022-08-01-kernels-overview.md %}#squared_exponential_kernel) and the white noise. Let's look at the contour plot of the log likelihood dependent on two hyperparameters of the resulting kernel:
+
+![](/assets/images/optimization/gp_contour_log_marginal_likelihood.png){: .align-center}
+
+As we can see, there are at least two points of the local maxima here, so that the optimization algorithm could land at any of them. Choosing the right set of initial parameters could lead the algorithm to the desired spot of the local maxima, as well as prevent its exhaustion.
 <a href="#page-title" class="back-to-top">{{ site.data.ui-text[site.locale].back_to_top | default: 'Back to Top' }} &uarr;</a>
 
+<div id='large_datasets'/>
+## Gaussian process at large datasets
 
+When optimizing the hyperparameters one has to invert a matrix of size $n \times n$ which becomes intractable for large datasets, and thus the exact calculation becomes impossible. Therefore, approximate methods appeared where the input dataset in reduced
 
 

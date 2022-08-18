@@ -53,7 +53,7 @@ In addition to the parameters already present in the RBF kernel, it also has the
 
 ![](/assets/images/regression/gp_periodic_example.png){: .align-center}
 
-By multiplying the squared exponential kernel and the periodic one, we may get a function of a periodic nature which yet varies over time.
+By taking the product of the squared exponential kernel and the periodic one, we may get a function of a periodic nature which yet varies over time.
 
 ![](/assets/images/regression/gp_periodic_and_rbf_example.png){: .align-center}
 <a href="#page-title" class="back-to-top">{{ site.data.ui-text[site.locale].back_to_top | default: 'Back to Top' }} &uarr;</a>
@@ -70,7 +70,7 @@ On its own this kernel produces just a straight line so it is used in combinatio
 
 ![](/assets/images/regression/gp_periodic_and_linear_example.png){: .align-center}
 
-Multiplication of the linear and periodic kernels produces a periodic function with ever increasing amplitude.
+The product of the linear and periodic kernels produces a periodic function with ever increasing amplitude.
 
 ![](/assets/images/regression/gp_periodic_times_linear_example.png){: .align-center}
 <a href="#page-title" class="back-to-top">{{ site.data.ui-text[site.locale].back_to_top | default: 'Back to Top' }} &uarr;</a>
