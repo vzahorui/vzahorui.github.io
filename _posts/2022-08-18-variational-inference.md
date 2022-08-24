@@ -40,14 +40,14 @@ Note that $P(Z\mid X)$ is still unknown, however using the Bayes' theorem and re
 
 $$
 \begin{aligned}
-\text{KL}(Q(Z)\parallel P(Z\mid X))=\mathbb{E}_{Q(Z)}[\log Q(Z) - \log P(X, Z) + \log P(X)] \\[.5em]
+\text{KL}(Q(Z)\parallel P(Z\mid X)) &= \mathbb{E}_{Q(Z)}[\log Q(Z) - \log P(X, Z) + \log P(X)] \\[.5em]
 &= \mathbb{E}_{Q(Z)}[\log Q(Z) - \log P(X, Z)] + \log P(X)
 \end{aligned}
 $$
 
 $$
 \begin{aligned}
-\log P(X) = \text{KL}(Q(Z)\parallel P(Z\mid X)) - \mathbb{E}_{Q(Z)}[\log Q(Z) - \log P(X, Z)] \\[.5em]
+\log P(X) &= \text{KL}(Q(Z)\parallel P(Z\mid X)) - \mathbb{E}_{Q(Z)}[\log Q(Z) - \log P(X, Z)] \\[.5em]
 &= \text{KL}(Q(Z)\parallel P(Z\mid X)) + \mathbb{E}_{Q(Z)}[\log P(X, Z) - \log Q(Z)]
 \end{aligned}
 $$
