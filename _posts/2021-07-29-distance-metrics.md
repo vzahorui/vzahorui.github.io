@@ -2,8 +2,8 @@
 layout: single
 title: "Distance metrics"
 description: which metrics to use when determining the distance between datapoints
-category: "Linear Algebra"
-tags: vector Euclidean-distance Manhattan-distance Minkowski-distance vector-norm normed-vector-space Mahalanobis-distance cosine-distance cosine-similarity Hamming-distance Levenshtein-distance Kullback–Leibler-divergence relative-entropy
+category: "Optimization"
+tags: vector Euclidean-distance Manhattan-distance Minkowski-distance vector-norm normed-vector-space Mahalanobis-distance cosine-distance cosine-similarity Hamming-distance Levenshtein-distance Kullback–Leibler-divergence KL-divergence relative-entropy
 date: 2022-08-18
 ---
 
@@ -141,14 +141,14 @@ Unlike distance or any other similarity metric, divergence is not necessarily sy
 Also known as relative entropy, this type of divergence is perhaps one of the most important in statistical analysis. Having two probability distributions $P$ and $Q$, we might want to know how good $Q$ approximates $P$, and this is what the Kullback–Leibler divergence does. Below is the formula for calculating the divergence from $Q$ from $P$:
 
 &nbsp;&nbsp;&nbsp;&nbsp;
-$D_{\text{KL}}(P\parallel Q)=\sum_{i=1}^n p(x_i)\log \left({\frac {p(x_i)}{q(x_i)}}\right)$
+$\text{KL}(P\parallel Q)=\sum_{i=1}^n p(x_i)\log \left({\frac {p(x_i)}{q(x_i)}}\right)$
 
 Essentially it calculates the logarithmic difference between $p(x)$ and $q(x)$ over all possible values of $x$, assuming that each particular $x_i$ has its own probability under $p(x)$.
 
 For continuous distributions the formula looks like this:
 
 &nbsp;&nbsp;&nbsp;&nbsp;
-$D_{\text{KL}}(P\parallel Q)=\int_{-\infty }^{\infty }p(x)\log \left({\frac {p(x)}{q(x)}}\right)\,dx$
+$\text{KL}(P\parallel Q)=\int_{-\infty }^{\infty }p(x)\log \left({\frac {p(x)}{q(x)}}\right)\,dx$
 
 If $q(x_i)$ is the same as $p(x_i)$ the relationship between them is 1, the expression in the logarithm is 0. This is why for the identical distributions the Kullback–Leibler divergence is 0.
 
