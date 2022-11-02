@@ -78,4 +78,4 @@ $$p(y=k) = \frac{e^{\beta_k X}}{1+\sum_{k=j}^{K-1}e^{\beta_j X}}$$
 
 For a single observation the predicted class is the one which has the highest probability.
 
-Since the number of parameters increases with the number of categories, regularization should be applied when estimating them.
+Since the number of parameters increases with the number of categories, [regularization]({{ site.baseurl }}{% link _posts/2022-10-18-regularization.md %}) should be applied when estimating them.
