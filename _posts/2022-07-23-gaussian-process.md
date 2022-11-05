@@ -124,9 +124,6 @@ The marginal likelihood of the data can be viewed as $p(y)$. It does not depend 
 
 $$p(y) \sim \mathcal{N}(m(X), K+\sigma^2_n I) = \frac{1}{(2\pi)^{n/2}\det(K + \sigma^2_n I)^{1/2}} \exp \left(-\frac{1}{2} \left(y-m(x) \right)^{T}\left( K + \sigma^2_n I \right)^{-1} \left(y-m(x) \right)\right)$$
 
-
-$$p(y) \sim \mathcal{N}(m(X), K+\sigma^2_n I)$$
-
 <a href="#page-title" class="back-to-top">{{ site.data.ui-text[site.locale].back_to_top | default: 'Back to Top' }} &uarr;</a>
 
 <div id='parameter_learning'/>
