@@ -7,7 +7,7 @@ tags: machine-learning loss-function penalization learning-rate gradient slope d
 date: 2020-07-05
 ---
  
-Gradient descent is bread and butter of machine learning. It is a fundamental method of finding a minimum of a [loss function]({{ site.baseurl }}{% link _posts/2019-10-14-loss-functions.md %}) in [neural networks]({{ site.baseurl }}{% link _posts/2022-11-06-neural-networks.md %}), hence it is widely used in loss function analysis and optimization.
+Gradient descent is bread and butter of machine learning. It is a fundamental method of finding the minimum of the [loss function]({{ site.baseurl }}{% link _posts/2019-10-14-loss-functions.md %}) in [neural networks]({{ site.baseurl }}{% link _posts/2022-11-06-neural-networks.md %}), hence it is widely used in loss function analysis and optimization.
  
 ## The mechanism of gradient descent
  
