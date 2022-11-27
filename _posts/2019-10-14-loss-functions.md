@@ -3,8 +3,8 @@ layout: single
 title: "Loss functions"
 description: Explaining what the loss function is and how machine learning utilizes it
 category: "Optimization"
-tags: machine-learning loss-function cost-function penalization mse l2 mean-squared-error quadratic-loss l1 mean-absolute-error mae m-estimator huber-loss bisquare-loss-function
-date: 2022-08-18
+tags: machine-learning loss-function cost-function penalization mse l2 mean-squared-error quadratic-loss l1 mean-absolute-error mae m-estimator huber-loss bisquare-loss-function entropy cross-entropy
+date: 2022-11-27
 ---
 
 In machine learning the loss function (or cost, or cost function) is something that lets the machine to actually "learn". The loss function is the function of parameters, it evaluates the error of a model by comparing each predicted result with the actual observed data, thus measuring the residuals for different sets of parameters. Then it aggregates all individual residuals and comes up with a single value which generally describes how badly the function fits to the actual input data: the greater the value of the loss function - the worse is the model. Using different optimization techniques the loss function is minimized to a reasonable extent, thus making a machine learning model better.
@@ -20,6 +20,7 @@ In a broad sense, with respect to the type of machine learning problem, the two 
   * [Mean absolute error](#mae)
   * [M-estimators](#m_estimators)
 * [Classification losses](#classification_loss)
+  * [Cross-entropy](#entropy)
 
 <div id='regression_loss'/>
 ## Regression losses
@@ -116,4 +117,32 @@ This type of function is even more robust than the Huber M-estimator. For the re
 ## Classification losses
 
 One important consideration when choosing loss function for classification is how the error impacts the end user. Depending on the domain, false positives and false negatives might be penalized differently. For example, when detecting fraudulent operations it may be acceptable to wrongly identify a regular operation as fraudulent,  while allowing the actual fraud should be considered as a serious problem.
+
+<div id='entropy'/>
+### Cross-entropy
+
+This is a go-to loss function which is used in classification. In order to understand it let's first see what entropy is.
+
+Entropy is the measure of randomness of a system. With respect to classification in machine learning, high entropy means high uncertainty as to which particular class an observation belongs to. For example, when rolling a fair dice the entropy is high because no matter what the target outcome is, its probability will be just 1/6, so we are generally uncertain about it. On the contrary, the entropy is low if we have high confidence about a particular outcome, for example we may be 90% certain that a certain dog belongs to a certain breed based on its appearance.
+
+The entropy measure has a number of requirements to satisfy:
+ * The [uniform distribution]({{ site.baseurl }}{% link _posts/2021-03-27-statistical-distributions.md %}#uniform_distribution) should have higher uncertainty than any skewed one; at the same time the uniform distribution with more outcomes has even greater entropy.
+ * The entropy is additive to independent events. The outcome of one event does not help in predicting the outcome of an independent event.
+ * Inclusion of the event with zero probability has no effect on the general entropy. On the contrary, the events with completely certain outcomes have zero uncertainty.
+ * The measure of uncertainty is continuous.
+
+In order to understand the entropy better let's also introduce the concept of surprise. Surprise is a measure which is opposite to probability: it is small if the probability is high, and vice versa. The surprise is not equal to the reciprocal of probability but instead is made to be a convenient construct for the requirements of the entropy: $\log \frac{1}{p(x)}$, where $p(x)$ is the probability. The entropy is the expected value of surprise for all possible outcomes:
+
+$$H(X) = \sum_{x\in {\mathcal {X}}} p(x)\log \frac{1}{p(x)} = - \sum_{x\in {\mathcal {X}}} p(x)\log (p(x))$$
+
+Application of the idea of entropy and surprise in classification loss is knowns as cross-entropy:
+
+$$H(p, q)- \sum_{x\in {\mathcal {X}}} p(x) \log (q(x))$$
+
+where $p(x)$ is the observed probability of a certain category $x$, and $q(x)$ - its predicted value.
+
+Similarly to the entropy formula, the cross-entropy calculates the average surprise for the predicted categories in terms of their true probabilities. Intuitively, the loss is naturally increased if the model assigns high surprise for a category whose real observed share is not small (not surprising). The greater the distance from the true observation probability - the greater the loss.
+
+![](/assets/images/optimization/cross_entropy.png){: .align-center}
+
 <a href="#page-title" class="back-to-top">{{ site.data.ui-text[site.locale].back_to_top | default: 'Back to Top' }} &uarr;</a>

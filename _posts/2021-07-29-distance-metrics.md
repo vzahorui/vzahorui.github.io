@@ -138,7 +138,7 @@ Unlike distance or any other similarity metric, divergence is not necessarily sy
 <div id='kullback_leibler_divergence'/>
 ### Kullback–Leibler divergence
 
-Also known as relative entropy, this type of divergence is perhaps one of the most important in statistical analysis. Having two probability distributions $P$ and $Q$, we might want to know how good $Q$ approximates $P$, and this is what the Kullback–Leibler divergence does. Below is the formula for calculating the divergence from $Q$ from $P$:
+Also known as relative [entropy]({{ site.baseurl }}{% link _posts/2019-10-14-loss-functions.md %}#entropy), this type of divergence is perhaps one of the most important in statistical analysis. Having two probability distributions $P$ and $Q$, we might want to know how good $Q$ approximates $P$, and this is what the Kullback–Leibler divergence does. Below is the formula for calculating the divergence from $Q$ from $P$:
 
 &nbsp;&nbsp;&nbsp;&nbsp;
 $\text{KL}(P\parallel Q)=\sum_{i=1}^n p(x_i)\log \left({\frac {p(x_i)}{q(x_i)}}\right)$

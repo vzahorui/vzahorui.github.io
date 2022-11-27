@@ -158,7 +158,6 @@ Another disadvantage of ReLU is that due to the positive gradient the values of 
 $$\frac{\partial C}{\partial a^L_j} \frac{\partial a^L_j}{\partial z^L_j} a^{L-1}_k$$
 
 The first multiplier can be either positive or negative depending on whether the predicted output is bigger or smaller than the actual observation. The second one is just 1 (if the neuron is not dead). If the activation function at the previous layer is also ReLU then the third multiplier is either positive or zero. This means that in each epoch the adjustment of all of the weights of the non-dead nodes will be nudged in the same direction: either positive or negative, which might not be optimal.
-
 <a href="#page-title" class="back-to-top">{{ site.data.ui-text[site.locale].back_to_top | default: 'Back to Top' }} &uarr;</a>
 
 <div id='elu'/>
@@ -184,7 +183,7 @@ This activation function is generally used in the output layer for multiclass cl
 
 $$\sigma(z_i) = \frac{e^{z_i}}{\sum_{j=1}^K e^{z_j}}$$
 
-The function takes a vector $z$ consisting of $k$ elements and outputs the probabilities proportional to their exponentials. Applying exponential takes care of the negative and zero values here.
+The function takes a vector $z$ consisting of $k$ elements and outputs the vector of probabilities proportional to their exponentials. Applying exponential takes care of the negative and zero output values.
 <a href="#page-title" class="back-to-top">{{ site.data.ui-text[site.locale].back_to_top | default: 'Back to Top' }} &uarr;</a>
 
 <div id='number_of_nodes_and_layers'/>
