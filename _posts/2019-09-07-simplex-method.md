@@ -69,14 +69,12 @@ If we divide values in the right column by the corresponding values in the pivot
 
 The third row will be the pivot row and number 7 - the intersection between the pivot column and pivot row - will be the pivot element. We transform our tableau by dividing each element of the pivot row by the pivot element. Now this row intuitively represents a scaled version with the measuring unit as sugar per bar of white chocolate. The number in the right column represents the maximum of possible manufacturing.
 
-$$
 |$x_1$|$x_2$|$x_3$|$s_1$|$s_2$|$s_3$| $Z$ |     |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
 |  3  |  5  |  2  |  1  |  0  |  0  |  0  | 189 |
 |  4  |  2  |  1  |  0  |  1  |  0  |  0  | 300 |
 |$\frac{2}{7}$|$\frac{4}{7}$|**1**|  0  |  0  |$\frac{1}{7}$|  0  |$\frac{250}{7}$|
 |-12|-13|-16|0|0|0|1|0|
-$$
 
 Then we transform the rest of the rows with the pivot row by making zeros in the pivot column (by consistent subtracting of the values of the pivot row). Thus we reflect in other equations that the resource sugar is completely used up. With that, the utility of additional manufacturing of white chocolate is also used up.
 

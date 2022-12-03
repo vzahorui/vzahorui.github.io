@@ -2,40 +2,34 @@
 layout: single
 title: "Classification metrics"
 category: "Classification"
-tags: accuracy recall precision ROC AUC confusion-matrix
+tags: accuracy recall precision ROC AUC confusion-matrix true-positive false-positive false-negative true-negative
 date: 2022-12-03
 ---
 
-In this article we shall review the most commonly used metrics which describe how good the predictions in the classification machine learning problems are made. 
+In this article we shall review the most commonly used metrics which describe how good the predictions in the classification machine learning problems are made. Although the most obvious metric which comes to mind is the share of the correctly classified observations among all (the accuracy), it may still be irrelevant in many cases, and we will see why.
 
-One important consideration when choosing the metrics for classification is how the error impacts the end user. Depending on the domain, false positives and false negatives might be penalized differently. For example, when detecting fraudulent operations it may be acceptable to wrongly identify a regular operation as fraudulent,  while allowing the actual fraud should be considered as a serious problem.
+## Confusion matrix
 
-## Single model metrics
+An important consideration when choosing the metrics for classification is how the error impacts the end user. For example, not being able to detect fraudulent transactions is a serious problem for a bank, while it may be acceptable to a certain extent to wrongly identify a regular operation as fraudulent. On the other hand, for a news recommender it would be more preferable to miss a few interesting articles instead of throwing tons of irrelevant content.
 
-The most general performance metric out there is accuracy. It measures the share of the correctly classified observations among all. 
+Let's take a look at the confusion matrix - a special contingency table which shows the actual and the predicted distributions among classes:
 
-However in case of imbablanced data, where a certain class has only a small share, the accuracy becomes irrelevant. As with the example about the fradulent transactions, the high accuracy is achieved by simply "predicting" all of the transactions being non-frauadulent (because the share of the actual frad operations is presumable low). In practice this will lead to dire consequences though, so other metric like precision and recall should be used instead.
+|True Positive (TP)|False Positive (FP)|
+|:---:|:---:|
+|**False Negative (FN)**|**True Negative (TN)**|
 
-Let's take a look at the confusion matrix - a special contingency table which shows the actual and the predicted distributions among classes: 
+With respect to a certain class, true positive - is the area which corresponds to the number of correctly identified observations as belonging to that class (the correctly identified fraudulent transactions). False positive corresponds to the mislabeled observation which were identified as belonging to that specific class but in fact weren't (the transactions marked as fraud but which in fact were normal).
 
-|$x_1$|$x_2$|$x_3$|$s_1$|$s_2$|$s_3$| $Z$ |     |
-|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-|  3  |  5  |  2  |  1  |  0  |  0  |  0  | 189 |
-|  4  |  2  |  1  |  0  |  1  |  0  |  0  | 300 |
+Similarly, true negative with respect to a certain class is when the observation does not belong to this class, and the model does not mark it as such as well. False negatives happen when the model fails to detect that an observation belongs to a certain class (not able to identify fraudulent transactions and see them as normal).
 
-some text
+As with the example about the fraudulent transactions, the high accuracy is achieved by simply "predicting" all of the transactions being non-fraudulent (because the share of the actual fraud operations is presumably low). In practice this will lead to dire consequences though, so other metrics like precision and recall should be used instead.
 
-$$
-\begin{tabular}{l|l|c|c|c}
-\multicolumn{2}{c}{}&\multicolumn{2}{c}{True diagnosis}&\\
-\cline{3-4}
-\multicolumn{2}{c|}{}&Positive&Negative&\multicolumn{1}{c}{Total}\\
-\cline{2-4}
-\multirow{2}{*}{Screening test}& Positive & $a$ & $b$ & $a+b$\\
-\cline{2-4}
-& Negative & $c$ & $d$ & $c+d$\\
-\cline{2-4}
-\multicolumn{1}{c}{} & \multicolumn{1}{c}{Total} & \multicolumn{1}{c}{$a+c$} & \multicolumn{    1}{c}{$b+d$} & \multicolumn{1}{c}{$N$}\\
-\end{tabular}
-$$
+Recall measures the share of the correctly identified observations among all which were supposed to be identified.
 
+$$\text{Recall} = \frac{TP}{TP+FN}$$
+
+And the precision measures the share of the positive identifications which was correct indeed.
+
+$$\text{Precision} = \frac{TP}{TP+FP}$$
+
+## Multiple models metrics
