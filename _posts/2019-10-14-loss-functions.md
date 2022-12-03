@@ -116,8 +116,6 @@ This type of function is even more robust than the Huber M-estimator. For the re
 <div id='classification_loss'/>
 ## Classification losses
 
-One important consideration when choosing loss function for classification is how the error impacts the end user. Depending on the domain, false positives and false negatives might be penalized differently. For example, when detecting fraudulent operations it may be acceptable to wrongly identify a regular operation as fraudulent,  while allowing the actual fraud should be considered as a serious problem.
-
 <div id='entropy'/>
 ### Cross-entropy
 
