@@ -1,92 +1,101 @@
 ---
 layout: single
-title: "Time series stationarity tests"
+title: "Time series tests"
 category: "Time series"
-tags: stationarity hypothesis-testing autocorrelation Durbin–Watson-test Durbin–Watson-statistic residuals white-noise error-term Breusch–Godfrey-test hypothesis-testing
-date: 2021-07-08
+tags: stationarity hypothesis-testing autocorrelation Durbin–Watson-test Durbin–Watson-statistic residuals white-noise error-term Breusch–Godfrey-test hypothesis-testing t-test AR unit-root ADF KPSS Kwiatkowski-Phillips-Schmidt-Shin-test Dickey-Fuller-test
+date: 2023-01-11
 ---
 
+This article makes an overview of most commonly used [statistical tests]({{ site.baseurl }}{% link _posts/2021-01-21-hypothesis-testing.md %}) used in validation of the assumptions of the time series.
+
 ## In this article
+
 * [Stationarity tests](#stationarity_tests)
+  * [Dickey-Fuller test](#dickey_fuller_test)
+  * [Augmented Dickey-Fuller (ADF) test](#augmented_dickey_fuller_test)
+  * [Kwiatkowski-Phillips-Schmidt-Shin (KPSS) test](#kpss_test)
+  * [Combining ADF and KPPS](#combine_ADF_and_KPSS)
 * [Autocorrelation tests](#autocorrelation_tests)
   * [Durbin-Watson test](#durbin_watson)
   * [Breusch–Godfrey test](#breusch_godfrey)
 
-It is known that in order to make predictions with any time-series it needs to be stationarized. Below I will describe common methods of determining if the time series is stationary.
-
 <div id='stationarity_tests'/>
 ## Stationarity tests
 
-It is known that in order to make predictions with any time-series it needs to be stationarized. Below I will describe common methods of determining if the time series is stationary.
+It is known that some of the time series models are based on the assumption of the series being stationary. Below are the common statistical tests of determining whether the time series is stationary or not. It is important to note that the Dickey-Fuller and KPSS tests are not interchangeable, and should instead complement each other.
 
+<div id='dickey_fuller_test'/>
 ### Dickey-Fuller test
 
-Given test may be applicable only to AR(1) process which has the following equation: <br>
+Given test may be applicable only to [AR(1) process]({{ site.baseurl }}{% link _posts/2022-12-11-ARIMA-models.md %}#ar_models) which has the following equation:
 
-&nbsp;&nbsp;&nbsp;&nbsp;
-$y_t = \alpha + \rho y_{t-1} + \varepsilon_t$
+$$y_t = \varphi y_{t-1} + \varepsilon_t$$
 
-Under the Null Hypothesis times series is non-stationary, namely the time series represents *__random walk__*. Here we test whether $\rho$ equals to 1. <br>
+Under the null hypothesis, the time series is non-stationary, or to be more precise, it represents the random walk. Here we test whether $\varphi$ equals 1.
 
 &nbsp;&nbsp;&nbsp;&nbsp;
 $H_0: \rho = 1$ <br>
 &nbsp;&nbsp;&nbsp;&nbsp;
 $H_1: \rho < 1$
 
-If $\alpha$ equals to 0 then we have random walk without drift. If $\alpha$ not equal to 0 then it is random walk with drift. If we reject the Null Hypothesis then we have not enough evidence to conclude that time series is non-stationary.<br>
-We cannot simply test if $\rho$ equals to 1 because both $y_t$ and $y_{t-1}$ under the Null Hypothesis are non-stationary. Thus we need to test the difference $y_t - y_{t-1}$. We get the following equation:<br>
+We cannot simply test if $\varphi$ equals 1 because both $y_t$ and $y_{t-1}$ under the null hypothesis are non-stationary. Thus we need to apply the test to the difference $y_t - y_{t-1}$. We get the following equation:
 
-&nbsp;&nbsp;&nbsp;&nbsp;
-$\Delta y = \alpha + \beta y_{t-1} + \varepsilon_t$,
-where $\beta = \rho - 1$<br>
+$$\Delta y_t = \gamma y_{t-1} + \varepsilon_t$$
 
-Under the Null Hypothesis $\beta$ equals to 0 and thus $\beta y_{t-1}$ from the last equation equals to 0 as well. Henceforth, we have equation where only one variable ($\Delta y$) is non-stationary. From here our goal is to test whether $\beta$ equals to 0. <br>
+where $\gamma = \varphi - 1$.
 
-&nbsp;&nbsp;&nbsp;&nbsp;
-$H_0: \beta = 0$ <br>
-&nbsp;&nbsp;&nbsp;&nbsp;
-$H_1: \beta < 0$
+The parameter $\gamma$ is estimated from the AR model and then tested for being equal to zero under the null hypothesis. Under the alternative hypothesis $\gamma$ is less than zero.
 
-Having time series we estimate from its values parameter $\beta$. Then we test if it equals to 0 by comparing its $t$-statistic with critical value for a given significance level. If the calculated $t$-statistic is less than the critical value under the given level of significance then the Null Hypothesis is to be rejected. Hence we fail to conclude that the time series is non-stationary.<br>
-<br>
-Since the test is done over the residual term rather than raw data, it is not possible to use standard $t$-distribution to provide critical values. Therefore, specific distribution, known as Dickey–Fuller table is used.<br>
-<br>
-The Dickey–Fuller statistic, used in the test, is a negative number. The more negative it is, the stronger the rejection of the hypothesis that there is a unit root at some level of confidence.<br>
-<br>
+The standard [one-sample $t$-test]({{ site.baseurl }}{% link _posts/2021-03-22-hypothesis-test-parametric-statistics.md %}#mean_sample_and_population) cannot be used here though. That is because under the null hypothesis $y_{t-1}$ is non-stationary, so the [Central limit theorem]({{ site.baseurl }}{% link _posts/2021-01-16-sampling-distribution.md %}#sample_mean_expectation) cannot be applied to the observed values. Therefore, the calculated $t$-statistic is compared to the critical value from a special Dickey–Fuller table, and if it is less than the critical value under the given level of significance then the null hypothesis is rejected, and we fail to conclude that the time series is non-stationary.
+
 There are three main versions of the test:
 
 1. Test for a unit root:<br>
-$\Delta y_{t}$ = $\beta y_{t-1}$ + $\varepsilon_t$
+$\Delta y_{t}$ = $\gamma y_{t-1} + \varepsilon_t$
 2. Test for a unit root with drift:<br>
-$\Delta y_{t}$ = $\alpha$ + $\beta y_{t-1}$ + $\varepsilon_t$
+$\Delta y_{t}$ = $\alpha + \gamma y_{t-1} + \varepsilon_t$
 3. Test for a unit root with drift and deterministic time trend:<br>
-$\Delta y_{t}$ = $\alpha$ + $bt$ + $\beta y_{t-1}$ + $\varepsilon_t$
+$\Delta y_{t}$ = $\alpha + \beta t + \gamma y_{t-1} + \varepsilon_t$
 
 Each version of the test has its own critical value which depends on the size of the sample.
 <a href="#page-title" class="back-to-top">{{ site.data.ui-text[site.locale].back_to_top | default: 'Back to Top' }} &uarr;</a>
 
+<div id='augmented_dickey_fuller_test'/>
 ### Augmented Dickey-Fuller (ADF) test
 
-The testing procedure for the ADF test is the same as for the Dickey–Fuller test but it is applied to the model:<br>
+This is a generalization of the Dickey–Fuller test which can employ the AR models of higher order. The differenced model looks like this:
 
-&nbsp;&nbsp;&nbsp;&nbsp;
-$\Delta y_{t}$ = $\alpha$ + $bt$ + $\gamma y_{t-1}$ + $\delta_1 \Delta y_{t-1}$ + ... + $\delta_{p-1} \Delta y_{t-p+1}$ + $\varepsilon_t$,<br>
+$$\Delta y_{t} = \alpha + \beta t + \gamma y_{t-1} + \delta_1 \Delta y_{t-1} + ... + \delta_{p-1} \Delta y_{t-p+1} + \varepsilon_t$$
+
 where $p$ is the order of lag used in the AR process.
 
-According to the Null Hypothesis, $\gamma$ equals to 0. <br>
-<br>
-By including lags of the order $p$ the ADF formulation allows for higher-order autoregressive processes. This means that the lag length $p$ has to be determined when applying the test. One possible approach is to test down from high orders and examine the $t$-values on coefficients $\delta_i$.
+Under the null hypothesis $\gamma$ equals to 0. Just like the original Dickey-Fuller test, this version also has three flavors depending on the assumptions on the presence of the drift and deterministic trend in the unit root.
+
+The length of the AR process can be determined by applying the standard $t$-test to the coefficients $\delta$ by testing their equality to 0, or by using information criteria such as AIC.
 <a href="#page-title" class="back-to-top">{{ site.data.ui-text[site.locale].back_to_top | default: 'Back to Top' }} &uarr;</a>
 
+<div id='kpss_test'/>
 ### Kwiatkowski-Phillips-Schmidt-Shin (KPSS) test
 
-In KPSS test a time series is expressed as the sum of deterministic trend, random walk, and stationary error:<br>
+This test, unlike the Dickey-Fuller test, assumes under the null hypothesis that the time series is trend-stationary. The alternative hypothesis here is that the time series has the unit root.
 
-&nbsp;&nbsp;&nbsp;&nbsp;
-$y_t$ = $\alpha$ + $\rho y_{t-1}$ + $\varepsilon_t$
+The time series is expressed as the sum of the deterministic trend, random walk, and stationary error:
 
-Under the Null Hypothesis a time series is trend stationary, that is its random walk variance equals to 0.
+$$y_t =  \beta t + \alpha + r_t + \varepsilon_t$$
 
+where $r_t$ is the random walk which in turn is represented as $r_{t-1} + e_t$, where $e_t$ is the error term which is an independent and identically distributed random variable with mean equal to zero.
+
+According to the null hypothesis the variance of $e_t$ is zero. Therefore, $r_t$ is always the same as $r_0$ - its initial value, and the final time series expression becomes just the sum of the trend, some constant, and the error term.
+<a href="#page-title" class="back-to-top">{{ site.data.ui-text[site.locale].back_to_top | default: 'Back to Top' }} &uarr;</a>
+
+<div id='combine_ADF_and_KPSS'/>
+### Combining ADF and KPPS
+
+It should be obvious that if both ADF and KPSS lead to the same conclusion there is no need to look further. However if the results are different then one should pay attention to the way the hypotheses are constructed in each of the tests: the ADF test relies on the differenced series, while the KPSS test assumes trend stationarity.
+
+If both tests fail to reject the null hypothesis, that is the series is stationary according to the KPSS test, and has the unit root per ADF test, then there is not enough data. It is possible that after removing the trend, the unit root will be gone according to the ADF test.
+
+If both tests reject the null hypothesis, that is the series has the unit root according to the KPPS test, and does not have it according to the ADF test, then the differencing should be applied and the KPSS test performed again on the differenced series. If the results won't change then there might be the case of heteroscedasticity and structural changes in the data.
 <a href="#page-title" class="back-to-top">{{ site.data.ui-text[site.locale].back_to_top | default: 'Back to Top' }} &uarr;</a>
 
 <div id='autocorrelation_tests'/>
@@ -129,5 +138,5 @@ $\varepsilon_t = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + ... \beta_m x_m + \rho_1 
 
 For which [the coefficient of determination]({{ site.baseurl }}{% link _posts/2019-08-10-correlation.md %}) (R-squared) is calculated. Then the expression $(T-p) R^2$ (where $T$ is the number of observations) is asymptotically [chi-square distributed]({{ site.baseurl }}{% link _posts/2021-03-27-statistical-distributions.md %}#chi_distribution) with the [degrees of freedom]({{ site.baseurl }}{% link _posts/2021-03-19-degrees-of-freedom.md %}) equal to $p$, that is the number of included periods of autocorrelation.
 
-The null hypothesis states that all coefficients $\rho$ are equal to zero, which means no autocorrelation in the residuals. If the obtained statistic is bigger than the critical value of the chi-squared for a given significance level, then the null hypothesis is rejected. 
+The null hypothesis states that all coefficients $\rho$ are equal to zero, which means no autocorrelation in the residuals. If the obtained statistic is bigger than the critical value of the chi-squared for a given significance level, then the null hypothesis is rejected.
 <a href="#page-title" class="back-to-top">{{ site.data.ui-text[site.locale].back_to_top | default: 'Back to Top' }} &uarr;</a>
