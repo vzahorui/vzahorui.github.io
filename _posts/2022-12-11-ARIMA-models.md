@@ -2,8 +2,8 @@
 layout: single
 title: "ARIMA models"
 category: "Time series"
-tags: AR MA ARMA stationarity autoregression moving-average random-walk unit-root differencing ACF autocorrelation-function PACF partial-autocorrelation-function lags backshift
-date: 2023-02-28
+tags: AR MA ARMA stationarity autoregression moving-average random-walk unit-root differencing ACF autocorrelation-function PACF partial-autocorrelation-function lag SARIMA SARIMAX
+date: 2023-03-02
 ---
 
 In this article we shall make a breakdown of the basic ARIMA time-series model. We shall describe each component of the model: autoregressive process (AR) and moving average (MA), and introduce the concept of stationarity, as it is the essential assumption for the model.
@@ -14,6 +14,8 @@ In this article we shall make a breakdown of the basic ARIMA time-series model. 
 * [MA models](#ma_models)
 * [Autocorrelation functions and plots](#autocorrelation_functions)
 * [ARMA and ARIMA models](#arma)
+* [SARIMA](#sarima)
+* [SARIMAX](#sarimax)
 
 <div id='stationarity'/>
 ## Stationarity
@@ -121,24 +123,58 @@ In theory the ACF and PACF plots may help to understand which process we are dea
 
 The ARMA model represents the time series as realization of both AR and MA processes:
 
-$$y_t = \sum_{i=1}^{p}\varphi_{i}y_{t-i} + \sum_{i=1}^{q}\theta_i \varepsilon_{t-i} + \varepsilon_t$$
+$$y_t = c + \sum_{i=1}^{p}\varphi_{i}y_{t-i} + \sum_{i=1}^{q}\theta_i \varepsilon_{t-i} + \varepsilon_t$$
+
+where $c$ is some constant.
 
 The notation ARMA(p, q) is used to depict the number of lags used for the autoregressive and moving average parts accordingly.
 
-The further generalization of the ARMA model is the ARIMA (autoregressive integrated moving average) model. The difference between the two is that the ARIMA model assumes that the series may be non-stationary with respect to the mean so it may apply differencing as an initial step. Similarly to the ARMA, the ARIMA has its own notation of a form ARIMA (p, d, q) where $d$ stands for the order of differencing.
+The further generalization of the ARMA model is the ARIMA (autoregressive integrated moving average) model. The difference between the two is that the ARIMA model assumes that the series may be non-stationary with respect to the mean so it may apply differencing as an initial step. Similarly to the ARMA, the ARIMA has its own notation of a form ARIMA$(p, d, q)$ where $d$ stands for the order of differencing.
 
 The number of the lags which are eventually included for both autoregressive and moving average parts should be determined using grid-search and cross-validation by maximizing the likelihood of the model, or by minimizing the Akaike information criterion if the number of observations is small.
 
-In some texts the model may be represented with the backshift operator $B$, so that $y_{t - 1} = B y_{t}$. The power of $B$ represents repeated operation, so for instance $y_{t - 1}$ would be $B^{2} y_{t}$. The final ARIMA model then looks like this:
+In some texts the model may be represented with the lag operator $L$, so that $y_{t - 1} = L y_{t}$. The power of $L$ represents repeated operation, so for instance $y_{t - 1}$ would be $L^{2} y_{t}$. The final ARIMA model then looks like this:
 
 $$
 \begin{equation}
   \begin{array}{c c c c}
-    (1-\varphi_1B - \cdots - \varphi_p B^p) & (1-B)^d y_{t} & = & (1 + \theta_1 B + \cdots + \theta_q B^q)\varepsilon_t\\
-    {\uparrow} & {\uparrow} & &{\uparrow}\\
-    \text{AR($p$)} & \text{$d$ differences} & & \text{MA($q$)}\\
+	(1-\varphi_1L - \cdots - \varphi_p L^p) & (1-L)^d y_{t} & = & c + (1 + \theta_1 L + \cdots + \theta_q L^q)\varepsilon_t\\
+	{\uparrow} & {\uparrow} & &{\uparrow}\\
+	\text{AR($p$)} & \text{$d$ differences} & & \text{MA($q$)}\\
   \end{array}
 \end{equation}
 $$
+
+Or a more generic expression:
+
+$$\varphi_p (L) \Delta^d y_t = A(t) + \theta_q (L) \varepsilon_t$$
+
+where $A(t)$ is a trend polynomial which includes the constant.
+
+<a href="#page-title" class="back-to-top">{{ site.data.ui-text[site.locale].back_to_top | default: 'Back to Top' }} &uarr;</a>
+
+<div id='sarima'/>
+## SARIMA
+
+SARIMA is the extension of the ARIMA model which includes the seasonal terms $P$, $D$, $Q$ in addition to their non-seasonal counterparts $p$, $d$, $q$. The full model specification is this: ARIMA$(p, d, q)(P, D, Q)_{s}$, where $s$ indicates the number of observations which form the full cycle (for example 12 for monthly data).
+
+$D$ should be understood as the seasonal differencing order, while $P$ and $Q$ are the orders of the seasonal autoregressive process and moving average respectively.
+
+The generic form of the SARIMA model is this:
+
+$$\varphi_p (L) \tilde \varphi_P (L^s) \Delta^d \Delta_s^D y_t = A(t) + \theta_q (L) \tilde \theta_Q (L^s) \varepsilon_t$$
+
+<a href="#page-title" class="back-to-top">{{ site.data.ui-text[site.locale].back_to_top | default: 'Back to Top' }} &uarr;</a>
+
+<div id='sarimax'/>
+## SARIMAX
+
+This is yet another extension of the ARIMA model which allows in addition to the seasonal factors to also include exogenous variables. Actually, the model becomes a linear regression with residuals following the SARIMA process.
+
+$$y_t = \beta_t x_t + u_t $$
+
+where $u_t$ is the residual which is modeled with SARIMA:
+
+$$\varphi_p (L) \tilde \varphi_P (L^s) \Delta^d \Delta_s^D u_t = A(t) + \theta_q (L) \tilde \theta_Q (L^s) \varepsilon_t$$
 
 <a href="#page-title" class="back-to-top">{{ site.data.ui-text[site.locale].back_to_top | default: 'Back to Top' }} &uarr;</a>
