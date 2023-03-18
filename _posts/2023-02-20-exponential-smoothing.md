@@ -33,7 +33,7 @@ Let's introduce the component form of the forecast equation above which for now 
 
 $$\hat{y}_{t+h|t} = \ell_{t}$$
 
-Here $h$ is the step size for the forecast. That is $\hat{y}_{t+h|t}$ is the forecast for the point $y_{t+h}$ given the observed values up until $y_t$.
+Here $h$ is the step size for the forecast. That is $y_{t+h|t}$ is the forecast for the point $y_{t+h}$ given the observed values up until $y_t$.
 
 The component form is a useful representation of the exponential smoothing model because it can later be extended to include the trend and seasonal components (and this is where the step size $h$ will actually start to matter).
 
