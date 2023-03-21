@@ -72,7 +72,7 @@ Similar operation can be performed for eigendecomposition of $XX^{T}$ if $m$ is 
 
 ### Numerical computation of SVD
 
-As stated before, for numerical stability SVD is actually meant to be computed without performing eigendecomposition of $X^{T}X$, and fortunately there are numerous methods out there which do the job. Usually at first the original matrix is transformed into upper bidiagonal form using sequences of unitary matrices $U^{*}$ and $V^{*}$ which are applied from left and right in a similar manner as in [QR factorization]({{ site.baseurl }}{% link _posts/2019-11-19-qr-decomposition.md %}). After that the bidiagonal matrix is further decomposed so that its singular values are approximated using iterative procedures.
+As stated before, for numerical stability SVD is actually meant to be computed without performing eigendecomposition of $X^{T}X$, and fortunately there are numerous methods out there which do the job. Usually at first the original matrix is transformed into upper bidiagonal form using sequences of unitary matrices $U^{\ast}$ and $V^{\ast}$ which are applied from left and right in a similar manner as in [QR factorization]({{ site.baseurl }}{% link _posts/2019-11-19-qr-decomposition.md %}). After that the bidiagonal matrix is further decomposed so that its singular values are approximated using iterative procedures.
 
 ### Dimensionality reduction with SVD
 
