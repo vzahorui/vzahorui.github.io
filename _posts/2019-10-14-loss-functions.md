@@ -135,7 +135,7 @@ $$H(X) = \sum_{x\in {\mathcal {X}}} p(x)\log \frac{1}{p(x)} = - \sum_{x\in {\mat
 
 Application of the idea of entropy and surprise in classification loss is knowns as cross-entropy:
 
-$$H(p, q)- \sum_{x\in {\mathcal {X}}} p(x) \log (q(x))$$
+$$H(p, q) = - \sum_{x\in {\mathcal {X}}} p(x) \log (q(x))$$
 
 where $p(x)$ is the observed probability of a certain category $x$, and $q(x)$ - its predicted value.
 
