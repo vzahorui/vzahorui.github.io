@@ -53,7 +53,8 @@ From which we should be able to recognize the Maclaurin series of size and cosin
 
 In the complex plane, the horizontal axis traditionally represents the real numbers, and the vertical axis represents the imaginary numbers. Although the real and imaginary axes are not orthogonal in the traditional sense they exhibit certain mathematical properties related to conjugation which is why they are often described as perpendicular or orthogonal in a mathematical context.
 
-![](/assets/images/calculus/complex_number_as_vector.png){: .align-center}
+![](/assets/images/linear_algebra/complex_number_as_vector.png){: .align-center}
+
 <a href="#page-title" class="back-to-top">{{ site.data.ui-text[site.locale].back_to_top | default: 'Back to Top' }} &uarr;</a>
 
 ### Complex numbers represented via Euler's formula
@@ -73,6 +74,7 @@ $$z = r(\cos(\theta) + i \sin(\theta)) = r(\frac{a}{r} + i \frac{b}{r}) = a + bi
 We can also see that
 
 $$z = r(\cos(\theta) + i \sin(\theta)) = r e^{i \theta}$$
+
 <a href="#page-title" class="back-to-top">{{ site.data.ui-text[site.locale].back_to_top | default: 'Back to Top' }} &uarr;</a>
 
 ### Rotation the in complex space
