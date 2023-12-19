@@ -6,19 +6,19 @@ tags: Euler-number real-number vector complex-number trigonometric-function expo
 date: 2023-12-19
 ---
 
-## Inroduction
+## Introduction
 
 The imaginary number is a mathematical concept (denoted as $i$) that extends the real number system to include the square root of -1, hence $i^2 -1$. It does not have a direct connection with the real world and might appear useless but it offers a powerful and elegant way to represent and manipulate certain mathematical quantities.
 
-The introduction of imaginary numbers allows to solve equations that would be impossible to solve with only real numbers. This is similar to solving the equations which have a nagative [root]({{ site.baseurl }}{% link _posts/2020-10-25-root-finding.md %}) in the sense that the negative numbers do not represent the quantities of the real world either. However people became more accustomed and comfortable in using them on a regular basis.
+The introduction of imaginary numbers allows us to solve equations that would be impossible to solve with only real numbers. This is similar to solving the equations which have a negative [root]({{ site.baseurl }}{% link _posts/2020-10-25-root-finding.md %}) in the sense that the negative numbers do not represent the quantities of the real world either. However people became more accustomed and comfortable in using them on a regular basis.
 
 ## Imaginary number and rotation of vectors
 
-A useful property of the imaginary numbers lies in the factor that they can be used in vector rotation in the space of complex numbers. 
+A useful property of the imaginary numbers lies in the fact that they can be used in vector rotation in the space of complex numbers.
 
-Recall that a complex number is a number that comprises both a real part and an imaginary part. It is expressed in the form $z=a+bi$, where $a$ and $b$ are real numbers, and $i$ is the imaginary unit. 
+Recall that a complex number is a number that comprises both a real part and an imaginary part. It is expressed in the form $z=a+bi$, where $a$ and $b$ are real numbers, and $i$ is the imaginary unit.
 
-A complex number can be represented as a vector in two-dimensional space where the axes correspond to the real and imaginary parts of the number. It happens that multiplying a complex number by $e^{i \alpha}$ results in rotation of this vector by an angle $\alpha$ around the origin. Below is en explanation as to why it happens. 
+A complex number can be represented as a vector in two-dimensional space where the axes correspond to the real and imaginary parts of the number. It happens that multiplying a complex number by $e^{i \alpha}$ results in rotation of this vector by an angle $\alpha$ around the origin. Below is an explanation as to why it happens.
 
 ### Euler's formula
 
@@ -26,13 +26,13 @@ First we need to understand Euler's formula, which is a remarkable mathematical 
 
 $$e^{i \theta} = \cos(\theta) + i \sin(\theta)$$
 
-Its derivation involves the use of power series, calculus, and complex analysis. 
+Its derivation involves the use of power series, calculus, and complex analysis.
 
 Let's start with the exponential function $e^{x}$. Using [Taylor series]({{ site.baseurl }}{% link _posts/2020-05-08-taylor-series.md %}) it is possible to represent this function as an infinite sum of polynomials. By selecting the point of approximation as 0 we simplify it to Maclaurin series, and the exponential function gets the following form:
 
 $$e^x = 1 + x + \frac{x^2}{2!} + \frac{x^3}{3!} + \frac{x^4}{4!} + ...$$
 
-Similarly, let's express the sine and cosine functions via Maclaurin series as well:
+Similarly, let's express the sine and cosine functions by Maclaurin series as well:
 
 $$\sin(x) = x - \frac{x^3}{3!} + \frac{x^5}{5!} - \frac{x^7}{7!} + ...$$
 
@@ -70,32 +70,32 @@ By plugging in these pieces into the equation above we can see the equality:
 
 $$z = r(\cos(\theta) + i \sin(\theta)) = r(\frac{a}{r} + i \frac{b}{r}) = a + bi$$
 
-We can also see that 
+We can also see that
 
 $$z = r(\cos(\theta) + i \sin(\theta)) = r e^{i \theta}$$
 <a href="#page-title" class="back-to-top">{{ site.data.ui-text[site.locale].back_to_top | default: 'Back to Top' }} &uarr;</a>
 
 ### Rotation the in complex space
 
-Now what happens if the complex number is multiplied by $e^{i\alpha}$. 
+Now what happens if the complex number is multiplied by $e^{i\alpha}$.
 
 $$z \cdot e^{i\alpha} = r e^{i \theta} \cdot e^{i\alpha} = r e^{i (\theta + \alpha)}$$
 
 This is only different from the original number represented via the Euler number by the angle. Instead of $\theta$ we get $\theta + \alpha$, which is the operation of rotation.
 
-Below is the visualization on how the vector representing the complex number $z$ can change its direction when multiplied by $e^{i\alpha}$ with the diferent value of $\alpha$. The original number is simply 1. It means that its component $a$ is equal to 1 and $b$ is equal to 0.
+Below is the visualization on how the vector representing the complex number $z$ can change its direction when multiplied by $e^{i\alpha}$ with the different value of $\alpha$. The original number is simply 1. It means that its component $a$ is equal to 1 and $b$ is equal to 0.
 
 ![](/assets/images/linear_algebra/vector_rotation_complex_plane.gif){: .align-center}
 
-The bigger the value of $\alpha$ - the greater the angle of rotation. The magnitude $r$ of the vector stays the same. 
+The bigger the value of $\alpha$ - the greater the angle of rotation. The magnitude $r$ of the vector stays the same.
 
 The reason for the counterclockwise rotation in the given example is rooted in the choice of the mathematical convention for the direction of angles in the complex plane. In the standard Cartesian coordinate system, angles are measured counterclockwise from the positive x-axis.
 
-Notice how the the vector performs 180 degrees rotation if $\alpha$ is equal to $\pi$. It is equivalnet to multiplying by -1, and thus 
+Notice how the vector performs 180 degrees rotation if $\alpha$ is equal to $\pi$. It is equivalent to multiplying by -1, and thus
 
 $$e^{i\pi}=-1$$
 
-The slight modification of this eqution is known as Euler identity.
+The slight modification of this equation is known as Euler identity.
 
 $$e^{i\pi} + 1 = 0$$
 
