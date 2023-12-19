@@ -72,6 +72,7 @@ $\int_1^\infty \frac{1}{x^2}dx = \displaystyle{\lim_{n \to \infty}} \int_1^n \fr
 
 Since at the end we get the limit which actually exists the integral is convergent, otherwise it would be impossible to calculate the area under the curve.
 
+<div id='probability_density_function'/>
 ## Probability density function
 
 Every random variable has its own probability density function (PDF) which describes the realtive likelihood of assuming a certain value. The absolute likelihood of a random variable assuming a certain exact value in the continuous range is in fact 0 (since there is an infinite set of possible values to begin with). The relative likelihood however indicates how much more likely the value of the variable will fall within a range of values.
