@@ -3,8 +3,8 @@ layout: single
 title: "Interpolation"
 description: Describing mechanics of interpolation
 category: "Regression"
-tags: polynomial missing-values spline nearest-neighbour Vandermonde-matrix Lagrange-multipliers Newton's-divided-differences cubic-spline
-date: 2020-11-18
+tags: polynomial missing-values spline nearest-neighbour Vandermonde-matrix Lagrange-multipliers Newton's-divided-differences cubic-spline Bezier-curve
+date: 2024-01-11
 ---
 
 Generally speaking, interpolation is a way of generating new data points which exactly fit into some given set of points. It is used for approximation of complex functions with simple ones, for example when estimating missing values among known data points.
@@ -109,6 +109,8 @@ The process goes on like this after addition of each new datapoint and the gener
 &nbsp;&nbsp;&nbsp;&nbsp;
 $p(x) = a_1 + a_2(x-x_1) + a_3(x-x_1)(x-x_2) + ... + a_n(x-x_1)(x-x_2)...(x-x_{n-1})$
 
+<a href="#page-title" class="back-to-top">{{ site.data.ui-text[site.locale].back_to_top | default: 'Back to Top' }} &uarr;</a>
+
 ## Spline
 
 Spline is a piecewise function which selects every two neighbouring datapoint and uses low-degree polynomials to interpolate between them. Splines is by far a better alternative to polynomial interpolation as they are less computationally expensive and tend to produce more realistic shapes of a curve, avoiding rapid oscillations. Below is the example of cubic spline (using third-order polynomials) interpolation for the same datapoints which were used for the linear and polynomial interpolation above.
@@ -141,3 +143,39 @@ In case of cubic spline we have 4 coefficients for each of the polynomials. Sinc
 Each of the points, except the first and the last one, are used in fitting both polynomials (before and after the point), giving $2(n+1)$ equations, while the first and the last one are used only once, giving 2 more equations. In addition, each of the inner points are used in equations of the first and the second derivatives. Bringing it all together we have $4n - 6$ equations. Combining this with the number of parameters we would get an underdetermined system of equations, so additional 2 constraints should be added.
 
 One type of additional boundary condition is to force the first derivatives of the polynomials at $x_1$ and $x_n$ to be equal to some known values. This type of constraint is known as clamped boundary condition, and it roughly sets directions in which the function moves outside of the known datapoints. Another type of boundary condition is called natural or free, and it forces the second derivatives at $x_1$ and $x_n$ to be equal to zero. This in turn lets the function have the same rate of change at its first and last known datapoint, meaning that the direction of it won't be changing.
+
+<a href="#page-title" class="back-to-top">{{ site.data.ui-text[site.locale].back_to_top | default: 'Back to Top' }} &uarr;</a>
+
+### Bezier curves
+
+A Bezier curve is a mathematically defined curve which connects two points. It relies on the Bernstein polynomial which makes use of the control points. It could be viewed as a special case of spline interpolation which drops some of the requirements, in particular it does not care about the behavior of the curve beyond the two boundary points. 
+
+Bezier curves are widely used in computer graphics, computer-aided design (CAD), and other fields to represent smooth curves and shapes which can scale indefinitely.
+
+Below are the equations for the main types of Bézier curves.
+
+**Linear Bezier curve**, which connects two control points with a straight line:
+
+$$B(t)= P_0 + t(P_1 - P_0) = (1−t)P_0+tP_{1}​$$
+
+where $P_0$ and $P_1$ are the coordinates of the two points. 
+$P_1 - P_0$ can be viewed as a displacement vector, and $t$ as its magnitude.
+    
+**Quadratic Bezier curve**, which connects two control points using the coordinates of third auxiliary point in order to make a curve as opposed to the straight line:
+
+$$B(t)=(1−t)^2 P_0+2(1−t)tP_1+t^2 P_2$$
+
+It could be rewritten in a way which highlight the symmetry with respect to $P_1$, and which makes use of the the vectors pointing to this intermediary point:
+
+$$B(t) = P_1 + (1-t)^2 (P_0 - P_1) + t^2 (P_2 - P_1)$$
+
+![](/assets/images/regression/interpolation_bezier_quad.png){: .align-center}
+    
+**Cubic Bezier curve** which is defined by four control points, allowing for more complex shapes:
+$$B(t)=(1−t)^3 P_0+3(1−t)^2 t P_1+3(1−t)t^2 P_2+t^3 P_3$$
+
+![](/assets/images/regression/interpolation_bezier_cubic.png){: .align-center}
+
+The control points serve as attractors, shaping the direction and curvature of the curve. The parameter $t$ can range from 0 to 1. The initial and concluding control points of the curve consistently represent the endpoints, with the intermediary control points generally not positioned directly on the curve. The curve's position at any specific $t$ value is influenced by the weighted contributions of the control points.
+
+<a href="#page-title" class="back-to-top">{{ site.data.ui-text[site.locale].back_to_top | default: 'Back to Top' }} &uarr;</a>

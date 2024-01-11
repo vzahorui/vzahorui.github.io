@@ -3,7 +3,7 @@ layout: single
 title: "Imaginary number and rotation of vectors"
 category: "Linear Algebra"
 tags: Euler-number real-number vector complex-number trigonometric-function exponential-function Taylor-series Euler's-formula vector-rotation Euler-identity
-date: 2023-12-19
+date: 2024-01-02
 ---
 
 ## Introduction
@@ -20,6 +20,7 @@ Recall that a complex number is a number that comprises both a real part and an 
 
 A complex number can be represented as a vector in two-dimensional space where the axes correspond to the real and imaginary parts of the number. It happens that multiplying a complex number by $e^{i \alpha}$ results in rotation of this vector by an angle $\alpha$ around the origin. Below is an explanation as to why it happens.
 
+<div id='euler_formula'/>
 ### Euler's formula
 
 First we need to understand Euler's formula, which is a remarkable mathematical result that connects exponential functions, trigonometric functions, and complex numbers. This is how it looks:
@@ -47,6 +48,26 @@ Then it is possible to group into separate components the imaginary and the real
 $$e^{ix} = (1 - \frac{x^2}{2!} + \frac{x^4}{4!} - ...) + i(x - \frac{x^3}{3!} + \frac{x^5}{5!} - ...)$$
 
 From which we should be able to recognize the Maclaurin series of size and cosine functions displayed above.
+
+<div id='trigonometric_exponential'/>
+#### Trigonometric identities in terms of exponential functions
+
+Using the Eurler's formula it is possible to express both sine and cosine function by using complex exponentials only.
+
+Remember that cosine is an even function, while sine is an odd one. Meaning that $\cos(-\theta)=\cos(\theta)$ and $\sin(-\theta)=-\sin(\theta)$. Therefore,
+
+$$e^{-i \theta} = \cos(-\theta) + i \sin(-\theta) = \cos(\theta) - i \sin(\theta)$$
+
+If we take the original Euler's formula and add $e^{-i \theta}$ to both left and right side we will get the following:
+
+$$e^{i \theta} + e^{-i \theta} = \cos(\theta) + i \sin(\theta) + \left( \cos(\theta) - i \sin(\theta) \right) = 2 \cos(\theta)$$
+
+$$\cos(\theta) = \frac{e^{i \theta} + e^{-i \theta}}{2}$$
+
+Similarly, for sine we can get this by taking the difference instead of adding as we did with the cosine:
+
+$$\sin(\theta) = \frac{e^{i \theta} - e^{-i \theta}}{2i}$$
+
 <a href="#page-title" class="back-to-top">{{ site.data.ui-text[site.locale].back_to_top | default: 'Back to Top' }} &uarr;</a>
 
 ### Complex number in a vector form
@@ -77,7 +98,7 @@ $$z = r(\cos(\theta) + i \sin(\theta)) = r e^{i \theta}$$
 
 <a href="#page-title" class="back-to-top">{{ site.data.ui-text[site.locale].back_to_top | default: 'Back to Top' }} &uarr;</a>
 
-### Rotation the in complex space
+### Rotation the in complex space and Euler identity
 
 Now what happens if the complex number is multiplied by $e^{i\alpha}$.
 
@@ -101,5 +122,8 @@ The slight modification of this equation is known as Euler identity.
 
 $$e^{i\pi} + 1 = 0$$
 
-This equation is remarkable because it connects fundamental mathematical constants in a concise and elegant way. It's often considered one of the most beautiful equations in mathematics.
+The common fact is that $\pi$ is the ratio of circle circumference to its diameter, hence the ratio of circumference to its radius is $2 \pi$. In other words the vector representing the radius needs $2 \pi$ of its length in order to complete the whole length of the circumference. This fact is in total sync with the idea of 360 degrees rotation described above.
+
+Also since in the example above $z$ is simply 1 ($\theta$ is 0), via the Euler's formula it can be seen how the relationship between $\sin (x)$ and $\cos (x)$ looks like a circle if $x$ assumes values from 0 to $2\pi$.
+
 <a href="#page-title" class="back-to-top">{{ site.data.ui-text[site.locale].back_to_top | default: 'Back to Top' }} &uarr;</a>
