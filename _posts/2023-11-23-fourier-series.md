@@ -31,7 +31,7 @@ It should be noted that $P$ could just be equal to the whole period which we wan
 
 Inclusion of the term $\frac{2\pi}{P}$ is the scaling of sine and cosine fundamental period $2 \pi$ with respect to the period of the function which is approximated.
 
-The Fourier series essentially breaks down a complex periodic function into simpler sinusoidal components, each associated with a specific frequency. By including more terms in the series, it is posible approximate the original function more accurately. This is somewhat similar to what [Taylor expansion]({{ site.baseurl }}{% link _posts/2020-05-08-taaylor-series.md %}) does.
+The Fourier series essentially breaks down a complex periodic function into simpler sinusoidal components, each associated with a specific frequency. By including more terms in the series, it is posible approximate the original function more accurately. This is somewhat similar to what [Taylor expansion]({{ site.baseurl }}{% link _posts/2020-05-08-taylor-series.md %}) does.
 
 Below you can see a demo of Fourier series approximation of a step function. When the number of terms goes to infinity it is possible to approximate even functions with discontinuity.
 
