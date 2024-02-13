@@ -2,15 +2,15 @@
 layout: single
 title: "Fourier series"
 category: "Optimization"
-tags: periodic-function sine cosine fundamental-period harmonic-frequency
-date: 2024-01-08
+tags: periodic-function sine cosine fundamental-period harmonic-frequency complex-number vector exponential-function
+date: 2024-02-13
 ---
 
-A Fourier series is a way to approximate a periodic function as the sum of simple sine and cosine functions which makes it useful for analyzing and synthesizing functions with periodic behavior, such as signals in signal processing or periodic phenomena in physics. The benefit of trigonometric functions is that they can be easily modelled and their [derivatives]({{ site.baseurl }}{% link _posts/2019-09-14-derivatives.md %}) are understood. Additionally, Fourier Series makes use of the orthogonality relationships of the sine and cosine functions.
+A Fourier series is a way to approximate a periodic function as the sum of simple sine and cosine functions which makes it useful for analyzing and synthesizing functions with periodic behavior, such as signals in signal processing or periodic phenomena in physics. The benefit of trigonometric functions is that they can be easily modeled and their [derivatives]({{ site.baseurl }}{% link _posts/2019-09-14-derivatives.md %}) are understood. Additionally, Fourier Series makes use of the orthogonality relationships of the sine and cosine functions.
 
 ## Periodic function
 
-A function is said to be periodic of period $P$ if $f(x+P) = f(x)$ for all $x$ in the domain of $f$. The smallest positive value of $P$ is called the fundamental period. 
+A function is said to be periodic of period $P$ if $f(x+P) = f(x)$ for all $x$ in the domain of $f$. The smallest positive value of $P$ is called the fundamental period.
 
 From the article on the [complex numbers]({{ site.baseurl }}{% link _posts/2023-12-04-imaginary-number.md %}) it can be seen that the relationship between $\sin (x)$ and $\cos (x)$ looks like a circle if $x$ assumes values from 0 to $2\pi$. If $x$ goes beyond $2\pi$ then the pattern simply repeats itself. The trigonometric functions $\sin x$ and $\cos x$ are the prime examples of periodic functions with fundamental period of $2 \pi$.
 
@@ -41,7 +41,7 @@ The average value of periodic function $f(t)$ can be calculated via [integral]({
 
 $$a_0 = \frac{1}{P}\int_{0}^{P} f(t) dt$$
 
-Each component $a_n$ and $b_n$ is given as 
+Each component $a_n$ and $b_n$ is given as
 
 $$a_n = \frac{2}{P}\int_{0}^{P} f(t) \cos\left(\frac{2 \pi}{P}nt\right) dt$$
 $$b_n = \frac{2}{P}\int_{0}^{P} f(t) \sin\left(\frac{2 \pi}{P}nt\right) dt$$
@@ -66,21 +66,21 @@ Dividing this result by $\frac{P}{2}$ produces our formula for $a_n$ which we sa
 
 ## Exponential form of the Fourier series
 
-A more general way to represent the Fourier series is via the sum of rotating vectors through time. This can be achieved by applying the concepts of rotating vectors in the complex space, as was descibed in [this article]({{ site.baseurl }}{% link _posts/2023-12-04-imaginary-number.md %}).
+A more general way to represent the Fourier series is via the sum of rotating vectors through time. This can be achieved by applying the concepts of rotating vectors in the complex space, as was described in [this article]({{ site.baseurl }}{% link _posts/2023-12-04-imaginary-number.md %}).
 
 In the existing formula we can replace the sine and cosine terms with their identities [in terms of exponential functions]({{ site.baseurl }}{% link _posts/2023-12-04-imaginary-number.md %}#trigonometric_exponential).
 
 $$
 \begin{align*}
 f(t) &= a_0 + \sum_{n=1}^{\infty} \left[ a_{n} \left( \frac{ e^{i ⁡\frac{2 \pi}{P}nt} + e^{-i ⁡\frac{2 \pi}{P}nt} }{2} \right) + b_{n} \left( \frac{ e^{i ⁡\frac{2 \pi}{P}nt} - e^{-i ⁡\frac{2 \pi}{P}nt} }{2i} \right) \right]\\
-     &= a_0 + \sum_{n=1}^{\infty} \left( \frac{ a_{n} e^{i ⁡\frac{2 \pi}{P}nt} + a_{n} e^{-i ⁡\frac{2 \pi}{P}nt} }{2} + \frac{ i b_{n} e^{i ⁡\frac{2 \pi}{P}nt} - i b_{n} e^{-i ⁡\frac{2 \pi}{P}nt} }{2i^{2}} \right)\\
-     &= a_0 + \sum_{n=1}^{\infty} \left( \frac{ a_{n} e^{i ⁡\frac{2 \pi}{P}nt} + a_{n} e^{-i ⁡\frac{2 \pi}{P}nt} }{2} - \frac{ i b_{n} e^{i ⁡\frac{2 \pi}{P}nt} - i b_{n} e^{-i ⁡\frac{2 \pi}{P}nt} }{2} \right)\\
-     &= a_0 + \frac{1}{2} \sum_{n=1}^{\infty} \left( e^{i ⁡\frac{2 \pi}{P}nt} (a_{n} - i b_{n} ) + e^{-i ⁡\frac{2 \pi}{P}nt} (a_{n} + i b_{n}) \right)\\
-     &= a_0 + \sum_{n=1}^{\infty} e^{i ⁡\frac{2 \pi}{P}nt} \frac{a_{n} - i b_{n}}{2} + \sum_{n=1}^{\infty} e^{-i ⁡\frac{2 \pi}{P}nt} \frac{a_{n} + i b_{n}}{2}
+ 	&= a_0 + \sum_{n=1}^{\infty} \left( \frac{ a_{n} e^{i ⁡\frac{2 \pi}{P}nt} + a_{n} e^{-i ⁡\frac{2 \pi}{P}nt} }{2} + \frac{ i b_{n} e^{i ⁡\frac{2 \pi}{P}nt} - i b_{n} e^{-i ⁡\frac{2 \pi}{P}nt} }{2i^{2}} \right)\\
+ 	&= a_0 + \sum_{n=1}^{\infty} \left( \frac{ a_{n} e^{i ⁡\frac{2 \pi}{P}nt} + a_{n} e^{-i ⁡\frac{2 \pi}{P}nt} }{2} - \frac{ i b_{n} e^{i ⁡\frac{2 \pi}{P}nt} - i b_{n} e^{-i ⁡\frac{2 \pi}{P}nt} }{2} \right)\\
+ 	&= a_0 + \frac{1}{2} \sum_{n=1}^{\infty} \left( e^{i ⁡\frac{2 \pi}{P}nt} (a_{n} - i b_{n} ) + e^{-i ⁡\frac{2 \pi}{P}nt} (a_{n} + i b_{n}) \right)\\
+ 	&= a_0 + \sum_{n=1}^{\infty} e^{i ⁡\frac{2 \pi}{P}nt} \frac{a_{n} - i b_{n}}{2} + \sum_{n=1}^{\infty} e^{-i ⁡\frac{2 \pi}{P}nt} \frac{a_{n} + i b_{n}}{2}
 \end{align*}
 $$
 
-We can then set the compex number $\frac{a_{n} - i b_{n}}{2}$ as $c_n$, and recognize $\frac{a_{n} + i b_{n}}{2}$ as its conjugate $\overline c_n$.
+We can then set the complex number $\frac{a_{n} - i b_{n}}{2}$ as $c_n$, and recognize $\frac{a_{n} + i b_{n}}{2}$ as its conjugate $\overline c_n$.
 
 $$f(t) = a_0 + \sum_{n=1}^{\infty} c_n e^{i ⁡\frac{2 \pi}{P}nt} + \sum_{n=1}^{\infty} \overline c_n e^{-i ⁡\frac{2 \pi}{P}nt}$$
 
@@ -96,20 +96,19 @@ So the final Fourier series expression in exponential form could be written this
 
 $$f(t) = a_0 + \sum_{n=1}^{\infty} c_n e^{i ⁡\frac{2 \pi}{P}nt} + \sum_{n=-1}^{-\infty} c_n e^{i ⁡\frac{2 \pi}{P}nt} = \sum_{n=-\infty}^{\infty}c_n e^{i ⁡\frac{2 \pi}{P}nt}$$
 
-where 
+where
 
-$$c_n = 
-\begin{cases}\frac{a_{n} - i b_{n}}{2}&{\text{if }}n > 0, \\ 
+$$c_n =
+\begin{cases}\frac{a_{n} - i b_{n}}{2}&{\text{if }}n > 0, \\
 a_0 &{\text{if }}n = 0,\\
 \frac{a_{n} + i b_{n}}{2}&{\text{if }}n<0.\end{cases}$$
 
-What we eventually get is a sum of vectors in the complex space where each vector rotates at its own rate $n$ through time $t$. If $n$ is positive - the vector rotates counterclockwise, and when negative - the rotation is clockwise. Coefficients $c_n$ represent the magnitudes of the vectors. The sum of vectors could be vizually represented by stacking arrows head to tail.
+What we eventually get is a sum of vectors in the complex space where each vector rotates at its own rate $n$ through time $t$. If $n$ is positive - the vector rotates counterclockwise, and when negative - the rotation is clockwise. Coefficients $c_n$ represent the magnitudes of the vectors. The sum of vectors could be visually represented by stacking arrows head to tail.
 
+As an elaborate example, see how the Fourier series represented as a sum of rotating vectors (in this case 100 of them) approximate a line drawing:
 
-
-#TODO make a viz or rotating arrows
-Image by <a href="https://www.freepik.com/free-vector/hand-drawn-one-line-art-animal-illustration_22376582.htm#query=line%20art%20svg&position=19&from_view=keyword&track=ais&uuid=eac3da34-439b-4114-82ed-468d33e290a7">Freepik</a>
-
+![](/assets/images/optimization/fourier_series_complex_figure.gif){: .align-center}
+The original image is taken from <a href="https://www.freepik.com/free-vector/hand-drawn-one-line-art-animal-illustration_22376582.htm#query=line%20drawing%20svg%20bird&position=0&from_view=search&track=ais&uuid=f7b5f888-203c-4d58-a5e4-22686540121e">Freepik</a>.
 
 The integral form of $c_n$ coefficients is calculated by putting in the cosine and sine expressions and then simplifying it using [Euler's formula]({{ site.baseurl }}{% link _posts/2023-12-04-imaginary-number.md %}#euler_formula):
 
