@@ -137,7 +137,7 @@ $$\log p(y) = -\frac{1}{2}(y - \mu)^T(K+\sigma^2_n I)^{-1}(y - \mu) - \frac{1}{2
 
 The local maximum points are found using gradient-based algorithms, such as [L-BFGS-B]({{ site.baseurl }}{% link _posts/2020-07-29-quasi-newton-methods.md %}) or stochastic [gradient descent]({{ site.baseurl }}{% link _posts/2019-10-15-gradient-descent.md %}), in a multidimensional space where the number of dimensions is equal to the number of the parameters.
 
-In case of the posterior distribution above, the kernel was constructed as a sum of [the squared exponential kernel]({{ site.baseurl }}{% link _posts/2022-08-01-kernels-overview.md %}#squared_exponential_kernel) and the white noise. Let's look at the contour plot of the log likelihood dependent on two hyperparameters of the resulting kernel:
+In case of the posterior distribution above, the kernel was constructed as a sum of [the squared exponential kernel]({{ site.baseurl }}{% link _posts/2022-08-01-kernels-overview.md %}) and the white noise. Let's look at the contour plot of the log likelihood dependent on two hyperparameters of the resulting kernel:
 
 ![](/assets/images/optimization/gp_contour_log_marginal_likelihood.png){: .align-center}
 

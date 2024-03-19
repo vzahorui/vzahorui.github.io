@@ -70,7 +70,7 @@ The result of adding kernels has the same effect on the [covariance]({{ site.bas
 
 In case of kernel multiplication the correlation between the two points is high if either of the individual kernels produces high correlation.
 
-In this article we will look at the commonly used kernels and see which effects their hyperparameters have.
+Let's take a look at the commonly used kernels and see which effects their hyperparameters have.
 
 <div id='squared_exponential_kernel'/>
 ### Squared exponential kernel
