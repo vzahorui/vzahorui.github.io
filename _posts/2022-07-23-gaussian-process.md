@@ -76,7 +76,7 @@ Below is an example of how the covariance made from a variable which contains 20
 
 ![](/assets/images/regression/covariance.png){: .align-center}
 
-The covariance matrix is built by applying the kernels to each pairwise combination of an input variable. The kernels are special functions which take two values and compute their similarity. The overview of the commonly used kernels can be found [here]({{ site.baseurl }}{% link _posts/2019-10-15-gradient-descent.md %}).
+The covariance matrix is built by applying the kernels to each pairwise combination of an input variable. The kernels are special functions which take two values and compute their similarity. The overview of the commonly used kernels can be found [here]({{ site.baseurl }}{% link _posts/2022-08-01-kernels-overview.md %}#kernels_gausian_process).
 
 The Gaussian process is basically the generalization of a multivariate Gaussian distribution when the number of dimensions goes to infinity. In the scope of regression, each point is considered to be normally distributed so that their combined distribution is normal as well.
 
