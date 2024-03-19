@@ -1,7 +1,7 @@
 ---
 layout: single
 title: "Fourier series"
-category: "Optimization"
+category: "Approximation"
 tags: periodic-function sine cosine fundamental-period harmonic-frequency complex-number vector exponential-function
 date: 2024-02-13
 ---
