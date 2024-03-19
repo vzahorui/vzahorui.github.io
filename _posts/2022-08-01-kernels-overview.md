@@ -6,58 +6,6 @@ tags: gaussian-process RBF radial-basis-function-kernel squared-exponential-kern
 date: 2024-04-19
 ---
 
-## In this article
-* [What are kernels](#what_are_kernels)
-* [Kernel density estimation](#kde)
-* [Kernels in Gaussian process](#kernels_gausian_process)
-  * [Squared exponential kernel](#squared_exponential_kernel)
-  * [Matern kernel](#matern_kernel)
-  * [Periodic kernel](#periodic_kernel)
-  * [Dot product kernel](#dot_product_kernel)
-
-<div id='what_are_kernels'/>
-## What are kernels
-
-In statistics, a kernel typically refers to a window function used in various estimation techniques, such as kernel density estimation(KDE) and [Gaussian process]({{ site.baseurl }}{% link _posts/2022-07-23-gaussian-process.md %}).
-
-Being a window function means that it is applied to a certain region of values. Any region has a central point, and all other points around it are weighted in such a way that reflects their closeness to the central point.
-
-Typically kernel functions are not used by themselves but rather are incorporated into other functions where they perform reweighting of the initial observations. The weight of each individual point is spread around the region around it whereas the center of the kernel is placed on that point.
-
-A kernel function is a non-negative and symmetric function centered at 0. It also integrates to 1 over its support region which ensures that the total weight remains the same before and after reweighting.
-
-Commonly used kernel functions include:
-
-* Gaussian (normal) kernel: $K(x)=\frac{1}{\sqrt{2 \pi}} e^{-\frac{1}{2}x^{2}}$.
-* Epanechnikov kernel: $K(x)=\frac{3}{4}(1−x^{2})$ if $∣x∣\leq 1$, otherwise, otherwise 0.
-* Triangular kernel: $K(x)=(1−∣u∣)$ if $∣x∣\leq 1$, otherwise, otherwise 0.
-* Uniform (rectangular) kernel: $K(x) = \frac{1}{2}$ if $∣x∣\leq 1$, otherwise, otherwise 0.
-
-![](/assets/images/optimization/kernels_comparison.png){: .align-center}
-<a href="#page-title" class="back-to-top">{{ site.data.ui-text[site.locale].back_to_top | default: 'Back to Top' }} &uarr;</a>
-
-<div id='kde'/>
-## Kernel density estimation
-
-Kernel density estimation (KDE) is a technique used for estimating the probability density function of a random variable. The fundamental problem KDE addresses is data smoothing: making inferences about the population based on observed data.
-
-KDE does not assume any parametric distribution. Instead, each datapoint from the sample is considered as an individual distribution and thus its value is substituted by a continuous [distribution function]({{ site.baseurl }}{% link _posts/2021-03-27-statistical-distributions.md %}) (probability density) according to the selected kernel. The kernel input $x$ from the formulas above is the distance between an observed point and $x_i$ and any arbitrary point in its surrounding region. All of the resulting distributions are added together across the whole observed range of values, and thus the overall shape of the combined distribution is built.
-
-![](/assets/images/optimization/kernels_density_and_sum.png){: .align-center}
-
-The choise of the kernel function in KDE does not really matter. The Gaussian kernel is used the most because it is infinitely differentiable. What's more important is the selected bandwidth.
-
-The bandwidth parameter determines the length scale of the kernel and therefore influences the smoothness of the estimated density. A larger bandwidth results in a smoother estimate because more neighboring points have impact on one another. On the other hand, a smaller bandwidth can lead to more variability in the estimate.
-
-Here is how the formula for the kernel density estimation:
-
-$$\hat{f}_h(x) = \frac{1}{n} \sum_{i=1}^n K (x - x_i) = \frac{1}{nh} \sum_{i=1}^n K \left(\frac{x - x_i}{h}\right)$$
-
-where $K$ is the kernel function, $h$ is the bandwidth.
-
-![](/assets/images/optimization/kernels_density_bandwidth_effect.png){: .align-center}
-
-Since each individual distribution is [integrated]({{ site.baseurl }}{% link _posts/2019-09-24-integrals.md %}) to 1, the combined sum of all distributions around the known points is divided by $n$ in order to make it equal to 1 as well. Notice however that the function also is scaled by the factor of the bandwidth $h$. This is because when including this factor into the kernel function, the area under the individual point distribution is multiplied accordingly. Therefore, in order to restore the overall sum of distributions to 1 it also needs to be divided by $h$.
 
 <div id='kernels_gausian_process'/>
 ## Kernels in Gaussian process
