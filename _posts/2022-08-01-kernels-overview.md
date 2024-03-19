@@ -2,7 +2,7 @@
 layout: single
 title: "Kernels overview"
 category: "Optimization"
-tags: AR MA ARMA stationarity autoregression moving-average random-walk unit-root differencing ACF autocorrelation-function PACF partial-autocorrelation-function lag SARIMA SARIMAX
+tags: gaussian-process RBF radial-basis-function-kernel squared-exponential-kernel covariance matern-kernel rational-quadratic-kernel periodic-kernel linear-kernel dot-product-kernel kernel-density-estimation KDE kernel-bandwidth
 date: 2024-03-19
 ---
 
