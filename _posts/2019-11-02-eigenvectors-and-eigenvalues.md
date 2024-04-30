@@ -35,10 +35,10 @@ $M v - \lambda I v = 0$
 &nbsp;&nbsp;&nbsp;&nbsp;
 $(M - \lambda I)v = 0$
  
-By itself multiplication by identity matrix $I$ doesn't change anything. The identity matrix is only used in order for the operation in parenthesis to be valid. Matrix $M - \lambda I$ is just matrix $M$ where $\lambda$ is subtracted from its diagonal elements.
+By itself, multiplication by identity matrix $I$ doesn't change anything. The identity matrix is only used in order for the operation in parenthesis to be valid. Matrix $M - \lambda I$ is just matrix $M$ where $\lambda$ is subtracted from its diagonal elements.
  
-The expression $(M - \lambda I)v$ is certainly zero if $v$ is a zero vector. Also recall that if a matrix has zero determinant it represents squishing into lower dimensional space. So if $M - \lambda I$ has zero determinant then it squishes any vector into zero vector. From here we must find such $\lambda$ where $det(M - \lambda I) = 0$.<br>
- 
+The expression $(M - \lambda I)v$ is certainly zero if $v$ is a zero vector. Also recall that if a matrix has zero determinant it represents squashing into lower dimensional space. So if $M - \lambda I$ has zero determinant then it squishes any vector into zero vector. From here we must find such $\lambda$ where $det(M - \lambda I) = 0$.
+
 After finding values of $\lambda$ we can find eigenvectors $v$ for each of them by plugging already known $\lambda$ into the same equation $(M - \lambda I)v = 0$ and solving a system of linear equations for each $\lambda$:
  
 $$

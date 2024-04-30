@@ -71,7 +71,8 @@ Here is an example of gradient descent in two-dimensional space:
 The area depicts the loss function values for all combinations of the parameters $\theta$ within certain scope. In order to simplify plotting, the loss function is usually projected on a two-dimensional plot of $\theta_0$ and $\theta_1$ with a contour plot, where each line represents areas where the loss function assumes the same value. Such areas of the same values are usually plotted with different colours, so that the areas of minima are easily distinguished. In the example above the areas where the loss function reaches its minimum are painted in blue.
  
 Unfortunately, the best number which could be used as a value of the learning rate cannot be found analytically and thus has to be adjusted by trial and error. Smaller learning rates can lead to more precise estimations but would require more calculations while the bigger ones may lead to less accurate results, including overstepping the minimum of a function. Some techniques employed for finding the most appropriate learning rate include grid search, scheduling learning rate to decrease when a certain amount of steps is undertaken, and using adaptive learning rate.
- 
+
+<div id='types_gradient_descent'/>
 ## Types of gradient descent
  
 Typically gradient descent is applied to the loss function which is calculated using all available observations. This type of gradient descent is called batch gradient descent. It is quite stable and is guaranteed to converge to a local or global minimum depending on the initial guess for parameters, however for a large number of observations and parameters this type of gradient descent may be slow and computationally expensive.
