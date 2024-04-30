@@ -88,6 +88,7 @@ Other than that, _**ward**_ linkage may be used which determines clusters by min
 For example we have clusters A and B with their own within-group distances.
 
 $$SSE_{A} = \sum_{i=1}^{n_A} (\lvert\lvert x_i - \mu_A \rvert\rvert^2)$$
+
 $$SSE_{B} = \sum_{i=1}^{n_B} (\lvert\lvert x_i - \mu_B \rvert\rvert^2)$$
 
 Supposing we merge these two clusters then it is possible to calculate the between group sum of squared errors with respect to the new central point of the newly merged cluster.
@@ -121,7 +122,7 @@ Additionally the trees have a so-called branching factor which restricts the num
 
 Eventually any clustering algorithm is applied to the leaf-level subclusters of CFT. Here is the result of BIRCH followed by agglomerative clustering with ward linkage compared to agglomerative clustering without BIRCH.
 
-![](/assets/images/clustering/optics_reachability.png){: .align-center}
+![](/assets/images/clustering/birch_test.png){: .align-center}
 
 As can be seen, BIRCH performed worse here because it merged clusters with varying densities together.
 
@@ -235,7 +236,7 @@ DBSCAN is capable of identifying clusters of arbitrary shapes because it doesn't
 
 The drawback of DBSCAN is that its effectiveness highly depends on selecting the appropriate hyperparameter which corresponds to the radius of the neighborhood. If misconfigured, it can treat the whole dataset as a single cluster, or not find any clusters at all. In this sense even though there is no need to specify the number of clusters, the algorithm needs hyperparameter tuning just like Affinity propagation and Mean shift.
 
-![](/assets/images/clustering/spectral_clustering_test.png){: .align-center}
+![](/assets/images/clustering/dbscan_test.png){: .align-center}
 
 As can be seen, DBSCAN under is capable of identifying moon-shaped clusters fairly well. However, other clusters which have more sparse structure are not so well defined. We can observe that the whole cloud in the top left corner was not labeled. The edges of the two blobs in the top tight and bottom left corners, where the density is lower, were also marked as outliers.
 
