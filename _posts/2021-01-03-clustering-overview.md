@@ -114,7 +114,7 @@ BIRCH stands for Balanced Iterative Reducing and Clustering using Hierarchies. T
 
 BIRCH builds clustering feature tree (CFT) which have nodes, which in turn may have their own nodes as children. Each node in this tree is a subcluster with its own coordinates and centroid.
 
-In the scope of BIRCH the raw data points are processed one by one. They go through the root of the CFT and are assigned to a node the subcluster of which will have the smallest radius after adding this new data point. If the subcluster has any child node, then this new point is passed further down repeatedly until it reaches the lowest level subcluster - a leaf. After adding the properties of each subcluster are updated.
+In the scope of BIRCH the raw data points are processed one by one. They go through the root of the CFT and are assigned to a node of a subcluster which will have the smallest radius after adding this new data point. If the subcluster has any child node, then this new point is passed further down repeatedly until it reaches the lowest level subcluster - a leaf. After adding, the properties of each subcluster are updated.
 
 Each of the lowest level subclusters have their own threshold value which defines its radius. If after adding a new datapoint the radius exceeds the threshold, then a new subcluster is formed horizontally, and the points are redistributed between the existing nodes.
 
@@ -253,13 +253,13 @@ OPTICS builds a reachability plot, where the order is put on the x-axis, and the
 
 ![](/assets/images/clustering/optics_reachability.png){: .align-center}
 
-The points belonging to clusters are marked with color while the points which are considered as outliers are black. Intuitively, the decrease in distance means that the algorithm has reached a region of higher density which is why it starts to consider the points as belonging to a cluster, and coloring them accordingly. We can also observe that when the distance starts to increase significantly then the points are no longer considered to be belonging to a cluster, and start marking as outliers instead. Also the clusters with higher density have lover values of reachability.
+The points belonging to clusters are marked with color while the points which are considered as outliers are black. Intuitively, the decrease in distance means that the algorithm has reached a region of higher density which is why it starts to consider the points as belonging to a cluster, and coloring them accordingly. We can also observe that when the distance starts to increase significantly then the points are no longer considered to be belonging to a cluster, and start marking as outliers instead. Also the clusters with higher density have lower values of reachability.
 
 See the results of OPTICS clustering compared to DBSCAN:
 
 ![](/assets/images/clustering/optics_test.png){: .align-center}
 
-The blob-shaped clusters are better identifiable, and the cloud of outliers is smaller on their edges. At the same time the moon-shaped clusters are split in twos. If we look at the reachability plot we can still observe that the halves are close together, and were split due to the sharp change in density due to the outliers presence. Overall, it may seem like DBSCAN deals better with the clusters of non-standard shape however OPTICS excels in identifying round blobs of varying  density while does a decent job in identifying clusters of non-standard shape.
+The blob-shaped clusters are better identifiable, and the cloud of outliers is smaller on their edges. At the same time the moon-shaped clusters are split in twos. If we look at the reachability plot we can still observe that the halves are close together, and were split due to the sharp change in density due to the outliers presence. Overall, it may seem like DBSCAN deals better with the clusters of non-standard shape however OPTICS excels in identifying round blobs of varying  density while also doing a decent job in identifying clusters of non-standard shape.
 
 <a href="#page-title" class="back-to-top">{{ site.data.ui-text[site.locale].back_to_top | default: 'Back to Top' }} &uarr;</a>
 
