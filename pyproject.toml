@@ -8,7 +8,7 @@ package-mode = false
 
 [tool.poetry.dependencies]
 python = "^3.12"
-jupyterlab = "^4.1.6"
+jupyterlab = "^4.2.5"
 scikit-learn = "^1.4.2"
 seaborn = "^0.13.2"
 bokeh = "^3.4.1"
