@@ -1,20 +1,24 @@
-[tool.poetry]
-name = "ds-toolkit"
+[project]
+authors = [{name = "Vladyslav Zahorui", email = "vzahorui.dev@gmail.com"}]
+dependencies = []
+name = "vzahorui.github.io"
+requires-python = ">= 3.11"
 version = "0.1.0"
-description = ""
-authors = ["Your Name <you@example.com>"]
-readme = "README.md"
-package-mode = false
-
-[tool.poetry.dependencies]
-python = "^3.12"
-jupyterlab = "^4.1.6"
-scikit-learn = "^1.4.2"
-seaborn = "^0.13.2"
-bokeh = "^3.4.1"
-pandas = "^2.2.2"
-
 
 [build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
+build-backend = "hatchling.build"
+requires = ["hatchling"]
+
+[tool.pixi.workspace]
+channels = ["conda-forge"]
+platforms = ["linux-64"]
+
+[tool.pixi.pypi-dependencies]
+vzahorui_github_io = { path = ".", editable = true }
+
+[tool.pixi.tasks]
+
+[tool.pixi.dependencies]
+jupyterlab = ">=4.4.5,<5"
+numpy = ">=2.3.2,<3"
+seaborn = ">=0.13.2,<0.14"
