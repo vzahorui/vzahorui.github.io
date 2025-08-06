@@ -112,10 +112,10 @@ $$\text{Growth}_{ij}​=\beta_{0}​+\beta_{1}​(\text{Week}_{ij}​)+\beta_{2}
 
 Here:
 
- * $beta_{0}$​ is the fixed intercept, representing the average baseline growth (at week 0) for the Control group.
- * $beta_{1}$​ is the fixed slope, representing the average weekly growth rate for the Control group.
- * $beta_{2}$​ is the fixed effect of Fertilizer A, representing how much its weekly growth rate differs from the Control group.
- * $beta_{3}$ is the fixed effect of Fertilizer B, representing how much its weekly growth rate differs from the Control group.
+ * $\beta_{0}$​ is the fixed intercept, representing the average baseline growth (at week 0) for the Control group.
+ * $\beta_{1}$​ is the fixed slope, representing the average weekly growth rate for the Control group.
+ * $\beta_{2}$​ is the fixed effect of Fertilizer A, representing how much its weekly growth rate differs from the Control group.
+ * $\beta_{3}$ is the fixed effect of Fertilizer B, representing how much its weekly growth rate differs from the Control group.
  * $u_i$​ is the random effect for plot $i$, representing the unique, plot-specific deviation from the overall average growth trajectory. This term accounts for the inherent differences between plots (e.g., soil quality). This is assumed to be a random variable, typically following a normal distribution $u_i​∼N(0,\sigma_u^2​)$.
  * $\epsilon_{ij}$​ is the residual error for plot $i$ at week $j$, representing the random, unexplained variation for that specific measurement. This is also assumed to be a random variable, typically following a normal distribution $\epsilon_{ij}​∼N(0,\sigma_{\epsilon}^2​)$.
 
