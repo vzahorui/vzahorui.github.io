@@ -1,0 +1,24 @@
+// Override the main content container styles
+.page__wrapper {
+  max-width: 100% !important;
+}
+
+.page__content {
+  .archive {
+    max-width: 100% !important;
+  }
+}
+
+// Center the main column
+.wide .page__content {
+  max-width: 100% !important; // Adjust this value for your desired max width
+  margin-right: auto !important; // remove the right margin
+  margin-left: auto !important; // center the content
+}
+
+// Override the content's reserved space
+.layout--single .page__content,
+.layout--archive .page__content {
+  padding-right: 0 !important;
+  padding-left: 0 !important;
+}
