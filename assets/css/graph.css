@@ -1,26 +1,48 @@
 .chart-root { width: 100%; max-width: 1200px; margin: 0 auto; }
 
 .svg-container {
-  display: inline-block;
   position: relative;
   width: 100%;
-  padding-bottom: 120%;
-  vertical-align: middle;
+  max-width: 1200px;
+  margin: 0 auto;
+  /* use aspect-ratio to reduce large top/bottom gaps; tweak ratio if needed */
+  aspect-ratio: 16 / 9;
   overflow: hidden;
-
-  /* allow normal vertical scrolling on touch devices when zoom is disabled */
-  touch-action: pan-y pinch-zoom;
+  background: transparent;
 }
 
 .svg-content-responsive {
-  display: inline-block;
   position: absolute;
-  top: 10px;
-  left: 0;
-  height: 100%;
+  inset: 0; /* top:0; right:0; bottom:0; left:0; */
   width: 100%;
+  height: 100%;
+  display: block;
 }
 
+/* control box (top-right, padded from screen border) */
+.graph-controls {
+  position: fixed;
+  top: 14px;
+  right: 14px;
+  z-index: 1200;
+  padding: 8px 12px;
+  background: rgba(255,255,255,0.9);
+  border-radius: 10px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.10);
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  color: #1f2937;
+  display: inline-flex;
+  align-items: center;
+}
+
+/* nicer checkbox spacing */
+.graph-controls .zoom-toggle input {
+  margin-right: 8px;
+  transform: translateY(1px);
+}
+
+/* keep previous styles */
 .node circle { transition: fill 120ms; }
 .node:focus circle { outline: none; stroke-width: 2.5px; }
 .links line { opacity: 0.95; stroke-linecap: round; }
