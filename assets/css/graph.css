@@ -1,0 +1,24 @@
+.chart-root { width: 100%; max-width: 1200px; margin: 0 auto; }
+
+.svg-container {
+  display: inline-block;
+  position: relative;
+  width: 100%;
+  padding-bottom: 120%;
+  vertical-align: middle;
+  overflow: hidden;
+}
+
+.svg-content-responsive {
+  display: inline-block;
+  position: absolute;
+  top: 10px;
+  left: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.node circle { transition: fill 120ms; }
+.node:focus circle { outline: none; stroke-width: 2.5px; }
+.links line { opacity: 0.9; }
+.labelNodes text { pointer-events: auto; cursor: pointer; user-select: none; }
