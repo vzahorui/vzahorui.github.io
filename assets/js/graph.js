@@ -1,175 +1,89 @@
-import * as d3 from 'https://cdn.jsdelivr.net/npm/d3@7/+esm';
+// Load the graph data from a JSON file
+d3.json('{{ site.baseurl }}/assets/data/graph.json').then(data => {
 
-const containerId = '#chartId';
-const WIDTH = 1800;
-const HEIGHT = 2200;
+    const width = 1800;
+    const height = 2200;
 
-const raw = document.getElementById('graph-data').textContent;
-const graph = JSON.parse(raw);
+    // Create the SVG container and set its dimensions
+    const svg = d3.select("#chartId")
+        .append("div")
+        .classed("svg-container", true)
+        .append("svg")
+        .attr("preserveAspectRatio", "xMinYMin meet")
+        .attr("viewBox", `0 0 ${width} ${height}`)
+        .classed("svg-content-responsive", true);
 
-// radius scale computed from sizes, fallback if undefined
-const sizeValues = graph.nodes.map(n => (typeof n.size === 'number' ? n.size : 1));
-const radius = d3.scaleSqrt()
-  .domain(d3.extent(sizeValues))
-  .range([6, 34]); // visible sizes, tweak as needed
+    const container = svg.append("g");
 
-// prepare label helper (two-node trick)
-const label = { nodes: [], links: [] };
-graph.nodes.forEach((n, i) => {
-  label.nodes.push({ node: n });
-  label.nodes.push({ node: n });
-  label.links.push({ source: i * 2, target: i * 2 + 1 });
-});
+    // Define the force simulation for the graph
+    const simulation = d3.forceSimulation(data.nodes)
+        .force("link", d3.forceLink(data.links).id(d => d.id).distance(d => d.distance).strength(1))
+        .force("charge", d3.forceManyBody().strength(-600))
+        .force("center", d3.forceCenter(width / 2, height / 2))
+        .force("x", d3.forceX(width / 2).strength(0.03))
+        .force("y", d3.forceY(height / 2).strength(0.01));
 
-// root SVG
-const root = d3.select(containerId);
-root.selectAll('*').remove();
+    // Create the links (lines)
+    const link = container.append("g")
+        .attr("class", "links")
+        .selectAll("line")
+        .data(data.links)
+        .join("line");
 
-const wrapper = root.append('div').classed('svg-container', true);
+    // Create a group for each node, which will contain both the circle and the text label
+    const node = container.append("g")
+        .attr("class", "nodes")
+        .selectAll("g")
+        .data(data.nodes)
+        .join("g")
+        .call(drag(simulation))
+        .on("click", (event, d) => window.open(d.url, '_blank'));
 
-const svg = wrapper.append('svg')
-  .attr('viewBox', `0 0 ${WIDTH} ${HEIGHT}`)
-  .attr('preserveAspectRatio', 'xMinYMin meet')
-  .classed('svg-content-responsive', true)
-  .attr('role', 'img')
-  .attr('aria-label', 'Article relationship graph');
+    // Append the circles to the node group
+    const radius = d3.scaleSqrt().range([5, 25]); // Use a better radius scale
+    node.append("circle")
+        .attr("r", d => radius(d.size))
+        .attr("fill", "#2ecc71"); // A fresh, modern green
 
-const g = svg.append('g').attr('class', 'graph-root');
+    // Append the text labels to the node group
+    node.append("text")
+        .text(d => d.id)
+        .attr("font-size", d => d.font + 'em')
+        .attr("dx", 15)
+        .attr("dy", 4);
 
-// zoom / pan
-svg.call(d3.zoom().scaleExtent([0.2, 4]).on('zoom', (event) => {
-  g.attr('transform', event.transform);
-}));
+    // Update positions on each tick of the simulation
+    simulation.on("tick", () => {
+        link
+            .attr("x1", d => d.source.x)
+            .attr("y1", d => d.source.y)
+            .attr("x2", d => d.target.x)
+            .attr("y2", d => d.target.y);
 
-// links
-const link = g.append('g')
-  .attr('class', 'links')
-  .selectAll('line')
-  .data(graph.links)
-  .enter()
-  .append('line')
-  .attr('stroke', '#273746')
-  .attr('stroke-width', 1.5);
+        node.attr("transform", d => `translate(${d.x},${d.y})`);
+    });
 
-// nodes (grouped so circle + text move together)
-const nodeG = g.append('g')
-  .attr('class', 'nodes')
-  .selectAll('g')
-  .data(graph.nodes)
-  .enter()
-  .append('g')
-  .attr('class', 'node')
-  .attr('tabindex', 0)
-  .on('dblclick', (event, d) => { window.open(d.url, '_blank'); })
-  .on('keydown', (event, d) => {
-    if (event.key === 'Enter' || event.key === ' ') window.open(d.url, '_blank');
-  });
+    // --- Drag Behavior ---
+    function drag(simulation) {
+        function dragstarted(event, d) {
+            if (!event.active) simulation.alphaTarget(0.3).restart();
+            d.fx = d.x;
+            d.fy = d.y;
+        }
 
-// circle
-nodeG.append('circle')
-  .attr('r', d => radius(d.size))
-  .attr('fill', '#d4d3da')
-  .attr('stroke', '#273746')
-  .attr('stroke-width', 1.5)
-  .style('cursor', 'grab');
+        function dragged(event, d) {
+            d.fx = event.x;
+            d.fy = event.y;
+        }
 
-// visible label text (we'll use label nodes for collision-free placement)
-nodeG.append('title').text(d => `${d.id}\n${d.url || ''}`);
-
-// label nodes (two-node trick for offset & collision)
-const labelNode = g.append('g')
-  .attr('class', 'labelNodes')
-  .selectAll('text')
-  .data(label.nodes)
-  .enter()
-  .append('a')
-  .attr('href', d => d.node.url || '#')
-  .attr('target', '_blank')
-  .append('text')
-  .text((d, i) => (i % 2 === 0 ? '' : d.node.id))
-  .attr('fill', '#333')
-  .attr('font-family', 'Arial')
-  .attr('font-size', d => (d.node.font ? `${d.node.font}em` : '1em'))
-  .attr('text-anchor', 'start')
-  .attr('dx', 6);
-
-// simulations
-const labelSim = d3.forceSimulation(label.nodes)
-  .force('charge', d3.forceManyBody().strength(-30))
-  .force('link', d3.forceLink(label.links).distance(0).strength(1))
-  .alphaDecay(0.05);
-
-const sim = d3.forceSimulation(graph.nodes)
-  .force('link', d3.forceLink(graph.links).id(d => d.id).distance(d => d.distance || 100).strength(1))
-  .force('charge', d3.forceManyBody().strength(-300))
-  .force('center', d3.forceCenter(WIDTH / 2, HEIGHT / 2))
-  .force('collision', d3.forceCollide().radius(d => radius(d.size) + 6).strength(1))
-  .force('x', d3.forceX(WIDTH / 2).strength(0.02))
-  .force('y', d3.forceY(HEIGHT / 2).strength(0.01))
-  .on('tick', ticked);
-
-// drag handlers (v7 style)
-const drag = d3.drag()
-  .on('start', (event, d) => {
-    if (!event.active) sim.alphaTarget(0.3).restart();
-    d.fx = d.x; d.fy = d.y;
-    d3.select(event.sourceEvent.target).style('cursor', 'grabbing');
-  })
-  .on('drag', (event, d) => {
-    d.fx = event.x; d.fy = event.y;
-  })
-  .on('end', (event, d) => {
-    if (!event.active) sim.alphaTarget(0);
-    // keep nodes movable by user but release on end (comment out to keep fixed)
-    d.fx = null; d.fy = null;
-    d3.select(event.sourceEvent.target).style('cursor', 'grab');
-  });
-
-nodeG.call(drag);
-
-function ticked() {
-  // links
-  link
-    .attr('x1', d => fix(d.source.x))
-    .attr('y1', d => fix(d.source.y))
-    .attr('x2', d => fix(d.target.x))
-    .attr('y2', d => fix(d.target.y));
-
-  // node groups
-  nodeG.attr('transform', d => `translate(${fix(d.x)},${fix(d.y)})`);
-
-  // label simulation needs restarting to adapt to node moves
-  labelSim.alphaTarget(0.3).restart();
-
-  // label nodes positioning: even index is anchored to node, odd is text position
-  labelNode.each(function(d, i) {
-    if (i % 2 === 0) {
-      d.x = d.node.x;
-      d.y = d.node.y;
-    } else {
-      const b = this.getBBox();
-      const diffX = d.x - d.node.x;
-      const diffY = d.y - d.node.y;
-      const dist = Math.sqrt(diffX * diffX + diffY * diffY) || 1;
-      let shiftX = b.width * (diffX - dist) / (dist * 2);
-      shiftX = Math.max(-b.width, Math.min(0, shiftX));
-      const shiftY = 6;
-      this.setAttribute('transform', `translate(${shiftX},${shiftY})`);
+        function dragended(event, d) {
+            if (!event.active) simulation.alphaTarget(0);
+            d.fx = null; // Release the node
+            d.fy = null; // Release the node
+        }
+        return d3.drag()
+            .on("start", dragstarted)
+            .on("drag", dragged)
+            .on("end", dragended);
     }
-  });
-
-  labelNode.attr('x', d => fix(d.x)).attr('y', d => fix(d.y));
-}
-
-function fix(v) { return Number.isFinite(v) ? v : 0; }
-
-// responsive: recenter on resize (debounced)
-let rt;
-window.addEventListener('resize', () => {
-  clearTimeout(rt);
-  rt = setTimeout(() => {
-    const box = svg.node().getBoundingClientRect();
-    sim.force('center', d3.forceCenter(box.width / 2, box.height / 2));
-    sim.alpha(0.5).restart();
-  }, 150);
-}, { passive: true });
+});
