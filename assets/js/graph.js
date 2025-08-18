@@ -1,7 +1,7 @@
 import * as d3 from 'https://cdn.jsdelivr.net/npm/d3@7/+esm';
 
 const WIDTH = 1800;
-const HEIGHT = 2200;
+const HEIGHT = 1800;
 
 const raw = document.getElementById('graph-data').textContent;
 const graph = JSON.parse(raw);
