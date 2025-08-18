@@ -1,24 +1,33 @@
 .chart-root { width: 100%; max-width: 1200px; margin: 0 auto; }
 
+/* make container use more vertical space and center svg content */
 .svg-container {
   position: relative;
   width: 100%;
-  max-width: 1200px;
+  /* allow the container to expand to available column; remove strict max-width */
+  max-width: none;
   margin: 8px auto 24px;
-  /* use controlled height instead of large padding-bottom to avoid lots of whitespace */
-  height: min(75vh, 900px);
+  /* use more viewport height so graph is larger */
+  height: min(85vh, 1100px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
   overflow: hidden;
   background: transparent;
 }
 
+/* let the svg fill the container */
 .svg-content-responsive {
-  position: absolute;
-  inset: 0; /* top:0; right:0; bottom:0; left:0; */
+  position: relative;
   width: 100%;
   height: 100%;
   display: block;
 }
 
+/* small adjustment so preserved aspect centers and uses space */
+.svg-content-responsive svg { width: 100%; height: 100%; }
+
+/* styles for nodes/labels */
 .node circle { transition: fill 120ms; }
 .node:focus circle { outline: none; stroke-width: 2.5px; }
 .links line { opacity: 0.95; stroke-linecap: round; }

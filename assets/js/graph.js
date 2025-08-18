@@ -28,7 +28,11 @@ const wrapper = root.append('div').classed('svg-container', true);
 
 const svg = wrapper.append('svg')
   .attr('viewBox', `0 0 ${WIDTH} ${HEIGHT}`)
-  .attr('preserveAspectRatio', 'xMinYMin meet')
+  // center the content in the container (was xMinYMin)
+  .attr('preserveAspectRatio', 'xMidYMid meet')
+  // ensure svg fills the container box
+  .attr('width', '100%')
+  .attr('height', '100%')
   .classed('svg-content-responsive', true)
   .attr('role', 'img')
   .attr('aria-label', 'Article relationship graph');
@@ -42,7 +46,6 @@ const g = svg.append('g').attr('class', 'graph-root');
 const zoom = d3.zoom()
   .scaleExtent([0.2, 4])
   .filter((event) => {
-    // require Ctrl/Cmd for wheel events (two-finger pad scroll won't zoom)
     if (event.type === 'wheel') return event.ctrlKey || event.metaKey;
     return true;
   })
@@ -79,7 +82,7 @@ const nodeG = g.append('g').attr('class', 'nodes')
     const circ = gEl.select('circle');
     const pinned = circ.classed('node-pinned');
     if (!pinned) {
-      circ.classed('node-pinned', true).attr('fill', '#f1c40f');
+      circ.classed('node-pinned', true).attr('fill', '#f1c40f'); // ensure visible yellow
       d.fx = d.x;
       d.fy = d.y;
     } else {
