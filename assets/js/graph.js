@@ -35,7 +35,8 @@ const svg = wrapper.append('svg')
   .attr('height', '100%')
   .classed('svg-content-responsive', true)
   .attr('role', 'img')
-  .attr('aria-label', 'Article relationship graph');
+  .attr('aria-label', 'Article relationship graph')
+  .style('touch-action', 'pan-y pinch-zoom');
 
 // allow normal vertical scrolling and pinch when appropriate
 svg.style('touch-action', 'pan-y pinch-zoom');
