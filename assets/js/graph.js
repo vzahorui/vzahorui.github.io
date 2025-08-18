@@ -33,30 +33,25 @@ const svg = wrapper.append('svg')
   .attr('role', 'img')
   .attr('aria-label', 'Article relationship graph');
 
+// allow normal vertical scrolling and pinch when appropriate
+svg.style('touch-action', 'pan-y pinch-zoom');
+
 const g = svg.append('g').attr('class', 'graph-root');
 
-// zoom behavior (created but not attached by default)
+// zoom behavior: wheel zoom only when Ctrl/Cmd is pressed
 const zoom = d3.zoom()
   .scaleExtent([0.2, 4])
+  .filter((event) => {
+    // require Ctrl/Cmd for wheel events (two-finger pad scroll won't zoom)
+    if (event.type === 'wheel') return event.ctrlKey || event.metaKey;
+    return true;
+  })
   .on('zoom', (event) => {
     g.attr('transform', event.transform);
   });
 
-// wire toggle control
-const zoomToggle = document.getElementById('zoomToggle');
-function setZoomEnabled(enabled) {
-  if (enabled) {
-    svg.call(zoom);
-    // make pointer events appropriate when zoom enabled
-    svg.style('touch-action', 'none');
-  } else {
-    svg.on('.zoom', null);
-    svg.style('touch-action', null);
-  }
-}
-// default: disabled (so two-finger scroll scrolls page)
-setZoomEnabled(Boolean(zoomToggle && zoomToggle.checked));
-if (zoomToggle) zoomToggle.addEventListener('change', () => setZoomEnabled(zoomToggle.checked));
+// attach zoom (filter handles wheel behavior)
+svg.call(zoom);
 
 // links
 const link = g.append('g').attr('class', 'links')
@@ -76,21 +71,19 @@ const nodeG = g.append('g').attr('class', 'nodes')
   .attr('class', 'node')
   .style('cursor', 'grab')
   .on('dblclick', (event, d) => {
-    // open article on double click
     if (d.url) window.open(d.url, '_blank');
   })
   .on('click', (event, d) => {
-    // ignore clicks that follow a drag
     if (event.defaultPrevented) return;
     const gEl = d3.select(event.currentTarget);
     const circ = gEl.select('circle');
     const pinned = circ.classed('node-pinned');
     if (!pinned) {
-      circ.classed('node-pinned', true);
+      circ.classed('node-pinned', true).attr('fill', '#f1c40f');
       d.fx = d.x;
       d.fy = d.y;
     } else {
-      circ.classed('node-pinned', false);
+      circ.classed('node-pinned', false).attr('fill', '#d4d3da');
       d.fx = null;
       d.fy = null;
     }
@@ -142,7 +135,7 @@ const drag = d3.drag()
     event.sourceEvent.stopPropagation();
     if (!event.active) sim.alphaTarget(0.3).restart();
     d.fx = d.x; d.fy = d.y;
-    d3.select(event.sourceEvent.target).style('cursor', 'grabbing');
+    d3.select(event.sourceEvent.target.closest ? event.sourceEvent.target.closest('.node') : event.currentTarget).style('cursor', 'grabbing');
   })
   .on('drag', (event, d) => {
     d.fx = event.x; d.fy = event.y;
@@ -150,12 +143,14 @@ const drag = d3.drag()
   .on('end', (event, d) => {
     if (!event.active) sim.alphaTarget(0);
     const nodeSel = d3.select(event.sourceEvent.target.closest ? event.sourceEvent.target.closest('.node') : event.currentTarget);
-    const pinned = nodeSel.select('circle').classed('node-pinned');
+    const circ = nodeSel.select('circle');
+    const pinned = circ.classed('node-pinned');
     if (!pinned) {
       d.fx = null; d.fy = null;
+      circ.attr('fill', '#d4d3da');
     } else {
-      // keep pinned at new position
       d.fx = event.x; d.fy = event.y;
+      circ.attr('fill', '#f1c40f');
     }
     nodeSel.style('cursor', 'grab');
   });

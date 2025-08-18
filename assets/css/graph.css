@@ -4,9 +4,9 @@
   position: relative;
   width: 100%;
   max-width: 1200px;
-  margin: 0 auto;
-  /* use aspect-ratio to reduce large top/bottom gaps; tweak ratio if needed */
-  aspect-ratio: 16 / 9;
+  margin: 8px auto 24px;
+  /* use controlled height instead of large padding-bottom to avoid lots of whitespace */
+  height: min(75vh, 900px);
   overflow: hidden;
   background: transparent;
 }
@@ -19,30 +19,6 @@
   display: block;
 }
 
-/* control box (top-right, padded from screen border) */
-.graph-controls {
-  position: fixed;
-  top: 14px;
-  right: 14px;
-  z-index: 1200;
-  padding: 8px 12px;
-  background: rgba(255,255,255,0.9);
-  border-radius: 10px;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.10);
-  font-family: Arial, sans-serif;
-  font-size: 14px;
-  color: #1f2937;
-  display: inline-flex;
-  align-items: center;
-}
-
-/* nicer checkbox spacing */
-.graph-controls .zoom-toggle input {
-  margin-right: 8px;
-  transform: translateY(1px);
-}
-
-/* keep previous styles */
 .node circle { transition: fill 120ms; }
 .node:focus circle { outline: none; stroke-width: 2.5px; }
 .links line { opacity: 0.95; stroke-linecap: round; }
