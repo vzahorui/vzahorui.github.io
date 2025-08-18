@@ -8,7 +8,7 @@
   max-width: none;
   margin: 8px auto 24px;
   /* use more viewport height so graph is larger */
-  height: min(85vh, 1400px);
+  height: min(85vh, 1500px);
   display: flex;
   justify-content: center;
   align-items: center;

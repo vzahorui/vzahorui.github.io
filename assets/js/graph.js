@@ -43,8 +43,16 @@ svg.style('touch-action', 'pan-y pinch-zoom');
 
 const g = svg.append('g').attr('class', 'graph-root');
 
-const zoom = d3.zoom()
+  const zoom = d3.zoom()
   .scaleExtent([0.2, 4])
+  .filter(event => {
+    // Allows pinch-to-zoom on touchscreens and trackpads
+    if (event.type === 'touchstart' || event.type === 'wheel') {
+      return true;
+    }
+    // Allows drag to pan with mouse
+    return event.button === 0;
+  })
   .on('zoom', (event) => {
     g.attr('transform', event.transform);
   });
