@@ -1,7 +1,7 @@
 import * as d3 from 'https://cdn.jsdelivr.net/npm/d3@7/+esm';
 
 const WIDTH = 1800;
-const HEIGHT = 1800;
+const HEIGHT = 1500;
 
 const raw = document.getElementById('graph-data').textContent;
 const graph = JSON.parse(raw);
@@ -42,13 +42,8 @@ svg.style('touch-action', 'pan-y pinch-zoom');
 
 const g = svg.append('g').attr('class', 'graph-root');
 
-// zoom behavior: wheel zoom only when Ctrl/Cmd is pressed
 const zoom = d3.zoom()
   .scaleExtent([0.2, 4])
-  .filter((event) => {
-    if (event.type === 'wheel') return event.ctrlKey || event.metaKey;
-    return true;
-  })
   .on('zoom', (event) => {
     g.attr('transform', event.transform);
   });
