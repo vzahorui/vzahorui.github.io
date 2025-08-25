@@ -43,8 +43,6 @@ The inclusion of the mean ($\mu$) and standard deviation ($\sigma$) in the expon
 
 The division by 2 in the exponent and the scaling factor $\frac{1}{\sigma\sqrt{2\pi}}$ are both essential for a single purpose: to ensure that the total area under the curve is exactly 1. This is a fundamental property of all probability density functions, as the total probability of all possible outcomes must equal 100%. These terms mathematically "normalize" the function, so it properly represents a probability distribution.
 
-<a href="#page-title" class="back-to-top">{{ site.data.ui-text[site.locale].back_to_top | default: 'Back to Top' }} &uarr;</a>
-
 ## Why Is It So Important?
 
 The normal distribution's significance stems from two key reasons: its prevalence in the real world and a crucial mathematical principle.
