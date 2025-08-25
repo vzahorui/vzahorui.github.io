@@ -143,10 +143,10 @@ const labelNode = g.append('g').attr('class', 'labelNodes')
 updateLabelVisibility(d3.zoomTransform(svg.node()).k);
 
 
-// A new function to handle label visibility based on zoom scale and node size
+// A function to handle label visibility based on zoom scale and node size
 function updateLabelVisibility(scale) {
   // Define a zoom threshold and size threshold
-  const zoomThreshold = 1.5;
+  const zoomThreshold = 1.1;
   const sizeThreshold = 5; // A size of 5 or more will show the label initially
 
   labelNode.style('opacity', d => {
