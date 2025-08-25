@@ -43,7 +43,8 @@ svg.style('touch-action', 'pan-y pinch-zoom');
 
 const g = svg.append('g').attr('class', 'graph-root');
 
-  const zoom = d3.zoom()
+// The zoom event listener now calls a custom function to handle label visibility.
+const zoom = d3.zoom()
   .scaleExtent([0.2, 4])
   .filter(event => {
     // Allows pinch-to-zoom on touchscreens and trackpads
@@ -55,6 +56,7 @@ const g = svg.append('g').attr('class', 'graph-root');
   })
   .on('zoom', (event) => {
     g.attr('transform', event.transform);
+    updateLabelVisibility(event.transform.k); // Call the new function
   });
 
 // attach zoom (filter handles wheel behavior)
@@ -94,7 +96,19 @@ const nodeG = g.append('g').attr('class', 'nodes')
       d.fx = null;
       d.fy = null;
     }
+  })
+  // Added mouseover and mouseout events for hover labels
+  .on('mouseover', (event, d) => {
+    d3.select(`#label-${d.id}`).style('opacity', 1);
+  })
+  .on('mouseout', (event, d) => {
+    // Only hide if the graph is not zoomed in enough to show all labels
+    const currentScale = d3.zoomTransform(svg.node()).k;
+    if (currentScale < 1.0) {
+      d3.select(`#label-${d.id}`).style('opacity', 0);
+    }
   });
+
 
 // circle + title
 nodeG.append('circle')
@@ -114,12 +128,38 @@ const labelNode = g.append('g').attr('class', 'labelNodes')
   .attr('href', d => d.node.url || '#')
   .attr('target', '_blank')
   .append('text')
+  // We'll use this ID for easy selection on hover
+  .attr('id', d => (d.node ? `label-${d.node.id}` : null))
   .text((d, i) => (i % 2 === 0 ? '' : d.node.id))
   .attr('fill', '#333')
   .attr('font-family', 'Arial')
   .attr('font-size', d => (d.node.font ? `${d.node.font}em` : '1em'))
   .attr('text-anchor', 'start')
-  .attr('dx', 6);
+  .attr('dx', 6)
+  // Initially set opacity to 0
+  .style('opacity', 0);
+
+// Set initial label visibility based on node size
+updateLabelVisibility(d3.zoomTransform(svg.node()).k);
+
+
+// A new function to handle label visibility based on zoom scale and node size
+function updateLabelVisibility(scale) {
+  // Define a zoom threshold and size threshold
+  const zoomThreshold = 1.0;
+  const sizeThreshold = 5; // A size of 5 or more will show the label initially
+
+  labelNode.style('opacity', d => {
+    // The opacity of the label is determined by the node size and zoom level
+    if (d.node && d.node.size >= sizeThreshold) {
+      // For large nodes, show the label even at lower zoom
+      return scale > 0.5 ? 1 : 0;
+    } else {
+      // For smaller nodes, require a higher zoom level to show the label
+      return scale >= zoomThreshold ? 1 : 0;
+    }
+  });
+}
 
 // simulations
 const labelSim = d3.forceSimulation(label.nodes)
