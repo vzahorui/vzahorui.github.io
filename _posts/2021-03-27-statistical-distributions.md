@@ -1,22 +1,46 @@
 ---
 layout: single
-title: "Statistical distributions"
-description: In this post I described all essential statistical distributions
-category: "Probability"
-tags: probability-distribution normal-distribution statistics z-score z-table six-sigma z-value central-limit-theorem Student's-distribution t-distribution probability-mass-function probability-density-function PDF degrees-of-freedom chi-square-distribution binomial-distribution Bernoulli-trial geometric-distribution exponential-distribution poisson-distribution uniform-distribution negative-binomial-distribution studentized-range-distribution beta-distribution gamma-function Gaussian-distribution
-date: 2022-07-19
+title: "Probability Distributions"
+category: "Probability & Statistics"
+tags: probability-distribution probability normal-distribution statistics central-limit-theorem Student's-distribution t-distribution probability-mass-function probability-density-function PDF degrees-of-freedom chi-square-distribution binomial-distribution Bernoulli-trial geometric-distribution exponential-distribution poisson-distribution uniform-distribution negative-binomial-distribution studentized-range-distribution beta-distribution gamma-function Gaussian-distribution
+date: 2025-08-25
 ---
 
-A set of discrete values or a range of continuous values of a random variable is characterized by a certain probability distribution. In statistics various distributions arise in the context of estimating probabilities of random values or events.
+In our exploration of [probability and statistics]({{ site.baseurl }}{% link _posts/2025-08-18-probability-statistics.md %}), we learned that statistics helps us infer the true parameters of a population from a sample of data. But to do this effectively, we need to understand the underlying patterns in our data. This is where statistical distributions come in.
+
+A probability distribution is simply a function that describes the probability of a random variable taking on certain values. Think of it as a blueprint for the data, a model that tells us how likely different outcomes are.
+
+By identifying the distribution that best fits our data, we can unlock powerful insights, make informed predictions, and choose the right [statistical tests]({{ site.baseurl }}{% link _posts/2021-01-21-hypothesis-testing.md %}).
+
+Different types of processes in the real world map to different distributions. In this article we explore some of the most common ones.
+
+## Types of Distributions
+
+The distirbutions can be broadly categorized as discrete or continuous. Discrete distributions deal with variables that have a finite or countable number of outcomes, like the number of heads in a coin toss. Continuous distributions, on the other hand, are for variables that can take any value within a range, such as a person's height.
 
 In case of discrete variables the distribution is described by the probability mass function (PMF) which assigns a certain probability value for each individual value from the set. For continuous random variables, probability density functions (PDF) provide values of relative likelihood of assuming a certain value. Although the probability that a continuous variable will assume a certain exact value is 0, PDF allows to compare the relative likelihoods in different ranges of values, as well as to calculate the probability of assuming a value within a specific range (using [integral calculus]({{ site.baseurl }}{% link _posts/2019-09-24-integrals.md %})).
 
-In this article the most useful probability distributions will be explained, as well as some of the distributions which derive from them.
+### Common Discrete Distributions
 
-* [Normal distribution](#normal_distribution)
-  * [Student's t-distribution](#student_distribution)
-  * [Studentized range distribution](#studentized_distribution)
-  * [Chi-square distribution](#chi_distribution)
+**Bernoulli Distribution**: This is the simplest of all distributions, representing a single trial with two outcomes (e.g., 0 or 1). It's essentially a binomial distribution with a single trial (n=1). It models events like a single coin flip.
+
+**Binomial Distribution**: This describes the probability of a certain number of successes in a fixed number of independent trials, where each trial has only two possible outcomes (e.g., success/failure). Think of it like flipping a coin multiple times and calculating the probability of getting a specific number of heads. The two parameters that define a binomial distribution are the number of trials (n) and the probability of success in each trial (p).
+
+**Poisson Distribution**: This distribution is used to model the number of events that occur within a fixed interval of time or space. It is particularly useful for rare events. For example, it could model the number of calls a call center receives in an hour, or the number of typos on a page of a book. The key parameter is the average rate of occurrence ($\lambda$).
+
+### Common Continuous Distributions
+
+**Normal Distribution**: Also known as the Gaussian distribution, this is arguably the most important and widely used distribution in statistics. It is characterized by its symmetric, bell-shaped curve. Many natural phenomena follow this pattern, such as the height of people, blood pressure, and test scores. The normal distribution is completely defined by its mean ($\mu$) and standard deviation ($\sigma$).
+
+**Uniform Distribution**: In this distribution, every possible outcome has an equal probability of occurring. For example, rolling a fair six-sided die has a discrete uniform distribution.
+
+
+
+
+
+* [Student's t-distribution](#student_distribution)
+* [Studentized range distribution](#studentized_distribution)
+* [Chi-square distribution](#chi_distribution)
 * [Binomial distribution](#binomial_distribution)
   * [Geometric distribution](#geometric_distribution)
   * [Negative binomial distribution](#negative_binomial_distribution)
@@ -25,56 +49,15 @@ In this article the most useful probability distributions will be explained, as 
 * [Poisson distribution](#poisson_distribution)
   * [Exponential distribution](#exponential_distribution)
 
-<div id='normal_distribution'/>
-## Normal distribution
 
-Normal distribution (also known as Gaussian distribution) is one of the most fundamental building blocks of statistics. According to the [Central limit theorem]({{ site.baseurl }}{% link _posts/2021-01-16-sampling-distribution.md %}), averages of random samples, which are drawn independently from some independent distribution converge around some central value. They become normally distributed when the number of observations is sufficiently large. At this point the distribution of the original values from which the samples are drawn doesn't even have to be normally distributed.
 
-Suppose, we decided to measure the weight of all newborns in a multitude of different hospitals and calculate the average weight in each hospital. Most likely the distribution of those average weights will resemble a bell-shaped curve.
-
-![](/assets/images/probability/toy_newborn_weight_distribution.png){: .align-center}
-
-Here we see that the average of all measured averages converges around a certain central value, 3.2 kilos in this case. This means that among all measured averages we encountered mostly values which are very close or equal to 3.2. The closer the hospital average to 3.2 - the higher the frequency of such encounters. By contrast, we see that there are very few averages that have values, say, higher than 4 or lower than 2.5 kilos. The bell-shaped function that we have above is actually the approximation of probability density function for the given distribution, and its values provide relative likelihood of a random variable (in our example the weight of the newborn) to assume certain values.
-
-Normal distribution has nice statistical properties, with regard to probability in particular. From the example above we can see that  we have a 50% chance of getting an average newborn weight higher or lower than 3.2 kilos, whereas the whole area under the curve represents 100% of the overall probability.
-
-One other interesting property of normal distribution is the spread of its values around the mean, known as the six sigma rule.
-
-![](/assets/images/distributions/toy_newborn_6_sigma.png){: .align-center}
-
-Based on the example above, we may deduce that:
-
-* 68.26% of all newborns have weight from 2.9 to 3.5 kilos (one standard deviation away from the mean)
-* 95.44% - from 2.6 to 3.8 kilos (two standard deviations away from the mean)
-* 99.73% - from 2.3 to 4.1 kilos (three standard deviations away from the mean)
-
-Before moving on to calculating the probability of getting certain interval values, let's introduce the $z$-score metric. Plainly speaking, $z$-score tells us how many standard deviations a given value is away from the mean of its distribution.
-
-&nbsp;&nbsp;&nbsp;&nbsp;
-$z = \frac{x-\mu}{\sigma}$
-
-In general, in order to calculate the area under the curve we would have to perform [integral calculus]({{ site.baseurl }}{% link _posts/2019-09-24-integrals.md %}), however for the normal distribution we can simply use precalculated $z$-table by looking up probability for a specific $z$-score. $Z$-table has recorded values of integral for cumulative normal distribution function, and it shows the probability of a random variable to assume value less than some other value. There are two parts of $z$-table - for $z$-scores which are higher or lower than the mean of distribution.
-
-Suppose we want to calculate the percentage of newborns who have weight less than 3 kilos and the percentage of newborns with weight from 3 to 3.5 kilos. That is equal to calculating the filled areas under the curves below.
-
-![](/assets/images/distributions/toy_newborn_weight_distribution_area.png){: .align-center}
-
-In the first case we simply calculate $z$-score of the value 3 and look up the area under the curve from the $z$-table for negative values (since 3 is lower than the mean 3.2). In this example it approximates to 0.2514. So conclude that only 25.14% of all newborns have weight 3 kilos or less.
-
-In the second example we have an area with two cut-off points. $Z$-table allows us to find the area to the left from a specific value, so here is what we do. First we calculated $z$-scores for 3.5 and for 3, then we looked up the area under the curve for all weights which are less than 3.5 kilos and those which are less than 3 kilos. Then we simply subtract the second from the first. Finally we end up with something like 0.8413 - 0.2514, which equals 0.59. Here we conclude that nearly 59% of all newborns have weight between 3 and 3.5 kilos.
-
-The probability density function of the normal distribution which was used in construction of $z$-table, and which is generally used for calculating probability looks like this:
-
-&nbsp;&nbsp;&nbsp;&nbsp;
-$f(x) = \frac{1}{\sigma\sqrt{2\pi}}e^{-\frac{1}{2}(\frac{x-\mu}{\sigma})^2}$
-<a href="#page-title" class="back-to-top">{{ site.data.ui-text[site.locale].back_to_top | default: 'Back to Top' }} &uarr;</a>
 
 <div id='student_distribution'/>
 ### Student's t-distribution
 
 If there is a need to estimate the mean of population using a sample, and if the population's variance is unknown then the mean of the population itself becomes random variable with its [own variance]({{ site.baseurl }}{% link _posts/2021-01-16-sampling-distribution.md %}). As a consequence, the estimated variance of the population becomes higher than just the variance of the sample.
 
-Student's distribution (or $t$-distribution) is used as the probability density function for the expected value of population based on the sample statistics. This type of distribution is very similar to the [normal distribution](#normal_distribution) but it has thicker tails if the number of samples is small (roughly less than 30), and thus values which are more distant from the sample mean have higher probability of occurring. On the other hand, if the size of a sample goes to infinity then the $t$-distribution converges to the normal distribution. The shape of the PDF is actually defined by the number of [degrees of freedom]({{ site.baseurl }}{% link _posts/2021-03-19-degrees-of-freedom.md %}) of the distribution, which is the same as for the estimated variance - namely $(n-1)$, where $n$ is the number of observations in the sample. Below is a comparison of probability density functions with different numbers of degrees of freedom for the same example of the newborn weight which we used earlier.
+Student's distribution (or $t$-distribution) is used as the probability density function for the expected value of population based on the sample statistics. This type of distribution is very similar to the [normal distribution]({{ site.baseurl }}{% link _posts/2025-08-23-normal-distribution.md %}) but it has thicker tails if the number of samples is small (roughly less than 30), and thus values which are more distant from the sample mean have higher probability of occurring. On the other hand, if the size of a sample goes to infinity then the $t$-distribution converges to the normal distribution. The shape of the PDF is actually defined by the number of [degrees of freedom]({{ site.baseurl }}{% link _posts/2021-03-19-degrees-of-freedom.md %}) of the distribution, which is the same as for the estimated variance - namely $(n-1)$, where $n$ is the number of observations in the sample. Below is a comparison of probability density functions with different numbers of degrees of freedom for the same example of the newborn weight which we used earlier.
 
 ![](/assets/images/probability/normal_and_t_distributions.png){: .align-center}
 
@@ -84,7 +67,7 @@ Similarly to $z$-scores for the normal distribution, for $t$-distribution there 
 <div id='studentized_distribution'/>
 ### Studentized range distribution
 
-This type of distribution is used in [hypothesis testing]({{ site.baseurl }}{% link _posts/2021-01-21-hypothesis-testing.md %}) when the means of [more than two samples]({{ site.baseurl }}{% link _posts/2021-03-22-hypothesis-test-parametric-statistics.md %}#mean_more_samples) are tested for being equal (whether or not all samples come from the same [normal distribution](#normal_distribution)).
+This type of distribution is used in [hypothesis testing]({{ site.baseurl }}{% link _posts/2021-01-21-hypothesis-testing.md %}) when the means of [more than two samples]({{ site.baseurl }}{% link _posts/2021-03-22-hypothesis-test-parametric-statistics.md %}#mean_more_samples) are tested for being equal (whether or not all samples come from the same [normal distribution]({{ site.baseurl }}{% link _posts/2025-08-23-normal-distribution.md %})).
 
 If multiple samples of the same size are drawn from the same population then the following statistic will follow the studentized range distribution:
 
@@ -102,7 +85,7 @@ The studentized distribution depends on both the number of samples and the numbe
 <div id='chi_distribution'/>
 ### Chi-square distribution
 
-In a nutshell the chi-square distribution is the distribution of sum of squared values sampled from a [normally distributed variable](#normal_distribution).
+In a nutshell the chi-square distribution is the distribution of sum of squared values sampled from a [normally distributed variable]({{ site.baseurl }}{% link _posts/2025-08-23-normal-distribution.md %}).
 
 &nbsp;&nbsp;&nbsp;&nbsp;
 $\chi_k^{2} = \sum_{i=1}^k Z_i^2$

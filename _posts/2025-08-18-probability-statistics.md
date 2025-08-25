@@ -2,7 +2,7 @@
 layout: single
 title: "Probability & Statistics"
 category: "Probability & Statistics"
-tags: distribution
+tags: distribution sample probability statistics hypothesis-testing
 date: 2025-08-18
 ---
 

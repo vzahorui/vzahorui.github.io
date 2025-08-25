@@ -128,5 +128,5 @@ $$\varepsilon_t = \frac{y_t-\hat{y}_{t|t-1}}{\hat{y}_{t|t-1}}$$
 
 which naturally implies a different form of the state space equations.
 
-By introducing the error term into the equation, the state space models are capable of generating not only the point estimates but also the confidence intervals (under the assumption that the errors are independent and [normally distributed]({{ site.baseurl }}{% link _posts/2021-03-27-statistical-distributions.md %}#normal_distribution)).
+By introducing the error term into the equation, the state space models are capable of generating not only the point estimates but also the confidence intervals (under the assumption that the errors are independent and [normally distributed]({{ site.baseurl }}{% link _posts/2025-08-23-normal-distribution.md %})).
 <a href="#page-title" class="back-to-top">{{ site.data.ui-text[site.locale].back_to_top | default: 'Back to Top' }} &uarr;</a>

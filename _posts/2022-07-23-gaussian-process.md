@@ -8,7 +8,7 @@ date: 2022-09-06
 
 The Gaussian process may be viewed as a prediction technique which mainly solves regression problems by fitting a line to some given data (although it may be extended for classification and clustering problems as well).
 
-In the essence the Gaussian process takes an infinite number of all possible regression estimations, and using the [normal distribution]({{ site.baseurl }}{% link _posts/2021-03-27-statistical-distributions.md %}#normal_distribution) it assigns probability to each of them. Then, the mean value and the standard deviation in the space of those estimations can be used for making predictions and building the confidence intervals.
+In the essence the Gaussian process takes an infinite number of all possible regression estimations, and using the [normal distribution]({{ site.baseurl }}{% link _posts/2025-08-23-normal-distribution.md %}) it assigns probability to each of them. Then, the mean value and the standard deviation in the space of those estimations can be used for making predictions and building the confidence intervals.
 
 ## In this article
 

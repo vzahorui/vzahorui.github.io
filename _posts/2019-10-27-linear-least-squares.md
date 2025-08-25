@@ -50,7 +50,7 @@ $\beta = (X^{T}X)^{-1}X^{T}Y$
 
 This method is mathematically the same as the one described above but instead of the [loss function]({{ site.baseurl }}{% link _posts/2019-10-14-loss-functions.md %}) it operates with the term [maximum likelihood]({{ site.baseurl }}{% link _posts/2021-04-24-maximum-likelihood.md %}).
 
-Let's assume that the dependent variable is continuous. Let's further asume that the errors are independent and [normally distributed]({{ site.baseurl }}{% link _posts/2021-03-27-statistical-distributions.md %}#normal_distribution) around zero. Then it is possible to write the probability density function for the dependent variable which is dependent of the known variable, the values of the parameters, and the standard deviation of the errors:
+Let's assume that the dependent variable is continuous. Let's further asume that the errors are independent and [normally distributed]({{ site.baseurl }}{% link _posts/2025-08-23-normal-distribution.md %}) around zero. Then it is possible to write the probability density function for the dependent variable which is dependent of the known variable, the values of the parameters, and the standard deviation of the errors:
 
 &nbsp;&nbsp;&nbsp;&nbsp;
 $f(y \mid x, \beta, \sigma^2) = \frac{1}{\sigma\sqrt{2\pi}}e^{-\frac{1}{2}(\frac{y-\beta x}{\sigma})^2}$

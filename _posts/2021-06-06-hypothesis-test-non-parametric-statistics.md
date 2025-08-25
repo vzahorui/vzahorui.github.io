@@ -7,7 +7,7 @@ tags: degrees-of-freedom significance-test hypothesis-testing p-value normal-dis
 date: 2021-08-14
 ---
 
-This is an overview of the most commonly used non-parametric statistics in [hypothesis testing]({{ site.baseurl }}{% link _posts/2021-01-21-hypothesis-testing.md %}) explaining when to use each. Unlike the [parametric counterparts]({{ site.baseurl }}{% link _posts/2021-03-22-hypothesis-test-parametric-statistics.md %}), these tests do not assume that the data is [normally distributed]({{ site.baseurl }}{% link _posts/2021-03-27-statistical-distributions.md %}#normal_distribution), and therefore do not make use of its parameters, such as the mean and the variance.
+This is an overview of the most commonly used non-parametric statistics in [hypothesis testing]({{ site.baseurl }}{% link _posts/2021-01-21-hypothesis-testing.md %}) explaining when to use each. Unlike the [parametric counterparts]({{ site.baseurl }}{% link _posts/2021-03-22-hypothesis-test-parametric-statistics.md %}), these tests do not assume that the data is [normally distributed]({{ site.baseurl }}{% link _posts/2025-08-23-normal-distribution.md %}), and therefore do not make use of its parameters, such as the mean and the variance.
 
 The benefit of not assuming the normal distribution of the data in the non-parametric tests comes at a cost - they might be less powerful than the parametric ones, if the distribution is normal after all. In practice however, it is difficult to assess the measure of normality of a distribution in order to decide whether to go with the parametric or non-parametric tests. Also if there are only slight departures from the normality then parametric tests perform fairly well.
 
@@ -34,7 +34,7 @@ $P(x \leq k) = \sum_{i=0}^{k} {\binom{n}{i}}p^{i}(1-p)^{n-i}$
 
 where $p$ should be equal to 0.5, because each observation from a sample which is being tested has equal chances of being smaller or bigger than $\theta$ if the null hypothesis is true.
 
-For large samples the given expression can be also approximated with the [normal distribution]({{ site.baseurl }}{% link _posts/2021-03-27-statistical-distributions.md %}#normal_distribution), and the $z$-score can be used just like in case of [testing the proportion for the binomial distribution]({{ site.baseurl }}{% link _posts/2021-03-22-hypothesis-test-parametric-statistics.md %}#proportion_sample_and_population_binomial).
+For large samples the given expression can be also approximated with the [normal distribution]({{ site.baseurl }}{% link _posts/2025-08-23-normal-distribution.md %}), and the $z$-score can be used just like in case of [testing the proportion for the binomial distribution]({{ site.baseurl }}{% link _posts/2021-03-22-hypothesis-test-parametric-statistics.md %}#proportion_sample_and_population_binomial).
 
 In case of paired observations this test is performed for the number of times when the first observation was greater than the second one (or vice versa). If the null hypothesis is true, then the number of times the value becomes greater should be approximately equal to the number of times when the value becomes smaller.
 
@@ -101,7 +101,7 @@ where $R_i$ is the sum of ranks in the $i$th sample, and $n_i$ is the size of th
 
 If the $U$-statistic equals 0 then it means that the ranks of two samples are fully separated from one another, and it supports the alternative hypothesis - that there is a difference in the distributions. Therefore if the calculated statistic is smaller than the critical value - the null hypothesis is rejected.
 
-In case of large samples, an approximation via the [normal distribution]({{ site.baseurl }}{% link _posts/2021-03-27-statistical-distributions.md %}#normal_distribution) is used. The $z$-score takes the following form:
+In case of large samples, an approximation via the [normal distribution]({{ site.baseurl }}{% link _posts/2025-08-23-normal-distribution.md %}) is used. The $z$-score takes the following form:
 
 &nbsp;&nbsp;&nbsp;&nbsp;
 $z = \frac{U - m_U}{\sigma_U}$

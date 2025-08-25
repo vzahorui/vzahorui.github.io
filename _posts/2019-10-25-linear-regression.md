@@ -54,7 +54,7 @@ It is common to view the relationship between two observed variables on a scatte
  
 ![](/assets/images/regression/residuals_demo.png){: .align-center}
  
-According to the Central Limit Theorem if the number of observations is large enough - the residuals have [normal distribution]({{ site.baseurl }}{% link _posts/2021-03-27-statistical-distributions.md %}#normal_distribution) with the mean value of 0. This basically means that for a modeled relationship between two or more variables the observed variation is mainly clustered around the estimated values. Since normal distribution is also called Gaussian distribution, the distribution of residuals around estimated values is called Gaussian noise.
+According to the Central Limit Theorem if the number of observations is large enough - the residuals have [normal distribution]({{ site.baseurl }}{% link _posts/2025-08-23-normal-distribution.md %}) with the mean value of 0. This basically means that for a modeled relationship between two or more variables the observed variation is mainly clustered around the estimated values. Since normal distribution is also called Gaussian distribution, the distribution of residuals around estimated values is called Gaussian noise.
 <a href="#page-title" class="back-to-top">{{ site.data.ui-text[site.locale].back_to_top | default: 'Back to Top' }} &uarr;</a>
 
 <div id='matrix_notation'/>
@@ -100,7 +100,7 @@ where $Z$ is the critical value for a given significance level (confidence level
 
 In case of the linear regression the coefficients are calculated based on sample data so they should be viewed as sample means. The variances of the coefficients may be estimated with the covariance matrix, as described [here]({{ site.baseurl }}{% link _posts/2019-08-10-correlation.md %}#variance_coefficients). Then the standard error can be obtained by dividing them by the square root of the number of observations.
 
-When we are dealing with a sample, and the true variance is unknown, instead of the critical value $Z$, which assumes the [normal distribution]({{ site.baseurl }}{% link _posts/2021-03-27-statistical-distributions.md %}#normal_distribution), the $t$-value from the [$t$-distribution]({{ site.baseurl }}{% link _posts/2021-03-27-statistical-distributions.md %}#student_distribution) is used. The number of [degrees of freedom]({{ site.baseurl }}{% link _posts/2021-03-19-degrees-of-freedom.md %}) for the $t$-value in case of the linear regression is ($n$-$m$-1), where $n$ is the number of observations, and $m$ is the number of independent variables.
+When we are dealing with a sample, and the true variance is unknown, instead of the critical value $Z$, which assumes the [normal distribution]({{ site.baseurl }}{% link _posts/2025-08-23-normal-distribution.md %}), the $t$-value from the [$t$-distribution]({{ site.baseurl }}{% link _posts/2021-03-27-statistical-distributions.md %}#student_distribution) is used. The number of [degrees of freedom]({{ site.baseurl }}{% link _posts/2021-03-19-degrees-of-freedom.md %}) for the $t$-value in case of the linear regression is ($n$-$m$-1), where $n$ is the number of observations, and $m$ is the number of independent variables.
 <a href="#page-title" class="back-to-top">{{ site.data.ui-text[site.locale].back_to_top | default: 'Back to Top' }} &uarr;</a>
 
 <div id='other_assumptions'/>
@@ -252,7 +252,7 @@ $\sqrt{1-\rho^2} y_1 = \alpha \sqrt{1-\rho^2} + \beta \sqrt{1-\rho^2} X_1 + \sqr
 
 Estimation of the confidence intervals of the parameters of a model, as well as performing hypothesis tests on the parameters, relies on this assumption. Otherwise skewed distribution of the residuals would make these estimations and tests unreliable.
 
-It is important to note that in the real life situations the perfect [normal distribution]({{ site.baseurl }}{% link _posts/2021-03-27-statistical-distributions.md %}#normal_distribution) is unachievable. This is primarily the reason why the formal tests of normality reject the hypothesis of the variable being normally distributed for big datasets.
+It is important to note that in the real life situations the perfect [normal distribution]({{ site.baseurl }}{% link _posts/2025-08-23-normal-distribution.md %}) is unachievable. This is primarily the reason why the formal tests of normality reject the hypothesis of the variable being normally distributed for big datasets.
 
 In case of regression, usually if there is a linear relationship between the variables, and there is no autocorrelation of the residuals, the distribution of the residuals is close to normal.
 

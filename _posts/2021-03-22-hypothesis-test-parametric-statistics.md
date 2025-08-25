@@ -7,7 +7,7 @@ tags: degrees-of-freedom Pearson's-chi-square-test significance-test hypothesis-
 date: 2021-06-06
 ---
 
-This is an overview of the most commonly used parametric statistics in [hypothesis testing]({{ site.baseurl }}{% link _posts/2021-01-21-hypothesis-testing.md %}) explaining when to use each. The parametric statistics here assume that the data has distribution close to the [normal]({{ site.baseurl }}{% link _posts/2021-03-27-statistical-distributions.md %}#normal_distribution). See [this article]({{ site.baseurl }}{% link _posts/2021-06-06-hypothesis-test-non-parametric-statistics.md %}) for an overview of the non-parametric tests.
+This is an overview of the most commonly used parametric statistics in [hypothesis testing]({{ site.baseurl }}{% link _posts/2021-01-21-hypothesis-testing.md %}) explaining when to use each. The parametric statistics here assume that the data has distribution close to the [normal]({{ site.baseurl }}{% link _posts/2025-08-23-normal-distribution.md %}). See [this article]({{ site.baseurl }}{% link _posts/2021-06-06-hypothesis-test-non-parametric-statistics.md %}) for an overview of the non-parametric tests.
 
 ## In this article
 
@@ -32,7 +32,7 @@ This is an overview of the most commonly used parametric statistics in [hypothes
 <div id='mean_sample_and_population'/>
 ### The sample mean and the mean of the population
 
-When we draw multiple samples from a population, the mean of each sample becomes a random variable, and the [expectation of the mean]({{ site.baseurl }}{% link _posts/2021-01-16-sampling-distribution.md %}) of those samples is equal to the mean of the population. Recall that for the [normal distribution]({{ site.baseurl }}{% link _posts/2021-03-27-statistical-distributions.md %}#normal_distribution) the $z$-score tells us how many standard deviations a given value is away from the mean of its distribution. The idea of the $z$-score can be applied to a single samples's mean, so that its relative distance from the population's mean is estimated, but instead of the standard deviation, the standard error of the mean is used as the scaling factor:
+When we draw multiple samples from a population, the mean of each sample becomes a random variable, and the [expectation of the mean]({{ site.baseurl }}{% link _posts/2021-01-16-sampling-distribution.md %}) of those samples is equal to the mean of the population. Recall that for the [normal distribution]({{ site.baseurl }}{% link _posts/2025-08-23-normal-distribution.md %}) the $z$-score tells us how many standard deviations a given value is away from the mean of its distribution. The idea of the $z$-score can be applied to a single samples's mean, so that its relative distance from the population's mean is estimated, but instead of the standard deviation, the standard error of the mean is used as the scaling factor:
 
 &nbsp;&nbsp;&nbsp;&nbsp;
 $z = \frac{\bar x-\mu}{\frac{\sigma}{\sqrt{n}}}$

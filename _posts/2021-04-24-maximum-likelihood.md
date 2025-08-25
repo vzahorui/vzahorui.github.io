@@ -110,7 +110,7 @@ $W = \frac{(\hat \theta - \theta_0)^2}{Var(\hat \theta)}$
 
 where $\hat \theta$ is the maximum likelihood estimate of the parameter, and $\theta_0$ is some hypothesized value of the parameter, usually zero.
 
-This statistic is chi-square distributed with one degree of freedom, and by taking is squre root - it becomes the $z$-score of [normal distribution]({{ site.baseurl }}{% link _posts/2021-03-27-statistical-distributions.md %}#normal_distribution).
+This statistic is chi-square distributed with one degree of freedom, and by taking is squre root - it becomes the $z$-score of [normal distribution]({{ site.baseurl }}{% link _posts/2025-08-23-normal-distribution.md %}).
 
 In the general case with more than one parameter the expression above is expanded to look like this:
 
