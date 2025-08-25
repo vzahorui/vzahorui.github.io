@@ -22,7 +22,7 @@ In case of discrete variables the distribution is described by the probability m
 
 ### Common Discrete Distributions
 
-**Bernoulli Distribution**: This is the simplest of all distributions, representing a single trial with two outcomes (e.g., 0 or 1). It's essentially a binomial distribution with a single trial (n=1). It models events like a single coin flip.
+**Bernoulli Distribution**: This is the simplest of all distributions, representing a single trial with two outcomes (e.g., 0 or 1). It's essentially a binomial distribution with a single trial ($n$=1). It models events like a single coin flip.
 
 **Binomial Distribution**: This describes the probability of a certain number of successes in a fixed number of independent trials, where each trial has only two possible outcomes (e.g., success/failure). Think of it like flipping a coin multiple times and calculating the probability of getting a specific number of heads. The two parameters that define a binomial distribution are the number of trials (n) and the probability of success in each trial (p).
 
@@ -30,7 +30,7 @@ In case of discrete variables the distribution is described by the probability m
 
 ### Common Continuous Distributions
 
-**Normal Distribution({{ site.baseurl }}{% link _posts/2025-08-23-normal-distribution.md %}))**: Also known as the Gaussian distribution, this is arguably the most important and widely used distribution in statistics. It is characterized by its symmetric, bell-shaped curve. Many natural phenomena follow this pattern, such as the height of people, blood pressure, and test scores. The normal distribution is completely defined by its mean ($\mu$) and standard deviation ($\sigma$).
+**Normal Distribution**({{ site.baseurl }}{% link _posts/2025-08-23-normal-distribution.md %}): Also known as the Gaussian distribution, this is arguably the most important and widely used distribution in statistics. It is characterized by its symmetric, bell-shaped curve. Many natural phenomena follow this pattern, such as the height of people, blood pressure, and test scores. The normal distribution is completely defined by its mean ($\mu$) and standard deviation ($\sigma$).
 
 **Uniform Distribution**: In this distribution, every possible outcome has an equal probability of occurring. For example, rolling a fair six-sided die has a discrete uniform distribution.
 
