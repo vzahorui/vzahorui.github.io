@@ -161,10 +161,19 @@ function updateLabelVisibility(scale) {
   });
 }
 
+// A force to prevent labels from overlapping
+const labelCollide = d3.forceCollide().radius(d => {
+  // Use the size of the node to estimate the label's required space
+  // A larger node will likely have a larger label, requiring more space
+  const estimatedRadius = (d.node.font ? d.node.font * 10 : 10);
+  return estimatedRadius + 2; // Add a small buffer for spacing
+}).strength(0.8);
+
 // simulations
 const labelSim = d3.forceSimulation(label.nodes)
   .force('charge', d3.forceManyBody().strength(-30))
   .force('link', d3.forceLink(label.links).distance(0).strength(1))
+  .force('collide', labelCollide)
   .alphaDecay(0.05);
 
 const sim = d3.forceSimulation(graph.nodes)
