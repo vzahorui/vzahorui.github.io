@@ -2,7 +2,7 @@
 layout: single
 title: "Probability Distributions"
 category: "Probability & Statistics"
-tags: probability-distribution probability normal-distribution statistics central-limit-theorem Student's-distribution t-distribution probability-mass-function probability-density-function PDF degrees-of-freedom chi-square-distribution binomial-distribution Bernoulli-trial geometric-distribution exponential-distribution poisson-distribution uniform-distribution negative-binomial-distribution studentized-range-distribution beta-distribution gamma-function Gaussian-distribution
+tags: probability-distribution probability normal-distribution statistics central-limit-theorem probability-mass-function PMF probability-density-function PDF chi-square-distribution binomial-distribution Bernoulli-trial geometric-distribution exponential-distribution poisson-distribution uniform-distribution negative-binomial-distribution studentized-range-distribution beta-distribution gamma-function Gaussian-distribution
 date: 2025-08-25
 ---
 
@@ -38,49 +38,8 @@ In case of discrete variables the distribution is described by the probability m
 
 
 
-* [Student's t-distribution](#student_distribution)
-* [Studentized range distribution](#studentized_distribution)
-* [Chi-square distribution](#chi_distribution)
-* [Binomial distribution](#binomial_distribution)
-  * [Geometric distribution](#geometric_distribution)
-  * [Negative binomial distribution](#negative_binomial_distribution)
-  * [Beta distribution](#beta_distribution)
-* [Uniform distribution](#uniform_distribution)
-* [Poisson distribution](#poisson_distribution)
-  * [Exponential distribution](#exponential_distribution)
 
 
-
-
-<div id='student_distribution'/>
-### Student's t-distribution
-
-If there is a need to estimate the mean of population using a sample, and if the population's variance is unknown then the mean of the population itself becomes random variable with its [own variance]({{ site.baseurl }}{% link _posts/2021-01-16-sampling-distribution.md %}). As a consequence, the estimated variance of the population becomes higher than just the variance of the sample.
-
-Student's distribution (or $t$-distribution) is used as the probability density function for the expected value of population based on the sample statistics. This type of distribution is very similar to the [normal distribution]({{ site.baseurl }}{% link _posts/2025-08-23-normal-distribution.md %}) but it has thicker tails if the number of samples is small (roughly less than 30), and thus values which are more distant from the sample mean have higher probability of occurring. On the other hand, if the size of a sample goes to infinity then the $t$-distribution converges to the normal distribution. The shape of the PDF is actually defined by the number of [degrees of freedom]({{ site.baseurl }}{% link _posts/2021-03-19-degrees-of-freedom.md %}) of the distribution, which is the same as for the estimated variance - namely $(n-1)$, where $n$ is the number of observations in the sample. Below is a comparison of probability density functions with different numbers of degrees of freedom for the same example of the newborn weight which we used earlier.
-
-![](/assets/images/probability/normal_and_t_distributions.png){: .align-center}
-
-Similarly to $z$-scores for the normal distribution, for $t$-distribution there are also tables of precomputed values for different numbers of degrees of freedom, so no need to perform integration when calculating probability.
-<a href="#page-title" class="back-to-top">{{ site.data.ui-text[site.locale].back_to_top | default: 'Back to Top' }} &uarr;</a>
-
-<div id='studentized_distribution'/>
-### Studentized range distribution
-
-This type of distribution is used in [hypothesis testing]({{ site.baseurl }}{% link _posts/2021-01-21-hypothesis-testing.md %}) when the means of [more than two samples]({{ site.baseurl }}{% link _posts/2021-03-22-hypothesis-test-parametric-statistics.md %}#mean_more_samples) are tested for being equal (whether or not all samples come from the same [normal distribution]({{ site.baseurl }}{% link _posts/2025-08-23-normal-distribution.md %})).
-
-If multiple samples of the same size are drawn from the same population then the following statistic will follow the studentized range distribution:
-
-&nbsp;&nbsp;&nbsp;&nbsp;
-$q = \frac{\bar x_{max} - \bar x_{min}}{\frac{s}{\sqrt{n}}}$
-
-where $\bar x_{max}$ and $\bar x_{min}$ are the largest and the smallest means of the samples, $s$ is the pooled standard deviation, and $n$ is the sample size. The number of [degrees of freedom]({{ site.baseurl }}{% link _posts/2021-03-19-degrees-of-freedom.md %}) is selected as for the pooled variance: $k$($n$-1), where $k$ is the number of groups.
-
-If the $q$-statistic exceeds the critical value of the distribution for a given number of samples and degrees of freedom, then the null hypothesis that the two sample means are from the same normal distribution is rejected.
-
-The studentized distribution depends on both the number of samples and the number of degrees of freedom. The more samples - the higher probability that the difference between the largest and the smallest means is due to chance. Therefore, the critical value becomes larger as the number of samples increases.
-
-<a href="#page-title" class="back-to-top">{{ site.data.ui-text[site.locale].back_to_top | default: 'Back to Top' }} &uarr;</a>
 
 <div id='chi_distribution'/>
 ### Chi-square distribution

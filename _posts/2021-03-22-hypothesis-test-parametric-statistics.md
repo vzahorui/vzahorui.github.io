@@ -108,7 +108,7 @@ $s_p = \sqrt{\frac{(n_{1}-1)s_1^2 + (n_{2}-1)s_2^2}{n_{1}+n_{2}-2}}$
 
 The number of degrees of freedom in this case is $(n_1 + n_2 - 2)$.
 
-In practice the variance of two populations is rarely equal, so Welch's $t$-test should be used by default as it is more robust. At the same time, if the variance is equal the power of this test comes close to the power of the $t$-test based on the pooled standard deviation.
+In practice the variance of two populations is rarely equal, so Welch's t-test should be used by default as it is more robust. At the same time, if the variance is equal the power of this test comes close to the power of the $t$-test based on the pooled standard deviation.
 <a href="#page-title" class="back-to-top">{{ site.data.ui-text[site.locale].back_to_top | default: 'Back to Top' }} &uarr;</a>
 
 <div id='mean_two_samples_paired'/>
@@ -131,7 +131,7 @@ Compared to the case of independent samples, paired test has smaller standard er
 
 This is usually the case when there are more than two sample groups, the means of which are assumed to be equal under the null hypothesis. For example the average score of 5 parallel classes at the same school is assumed to be equal.
 
-One might be tempted to use the $t$-test for each pair of the samples but this might lead to the increased percentage of type I error (as the error will add up with each additional test). Instead, the analysis of variance (ANOVA) could be applied to all samples at once maintaining the global significance level.
+One might be tempted to use the t-test for each pair of the samples but this might lead to the increased percentage of type I error (as the error will add up with each additional test). Instead, the analysis of variance (ANOVA) could be applied to all samples at once maintaining the global significance level.
 
 The idea of ANOVA is that if there is a difference in the means of at least two groups of samples then the between-group variance will be more prominent that the within-group variance. In other words, the average distance by which the means of each group depart from the global mean should be greater than the average spread of the values around the means of each group.
 
@@ -164,15 +164,23 @@ The between-group and the within-group variances actually follow the [chi-square
 
 Intuitively, if the null hypothesis is true, the F-statistic should not be too high. For a given significance level it is possible to get the critical value from the F-distribution, the excess of which should be a reason to reject the null hypothesis.
 
-The analysis of variance only checks whether the mean values of multiple samples are the same. However, it does not give an answer which exactly group is different if the null hypothesis is rejected, so the post-hoc analysis should be performed. The recommended type of test in this case is the Games-Howell test which tests the difference in each pair combination from the group of samples, and does not assume equal sample size and variance in the samples.
+#### Post-hoc Testing
 
-The Games-Howell test is very similar to Welch's $t$-test, including the way it determines the number of degrees of freedom for each pair of samples. However, the standard error is calculated slightly differently:
+The analysis of variance (ANOVA) is a powerful tool to determine if there is a statistically significant difference among the means of multiple groups. However, if the null hypothesis is rejected, ANOVA does not specify which groups are different from each other. For this, a post-hoc analysis must be performed. Among these, the Games-Howell test is a recommended choice, as it tests the difference in each pairwise combination of samples without assuming equal variance and sample size across groups.
 
-&nbsp;&nbsp;&nbsp;&nbsp;
-$SE = \sqrt{\frac{1}{2}(\frac{s_1^2}{n_1}+\frac{s_2^2}{n_2})}$
+Conducting multiple independent t-tests to compare all pairs of group means dramatically increases the probability of committing a Type I error (a false positive). Post-hoc tests are essential for controlling the Family-wise Error Rate (FWER), ensuring that the overall chance of making at least one false positive conclusion across all comparisons remains at our desired significance level.
 
-In determining the critical values the Games-Howell test relies on the [studentized range distribution]({{ site.baseurl }}{% link _posts/2021-03-27-statistical-distributions.md %}#studentized_distribution), so it depends on the number of degrees of freedom, as well as the total number of samples.
-<a href="#page-title" class="back-to-top">{{ site.data.ui-text[site.locale].back_to_top | default: 'Back to Top' }} &uarr;</a>
+The Games-Howell test achieves this by being more conservative than a series of t-tests, making it more difficult to reject the null hypothesis.
+
+Unlike a t-test, which compares a single pair of means using [Student's distribution]({{ site.baseurl }}{% link _posts/2025-08-23-student-distribution.md %}), the Games-Howell test's statistic is compared to a Studentized range distribution statistic. This special probability distribution is specifically designed to model the difference between the largest and smallest means in a set of samples under the null hypothesis. It also inherently accounts for the number of groups being compared ($k$), thus directly addressing the multiple comparisons problem.
+
+The Studentized range statistic is defined as:
+
+$$q = \frac{\bar x_{max} - \bar x_{min}}{\frac{s}{\sqrt{n}}}$$
+
+where $\bar x_{max}$ and $\bar x_{min}$ are the largest and the smallest means of the samples, $s$ is the pooled standard deviation, and $n$ is the sample size. The number of [degrees of freedom]({{ site.baseurl }}{% link _posts/2021-03-19-degrees-of-freedom.md %}) is selected as for the pooled variance: $k$($n$-1), where $k$ is the number of groups.
+
+By using this modified test statistic and a critical value from the Studentized range distribution, the Games-Howell test ensures that the difference between two means must be larger in order to be treated as significant, effectively controlling the overall family-wise error rate.
 
 <div id='difference_proportions'/>
 ## Testing the difference in proportions

@@ -12,6 +12,8 @@ toc_min_level: 2
 toc_max_level: 3
 ---
 
+## Introduction
+
 Normal distribution (also known as Gaussian distribution) is one of the most fundamental building blocks of [Probability and Statistics]({{ site.baseurl }}{% link _posts/2025-08-18-probability-statistics.md %}). It serves as a cornerstone for statistical inference and is used to model a vast range of phenomena in the natural and social sciences. Its distinctive, symmetric shape is what makes it so recognizable and powerful.
 
 Suppose, we decided to measure the weight of all newborns in a multitude of different hospitals and calculate the average weight in each hospital. Most likely the distribution of those average weights will resemble a bell-shaped curve.

@@ -147,7 +147,7 @@ updateLabelVisibility(d3.zoomTransform(svg.node()).k);
 function updateLabelVisibility(scale) {
   // Define a zoom threshold and size threshold
   const zoomThreshold = 1.1;
-  const sizeThreshold = 5; // A size of 5 or more will show the label initially
+  const sizeThreshold = 10; // A size of 10 or more will show the label initially
 
   labelNode.style('opacity', d => {
     // The opacity of the label is determined by the node size and zoom level
