@@ -193,7 +193,7 @@ By using this modified test statistic and a critical value from the Studentized 
 
 This type of testing is popular for the cases of binomially distributed data where each observation has only two possible outcomes. For example we know that the average rate of college dropout across a country is 7%. For a particular college we conducted a survey and found out that among 500 originally enlisted students 31 left before graduation. We would like to test the hypothesis that the dropout rate for this college is the same as the average across the country. The alternative hypothesis would be that it is less than the average.
 
-Considering that each student may or may not leave before graduation we're dealing with the [binomial distribution]({{ site.baseurl }}{% link _posts/2025-08-28-binomial-distribution.md %}). For this kind of distribution we can employ its probability mass function and calculate directly the $p$-value - the probability of having from 0 to 31 dropouts among 500 considering that the average dropout rate is 7%:
+Considering that each student may or may not leave before graduation we're dealing with the [binomial distribution]({{ site.baseurl }}{% link _posts/2021-03-27-statistical-distributions.md %}#binomial_distribution). For this kind of distribution we can employ its probability mass function and calculate directly the $p$-value - the probability of having from 0 to 31 dropouts among 500 considering that the average dropout rate is 7%:
 
 &nbsp;&nbsp;&nbsp;&nbsp;
 $P(x \leq 31) = \sum_{i=0}^{31} {\binom{500}{i}}0.07^{i}(1-0.07)^{500-i} \approx 0.275$
