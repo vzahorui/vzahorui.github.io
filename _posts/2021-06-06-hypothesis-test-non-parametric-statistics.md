@@ -27,7 +27,7 @@ The benefit of not assuming the normal distribution of the data in the non-param
 
 This test uses the median of a sample as a central tendency metric, and the null hypothesis is constructed as the median being equal to some constant $\theta$.
 
-Then in order to test the null hypothesis, the $p$-value is calculated with the following [binomial distribution]({{ site.baseurl }}{% link _posts/2025-08-28-binomial-distribution.md %}) which gets the probability of having $k$ or less numbers out of $n$ greater than $\theta$:  
+Then in order to test the null hypothesis, the $p$-value is calculated with the following [binomial distribution]({{ site.baseurl }}{% link _posts/2021-03-27-statistical-distributions.md %}#binomial_distribution) which gets the probability of having $k$ or less numbers out of $n$ greater than $\theta$:  
 
 &nbsp;&nbsp;&nbsp;&nbsp;
 $P(x \leq k) = \sum_{i=0}^{k} {\binom{n}{i}}p^{i}(1-p)^{n-i}$
