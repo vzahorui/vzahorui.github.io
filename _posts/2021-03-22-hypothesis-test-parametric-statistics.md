@@ -172,7 +172,7 @@ Conducting multiple independent t-tests to compare all pairs of group means dram
 
 The Games-Howell test achieves this by being more conservative than a series of t-tests, making it more difficult to reject the null hypothesis.
 
-Unlike a t-test, which compares a single pair of means using [Student's distribution]({{ site.baseurl }}{% link _posts/2025-08-23-student-distribution.md %}), the Games-Howell test's statistic is compared to a Studentized range distribution statistic. This special probability distribution is specifically designed to model the difference between the largest and smallest means in a set of samples under the null hypothesis. It also inherently accounts for the number of groups being compared ($k$), thus directly addressing the multiple comparisons problem.
+Unlike a t-test, which compares a single pair of means using [Student's distribution]({{ site.baseurl }}{% link _posts/2021-03-27-statistical-distributions.md %}#student_distribution), the Games-Howell test's statistic is compared to a Studentized range distribution statistic. This special probability distribution is specifically designed to model the difference between the largest and smallest means in a set of samples under the null hypothesis. It also inherently accounts for the number of groups being compared ($k$), thus directly addressing the multiple comparisons problem.
 
 The Studentized range statistic is defined as:
 
@@ -193,7 +193,7 @@ By using this modified test statistic and a critical value from the Studentized 
 
 This type of testing is popular for the cases of binomially distributed data where each observation has only two possible outcomes. For example we know that the average rate of college dropout across a country is 7%. For a particular college we conducted a survey and found out that among 500 originally enlisted students 31 left before graduation. We would like to test the hypothesis that the dropout rate for this college is the same as the average across the country. The alternative hypothesis would be that it is less than the average.
 
-Considering that each student may or may not leave before graduation we're dealing with the [binomial distribution]({{ site.baseurl }}{% link _posts/2021-03-27-statistical-distributions.md %}#binomial_distribution). For this kind of distribution we can employ its probability mass function and calculate directly the $p$-value - the probability of having from 0 to 31 dropouts among 500 considering that the average dropout rate is 7%:
+Considering that each student may or may not leave before graduation we're dealing with the [binomial distribution]({{ site.baseurl }}{% link _posts/2025-08-28-binomial-distribution.md %}). For this kind of distribution we can employ its probability mass function and calculate directly the $p$-value - the probability of having from 0 to 31 dropouts among 500 considering that the average dropout rate is 7%:
 
 &nbsp;&nbsp;&nbsp;&nbsp;
 $P(x \leq 31) = \sum_{i=0}^{31} {\binom{500}{i}}0.07^{i}(1-0.07)^{500-i} \approx 0.275$
@@ -366,7 +366,7 @@ In our setting the resulting $p$-value is 0.63 which does not give us the reason
 
 Fisher's exact method may be overly conservative in rejecting the null hypothesis in case of small samples, hence it has low power. This happens due to its discreteness. If the number of samples is small, big chunks of probability are distributed among a relatively small number of possible combinations of successes and failures. Therefore, the rare combinations might get too big shares of the combined probability, and the $p$-value will end up being too high.
 
-Barnard’s test was designed to combat the shortcoming of Fisher's exact method by increasing the power. In real life situations the sample sizes, and the distribution of successes among them may vary. Provided that the null hypothesis is true, the probability of success in a single experiment might not be equal to the one obtained from the totals of the contingency table. Instead, it is equal to some hypothetical value $\hat p$. In this case the probability of distribution observed in the contingency table is calculated similarly to the PMF of the [binomial distribution]({{ site.baseurl }}{% link _posts/2021-03-27-statistical-distributions.md %}#binomial_distribution):
+Barnard’s test was designed to combat the shortcoming of Fisher's exact method by increasing the power. In real life situations the sample sizes, and the distribution of successes among them may vary. Provided that the null hypothesis is true, the probability of success in a single experiment might not be equal to the one obtained from the totals of the contingency table. Instead, it is equal to some hypothetical value $\hat p$. In this case the probability of distribution observed in the contingency table is calculated similarly to the PMF of the [binomial distribution]({{ site.baseurl }}{% link _posts/2025-08-28-binomial-distribution.md %}):
 
 &nbsp;&nbsp;&nbsp;&nbsp;
 $p = \binom{35}{12}\binom{36}{15} \hat p^{(12+15)}(1-\hat p)^{(72-12-15)}$

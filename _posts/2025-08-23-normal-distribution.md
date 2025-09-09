@@ -75,8 +75,7 @@ Based on the example above, we may deduce that:
 
 Before moving on, let's re-introduce the z-score metric. Plainly speaking, $z$-score tells us how many standard deviations a given value is away from the mean of its distribution.
 
-&nbsp;&nbsp;&nbsp;&nbsp;
-$z = \frac{x-\mu}{\sigma}$
+$$z = \frac{x-\mu}{\sigma}$$
 
 In general, in order to calculate the area under the curve we would have to perform [integral calculus]({{ site.baseurl }}{% link _posts/2019-09-24-integrals.md %}). Integrating over the PDF produces the the cumulative distribution function (CDF). However, for the normal distribution, we can use a z-table to find probabilities without having to do any complex math.
 
