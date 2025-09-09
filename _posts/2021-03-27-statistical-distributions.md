@@ -212,7 +212,7 @@ Unlike the normal distribution, which has a constant shape, the shape of the t-d
 
 #### Properties of Student's t-Distribution
 
-* **Degrees of Freedom** ($nu$): This parameter is directly related to the sample size (n). The degrees of freedom are calculated as n−1.
+* **Degrees of Freedom** ($\nu$): This parameter is directly related to the sample size ($n$). The degrees of freedom are calculated as $n$−1.
 
 * **Fatter Tails**: The "fatter tails" mean that the t-distribution assigns a higher probability to extreme values compared to the normal distribution. This reflects the reality that with a small sample, you are more likely to encounter an extreme value by chance.
 
