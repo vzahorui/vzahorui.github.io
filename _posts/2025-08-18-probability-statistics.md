@@ -42,15 +42,15 @@ In the real world, probability and statistics form a continuous cycle. We first 
 
 ## The Core of Statistics
 
-**Descriptive Statistics({{ site.baseurl }}{% link _posts/2025-09-01-descriptive-statistics.md %})**: This page should cover methods for summarizing and describing data, such as measures of central tendency (mean, median, mode) and measures of variability (variance, standard deviation). This provides a necessary foundation before moving on to inference.
+**[Descriptive Statistics]({{ site.baseurl }}{% link _posts/2025-09-01-descriptive-statistics.md %})**: This page should cover methods for summarizing and describing data, such as measures of central tendency (mean, median, mode) and measures of variability (variance, standard deviation). This provides a necessary foundation before moving on to inference.
 
-**Sampling Distribution({{ site.baseurl }}{% link _posts/2021-01-16-sampling-distribution.md %})**: This page fits here as it is the theoretical foundation for statistical inference. It explains what a sampling distribution is and how it relates to the Central Limit Theorem.
+**[Sampling Distribution]({{ site.baseurl }}{% link _posts/2021-01-16-sampling-distribution.md %})**: This page fits here as it is the theoretical foundation for statistical inference. It explains what a sampling distribution is and how it relates to the Central Limit Theorem.
 
-**Statistical Inference({{ site.baseurl }}{% link _posts/2025-09-01-statistical-inference.md %})**: This is a crucial page that acts as the bridge between descriptive statistics and more advanced topics. It should define statistical inference as the process of drawing conclusions about a population based on a sample. This is where we introduce the two main pillars of inference: estimation and hypothesis testing.
+**[Statistical Inference]({{ site.baseurl }}{% link _posts/2025-09-01-statistical-inference.md %})**: This is a crucial page that acts as the bridge between descriptive statistics and more advanced topics. It should define statistical inference as the process of drawing conclusions about a population based on a sample. This is where we introduce the two main pillars of inference: estimation and hypothesis testing.
 
 ## Inferential Techniques
 
-**Confidence Interval({{ site.baseurl }}{% link _posts/2021-01-16-sampling-distribution.md %}#confidence_interval)**. An important part of statistical inference allowing to produce a range of values used to estimate the true value of a population parameter with certain confidence.
+**[Confidence Interval]({{ site.baseurl }}{% link _posts/2021-01-16-sampling-distribution.md %}#confidence_interval)**. An important part of statistical inference allowing to produce a range of values used to estimate the true value of a population parameter with certain confidence.
 
 **[Hypothesis testing]({{ site.baseurl }}{% link _posts/2021-01-21-hypothesis-testing.md %})** is a fundamental statistical method which uses a sample of data to make an informed decision about the parameters of a population. Then, given these parameters one can model various scenarios and make a conclusion on whether there is a difference between two groups (or the same group before and after some treatment). 
 
