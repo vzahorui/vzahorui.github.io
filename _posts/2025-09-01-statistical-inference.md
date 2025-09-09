@@ -14,11 +14,11 @@ toc_max_level: 3
 
 ## Introduction
 
-While [descriptive statistics]({{ site.baseurl }}/_posts/2025-09-01-descriptive-statistics.md) helps us summarize and describe the characteristics of a dataset, statistical inference is a powerful framework that allows us to go one step further. It is the process of using data from a small, representative sample to draw conclusions and make predictions about a larger population from which the sample was drawn.
+While [descriptive statistics]({{ site.baseurl }}{% link _posts/2025-09-01-descriptive-statistics.md %}) helps us summarize and describe the characteristics of a dataset, statistical inference is a powerful framework that allows us to go one step further. It is the process of using data from a small, representative sample to draw conclusions and make predictions about a larger population from which the sample was drawn.
 
 Imagine a manufacturer wants to know the average lifespan of a new lightbulb model. It's impossible to test every single bulb, so they test a small sample and use statistical inference to estimate the average lifespan for the entire production run.
 
-This process is built on the foundation of the [sampling distribution]({{ site.baseurl }}/_posts/2021-01-16-sampling-distribution.md), which provides a theoretical map of how our sample statistics are likely to behave. With this knowledge, we can answer two fundamental questions: "What is the true value of the population parameter?" and "Is a claim about the population likely to be true?"
+This process is built on the foundation of the [sampling distribution]({{ site.baseurl }}{% link _posts/2021-01-16-sampling-distribution.md %}), which provides a theoretical map of how our sample statistics are likely to behave. With this knowledge, we can answer two fundamental questions: "What is the true value of the population parameter?" and "Is a claim about the population likely to be true?"
 
 ## The Two Pillars of Statistical Inference
 
@@ -26,7 +26,7 @@ Statistical inference is primarily carried out using two key methods: estimation
 
 1. Estimation: Guessing with Precision
 
-Estimation is the process of estimating a population parameter (like the mean, variance, or proportion) using a sample statistic. The most common form of estimation is the interval estimate, or confidence interval, which provides a range of values that, with a certain degree of confidence (e.g., 95%), contains the true population parameter. For a detailed look into the mathematics and interpretation of confidence intervals, see the article on the [sampling distribution]({{ site.baseurl }}/_posts/2021-01-16-sampling-distribution.md).
+Estimation is the process of estimating a population parameter (like the mean, variance, or proportion) using a sample statistic. The most common form of estimation is the interval estimate, or confidence interval, which provides a range of values that, with a certain degree of confidence (e.g., 95%), contains the true population parameter. For a detailed look into the mathematics and interpretation of confidence intervals, see the article on the [sampling distribution]({{ site.baseurl }}{% link _posts/2021-01-16-sampling-distribution.md %}).
 
 2. Hypothesis Testing: The Formal Proof
 
