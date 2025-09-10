@@ -62,6 +62,6 @@ Non-Parametric Tests: This page should cover tests that do not make assumptions 
 
 ## Advanced Topics and Bridge Concepts
 
-**Regression Analysis**: a powerful tool for modeling relationships between variables.
+**[Regression Analysis]({{ site.baseurl }}{% link _posts/2025-09-10-regression-analysis.md %})**: a powerful tool for modeling relationships between variables.
 
 **[Bayesian Inference]({{ site.baseurl }}{% link _posts/2022-07-15-bayesian-inference.md %})** as an alternative to the frequentist approach, which uses prior knowledge and Bayes' Theorem to update beliefs about a hypothesis.

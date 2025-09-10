@@ -39,3 +39,15 @@ Estimation is the process of estimating a population parameter (like the mean, v
 The process then involves collecting sample data and calculating a p-value. The p-value is the probability of observing our sample data if the Null Hypothesis were true.
 
 A small p-value (typically less than 0.05) provides strong evidence against the null hypothesis, allowing us to reject it and conclude that our claim is likely to be true.
+
+## The Role of Estimation Techniques
+
+Before we can make an inference, we must first estimate the population parameters that define its underlying [probability distribution]({{ site.baseurl }}{% link _posts/2021-03-27-statistical-distributions.md %}).
+
+[Maximum Likelihood Estimation (MLE)]({{ site.baseurl }}{% link _posts/2021-04-24-maximum-likelihood.md %}) is a powerful and widely used method for finding the best estimates for these parameters. It works by finding the parameter values that make the observed data the most probable to have occurred. The estimates derived from MLE are then used as the basis for both hypothesis testing and confidence interval construction.
+
+## Making Sense of Relationships: Regression Analysis
+
+Another key area of statistical inference is understanding and modeling the relationships between variables. [Regression analysis]({{ site.baseurl }}{% link _posts/2025-09-10-regression-analysis.md %}) is a broad field of study dedicated to this. Its most basic form, linear regression, fits a straight line to the data to model the relationship between a dependent variable and one or more independent variables.
+
+Regression is a crucial tool for making inferences about a population. For example, a regression model can be used to infer the impact of a marketing budget on sales, or to predict future trends based on past data. The parameters of the regression model are also estimated and tested using the principles of statistical inference.

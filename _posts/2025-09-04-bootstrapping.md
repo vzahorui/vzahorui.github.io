@@ -14,7 +14,7 @@ toc_max_level: 3
 
 ## Introduction
 
-In traditional statistics, we rely on a theoretical framework—like the [Central Limit Theorem]({{ site.baseurl }}{% link _posts/2025-09-01-descriptive-statistics.md %}#central_limit) to determine the sampling distribution of a statistic. But what happens when our data doesn't fit the assumptions of these theorems, or when we are interested in a statistic (like the median or a 90th percentile) for which there is no simple formula for its standard error?
+In traditional statistics, we rely on a theoretical framework—like the [Central Limit Theorem]({{ site.baseurl }}{% link _posts/2021-01-16-sampling-distributions.md %}#central_limit) to determine the sampling distribution of a statistic. But what happens when our data doesn't fit the assumptions of these theorems, or when we are interested in a statistic (like the median or a 90th percentile) for which there is no simple formula for its standard error?
 
 This is where bootstrapping comes in. Bootstrapping is a modern, computer-intensive method that allows us to simulate a sampling distribution from our single, existing sample. It is a powerful technique that helps us to estimate a statistic and, most importantly, quantify the uncertainty around that estimate.
 
