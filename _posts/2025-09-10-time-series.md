@@ -35,7 +35,7 @@ The goal of time series analysis is to understand the past to predict the future
 
 ### Smoothing and Simple Models
 
-These methods are often a good starting point for forecasting. They are used to remove noise and reveal the underlying patterns in the data. Exponential smoothing is one such technique that gives more weight to recent observations and is highly effective for short-term forecasting. For a detailed look at this method, see our article on [Exponential Smoothing]({{ site.baseurl }}{% link _posts/2023-02-20-exponential-smoothing.md %}).
+These methods are often a good starting point for forecasting. They are used to remove noise and reveal the underlying patterns in the data. Exponential smoothing is one such technique that gives more weight to recent observations and is highly effective for short-term forecasting. For a detailed look at the smoothing techniques, see [this article]({{ site.baseurl }}{% link _posts/2025-09-10-time-series-smoothing.md %}).
 
 ### ARIMA Models
 
