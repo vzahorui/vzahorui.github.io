@@ -1,8 +1,8 @@
 ---
 layout: single
 title: "Time Series Analysis"
-category: "Regression"
-tags: regression
+category: "Time Series"
+tags: regression ARIMA smoothing exponential-smooting autoregression Kalman-filter
 date: 2025-09-10
 toc: true
 toc_label: "Table of Contents"
@@ -51,7 +51,7 @@ ARIMA models are a sophisticated way to handle complex time series data. To lear
 
 While ARIMA and exponential smoothing are powerful, some real-world problems require more specialized approaches.
 
-**The Kalman Filter**: This is a crucial algorithm used for state estimation. It's particularly useful for filtering out noise from a time series and making predictions for a system where the state is not directly observable. It's the underlying technology for many applications, including GPS navigation, where it estimates a vehicle's position based on noisy sensor readings.
+**[The Kalman Filter]({{ site.baseurl }}{% link _posts/2025-09-10-time-series-smoothing.md %}#kalman_filter)**: This is a crucial algorithm used for state estimation. It's particularly useful for filtering out noise from a time series and making predictions for a system where the state is not directly observable. It's the underlying technology for many applications, including GPS navigation, where it estimates a vehicle's position based on noisy sensor readings.
 
 **Vector Autoregression (VAR)**: All the models above are for a single time series. VAR extends the autoregression concept to multiple interdependent time series. It's used to analyze the dynamic relationship between several variables, such as the relationship between inflation, interest rates, and GDP.
 

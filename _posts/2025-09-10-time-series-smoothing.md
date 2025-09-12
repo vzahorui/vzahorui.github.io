@@ -1,132 +1,152 @@
 ---
 layout: single
-title: "Exponential smoothing models"
-category: "Time series"
-tags: trend lag seasonal-component level-component Holt-linear-trend damped-trend  Holt-Winters-seasonal-method Holt-linear-trend-method state-space-model additive-error multiplicative-error
-date: 2023-03-18
+title: "Time Series Smoothing"
+category: "Time Series"
+tags: time-series kalman-filter moving-average exponential-smoothing covariance
+date: 2025-09-12
+toc: true
+toc_label: "Table of Contents"
+toc_icon: "book-reader"
+toc_sticky: true
+toc_min_level: 2
+toc_max_level: 3
 ---
 
-In this article we shall make a breakdown of the exponential smoothing models which are used in time series forecasting.
+In time series analysis, data often contains a high degree of noise—random, short-term fluctuations that can obscure the underlying patterns. Smoothing is the process of removing this noise to reveal the true trend, seasonality, or cyclical components.
 
-* [Simple exponential smoothing model](#simple_es)
-* [Exponential smoothing with trend](#es_trend)
-* [Exponential smoothing with trend and seasonality](#es_trend_season)
-* [State space models with additive and multiplicative errors](#state_space)
+The goal of smoothing is to create a new, less volatile time series that is easier to analyze and forecast. Here, we'll cover the most common techniques used for this purpose.
 
+## Moving Average
 
-<div id='simple_es'/>
-## Simple exponential smoothing model
+The moving average is the simplest and most intuitive smoothing technique. It works by creating a new series where each value is the average of a specific number of preceding data points. This process "irons out" the noise by averaging out random variations.
 
-Similarly to [ARIMA models]({{ site.baseurl }}{% link _posts/2022-12-11-ARIMA-models.md %}) the idea upon which the exponential smoothing models are built is that the most recent observations contribute to the currently observed values of a series. Unlike ARIMA models however they do not require the time series to be stationary, and the weights with which the recent observation influences the current one decay exponentially, hence the name.
+$$\hat{y_t} = \frac{1}{k} \sum_{i=0}^{k-1} y_{t-0}$$
 
-This is how the relationship between the observations can be expressed:
+Here $k$ is the number of data points included in the average (the window size).
 
-$$\hat{y}_{t+1|t}=\alpha y_{t} + (1-\alpha) \alpha y_{t-1} + (1-\alpha)^{2} \alpha y_{t-2} + \cdots$$
+This type of smoothing is simple to understand and compute; however, it can lag behind the original data heavily and may be impacted by large spikes.
 
-Here $\alpha$ is the parameter which controls the strength of the relationship between the currently observed value and the values at different lags: the higher the value of $\alpha$ - the bigger weight is placed on the most recent observation, and the quicker the weight of each further previous observation decays. In other words the most recent observation has weight equal to $\alpha$, and all other observations combined have weight $(1-\alpha)$ with respect to $y_{t+1}$. At the same time $y_t$ is also defined via exponential smoothing, and it places weight $\alpha$ to $y_{t-1}$ and weight $(1-\alpha)$ to all other previous observations. The same is true for all other previous observations which explains the final form of the equation above.
+![](/assets/images/time_series/times_series_ma_smoothing.png){: .align-center}
 
-Notice that there is no explicit error term because it is believed to be incorporated within the past observed values. The model makes a forecast based on the previous disturbance so for now it has only a single term - the level component which is the weighted average of the observed value at $t$ and of the forecasted value at $t$ given the value at $t-1$:  
+As can be seen, the larger the window, the smoother the resulting series is. However, it also becomes the most lagging of all and requires the biggest number of data points upfront. On the other hand, a shorter window may not produce the desired level of smoothing.
 
-$$\ell_{t} = \alpha y_{t} + (1 - \alpha)\ell_{t-1}$$
+## Exponential Smoothing
 
-Let's introduce the component form of the forecast equation above which for now will include only the level component.
+This is a more sophisticated method that gives more weight to recent observations, making the smoothed series more responsive to recent changes. It applies a "smoothing factor" ($\alpha$), a weight that decreases exponentially for older data points.
 
-$$\hat{y}_{t+h|t} = \ell_{t}$$
+$$\hat{y_t} = \alpha y_t + (1-\alpha) \hat{y_{t-1}}$$
 
-Here $h$ is the step size for the forecast so the given expression is the forecast for the point $y_{t+h}$ given the observed values up until $y_t$.
+![](/assets/images/time_series/times_series_es_smoothing.png){: .align-center}
 
-The component form is a useful representation of the exponential smoothing model because it can later be extended to include the trend and seasonal components (and this is where the step size $h$ will actually start to matter).
+The choice of the $\alpha$ value can significantly impact the result. The higher its value, the less smooth the resulting time series will be.
 
-<a href="#page-title" class="back-to-top">{{ site.data.ui-text[site.locale].back_to_top | default: 'Back to Top' }} &uarr;</a>
+Similar to the moving average, this algorithm also suffers from lagging behind the original trends in the data.
 
-<div id='es_trend'/>
-## Exponential smoothing with trend
+<div id='kalman_filter'/>
+## Kalman Filter
 
-Also known as Holt’s linear trend method, it utilizes the component form of the forecast equation, and contains two terms: the level and the trend components.
+The Kalman filter is a powerful and highly advanced technique, particularly useful in signal processing and engineering. It's an iterative, two-step process that provides an optimal estimate of a system's state from a series of noisy measurements.
 
-$$\hat{y}_{t+h|t} = \ell_{t} + hb_t$$
+The filter operates on the principle that the system's true state can be estimated more accurately by combining a prediction based on a mathematical model and a noisy measurement.
 
-where $b_t$ is the estimate of the trend at point $t$:
+The Kalman filter's power comes from its ability to handle multiple variables at once and its capacity to provide an optimal estimate in real-time. Below is an example of the application of a Kalman filter to the same simulated dataset as the one used for moving average and exponential smoothing.
 
-$$b_t = \beta^*(\ell_{t} - \ell_{t-1}) + (1 -\beta^*)b_{t-1}$$
+![](/assets/images/time_series/times_series_kalman_smoothing.png){: .align-center}
 
-and the level component accommodates for the previously estimated trend component:
+### Two-Step Process
 
-$$\ell_{t} = \alpha y_{t} + (1 - \alpha)(\ell_{t-1}+b_{t-1})$$
+**Prediction**: The filter predicts the next state of the system based on a mathematical model. It also calculates the uncertainty of that prediction and the system's dynamics.
 
-Notice how the component form of the forecast equation resembles the simple [linear regression]({{ site.baseurl }}{% link _posts/2019-10-25-linear-regression.md %}) where the level component is the intercept, and the forecast is a linear function of the step size $h$.
+**Update**: When a new measurement arrives, the filter updates the predicted state by giving more weight to either the prediction or the new measurement, depending on their respective uncertainties.
 
-Since the same trend into the future is hardly realistic, a dampening factor $\phi$ was introduced into the model which lessens the effect of the trend for increasing forecasting windows.
+### The Core Equations
 
-$$
-\begin{align*}
-  \hat{y}_{t+h|t} &= \ell_{t} + (\phi+\phi^2 + \dots + \phi^{h})b_{t} \\
-  \ell_{t} &= \alpha y_{t} + (1 - \alpha)(\ell_{t-1} + \phi b_{t-1})\\
-  b_{t} &= \beta^*(\ell_{t} - \ell_{t-1}) + (1 -\beta^*)\phi b_{t-1}.
-\end{align*}
-$$
+The state of the system at any time $k$ is defined by a vector $x_k$ which consists of various factors that determine this state (e.g., velocity, temperature, position, or any other characteristic of interest). This true vector is unknown. 
 
-$\phi$ can be set somewhere between 0 and 1. If it's equal to 1 then the model will not include the trend dampening.
+According to Kalman filter, the true state at time $k$ evolves from time $k-1$ according to this formula:
 
-Below we can see an example of forecasting with exponential smoothing having with and and without the trend component.
+$$x_k = F_k x_{k-1} B_k u_k + w_k$$
 
-![](/assets/images/time_series/exponential_smooting_example.png){: .align-center}
+Here 
+* $F_k$ is a state transition model.
+* $u_k$ is a control input vector (if present) that represents some external influence.
+* $B_k$ is a control input model which is applied to the control input vector.
+* $w_k$ is the process noise, which is assumed to be drawn from a multivariate [normal distirbution]({{ site.baseurl }}{% link _posts/2025-08-23-normal-distribution.md %}) centered at 0 with [covariance]({{ site.baseurl }}{% link _posts/2019-08-10-correlation.md %}) matrix $Q_k$
 
-<a href="#page-title" class="back-to-top">{{ site.data.ui-text[site.locale].back_to_top | default: 'Back to Top' }} &uarr;</a>
+Because the system model's accuracy can fluctuate over time, $F$ is actually an approximation, and $Q$ serves to represent this uncertainty.
 
-<div id='es_trend_season'/>
-## Exponential smoothing with trend and seasonality
+The Kalman filter also uses the covariance matrix $P$ of the elements from $x_k$ to better predict the state. For example, the state could be a vector with two elements: position and velocity. These two elements are correlated, so knowing one allows for a better prediction of the other.
 
-This type of model is known as Holt-Winters’ seasonal method, and it adds the seasonal component to the equation. There are actually two variants of this model: with the additive and with the multiplicative seasonal component.
+At the same time, we have a measurement of the true state:
 
-The additive model is built like this:
+$$z_k = H_k x_k + v_k$$
 
-$$
-\begin{align*}
-  \hat{y}_{t+h|t} &= \ell_{t} + hb_{t} + s_{t+h-m(k+1)} \\
-  \ell_{t} &= \alpha(y_{t} - s_{t-m}) + (1 - \alpha)(\ell_{t-1} + b_{t-1})\\
-  b_{t} &= \beta^*(\ell_{t} - \ell_{t-1}) + (1 - \beta^*)b_{t-1}\\
-  s_{t} &= \gamma (y_{t}-\ell_{t-1}-b_{t-1}) + (1-\gamma)s_{t-m},
-\end{align*}
-$$
+where 
+* $H_k$ is the measurement model, which maps the true state space into the observed state space. This could be the case for different scales and units of measurement. 
+* $v_k$ s the measurement noise, which is assumed to be zero mean Gaussian white noise with a covariance $R_k$.
 
-Here $m$ is the number of observations for a full cycle, for example 12 in case of monthly data. $k$ is the integer part of the expression $(h-1)/m$ which is meant to ensure that the estimate of the seasonal component is taken from the latest observed cycle.
+What the algorithm is trying to find is an overlap of the two regions: the prediction with its area of uncertainty and the measurement with its own area of uncertainty. The resulting region will produce a value that is more precise with respect to the true state than either of its two components.
 
-The multiplicative model is built like this:
+The distributions of both $x$ and $z$ are [Gaussian]({{ site.baseurl }}{% link _posts/2025-08-23-normal-distribution.md %}). The mean and variance of the joint distribution are calculated as follows:
 
-$$
-\begin{align*}
-  \hat{y}_{t+h|t} &= (\ell_{t} + hb_{t})s_{t+h-m(k+1)} \\
-  \ell_{t} &= \alpha \frac{y_{t}}{s_{t-m}} + (1 - \alpha)(\ell_{t-1} + b_{t-1})\\
-  b_{t} &= \beta^*(\ell_{t}-\ell_{t-1}) + (1 - \beta^*)b_{t-1}            	\\
-  s_{t} &= \gamma \frac{y_{t}}{(\ell_{t-1} + b_{t-1})} + (1 - \gamma)s_{t-m}
-\end{align*}
-$$
+$$\mu ' = \mu_{0} + \frac{\sigma_{0}^{2} (\mu_{1} - \mu_{0})}{\sigma_{0}^{2} + \sigma_{1}^{2}}$$
 
-The difference between the two models is that with the additive one the level of the seasonal component is expected to be the same from cycle to cycle, while in the multiplicative model it changes with the level of the series.
-<a href="#page-title" class="back-to-top">{{ site.data.ui-text[site.locale].back_to_top | default: 'Back to Top' }} &uarr;</a>
+$${\sigma}'^{2} = \sigma_{0}^{2} - \frac{\sigma_{0}^{4}}{\sigma_{0}^{2} + \sigma_{1}^{2}}$$
 
-<div id='state_space'/>
-## State space models with additive and multiplicative errors
+By making a small substitution, we get this:
 
-The state space models utilize the approach of evolutionary updating the parameters with each new observation. When a new observation comes out, the error is measured by comparing the observed value with the previously predicted one. For example the equation for level component in the simple exponential smoothing model could be rearranged to look like this:
+$$k = \frac{\sigma_{0}^{2}}{\sigma_{0}^{2} + \sigma_{1}^{2}}$$
 
-$$
-\begin{align*}
-\ell_{t} &= \ell_{t-1}+\alpha( y_{t}-\ell_{t-1})\\
-     	&= \ell_{t-1}+\alpha \varepsilon_{t}
-\end{align*}
-$$
+$$\mu ' = \mu_{0} +k(\mu_{1} - \mu_{0})$$
 
-where $\varepsilon_{t}$ is the measured error at point $t$.
+$${\sigma}'^{2} = \sigma_{0}^{2} - k \sigma_{0}^{2}$$
 
-The level parameter here is the state which is adjusted by the measured error damped by the smoothing parameter $\alpha$. The state space models do this type of updating for a space of states (level, trend, seasonality) simultaneously with each new observation, hence the name. The smoothing parameters are optimized so that the total error along the whole series of observations is minimized.
+In matrix notation, $K$ is known as the Kalman gain and can be written as this:
 
-The error representation above is known as an additive error model. The alternative is the multiplicative error model, where the error is represented as a relative difference instead of the absolute one.
+$$K = \Sigma_0 (\Sigma_0 + \Sigma_1)^{-1}$$
 
-$$\varepsilon_t = \frac{y_t-\hat{y}_{t|t-1}}{\hat{y}_{t|t-1}}$$
+Application of this Kalman gain to the model leads to the minimization of the errors from the joint distribution of predictions and measurements. 
 
-which naturally implies a different form of the state space equations.
+With respect to the Kalman Filter algorithm, it is important to specify a sensible guess for the initial state (our first estimate) in order to advance it forward. We also have to specify the variance of the process noise ($Q$), and the variance of the measument noise ($R$).
 
-By introducing the error term into the equation, the state space models are capable of generating not only the point estimates but also the confidence intervals (under the assumption that the errors are independent and [normally distributed]({{ site.baseurl }}{% link _posts/2025-08-23-normal-distribution.md %})).
-<a href="#page-title" class="back-to-top">{{ site.data.ui-text[site.locale].back_to_top | default: 'Back to Top' }} &uarr;</a>
+Now, using this, at each time step $k$ the Kalman filter applies the following equations in its iterative process:
+
+**Prediction Step**:
+
+1. Project the state ahead:
+
+$$\hat{x}_{k∣k−1}​=F_{k} \hat{​x}_{k−1∣k−1}​+B_k ​u_{k}​$$
+
+2. Project the error covariance ahead:
+
+$$P_{k∣k−1}​=F_k ​P_{k−1∣k−1} ​F_k^T ​ +Q_k​$$
+
+Here $\hat{x}_{k∣k−1}$ and $\hat{x}_{k∣k}$ are predicted and updated state vectors.
+
+**Update Step**:
+
+1. Calculate pre-fit measurement residual (innovation):
+
+$$\tilde{y}_k = z_k - H_k \hat{x}_{k∣k−1}$$
+
+2. Calculate pre-fit residual covariance:
+
+$$S_k = H_k P_{k∣k−1} H_{k}^{T}+ R_k$$
+
+3. Compute the Kalman gain:
+
+$$K_k = P_{k∣k−1} H_{k}^{T} S^{-1}$$
+
+4. Update the state estimate:
+
+$$\hat{x}_{k∣k} ​= \hat{x}_{k∣k−1}​ + K_k \tilde{y}_k$$
+
+5. Update the prediction covariance:
+
+$$P_{k|k} = (I - K_k H_k) P_{k∣k−1}$$
+
+6. Calculate the measurement post-fit residual:
+
+$$\tilde{y}_{k|k} = z_k - H_k \hat{x}_{k∣k}$$
+
+At each step, the estimated covariance $P$ (the estimate's uncertainty) will be smaller. If $R$ (the measurement uncertainty) is large, the Kalman gain would be lower, and thus the convergence of $P$ will be slower.

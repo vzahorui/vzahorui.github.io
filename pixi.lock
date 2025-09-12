@@ -140,6 +140,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/noarch/pure_eval-0.2.3-pyhd8ed1ab_1.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/pycparser-2.22-pyh29332c3_1.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/pygments-2.19.2-pyhd8ed1ab_0.conda
+      - conda: https://conda.anaconda.org/conda-forge/noarch/pykalman-0.10.2-pyhd8ed1ab_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/pyparsing-3.2.3-pyhd8ed1ab_1.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/pysocks-1.7.1-pyha55dd90_7.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/python-3.13.5-hec9711d_102_cp313.conda
@@ -159,6 +160,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/noarch/rfc3986-validator-0.1.1-pyh9f0ad1d_0.tar.bz2
       - conda: https://conda.anaconda.org/conda-forge/noarch/rfc3987-syntax-1.1.0-pyhe01879c_1.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/rpds-py-0.26.0-py313h4b2b08d_0.conda
+      - conda: https://conda.anaconda.org/conda-forge/noarch/scikit-base-0.12.5-pyhc455866_0.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/scipy-1.16.0-py313h86fcf2b_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/seaborn-0.13.2-hd8ed1ab_3.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/seaborn-base-0.13.2-pyhd8ed1ab_3.conda
@@ -2025,6 +2027,21 @@ packages:
   - pkg:pypi/pygments?source=hash-mapping
   size: 889287
   timestamp: 1750615908735
+- conda: https://conda.anaconda.org/conda-forge/noarch/pykalman-0.10.2-pyhd8ed1ab_0.conda
+  sha256: 0f642bd8a6c820d99e0afcaf58cf50d8990343fb6f853429bb6dd8387da50bcf
+  md5: 4ef905843d6aecb5c9ee9e55230138ec
+  depends:
+  - numpy <3
+  - packaging
+  - python >=3.10
+  - scikit-base <0.13.0
+  - scipy <2.0.0
+  license: BSD-3-Clause
+  license_family: BSD
+  purls:
+  - pkg:pypi/pykalman?source=hash-mapping
+  size: 233414
+  timestamp: 1756231259379
 - conda: https://conda.anaconda.org/conda-forge/noarch/pyparsing-3.2.3-pyhd8ed1ab_1.conda
   sha256: b92afb79b52fcf395fd220b29e0dd3297610f2059afac45298d44e00fcbf23b6
   md5: 513d3c262ee49b54a8fec85c5bc99764
@@ -2281,6 +2298,17 @@ packages:
   - pkg:pypi/rpds-py?source=hash-mapping
   size: 388125
   timestamp: 1751467685278
+- conda: https://conda.anaconda.org/conda-forge/noarch/scikit-base-0.12.5-pyhc455866_0.conda
+  sha256: 29defbd00cc4a14567e4abeba5fec62500129225db074dfcc16be29b6eea4e74
+  md5: 02d80c11e81625dee8ad6f740a295f40
+  depends:
+  - python >=3.9,<3.14
+  license: BSD-3-Clause
+  license_family: BSD
+  purls:
+  - pkg:pypi/scikit-base?source=hash-mapping
+  size: 112033
+  timestamp: 1755496300741
 - conda: https://conda.anaconda.org/conda-forge/linux-64/scipy-1.16.0-py313h86fcf2b_0.conda
   sha256: 75bee2b5cb27616bcbd700d42dacc06577b90f1f9e31dc7682f4244867982a78
   md5: 8c60fe574a5abab59cd365d32e279872
@@ -2577,7 +2605,7 @@ packages:
 - pypi: .
   name: vzahorui-github-io
   version: 0.1.0
-  sha256: 7b0f5d2863b703232079e9a1af2b172d367dbcaa299bdd6cd1a3ca992923e448
+  sha256: 6d024016101a7e263467aa56ecea61718c3058940d7d9226b73d09bcb53a965b
   requires_python: '>=3.11'
   editable: true
 - conda: https://conda.anaconda.org/conda-forge/noarch/wcwidth-0.2.13-pyhd8ed1ab_1.conda
