@@ -159,7 +159,7 @@ The standard Kalman filter, as we've discussed, is a real-time, one-pass algorit
 
 Here is how RTS Smoother works:
 
-1. During its forward pass the Kalman Filter saves the history of its predicted and updated state estimates: $\hat{x}_{k∣k-1}$ and $\hat{x}_{k∣k}$, as well as covariances $P_{k∣k−1}$ and $P_{k∣k}$.
+1. During its forward pass the Kalman Filter saves the history of its predicted and updated state estimates: $\hat{x}_{k\mid k-1}$ and $\hat{x}_{k∣k}$, as well as covariances $P_{k\mid k−1}$ and $P_{k\mid k}$.
 
 2. After all forwards passes are completed, the point estimates are processed in a reversed order by apllying these equations: 
 
@@ -193,7 +193,7 @@ $$\hat{Q} = \frac{1}{N} \sum_{k=1}^{N}[(\hat{x}_{k∣N} - F_k \hat{x}_{k-1∣N})
 
 This formula effectively averages two components: the squared residuals, and the uncertainty in the state transitions over the entire time series. 
 
-The squared residial term is a measure of the squared error. It calculates the difference between the most accurate estimate of the state at time $k$ (the smoothed state $\hat{x}_{k∣N}$​) and the one-step prediction of that state $F_k \hat{x}_{k-1∣N}$. This term tells us how much our dynamics model was "wrong" at each step.
+The squared residial term is a measure of the squared error. It calculates the difference between the most accurate estimate of the state at time $k$ (the smoothed state $\hat{x}_{k \mid N}$​) and the one-step prediction of that state $F_k \hat{x}_{k-1 \mid N}$. This term tells us how much our dynamics model was "wrong" at each step.
 
 The covariance term accounts for the uncertainty in our estimates. It subtracts the uncertainty of the predicted state from the uncertainty of the smoothed state. This ensures that the updated value for $Q$ reflects the inherent randomness of the system's evolution, not just the errors from our estimates.
 
