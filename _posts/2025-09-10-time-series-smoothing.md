@@ -2,7 +2,7 @@
 layout: single
 title: "Time Series Smoothing"
 category: "Time Series"
-tags: time-series kalman-filter moving-average exponential-smoothing covariance
+tags: time-series kalman-filter moving-average exponential-smoothing covariance Rauch-Tung-Striebel
 date: 2025-09-12
 toc: true
 toc_label: "Table of Contents"
@@ -150,3 +150,55 @@ $$P_{k|k} = (I - K_k H_k) P_{k∣k−1}$$
 $$\tilde{y}_{k|k} = z_k - H_k \hat{x}_{k∣k}$$
 
 At each step, the estimated covariance $P$ (the estimate's uncertainty) will be smaller. If $R$ (the measurement uncertainty) is large, the Kalman gain would be lower, and thus the convergence of $P$ will be slower.
+
+### Fixed-interval smoothers
+
+A fixed-interval smoother is a powerful technique that provides the most accurate estimate for a time series after you have collected all of your data, from start to finish.
+
+The standard Kalman filter, as we've discussed, is a real-time, one-pass algorithm. It produces the best estimate of the current state based on all past and current measurements. A smoother, on the other hand, runs a second, backward pass through the data to refine the estimates for all previous time points, using information from the future. The Rauch-Tung-Striebel (RTS) Smoother is a well-known example of a fixed-interval smoother.
+
+Here is how RTS Smoother works:
+
+1. During its forward pass the Kalman Filter saves the history of its predicted and updated state estimates: $\hat{x}_{k∣k-1}$ and $\hat{x}_{k∣k}$, as well as covariances $P_{k∣k−1}$ and $P_{k∣k}$.
+
+2. After all forwards passes are completed, the point estimates are processed in a reversed order by apllying these equations: 
+
+* Calculating the smoother gain matrix ($G_k$): This gain determines how much to weigh the new information from the subsequent state.
+
+$$G_k = P_{k∣k} F_{k+1∣k}^{T} P_{k+1∣k}^{-1}$$
+
+* Updating the smoothed state estimate. This is the final, optimal state estimate at time $k$, using all data up to time $N$.
+
+$$\hat{x}_{k∣N} = \hat{x}_{k∣k} + G_k(\hat{x}_{k+1∣N} - \hat{x}_{k+1∣k})$$
+
+* Updating the smoothed covariance estimate. This represents the reduced uncertainty of the final smoothed estimate.
+
+$$P_{k|N} = P_{k|k} + G_k(P_{k+1∣N} - P_{k+1∣k})G_{k}^{T}$$
+
+### Estimating parameters 
+
+The Kalman filter requires the process noise covariance ($Q$) and the measurement noise covariance ($R$) to be known beforehand. The [Expectation Maximization]({{ site.baseurl }}{% link _posts/2025-09-18-expectation-maximization.md %}) algorithm (EM) provides a perfect solution for this problem by treating the unknown states as latent variables and the unknown covariances as the parameters we need to estimate.
+
+The EM algorithm for the Kalman filter (often called the EM-Kalman smoother) works as follows:
+
+#### The E-Step: The Kalman Smoother Pass
+
+The E-step of the EM algorithm is where the Kalman filter and the RTS smoother do their work. Here the E-step essentially calculates the necessary statistics from the data, such as the smoothed mean and covariance of the state and measurement residuals, which will be used in the next step.
+
+#### The M-Step: Updating the Parameters
+
+The formulas for the new estimates ($Q$​ and $R$) are derived from the principle of [maximum likelihood]({{ site.baseurl }}{% link _posts/2021-04-24-maximum-likelihood.md %}). The goal is to find values for Q and R that best explain the discrepancies (residuals) we observed between our model and our data.
+
+$$\hat{Q} = \frac{1}{N} \sum_{k=1}^{N}[(\hat{x}_{k∣N} - F_k \hat{x}_{k-1∣N})(\hat{x}_{k∣N} - F_k \hat{x}_{k-1∣N})^{T} + P_{k∣N} - F_k P_{k-1∣N}F_k^{T}]$$
+
+This formula effectively averages two components: the squared residuals, and the uncertainty in the state transitions over the entire time series. 
+
+The squared residial term is a measure of the squared error. It calculates the difference between the most accurate estimate of the state at time $k$ (the smoothed state $\hat{x}_{k∣N}$​) and the one-step prediction of that state $F_k \hat{x}_{k-1∣N}$. This term tells us how much our dynamics model was "wrong" at each step.
+
+The covariance term accounts for the uncertainty in our estimates. It subtracts the uncertainty of the predicted state from the uncertainty of the smoothed state. This ensures that the updated value for $Q$ reflects the inherent randomness of the system's evolution, not just the errors from our estimates.
+
+$$\hat{R} = \frac{1}{N} \sum_{k=1}^{N}[(z_k - H_k \hat{x}_{k∣N})(z_k - H_k \hat{x}_{k∣N})^{T} + H_k P_{k∣N} H_k^{T}]$$
+
+This formula averages the squared residuals between the actual measurements and the smoothed state projections, accounting for the uncertainty in those projections. Here the covariance term $H_k P_{k∣N} H_k^{T}$ accounts for the uncertainty in the smoothed state as it's projected into the measurement space. This ensures our estimate of $R$ isn't just a measure of the raw difference but an honest estimate of the noise.
+
+The algorithm repeats these two steps—E-step (smooth) and M-step (update)—until the estimates for $Q$ and $R$ no longer change significantly.
