@@ -2,7 +2,7 @@
 layout: single
 title: "Maximum Likelihood Estimation"
 description: Explaining maximum likelihood for statistical inference
-category: "Probability & Statistics"
+category: "Optimization"
 tags: probability-distribution statistical-inference likelihood-function goodness-of-fit MLE joint-probability log-likelihood likelihood-ratio likelihood-ratio-test Wald-test Wald-statistic chi-squre-distribution Lagrange-multiplier-test score-test
 date: 2025-09-10
 toc: true
