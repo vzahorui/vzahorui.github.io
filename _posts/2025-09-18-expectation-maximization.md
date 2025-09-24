@@ -56,7 +56,7 @@ These two steps are repeated. With each iteration, the cluster assignments becom
 
 Now let's see how it works and more importantly why it works.
 
-In the most general sense, as per the [maximum likelihood estimation]({{ site.baseurl }}{% link _posts/2021-04-24-maximum-likelihood.md %}) we want to maximize the log-likelihood function $\log \mathcal{L}(\theta \mid X)$, which is equivalent of maximizing the probability of data given the parameters $\log P(X | \theta)$. 
+In the most general sense, as per the [maximum likelihood estimation]({{ site.baseurl }}{% link _posts/2021-04-24-maximum-likelihood.md %}) we want to maximize the log-likelihood function {% raw %}<span>$\log \mathcal{L}(\theta \mid X)$</span>{% endraw %}, which is equivalent of maximizing the probability of data given the parameters {% raw %}<span>$\log P(X | \theta)$</span>{% endraw %}. 
 
 However in the presense of unobserved data this function becomes dependent on both the observed data $X$ and unobserved hidden variables $Z$. Since $Z$ is unknown the maximum likelihood estimation becomes this:
 
