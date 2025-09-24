@@ -90,7 +90,7 @@ $$\log E_{Z | X, \theta^{(t)}} \left[\frac{P(X, Z | \theta)}{P (Z | X, \theta^{(
 
 As we can see, at this point this other function is touching the likelihood function but it never outgrows it. This expression is known as Evidence Lower Bound (ELBO).
 
-When $\theta^{(t)}$ is equal to $\theta$ the functions touch. This is because the following expression $\frac{P(X, Z | \theta)}{P (Z | X, \theta^{(t)})}$ becomes a constant, and not a function of $\theta$, and thus Jensen's inequality becomes equality.
+When {% raw %}<span>$\theta^{(t)}$</span>{% endraw %} is equal to {% raw %}<span>$\theta$</span>{% endraw %} the functions touch. This is because the following expression {% raw %}<span>$\frac{P(X, Z | \theta)}{P (Z | X, \theta^{(t)})}$</span>{% endraw %} becomes a constant, and not a function of {% raw %}<span>$\theta$</span>{% endraw %}, and thus Jensen's inequality becomes equality.
 
 This new equation will be the one which we will have to maximize under the M-step (strictly speaking, a part of it called $Q$-function but more to it later). Using the properties of logarithms it can be rewritten as follows:
 
