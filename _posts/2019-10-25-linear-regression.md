@@ -4,49 +4,44 @@ title: "Linear regression"
 description: Explaining linear regression and its properties
 category: "Regression"
 tags: multiple-regression linear-regression multivariable-regression gaussian-noise normal-distribution homoscedasticity multicollinearity correlation-coefficient heteroscedasticity hypothesis-testing autocorrelation residuals error-term Cochrane–Orcutt-estimation Prais–Winsten-estimation weighted-least-squares WLS generalized-least-squares GLS feasible-generalized-least-squares FGLS
-date: 2021-08-01
+date: 2025-10-01
+toc: true
+toc_label: "Table of Contents"
+toc_icon: "book-reader"
+toc_sticky: true
+toc_min_level: 2
+toc_max_level: 3
 ---
 
-Regression analysis is used for estimating the relationship between variables, usually one dependent and one or several independent variables. Having a regression model at hand, we can predict some continuous value of the dependent variable based on the values of independent variables.
+Linear regression is the simplest and most widely used form of [regression analysis]({{ site.baseurl }}{% link _posts/2025-09-10-regression-analysis.md %}). It assumes a straight-line relationship between a dependent variable ($Y$) and one or more independent variables ($X$). The primary goal is to find the line that best summarizes the observed data, allowing us to estimate the change in $Y$ associated with a unit change in $X$.
 
-## In this article
-* [What is linear regression](#introduction)
-* [Gaussian noise](#gaussian_noise)
-* [Matrix notation](#matrix_notation)
-* [Confidence intervals of the coefficients](#confidence_interval_coef)
-* [Other assumptions](#other_assumptions)
-* [Hypothesis testing in linear regression](#hypothesis_tests)
-  * [Significance of the parameters](#significance_of_params)
-  * [Significance of the model](#significance_of_model)
-* [Validation of assumptions](#validation)
-  * [Linear relationship](#validation_of_linear)
-  * [Absence of perfect multicollinearity among predictors](#validation_of_multicolinear)
-  * [Independence of errors](#independence_of_errors)
-  * [Normal distribution of errors](#normality_of_errors)
-  * [Heteroscedasticity of errors](#heteroscedasticity_of_errors)
+## The Pre-Modeling Step: Correlation
 
-<div id='introduction'/>
-## What is linear regression
+Before fitting any line, the first step in linear regression is confirming that a linear relationship even exists. This is assessed using [covariance and correlation]({{ site.baseurl }}{% link _posts/20219-08-10-correlation.md %}).
+
+* Covariance measures how two variables vary together (in the same or opposite direction).
+* Correlation is the standardized version of covariance, providing a single number (between −1 and +1) that quantifies the strength and direction of the relationship, independent of the variables' units.
+
+A strong correlation (close to −1 or +1) is a necessary signal that a linear regression model may be appropriate.
+
+## The Equation of the Line
 
 Single variable linear regression explains the relationship between single input variable and the output:
  
-&nbsp;&nbsp;&nbsp;&nbsp;
-$y = a + bx + \varepsilon$,
+$$y = a + bx + \varepsilon$$
  
-where $a$ and $b$ are parameters which explain the behaviour of the dependent variable according to the values of the independent one, and $\varepsilon$ is the residual.
+where $a$ and $b$ are parameters which explain the behaviour of the dependent variable according to the values of the independent one, and $\varepsilon$ is the residual (or error term).
  
 The general form of linear regression however is the multivariable one where multiple predictors are taken into consideration:
 
-&nbsp;&nbsp;&nbsp;&nbsp;
-$y = \beta_0 + \sum_{i=1}^n \beta_i x_i + \varepsilon$,
+$$y = \beta_0 + \sum_{i=1}^n \beta_i x_i + \varepsilon$$
  
 where $\beta_i$ are the weights of each independent variable.
 
-A key feature of linear regression models is that it is assumed that a certain change in the variables causes proportional change in the output (which is not the case in non-linear models). The output is basically treated as a linear combination of predictors. In the real life scenarios this behaviour can only be observed for short periods of time as many natural and social processes tend to have non-linear rate of change.
-<a href="#page-title" class="back-to-top">{{ site.data.ui-text[site.locale].back_to_top | default: 'Back to Top' }} &uarr;</a>
+A key feature of linear regression models is that it is assumed that a certain change in the variables causes proportional change in the output (which is not the case in non-linear models). The output is basically treated as a linear combination of predictors.
 
 <div id='gaussian_noise'/>
-## Gaussian noise
+### Gaussian noise
  
 In practice there are always factors which are impossible to explain and predict and which may cause surprisingly different results from those that we expect. Therefore there is always going to be some difference between estimated (predicted) and actually observed values - the residuals, even for the variables which seem to be perfectly correlated.
  
@@ -54,16 +49,14 @@ It is common to view the relationship between two observed variables on a scatte
  
 ![](/assets/images/regression/residuals_demo.png){: .align-center}
  
-According to the Central Limit Theorem if the number of observations is large enough - the residuals have [normal distribution]({{ site.baseurl }}{% link _posts/2025-08-23-normal-distribution.md %}) with the mean value of 0. This basically means that for a modeled relationship between two or more variables the observed variation is mainly clustered around the estimated values. Since normal distribution is also called Gaussian distribution, the distribution of residuals around estimated values is called Gaussian noise.
-<a href="#page-title" class="back-to-top">{{ site.data.ui-text[site.locale].back_to_top | default: 'Back to Top' }} &uarr;</a>
+According to the [Central Limit Theorem]({{ site.baseurl }}{% link _posts/2021-01-16-sampling-distribution.md %}central_limit) if the number of observations is large enough - the residuals have [normal distribution]({{ site.baseurl }}{% link _posts/2025-08-23-normal-distribution.md %}) with the mean value of 0. This basically means that for a modeled relationship between two or more variables the observed variation is mainly clustered around the estimated values. Since normal distribution is also called Gaussian distribution, the distribution of residuals around estimated values is called Gaussian noise.
 
 <div id='matrix_notation'/>
 ## Matrix notation
 
 For computation purposes it is better to represent the relationship between the dependent and independent variables with matrix notation:
  
-&nbsp;&nbsp;&nbsp;&nbsp;
-$Y = X \beta + \varepsilon$,
+$$Y = X \beta + \varepsilon$$
  
 where $Y$ is the group of all outputs and $X$ is the composition of all predictors for each particular output:
  
@@ -83,24 +76,23 @@ X = \left[ \begin{array}{ccccc}
 \end{array} \right]
 $$
  
-where $\beta$ is the vector of parameters (weights) of each predictor, and $\varepsilon$ is the vector of errors (Gaussian noise). This variable captures all other factors which influence the dependent variable y other than the regressors.
+$\beta$ is the vector of parameters (weights) of each predictor, and $\varepsilon$ is the vector of errors (Gaussian noise). This variable captures all other factors which influence the dependent variable y other than the regressors.
  
 The parameters $\beta$ of such equation are usually estimated with [least squares]({{ site.baseurl }}{% link _posts/2019-10-27-linear-least-squares.md %}), however other methods such as maximum likelihood or robust estimation techniques can be employed.
-<a href="#page-title" class="back-to-top">{{ site.data.ui-text[site.locale].back_to_top | default: 'Back to Top' }} &uarr;</a>
 
 <div id='confidence_interval_coef'/>
 ## Confidence intervals of the coefficients
 
-[Recall]({{ site.baseurl }}{% link _posts/2021-01-16-sampling-distribution.md %}#confidence interval) that the confidence interval from a sample is the region around the sample mean, which with a certain probability contains the true mean.
+[Recall]({{ site.baseurl }}{% link _posts/2021-01-16-sampling-distribution.md %}#confidence interval) that the confidence interval from a sample is the region around the sample mean, which with a certain level of confidence contains the true mean.
 
-&nbsp;&nbsp;&nbsp;&nbsp;
-$(\bar X - Z \cdot SE; \bar X + Z \cdot SE)$
+$$(\bar X - Z \cdot SE; \bar X + Z \cdot SE)$$
 
 where $Z$ is the critical value for a given significance level (confidence level minus 1), and $SE$ is the [standard error]({{ site.baseurl }}{% link _posts/2021-01-16-sampling-distribution.md %}#sample_mean_variance).
 
 In case of the linear regression the coefficients are calculated based on sample data so they should be viewed as sample means. The variances of the coefficients may be estimated with the covariance matrix, as described [here]({{ site.baseurl }}{% link _posts/2019-08-10-correlation.md %}#variance_coefficients). Then the standard error can be obtained by dividing them by the square root of the number of observations.
 
 When we are dealing with a sample, and the true variance is unknown, instead of the critical value $Z$, which assumes the [normal distribution]({{ site.baseurl }}{% link _posts/2025-08-23-normal-distribution.md %}), the $t$-value from the [$t$-distribution]({{ site.baseurl }}{% link _posts/2021-03-27-statistical-distributions.md %}#student_distribution) is used. The number of [degrees of freedom]({{ site.baseurl }}{% link _posts/2021-03-19-degrees-of-freedom.md %}) for the $t$-value in case of the linear regression is ($n$-$m$-1), where $n$ is the number of observations, and $m$ is the number of independent variables.
+
 <a href="#page-title" class="back-to-top">{{ site.data.ui-text[site.locale].back_to_top | default: 'Back to Top' }} &uarr;</a>
 
 <div id='other_assumptions'/>
@@ -110,7 +102,7 @@ Apart from the linear nature of relationship between predictors and the output t
 
 * Absence of perfect multicollinearity among predictors - that is that none of the predictors can be expressed as a copy or a linear combination of other predictors.
 * Independence of errors - absence of correlation among errors in different output values.
-* Normal distribution of the error term with the mean value of 0.
+* [Normal distribution]({{ site.baseurl }}{% link _posts/2025-08-23-normal-distribution.md %}) of the error term with the mean value of 0.
 * [Homoscedasticity]({{ site.baseurl }}{% link _posts/2019-08-18-heteroscedasticity.md %}) - constant variance of the error term regardless of the values of independent variables.
 
 If not all of the assumptions are satisfied then the model might not have some of the required variables which explain the behaviour of errors, or instead might have redundant variables causing multicollinearity. Or maybe the relationship among variables is non-linear.
@@ -119,8 +111,7 @@ If the errors are correlated and/or heteroscedastic, instead of minimizing the s
 
 Then in order to estimate the parameters, instead of the [ordinary least squares]({{ site.baseurl }}{% link _posts/2019-10-27-linear-least-squares.md %}) (OLS) the generalized least squares provides the best estimation by taking into account the covariance of the error term:
 
-&nbsp;&nbsp;&nbsp;&nbsp;
-$\beta = (X^{T}\Omega^{-1}X)^{-1}X^{T}\Omega^{-1}Y$
+$$\beta = (X^{T}\Omega^{-1}X)^{-1}X^{T}\Omega^{-1}Y$$
 
 In practice however, the true covariance matrix is not known so it needs to be estimated from the sample. In this case the method of solving is called feasible generalized least squares (FGLS).
 <a href="#page-title" class="back-to-top">{{ site.data.ui-text[site.locale].back_to_top | default: 'Back to Top' }} &uarr;</a>
@@ -139,7 +130,7 @@ When testing the parameters we perform the [hypothesis test]({{ site.baseurl }}{
 $H_0: \beta_i = 0$
 
 &nbsp;&nbsp;&nbsp;&nbsp;
-$H_a: \beta_i \ne 0.6$
+$H_a: \beta_i \ne 0$
 
 So for a given significance level the $t$-statistic is calculated:
 
@@ -216,35 +207,30 @@ Below is the disribution of the residuals agains the predicted values of our mod
 
 At first glance, there doesn't seem to be any pattern, which is good.
 
-If it is possible to determine the order of observations in the sample, then it is possible to test for serial correlation of the residuals using [Durbin-Watson]({{ site.baseurl }}{% link _posts/2019-07-12-time-series-tests.md %}#durbin_watson) or [Breusch–Godfrey test]({{ site.baseurl }}{% link _posts/2019-07-12-time-series-tests.md %}#breusch_godfrey), which is no applicable in our case.
+If it is possible to determine the order of observations in the sample, then it is possible to test for serial correlation of the residuals using [Durbin-Watson]({{ site.baseurl }}{% link _posts/2019-07-12-time-series-tests.md %}#durbin_watson) or [Breusch–Godfrey test]({{ site.baseurl }}{% link _posts/2019-07-12-time-series-tests.md %}#breusch_godfrey), which is not applicable in our case.
 
 If however the tests were able to identify the autocorrelation of the errors then the obvious way to remove it is to add some of the omitted variables if they are known. However in practice this information is usually absent, so another way to deal with it is to add the lag of the dependent variable as an additional predictor. Let's take a look at the Cochrane–Orcutt estimation which was designed specifically for this purpose. Suppose we have regression in form of
 
-&nbsp;&nbsp;&nbsp;&nbsp;
-$y_t = \alpha + \beta X_t + \varepsilon_t$
+$$y_t = \alpha + \beta X_t + \varepsilon_t$$
 
 And autocorrelation of the residuals at lag 1:
 
-&nbsp;&nbsp;&nbsp;&nbsp;
-$\varepsilon_t = \rho \varepsilon_{t-1} + u_t$
+$$\varepsilon_t = \rho \varepsilon_{t-1} + u_t$$
 
 where $u$ is the white noise, and $\rho$ is some coefficient which takes values from -1 and 1. By taking the difference (adjusted by $\rho$) between the residuals of consecutive results it is possible to replace the autocorrelated residuals with the white noise.
 
-&nbsp;&nbsp;&nbsp;&nbsp;
-$\varepsilon_t - \rho \varepsilon_{t-1} = u_t$
+$$\varepsilon_t - \rho \varepsilon_{t-1} = u_t$$
 
-&nbsp;&nbsp;&nbsp;&nbsp;
-$y_t - \alpha - \beta X_t - \rho(y_{t-1} - \alpha - \beta X_{t-1}) = u_t$
+$$y_t - \alpha - \beta X_t - \rho(y_{t-1} - \alpha - \beta X_{t-1}) = u_t$$
 
-&nbsp;&nbsp;&nbsp;&nbsp;
-$y_t - \rho y_{t-1} =  \alpha (1 - \rho) + \beta (X_t - \rho X_{t-1}) + u_t$
+$$y_t - \rho y_{t-1} =  \alpha (1 - \rho) + \beta (X_t - \rho X_{t-1}) + u_t$$
 
 In order to find the coefficients of this final equation, first the values of $\alpha$ and $\beta$ from the base regression need to be estimated. Then $\rho$ is estimated from the residuals, and new values of the parameters are estimated from the equation built on differences adjusted by $\rho$. These new parameters are based on the assumption of autocorrelation of the residuals. Using them in the base equation a new value of $\rho$ is estimated, and the procedure is repeated until the convergence is reached.
 
 A slightly better alternative would be Prais–Winsten estimation which is basically based on the Cochrane–Orcutt estimation but it doesn't remove the first observation from the series when calculating lags. Intead, for $t$=1 it adds this expression:
 
-&nbsp;&nbsp;&nbsp;&nbsp;
-$\sqrt{1-\rho^2} y_1 = \alpha \sqrt{1-\rho^2} + \beta \sqrt{1-\rho^2} X_1 + \sqrt{1-\rho^2} \varepsilon_1$
+$$\sqrt{1-\rho^2} y_1 = \alpha \sqrt{1-\rho^2} + \beta \sqrt{1-\rho^2} X_1 + \sqrt{1-\rho^2} \varepsilon_1$$
+
 <a href="#page-title" class="back-to-top">{{ site.data.ui-text[site.locale].back_to_top | default: 'Back to Top' }} &uarr;</a>
 
 <div id='normality_of_errors'/>
@@ -280,3 +266,38 @@ where $u$ is some white noise, and $\beta^{*}$ is a new set of coefficients. The
 
 From here the fitted values of $\varepsilon^2$ are recovered, and their reciprocals are used for the weight matrix of the WLS. It should be noted that since the weights are determined from merely an approximation of the error variance, the WLS may not remove heteroscedasticity completely. In practice if the heteroscedasticity is not evident by visual inspection, one may ignore it completely and just go with the OLS in order to safeguard himself from the possible false assumptions.
 <a href="#page-title" class="back-to-top">{{ site.data.ui-text[site.locale].back_to_top | default: 'Back to Top' }} &uarr;</a>
+
+## Linear regression as a Foundation for More Complex Models
+
+In real-world scenarios, linear behavior can only be observed for short periods of time, as many natural and social processes tend to have a non-linear rate of change (or non-linear relationships). Therefore, linear regression often produces poor results when applied to real-world data, and thus is not a primary choice for [machine learning]({{ site.baseurl }}{% link _posts/2025-10-01-machine-learnings.md %}). Still, it is important to understand how it works because it serves as a foundation for many other models. Furthermore, many machine learning algorithms ([logistic regression]({{ site.baseurl }}{% link _posts/2022-09-25-logistic-regresion.md %}), [neural networks]({{ site.baseurl }}{% link _posts/2022-11-06-neural-networks.md %}), [support vector machines]({{ site.baseurl }}{% link _posts/2020-10-19-support-vector-machine.md %}), [generalized linear models]({{ site.baseurl }}{% link _posts/2025-10-01-generalized-linear-regression.md %})) build on the same core principles as linear regression: estimating weights for features to minimize an error function.
+
+Moreover, in machine learning we often start with a linear regression model as a baseline. If your complex non-linear model (like a neural network or [gradient boosting]({{ site.baseurl }}{% link _posts/2023-03-28-tree-like-algorithms.md %}#gradient_boost)) doesn’t significantly outperform linear regression, it suggests the problem may not need the added complexity — the relationships may already be mostly linear.
+
+#### Non-linear relationships can be made linear through transformations
+
+You can model non-linear patterns by transforming input features:
+
+* Polynomials: e.g. adding $x^2$, $x^3$ lets a linear regression fit curves.
+* Interactions: e.g. $x_1 \cdot x_ 2$ can model feature interactions.
+* Logarithmic or exponential transforms: turning multiplicative relationships into additive ones.
+
+After such transformations, the model is still linear in parameters, so it stays interpretable and computationally efficient.
+
+#### Linear regression connects to basis expansions & kernels
+
+A lot of non-linear ML techniques (kernel methods, [Gaussian processes]({{ site.baseurl }}{% link _posts/2022-07-23-gaussian-process.md %})) can be seen as linear regression in a higher-dimensional space where non-linear transformations of the original features are included.
+
+For example the “kernel trick” in [support vector machines]({{ site.baseurl }}{% link _posts/2020-10-19-support-vector-machine.md %}) is just applying linear methods in a transformed feature space.
+
+#### Regularization generalizes linear regression
+
+[Ridge and Lasso regression]({{ site.baseurl }}{% link _posts/2022-10-18-regularization.md %}) show how penalizing coefficients can prevent overfitting.
+
+These ideas carry over to machine learning broadly (e.g. weight decay in neural nets, regularization in decision trees).
+
+#### Interpretability
+
+Even in non-linear modeling contexts, linear regression is used as an interpretability tool:
+
+* Approximating local behavior of a black-box model (e.g. LIME, SHAP use linear models locally).
+* Understanding the direction and relative strength of relationships.

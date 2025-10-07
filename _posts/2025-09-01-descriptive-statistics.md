@@ -50,6 +50,7 @@ The mean uses **all** data points in its calculation, not just the middle one. T
 
 When we sample repeatedly then according to the [Central Limit Theorem]({{ site.baseurl }}{% link _posts/2021-01-16-sampling-distribution.md %}), the distribution of the sample mean approaches a [normal distribution]({{ site.baseurl }}{% link _posts/2025-08-23-normal-distribution.md %}) (even if the original data is not normal). This makes the mean extremely useful for [inference]({{ site.baseurl }}{% link _posts/2025-09-01-statistical-inference.md %}), confidence intervals, and hypothesis testing. The median doesn’t share this property in the same way.
 
+<div id='dispersion'/>
 ## Measures of Variability (Dispersion)
 
 Central tendency describes the center, while these measures describe how much the data values vary from each other.
@@ -65,7 +66,7 @@ The units are squared, which can make it hard to interpret.
 **The Standard Deviation**: The square root of the variance. It is the most common measure of dispersion because it is in the same units as the original data.
 
 $$\sigma=\sqrt{\frac{\sum (x−μ)^{2}}{N}}$$
-        ​
+
 **The Interquartile Range (IQR)**: The range of the middle 50% of the data. It is the difference between the first and third quartiles (Q3​−Q1​) and is not affected by outliers.
 
 ## Describing the Distribution Shape
