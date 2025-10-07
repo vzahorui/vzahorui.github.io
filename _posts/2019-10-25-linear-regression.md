@@ -17,7 +17,7 @@ Linear regression is the simplest and most widely used form of [regression analy
 
 ## The Pre-Modeling Step: Correlation
 
-Before fitting any line, the first step in linear regression is confirming that a linear relationship even exists. This is assessed using [covariance and correlation]({{ site.baseurl }}{% link _posts/20219-08-10-correlation.md %}).
+Before fitting any line, the first step in linear regression is confirming that a linear relationship even exists. This is assessed using [covariance and correlation]({{ site.baseurl }}{% link _posts/2019-08-10-correlation.md %}).
 
 * Covariance measures how two variables vary together (in the same or opposite direction).
 * Correlation is the standardized version of covariance, providing a single number (between −1 and +1) that quantifies the strength and direction of the relationship, independent of the variables' units.
