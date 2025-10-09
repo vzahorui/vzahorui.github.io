@@ -1,7 +1,7 @@
 ---
 layout: single
 title: "Survival Analysis"
-category: "Probability & Statistics"
+category: "Survival Analysis"
 tags: statistics probability censoring Kaplan-Meier-Estimator density-function cumulative-distribution-function survival-function hazard-function life-table
 date: 2025-10-06
 toc: true

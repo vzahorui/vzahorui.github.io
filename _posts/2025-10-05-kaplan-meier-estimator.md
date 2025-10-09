@@ -1,7 +1,7 @@
 ---
 layout: single
 title: "Kaplan-Meier Estimator"
-category: "Probability & Statistics"
+category: "Survival Analysis"
 tags: survival-analysis survival-function logarithm delta-method derivative
 date: 2025-10-06
 toc: true

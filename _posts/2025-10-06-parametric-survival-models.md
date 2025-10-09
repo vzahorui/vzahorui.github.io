@@ -1,7 +1,7 @@
 ---
 layout: single
-title: "Kaplan-Meier Estimator"
-category: "Probability & Statistics"
+title: "Parametric Survival Models"
+category: "Survival Analysis"
 tags: survival-analysis survival-function logarithm hazard-function Weibull-distribution maximum-likelihood-estimation accelerated-failure-time
 date: 2025-10-06
 toc: true
@@ -19,7 +19,7 @@ This yields interpretable parameters, smooth curves, and the ability to predict 
 
 ## Model Framework
 
-A parametric survival model defines a probability density $f(t;\theta)$ and cumulative distribution $F(t;\theta)$ with parameters $\theta$. The survival and hazard functions are expressed as follows:
+A parametric survival model defines a probability density $f(t;\theta)$ and cumulative distribution $F(t;\theta)$ with parameters $\theta$ of the hazard event. The survival and hazard functions are expressed as follows:
 
 $$S(t) = 1 - F(t;\theta)$$
 

@@ -1,7 +1,7 @@
 ---
 layout: single
-title: "Kaplan-Meier Estimator"
-category: "Probability & Statistics"
+title: "Cox Proportional Hazards Model"
+category: "Survival Analysis"
 tags: survival-analysis hazard-function log-likelihood partial-likelihood confidence-interval
 date: 2025-10-06
 toc: true
