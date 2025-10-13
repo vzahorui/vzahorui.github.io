@@ -12,9 +12,7 @@ toc_min_level: 2
 toc_max_level: 3
 ---
 
-## Introduction
-
-In our exploration of [probability and statistics]({{ site.baseurl }}{% link _posts/2025-08-18-probability-statistics.md %}), a foundational concept is how data is distributed. A probability distribution is a function that describes the likelihood of a random variable taking on certain values. Think of it as a model or blueprint for a dataset, showing us the probable outcomes of a random process.
+A probability distribution is a function that describes the likelihood of a random variable taking on certain values. Think of it as a model or blueprint for a dataset, showing us the probable outcomes of a random process.
 
 By identifying the distribution that best fits our data, we unlock powerful insights, make informed predictions, and choose the right [statistical tests]({{ site.baseurl }}/_posts/2021-01-21-hypothesis-testing.md) for our analysis.
 
