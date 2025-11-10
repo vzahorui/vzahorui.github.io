@@ -62,7 +62,7 @@ While censoring deals with incomplete event times within the study duration, tru
 
 The most common form is Left Truncation:
 
-A subject is only observed (and enters the risk set) if their event has not yet occurred by a certain time $L$ (the entry time). In other words, for a subject to be included, their true event time $T$ must be greater than their time of entry L ($T \geq L$).
+A subject is only observed (and enters the risk set) if their event has not yet occurred by a certain time $L$ (the entry time). In other words, for a subject to be included, their true event time $T$ must be greater than their time of entry $L$ ($T \geq L$).
 
 **Example**: Studying the progression of a chronic disease where the disease onset occurred 10 years ago. A subject is only recruited if they have survived for at least 10 years. If a person died 5 years after the disease onset, they would be "left truncated" from the study, leading to a sample that inherently appears healthier (has longer survival times) than the true population.
 
@@ -70,7 +70,7 @@ Survival analysis models must explicitly account for truncation to prevent biase
 
 ## Core Mathematical Functions
 
-Survival analysis is built around two core functions that describe the probabilistic behavior of the time-to-event variable $T$.
+Survival analysis is built around several core functions that describe the probabilistic behavior of the time-to-event variable $T$.
 
 The relationships described below are fundamental: knowing any one of $S(t)$, $h(t)$, $f(t)$ allows you to compute the others.
 
@@ -82,33 +82,43 @@ It gives the probability that the event has not yet occurred by time $t$.
 
 $S(t)$ is always monotonically decreasing, starting at $S(0)=1$ (everyone survives at time zero) and approaching 0 as $t \rightarrow \infty$.
 
-Intuitively, it’s a cumulative complement of the distribution function $F(t)=P(T=\leq t)$.
+### The Density Function
 
-$$S(t) = 1 - F(t)$$
+The event time also has a [probability density function (PDF)]({{ site.baseurl }}{% link _posts/2021-03-27-statistical-distributions.md %}), $f(t)$, which represents the probability density of the event occurring at time $t$.
+
+$$f(t) = \lim_{\Delta t \rightarrow 0} \frac{P(t \leq T < t + \Delta t)}{\Delta t}$$
+
+**Connection to the Survival Function**: The slope of a survival function is always negative; a steeper negative slope means a faster decrease in survival and thus a higher probability density of the event. Therefore, the density function can be expressed as the negative [derivative]({{ site.baseurl }}{% link _posts/2019-09-14-derivatives.md %}) of the survival function with respect to time.
+
+$$f(t) = - \frac{dS(t)}{dt} = \frac{d}{dt}(1-S(t))$$
+
+The Cumulative Distribution Function (CDF), $F(t)$, is the complement of the survival function. It represents the probability that the event has occurred by time $t$ ($P(T \leq t)$) and can be obtained by [integrating]({{ site.baseurl }}{% link _posts/2019-09-24-integrals.md %}) the density function from 0 to $t$.
+
+$$F(t) = \int_0^t f(t) = \int_0^t \frac{d}{dt}(1-S(t)) = 1 - S(t)$$
 
 ### The Hazard Function
 
+The hazard function, $h(t)$, is the instantaneous rate of the event occurring at time $t$, given that the individual has survived up to time $t$.
+
 $$h(t)= \lim_{\Delta t \rightarrow 0} \frac{P(t < T \leq t + \Delta t| T > t)}{\Delta t}​$$
 
-This is the instantaneous failure rate — the risk of the event occurring at time $t$, given that it has not occurred before.
+The hazard function can increase, decrease, or remain constant over time, reflecting how the risk changes (e.g., risk of infant mortality decreases over time, while risk of many chronic diseases increases with age).
 
-The hazard function can increase, decrease, or remain constant over time, reflecting how the risk changes (e.g., risk of infant mortality decreases over time, while risk of chronic disease increases with age).
+The hazard function is an instantaneous rate based on a conditional probability. By definition $P(A \mid B)=\frac{P(A\cap B)}{P(B)}​$. We can view $A$ as the event occurring in the small interval $[t, t+\Delta t)$ and $B$ as survival up to $t$. $P(A\cap B)$ is $P(A)$, as $A$ implies $B$ (you must survive to time $t$ to have the event at time $t$).
 
-It connects to the survival function through:
+This simplifies to:
 
-$$S(t) = \exp(-\int_0^t h(u) du)$$
+$$h(t) = \frac{f(t)}{S(t)}$$
 
-and conversely,
+Furthermore, since $f(t) = -S'(t)$, we can see that:
 
-$$h(t) = - \frac{d}{dt} \ln S(t)$$
+$$h(t) = \frac{-S'(t)}{S(t)} = -\frac{d}{dt}\ln S(t)$$
 
-### The Density Function
+By integrating both sides, we can express the cumulative hazard function, $H(t)$:
 
-The event time also has a probability density:
+$$H(t) = \int_0^t h(u) du= - [ \ln S(t) - \ln S(0) ] = - \ln S(t)$$
 
-$$f(t) = - \frac{dS(t)}{dt} = h(t)S(t)$$
-
-This expresses the intuitive link. Namely, the probability of failure at time $t$ equals the chance of surviving up to $t$, times the instantaneous risk of failure then.
+Therefore, if you know one of these functions, you can derive the others. For example, $S(t) = e^{-H(t)}$.
 
 ## Classes of Models in Survival Analysis
 
@@ -119,6 +129,10 @@ Different estimators model $S(t)$ and $h(t)$ with different levels of structure.
 |Non-Parametric|No assumption on $S(t)$ and $h(t)$|Exploratory, baseline estimation|[Kaplan-Meier Estimator]({{ site.baseurl }}{% link _posts/2025-10-05-kaplan-meier-estimator.md %})|
 |Semi-Parametric|Functional form for covariate effects, but $h_0(t)$ is free|Regression analysis of risk factors|[Cox Proportional Hazards Model]({{ site.baseurl }}{% link _posts/2025-10-06-cox-proportional-hazards.md %})|
 |Parametric|Fully specified distribution (Exponential, Weibull, Log-Logistic, etc.)|Forecasting, reliability, extrapolation|[Parametric Survival Models]({{ site.baseurl }}{% link _posts/2025-10-06-parametric-survival-models.md %})|
+
+Typically, you build a [Kaplan-Meier Estimator]({{ site.baseurl }}{% link _posts/2025-10-05-kaplan-meier-estimator.md %}) for exploratory analysis. However, for regression analysis, such as determining the impact of different variables on the survival rate and expected useful life, you will have to build either a semi-parametric [Cox Model]({{ site.baseurl }}{% link _posts/2025-10-06-cox-proportional-hazards.md %}) or a [fully parametric one]({{ site.baseurl }}{% link _posts/2025-10-06-parametric-survival-models.md %}). The latter is better if you need to forecast beyond the observable time period.
+
+[Tree-based models]({{ site.baseurl }}{% link _posts/2023-03-28-tree-like-algorithms.md %}) such as random forest and gradient boosting can also be applied for regression analysis. They typically outperform in terms of predictive accuracy within the observable time period because they can capture non-linear relationships and interactions between variables. However, they are not suited for forecasting beyond the observable time window and do not provide the same level of coefficient interpretability.
 
 ### The Life Tables
 
