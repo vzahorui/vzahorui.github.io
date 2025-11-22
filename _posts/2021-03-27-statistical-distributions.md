@@ -2,8 +2,8 @@
 layout: single
 title: "Probability Distributions"
 category: "Probability & Statistics"
-tags: probability-distribution probability normal-distribution statistics t-distribution student-distribution probability-mass-function PMF probability-density-function PDF chi-square-distribution binomial-distribution Bernoulli-trial geometric-distribution exponential-distribution poisson-distribution uniform-distribution negative-binomial-distribution beta-distribution gamma-function Gaussian-distribution
-date: 2025-09-02
+tags: probability-distribution probability normal-distribution statistics t-distribution student-distribution probability-mass-function PMF probability-density-function PDF chi-square-distribution binomial-distribution Bernoulli-trial geometric-distribution exponential-distribution poisson-distribution uniform-distribution negative-binomial-distribution beta-distribution gamma-function Gaussian-distribution Weibull-distribution
+date: 2025-11-22
 toc: true
 toc_label: "Table of Contents"
 toc_icon: "book-reader"
@@ -294,4 +294,30 @@ Suppose we would like to model the time between arrival of two buses at some sta
 ![](/assets/images/probability/exponential_distribution.png){: .align-center}
 
 The mean of the exponential distribution is $\frac{1}{\lambda}$, and the variance is $\frac{1}{\lambda^2}$.
+
+<div id='weibull_distribution'/>
+### Weibull distribution
+
+This distribution is a cornerstone of [survival analysis]({{ site.baseurl }}{% link _posts/2025-10-01-survival-analysis.md %}),  specifically within the framework of [parametric survival models]({{ site.baseurl }}{% link _posts/2025-10-06-parametric-survival-models.md %}).
+
+While the Exponential distribution assumes a constant rate of events (constant hazard, in survival analysis terminology), the Weibull distribution relaxes this assumption by adding a parameter that allows the risk to change over time. This flexibility better reflects the real world, where organisms age, machines wear out, and biological systems adapt.
+
+**The Shape Parameter $k$** dictates the behavior of the hazard. 
+
+ * $k<1$ (Decreasing Hazard): The risk is high at the start and drops over time. For example in post-surgery survival the highest risk is immediately after the operation: if you survive the first week, your chances of long-term survival improve significantly.
+ * $k=1$ (Constant Hazard): The risk never changes. In this case the Weibull distribution mathematically transforms into the Exponential distribution.
+ * $k>1$ (Increasing Hazard): The risk starts low and grows over time. For example a car tire works fine when new, but as miles accumulate, the probability of a blowout increases.
+
+**The Scale Parameter $\lambda$** stretches or shrinks the curve along the time axis, affecting the time scale of the event (e.g., days vs. years). 
+
+The probability density function (PDF) is given by:
+
+$$f(t) = \frac{k}{\lambda}\left(\frac{t}{\lambda}\right)^{k-1}e^{-(t/\lambda)^k}$$
+
+We can better understand this equation by viewing it through the lens of the fundamental survival relationship, where the density is the product of the hazard and the survival function, $f(t) = h(t) S(t)$.
+
+* The term $e^{-(t/\lambda)^k}$ is the survival function $S(t)$. As $t$ increases, this term decays to 0, representing the probability of survival decreasing over time.
+
+* The term $\frac{k}{\lambda}\left(\frac{t}{\lambda}\right)^{k-1}$ is the hazard function $h(t)$. This term controls the "instantaneous risk". For example, if $k=2$ the hazard grows linearly with time, and if $k=1$ the hazard becomes constant.
+
 

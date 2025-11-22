@@ -77,7 +77,7 @@ $$h(t|X, \text{stratum}=s) = h_{0s}(t)\exp(\beta^T X)$$
 
 Each stratum has its own $h_{0s}(t)$, but a shared $\beta$. This allows the shape and level of the hazard over time to differ across groups — while keeping the same multiplicative effect of covariates on the hazard within each stratum.
 
-Partial likelihood is constructed is constructed per stratum, and then multiplied together:
+Partial likelihood is constructed per stratum, and then multiplied together:
 
 $$L(\beta) = \prod_{s=1}^S \prod_{k=1}^n \frac{\exp(\beta^T X_{(k)})}{\sum_{j \in R(t_{(k)})} \exp(\beta^T X_{j})}$$
 
