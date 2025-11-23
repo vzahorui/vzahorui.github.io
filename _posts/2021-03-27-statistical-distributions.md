@@ -2,8 +2,8 @@
 layout: single
 title: "Probability Distributions"
 category: "Probability & Statistics"
-tags: probability-distribution probability normal-distribution statistics t-distribution student-distribution probability-mass-function PMF probability-density-function PDF chi-square-distribution binomial-distribution Bernoulli-trial geometric-distribution exponential-distribution poisson-distribution uniform-distribution negative-binomial-distribution beta-distribution gamma-function Gaussian-distribution Weibull-distribution
-date: 2025-11-22
+tags: probability-distribution probability normal-distribution statistics t-distribution student-distribution probability-mass-function PMF probability-density-function PDF chi-square-distribution binomial-distribution Bernoulli-trial geometric-distribution exponential-distribution poisson-distribution uniform-distribution negative-binomial-distribution beta-distribution gamma-function Gaussian-distribution Weibull-distribution log-normal-distribution log-logistic-distribution
+date: 2025-11-23
 toc: true
 toc_label: "Table of Contents"
 toc_icon: "book-reader"
@@ -356,7 +356,7 @@ The [derivative]({{ site.baseurl }}{% link _posts/2019-09-14-derivatives.md %}) 
 
 $$f(t) = \frac{e^{-t}}{(1+e^{-t})^2}$$
 
-By defining $Y = \ln(T)$ and solving for $T$ using the parameters $\alpha$ (scale) and $\beta$ (shape), we get the Log-Logistic PDF:
+We can define $Y= \ln(T)$ which follows a logistic distribution with location parameter $\mu$ (often mapped to $\ln(\alpha)$) and scale parameter $s$ (often mapped to $1/\beta$). Solving it for $T$ creates as log-logistic distribution, and this is how its PDF looks like when parametrized via $\alpha$ and $\beta$: 
 
 $$f(t) = \frac{(\beta/\alpha)(t/\alpha)^{\beta-1}}{(1+(t/\alpha)^\beta)^2}$$
 
