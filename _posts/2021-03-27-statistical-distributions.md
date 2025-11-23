@@ -250,7 +250,7 @@ Below is a visualization of the probability density function of the chi-square d
 Notice that since we are squaring the values there are no negative values in the chi-square distribution. If we draw only one value, then there is a high probability that this value is close to 0, since the normal distribution is centered around 0. Therefore the shape of the PDF of chi-square distribution with 1 degree of freedom is heavily skewed towards zero, while the probability of getting bigger numbers becomes minuscule. If we draw more and more numbers increasing the number of degrees of freedom, the sum of squared values causes the center of the PDF of chi-square distribution to be shifted to the right.
 
 <div id='beta_distribution'/>
-### Beta distribution
+### Beta Distribution
 
 This distribution is an extension of the negative binomial distribution to the continuous variables. However, instead of modeling the number of successes (or failures), it is used for modeling the distribution of probability.
 
@@ -283,7 +283,7 @@ It is worth mentioning that the higher the value of the parameters - the tighter
 The mean of the beta distribution is defined as $\frac{\alpha}{(\alpha+\beta)}$, and the variance is $\frac{\alpha\beta}{(\alpha+\beta)^2(\alpha+\beta+1)}$.
 
 <div id='exponential_distribution'/>
-### Exponential distribution
+### Exponential Distribution
 
 This is a continuous distribution which is closely related to the Poisson distribution as it models the time between random independent events. It may also be viewed as a continuous analogue of the geometric distribution. The PDF of the distribution is calculated as follows:
 
@@ -296,7 +296,7 @@ Suppose we would like to model the time between arrival of two buses at some sta
 The mean of the exponential distribution is $\frac{1}{\lambda}$, and the variance is $\frac{1}{\lambda^2}$.
 
 <div id='weibull_distribution'/>
-### Weibull distribution
+### Weibull Distribution
 
 This distribution is a cornerstone of [survival analysis]({{ site.baseurl }}{% link _posts/2025-10-01-survival-analysis.md %}),  specifically within the framework of [parametric survival models]({{ site.baseurl }}{% link _posts/2025-10-06-parametric-survival-models.md %}).
 
@@ -320,4 +320,52 @@ We can better understand this equation by viewing it through the lens of the fun
 
 * The term $\frac{k}{\lambda}\left(\frac{t}{\lambda}\right)^{k-1}$ is the hazard function $h(t)$. This term controls the "instantaneous risk". For example, if $k=2$ the hazard grows linearly with time, and if $k=1$ the hazard becomes constant.
 
+![](/assets/images/probability/Weibull.png){: .align-center}
 
+<div id='log_normal_distribution'/>
+### Log-Normal Distribution
+
+This distribution arises when the logarithm of a random variable is [normally]({{ site.baseurl }}{% link _posts/2025-08-23-normal-distribution.md %}) distributed. 
+
+$$X = e^{\mu + \sigma Z}$$
+
+While the normal distribution results from adding independent random events (the additive Central Limit Theorem), the log-normal distribution results from the multiplication of many independent random effects.
+
+Similar to the normal distribution, the parameters of the log-normal distribution are $\mu$ and $\sigma$, but they refer to the underlying logged data:
+
+* $\mu$ is the mean of the logged data ($\ln T$). It functions as a scale parameter: if $\mu$ increases, the entire curve shifts to the right.
+
+* $\sigma$ is the standard deviation of the logged data. This parameter controls the shape (skewness). A higher $\sigma$ results in a much heavier, longer tail to the right, indicating a higher probability of extreme outliers.
+
+![](/assets/images/probability/Log-Normal.png){: .align-center}
+
+This distribution is used in [survival analysis]({{ site.baseurl }}{% link _posts/2025-10-01-survival-analysis.md %}) to model the hazard rate which increases in time up to a certain point, and then becomes smaller. For example the risk of dying immediately after a surgery is small, but then rises quickly to a peak (complications usually happen here), and if you survive that peak, your risk drops the longer you live.
+
+<div id='log_logistic_distribution'/>
+### Log-Logistic Distribution
+
+The Log-Logistic distribution is the "cousin" of the Log-Normal. To the naked eye, their density plots look almost identical (both are right-skewed humps), but the Log-Logistic has heavier tails (more outliers).
+
+Mathematically, it is the distribution of a variable $T$ whose logarithm follows a Logistic distribution. The Standard Logistic distribution is very similar to the standard [normal distribution]({{ site.baseurl }}{% link _posts/2025-08-23-normal-distribution.md %}), but, again, with heavier tails.
+
+Recall the cumulative distribution function (CDF) of a standard logistic variable $z$ (from [logistic regression]({{ site.baseurl }}{% link _posts/2022-09-25-logistic-regresion.md %})):
+
+$$F(t) = \frac{1}{1+e^{-t}}$$
+
+The [derivative]({{ site.baseurl }}{% link _posts/2019-09-14-derivatives.md %}) gives the probability density function:
+
+$$f(t) = \frac{e^{-t}}{(1+e^{-t})^2}$$
+
+By defining $Y = \ln(T)$ and solving for $T$ using the parameters $\alpha$ (scale) and $\beta$ (shape), we get the Log-Logistic PDF:
+
+$$f(t) = \frac{(\beta/\alpha)(t/\alpha)^{\beta-1}}{(1+(t/\alpha)^\beta)^2}$$
+
+In the context of [survival analysis]({{ site.baseurl }}{% link _posts/2025-10-01-survival-analysis.md %}), we can break this down into the survival function and the hazard function:
+
+$$S(t)=\frac{1}{1+(t/\alpha)^\beta}$$
+
+$$h(t)=\frac{(\beta/\alpha)(t/\alpha)^{\beta-1}}{1+(t/\alpha)^\beta}$$
+
+The numerator of the hazard function resembles the Weibull hazard. It pulls the risk up (if $\beta>1$). However, the denominator ($1+(t/\alpha)^\beta$) grows faster than the numerator as $t$ gets very large. This forces the hazard to eventually turn around and decrease, creating a "hump" shape similar to the Log-Normal distribution.
+
+![](/assets/images/probability/Log-Logistic.png){: .align-center}
