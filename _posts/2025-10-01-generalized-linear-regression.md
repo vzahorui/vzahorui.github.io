@@ -50,7 +50,7 @@ The mean ($\mu$) and the variance ($V$) of the distribution are directly defined
 * Mean: $\mu=E[Y]=b'(\theta)$
 * Variance: $Var[Y]=b''(\theta) \cdot a(\phi)$
 
-The ability to express the mean and variance as simple derivatives of the function b(θ) is one of the most elegant mathematical properties of the Exponential Family. This is derived directly from these requirements:
+The ability to express the mean and variance as simple derivatives of the function $b(\theta)$ is one of the most elegant mathematical properties of the Exponential Family. This is derived directly from these requirements:
 * The probability density/mass function must integrate or sum to one ($\int f(y;\theta,\phi)dy=1$ or $\sum f(y;\theta,\phi)=1$). 
 * The mean of a variable $Y$ is $\int y f(y;\theta,\phi)dy$.
 * The variance is expressed via the mean like $E[Y^2]−(E[Y])^2$.
@@ -113,7 +113,7 @@ $$l(β) \propto \sum_{i=1}^n ​(y_i \theta_i - b(\theta_i))$$
 
 ### The Maximization Process (Finding the Score)
 
-To find the values of $β$ that maximize the log-likelihood, we take the partial [derivative]({{ site.baseurl }}{% link _posts/2019-09-14-derivatives.md %}) of $l(\beta)$ with respect to each $\beta_j$​ and set the resulting expression (the Score Function) equal to zero:
+To find the values of $\beta$ that maximize the log-likelihood, we take the partial [derivative]({{ site.baseurl }}{% link _posts/2019-09-14-derivatives.md %}) of $l(\beta)$ with respect to each $\beta_j$​ and set the resulting expression (the Score Function) equal to zero:
 
 $$\frac{\partial l}{\partial \beta_j} = 0$$
 
@@ -123,9 +123,9 @@ $$\sum_{i=1}^n \left[\frac{y_i - \mu_i}{Var(Y_i)} \cdot \frac{\partial \mu_i}{\p
 
 This equation has no closed-form solution (except for a few special cases like [OLS]({{ site.baseurl }}{% link _posts/2019-10-27-linear-least-squares.md %}) and Poisson regression with a canonical link).
 
-Because the score equation is nonlinear, the solution β^​ is found numerically using an iterative algorithm, most commonly Iteratively Reweighted Least Squares (IRLS).
+Because the score equation is nonlinear, the solution $\beta$​ is found numerically using an iterative algorithm, most commonly Iteratively Reweighted Least Squares (IRLS).
 
-The IRLS algorithm works by iteratively updating the estimate β(t) using a weighted least squares solution until the estimates converge:
+The IRLS algorithm works by iteratively updating the estimate $\beta(t)$ using a weighted least squares solution until the estimates converge:
 
 $$\beta^{(t+1)} = \beta^{(t)} + (X^{T} W^{(t)} X)^{-1} X^{T} W^{(t)} z^{(t)}$$
 
@@ -143,7 +143,7 @@ Since $\mu=b'(\theta)$, and the canonical link means $\theta=\eta$, we have:
 
 $$\frac{\partial \mu_i}{\partial \eta_i} = b''(\theta) \cdot 1 = Var(Y)/a(\phi)$$
 
-So it can be seen that the term $\frac{\partial \mu_i}{\partial \eta_i}$ in the score equation is directly related to the variance. This means the weight matrix $W$ used in the IRLS algorithm is implicitly defined by $b′′(\theta)$ which simplifies the solving.
+So it can be seen that the term $\frac{\partial \mu_i}{\partial \eta_i}$ in the score equation is directly related to the variance. This means the weight matrix $W$ used in the IRLS algorithm is implicitly defined by $b''(\theta)$ which simplifies the solving.
 
 ## Standard Error of Coefficients
 

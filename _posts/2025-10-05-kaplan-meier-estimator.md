@@ -41,45 +41,66 @@ Before calculating the [Confidence Interval]({{ site.baseurl }}{% link _posts/20
 
 ### Calculation of the Variance
 
-Taking logs turns the product into a sum; the variance of that sum is the sum of variances of the increments.
+The Kaplan-Meier estimator is a product of probabilities, and calculating the variance of a product is mathematically difficult. To simplify this, we take the natural logarithm. This turns the difficult product into a manageable sum (since the variance of a sum is just the sum of the variances):
 
 $$\ln \hat S(t) = \sum_{t_i \leq t} \ln \left(1- \hat p_i \right)$$
 
 where $\hat p_i$ is ${d_i}/{n_i}$.
 
-For each term $\ln(1-\hat p_i)$ we can approximate its variability using a [Delta Method]({{ site.baseurl }}{% link _posts/2025-10-05-delta-method.md %}) linearization:
+#### Step 1: Variance of the Log-Terms
 
-$$Var [\ln(1-\hat p_i)] \approx \left[\frac{d}{dp}(1-p)|{}_{p=p_i} \right]^2 Var(\hat p_i) = \frac{1}{(1-p_i)^2}Var(\hat p_i)$$
+We first need the variance of each individual term in the sum: $\ln(1-\hat p_i)$. Since this is a non-linear transformation of $p_i$​, we approximate its variability using a [Delta Method]({{ site.baseurl }}{% link _posts/2025-10-05-delta-method.md %}) linearization.
 
-$\hat p_i$ is a [binomial]({{ site.baseurl }}{% link _posts/2021-03-27-statistical-distributions.md %}#binomial_distribution) proportion which is approximated via the [normal distribution]({{ site.baseurl }}{% link _posts/2025-08-23-normal-distribution.md %}) with variance $Var(\hat p_i)\approx p_i(1-p_i)/n_i$. Then,
+The [derivative]({{ site.baseurl }}{% link _posts/2019-09-14-derivatives.md %}) of $g(p) = \ln(1-\hat p)$ is $g'(p) = \frac{-1}{1-p}$. So applying the Delta method:
 
-$$Var [\ln(1-\hat p_i)] \approx \frac{1}{(1-p_i)^2} \cdot \frac{p_i(1-p_i)}{n_i} = \frac{p_i}{n_i (1-p_1)}$$
+$$Var [\ln(1-\hat p_i)] \approx \left[\frac{-1}{1-p_i} \right]^2 Var(\hat p_i) = \frac{1}{(1-p_i)^2}Var(\hat p_i)$$
 
-By replacing back $p_1$ with ${d_i}/{n_i}$ we get this:
+Recall that $\hat p_i$ is a [binomial]({{ site.baseurl }}{% link _posts/2021-03-27-statistical-distributions.md %}#binomial_distribution) proportion which is approximated via the [normal distribution]({{ site.baseurl }}{% link _posts/2025-08-23-normal-distribution.md %}) with variance $Var(\hat p_i)\approx p_i(1-p_i)/n_i$. Substituting this back in:
 
-$$Var [\ln(\hat S(t))] \approx \sum_{t_i \leq t} \frac{d_i}{n_i (n_i-d_1)}$$
+$$Var [\ln(1-\hat p_i)] \approx \frac{1}{(1-p_i)^2} \cdot \frac{p_i(1-p_i)}{n_i} = \frac{p_i}{n_i (1-p_i)}$$
 
-Finally, use the delta method again to go from $\ln \hat S(t)$ to $\hat S(t)=\exp(\ln\hat S(t))$:
+By replacing back $p_i$ with ${d_i}/{n_i}$ we simplify the expression for the variance of the Log-Survival:
 
-$$Var[\hat S(t)] \approx S(t)^2 Var [\ln(\hat S(t))]$$
+$$Var [\ln(\hat S(t))] \approx \sum_{t_i \leq t} \frac{d_i}{n_i (n_i-d_i)}$$
+
+#### Step 2: Back-Transformation to $\hat S(t)$
+
+We now have the variance of the logarithm of the survival function, $Var [\ln(\hat S(t))]$. However, our goal is to find the variance of the survival function itself, $Var [\hat S(t)]$.
+
+To return to the original scale, we must invert the logarithm using the exponential function:
+
+$$\hat S(t)= \exp(\ln \hat S(t))$$
+
+Since the exponential function is non-linear, the variance does not transfer directly. We must apply the Delta Method a second time.
+
+* Function: $h(u)=e^u$ (where $u=\ln S(t)$)
+* Derivative: $h'(u)=e^{u}=S(t)$
+
+Applying the Delta Method formula $Var(h(u))≈[h'(u)]^2 Var(u)$:
+
+$$Var[\hat S(t)] \approx S(t)^2 \cdot Var [\ln(\hat S(t))]$$
 
 The finally we obtain the Greenwood’s formula:
 
-$$Var[\hat S(t)] = S(t)^2 \sum_{t_i \leq t} \frac{d_i}{n_i (n_i-d_1)}$$
+$$Var[\hat S(t)] = S(t)^2 \sum_{t_i \leq t} \frac{d_i}{n_i (n_i-d_i)}$$
 
 ### Common Confidence Interval (CI) Constructions
 
 There are multiple ways to calculate the CI. 
 
-1. Wald CI (simple, but can give limits outside $[0,1]$):
+#### Wald CI 
+
+Simple, but can give limits outside $[0,1]$:
 
 $$\hat S(t) \pm z_{1-\alpha/2}\sqrt{Var(\hat S(t))}$$
 
-2. Logarithmic transform CI (stabilizes multiplicative variability):
+#### Logarithmic transform CI 
 
-Let $g(S)=\ln S$. Then $g'(S)=1/S$ and by the delta method:
+This method is meant to stabilize multiplicative variability.
 
-$$Var(\ln \hat S(t)) \approx \frac{Var(\hat S(t))}{\hat S(t)^2} = \sum_{t_i \leq t} \frac{d_i}{n_i (n_i-d_1)}$$
+Let $g(S)=\ln S$. Then $g'(S)=1/S$ and by the Delta method:
+
+$$Var(\ln \hat S(t)) \approx \frac{Var(\hat S(t))}{\hat S(t)^2} = \sum_{t_i \leq t} \frac{d_i}{n_i (n_i-d_i)}$$
 
 Let's mark this expression as $V(t)$, then a $(1-\alpha)$ CI for $\ln S$ is
 
@@ -93,21 +114,29 @@ where $z = z_{1-\alpha/2}$
 
 This keeps bounds positive and is multiplicative.
 
-3. Log–log (or complementary log–log) transform CI (widely used; good small-sample coverage and stays in $[0,1]$):
+#### Log–log (or complementary log–log) transform CI 
 
-Let $g(S)=\ln\big(-\ln S\big)$. Note $g$ is now defined for $0<S<1$. Then compute derivative:
+This method is widely used, has good small-sample coverage and stays in $[0,1]$.
+
+Here the non-linear transformation for the Delta method is defined as follows:
+
+$$g(S)= \ln \left(- \ln S\right)$$
+
+Note, $g$ is now defined for $0<S<1$. 
+
+Then compute derivative:
 
 $$g'(S) = \frac{d}{dS}\ln(-\ln S) = \frac{1}{S \ln S}$$
 
 Apply the [Delta Method]({{ site.baseurl }}{% link _posts/2025-10-05-delta-method.md %}):
 
-$$Var(g(\hat S)) \approx [g'(S)]^2 Var(\hat S) = (\frac{1}{S \ln S})^2 S^2 V(t) = \frac{V(t)}{(\ln S)^2}$$
+$$Var(g(\hat S)) \approx [g'(S)]^2 Var(\hat S) = \left(\frac{1}{S \ln S}\right)^2 S^2 V(t) = \frac{V(t)}{(\ln S)^2}$$
 
 Replacing $S$ by $\hat S$ we get the estimated standard error.
 
 $$SE[g(\hat S(t))] = \frac{\sqrt{V(t)}}{|\ln \hat S(t)|}$$
 
-The absolute value of $\ln \hat S(t)$ is used to ensure that the standard error is positive. The confidence inteval on $g(S)$:
+The absolute value of $\ln \hat S(t)$ in the denominator is used to ensure that the standard error is positive. The confidence inteval on $g(S)$:
 
 $$g(\hat S(t)) \pm z \cdot \frac{\sqrt{V(t)}}{|\ln \hat S(t)|}$$
 
